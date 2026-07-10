@@ -295,6 +295,97 @@
     background: rgba(255,255,255,.94); backdrop-filter: blur(12px); border-top: 1px solid var(--line); }
   .sticky-cta .btn { flex: 1; min-height: 50px; font-size: .92rem; padding: 10px 12px; }
 
+  /* ============ SCROLL-FORTSCHRITT ============ */
+  .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: linear-gradient(90deg, var(--mint), var(--teal)); z-index: 300; border-radius: 0 4px 4px 0; }
+
+  /* ============ EFFEKTE ============ */
+  .hero::before { animation: drift 16s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: translate(-44px, 32px) scale(1.07); } }
+
+  .btn-primary, .btn-gold, .btn-light { position: relative; overflow: hidden; }
+  .btn-primary::after, .btn-gold::after, .btn-light::after { content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255,255,255,.45), transparent); transform: skewX(-20deg); transition: left .55s ease; pointer-events: none; }
+  .btn-primary:hover::after, .btn-gold:hover::after, .btn-light:hover::after { left: 135%; }
+
+  .sparkle { position: absolute; color: var(--gold); opacity: 0; pointer-events: none; animation: twinkle 4.5s ease-in-out infinite; }
+  .sparkle.mint { color: var(--mint); }
+  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.35) rotate(0deg); } 50% { opacity: .85; transform: scale(1) rotate(80deg); } }
+
+  .svc-card:hover .svc-icon, .step-card:hover .step-icon { animation: wiggle .5s ease; }
+  @keyframes wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-9deg); } 75% { transform: rotate(9deg); } }
+
+  .team-card:hover .team-avatar { animation: avatarPop .45s ease; }
+  @keyframes avatarPop { 50% { transform: scale(1.08); } }
+
+  /* ============ MARQUEE-BAND ============ */
+  .marquee { overflow: hidden; background: var(--teal); padding: 15px 0; }
+  .marquee-track { display: flex; align-items: center; gap: 44px; width: max-content; animation: marquee 30s linear infinite; }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 15px; color: #DFF2EE; font-weight: 600; font-size: .86rem; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; }
+  .marquee-track svg { color: var(--mint); flex: none; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* ============ ONLINE-BUCHUNG (DEMO) ============ */
+  .booking { max-width: 900px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow-m); overflow: hidden; }
+  .bk-steps { display: flex; border-bottom: 1px solid var(--line-soft); }
+  .bk-step { flex: 1; display: flex; align-items: center; justify-content: center; gap: 9px; padding: 17px 10px; font-size: .87rem; font-weight: 600; color: var(--muted); background: var(--bg); transition: background .3s, color .3s; }
+  .bk-step .num { width: 27px; height: 27px; border-radius: 50%; display: grid; place-items: center; background: var(--line); color: var(--muted); font-size: .78rem; flex: none; transition: background .3s, color .3s; }
+  .bk-step.active { color: var(--teal-deep); background: #fff; }
+  .bk-step.active .num { background: var(--teal); color: #fff; }
+  .bk-step.done .num { background: var(--mint); color: var(--teal-deep); }
+  .bk-body { padding: 36px; }
+  .bk-panel { display: none; }
+  .bk-panel.active { display: block; animation: panelIn .4s ease; }
+  @keyframes panelIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: none; } }
+
+  .bk-services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .bk-svc { display: flex; align-items: center; gap: 11px; padding: 15px 17px; border: 1.5px solid var(--line); border-radius: 15px; background: #fff; cursor: pointer;
+    font: inherit; font-weight: 600; font-size: .9rem; color: var(--ink); text-align: left; transition: border-color .2s, background .2s, transform .2s; }
+  .bk-svc svg { color: var(--teal); flex: none; }
+  .bk-svc:hover { border-color: var(--mint); transform: translateY(-2px); }
+  .bk-svc.selected { border-color: var(--teal); background: var(--teal-soft); }
+
+  .bk-datetime { display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; }
+  .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .cal-head b { font-family: var(--font-head); font-size: 1.18rem; font-weight: 500; }
+  .cal-nav { display: inline-flex; gap: 7px; }
+  .cal-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--line); background: #fff; cursor: pointer; display: grid; place-items: center; color: var(--ink); transition: border-color .2s, background .2s; }
+  .cal-nav button:hover:not(:disabled) { border-color: var(--teal); background: var(--teal-soft); }
+  .cal-nav button:disabled { opacity: .35; cursor: default; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-grid .dow { text-align: center; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); padding: 7px 0; }
+  .cal-day { aspect-ratio: 1; border: none; background: transparent; border-radius: 50%; font: inherit; font-size: .9rem; font-weight: 500; color: var(--ink); cursor: pointer; transition: background .2s, color .2s, transform .2s; }
+  .cal-day:hover:not(:disabled) { background: var(--teal-soft); }
+  .cal-day:disabled { color: #C9C4B8; cursor: default; }
+  .cal-day.today { box-shadow: inset 0 0 0 1.5px var(--mint); }
+  .cal-day.selected { background: var(--teal); color: #fff; transform: scale(1.06); }
+
+  .slots h4 { font-size: .97rem; margin-bottom: 13px; font-family: var(--font-body); font-weight: 600; }
+  .slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; max-height: 296px; overflow-y: auto; padding-right: 4px; align-content: start; }
+  .slot { padding: 12px 6px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; font: inherit; font-size: .88rem; font-weight: 600; cursor: pointer; color: var(--ink); transition: border-color .2s, background .2s, color .2s; }
+  .slot:hover { border-color: var(--mint); }
+  .slot.selected { border-color: var(--teal); background: var(--teal); color: #fff; }
+  .slot-grid .empty { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; background: var(--bg); border-radius: 12px; padding: 18px; }
+
+  .bk-summary { background: var(--teal-soft); border-radius: 16px; padding: 19px 22px; margin-bottom: 24px; display: grid; gap: 7px; font-size: .94rem; }
+  .bk-summary b { color: var(--teal-deep); }
+  .bk-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .bk-field { display: grid; gap: 6px; }
+  .bk-field.full { grid-column: 1 / -1; }
+  .bk-field label { font-size: .86rem; font-weight: 600; }
+  .bk-field input, .bk-field textarea { font: inherit; font-size: .95rem; padding: 13px 15px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); width: 100%; resize: vertical; }
+  .bk-field input:focus, .bk-field textarea:focus { outline: 3px solid rgba(14,94,99,.22); border-color: var(--teal); }
+  .bk-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .bk-error { color: #B4423A; font-size: .89rem; font-weight: 600; margin-top: 14px; display: none; }
+  .bk-error.show { display: block; }
+
+  .bk-success { text-align: center; padding: 22px 10px 8px; }
+  .check-ring { width: 94px; height: 94px; margin: 0 auto 22px; display: block; }
+  .check-ring circle { stroke: var(--mint); stroke-width: 3; fill: rgba(127,209,192,.12); stroke-dasharray: 290; stroke-dashoffset: 290; animation: ringDraw .7s ease forwards; }
+  .check-ring path { stroke: var(--teal); stroke-width: 5; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 60; stroke-dashoffset: 60; animation: ringDraw .5s ease .55s forwards; }
+  @keyframes ringDraw { to { stroke-dashoffset: 0; } }
+  .bk-demo-note { display: inline-block; margin-top: 22px; background: var(--gold-soft); color: #7A6224; border-radius: 999px; padding: 8px 18px; font-size: .82rem; font-weight: 600; }
+
   /* ============ REVEAL ANIMATIONS ============ */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
@@ -333,10 +424,19 @@
     .sticky-cta { display: flex; }
     footer { padding-bottom: 140px; }
     .foot-grid { grid-template-columns: 1fr; gap: 32px; }
+    .bk-datetime, .bk-form, .bk-services { grid-template-columns: 1fr; }
+    .bk-body { padding: 24px 20px; }
+    .bk-step .lbl { display: none; }
+    .bk-step.active .lbl { display: inline; }
+    .bk-actions { flex-wrap: wrap; }
+    .bk-actions .btn { flex: 1; }
+    .slot-grid { max-height: none; }
   }
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <a class="skip-link" href="#leistungen">Zum Inhalt springen</a>
 
@@ -361,7 +461,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       040&nbsp;754&nbsp;935&nbsp;21
     </a>
-    <a class="btn btn-primary nav-cta" href="https://www.doctolib.de/einzelpraxis/hamburg/hatipoglu-emre" target="_blank" rel="noopener">Termin buchen</a>
+    <a class="btn btn-primary nav-cta" href="#buchung">Termin buchen</a>
     <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
     </button>
@@ -373,20 +473,24 @@
   <a href="#team">Team</a>
   <a href="#kontakt">Kontakt &amp; Anfahrt</a>
   <a href="tel:+494075493521">040 754 935 21 anrufen</a>
-  <a class="btn btn-primary" href="https://www.doctolib.de/einzelpraxis/hamburg/hatipoglu-emre" target="_blank" rel="noopener">Online Termin buchen</a>
+  <a class="btn btn-primary" href="#buchung">Online Termin buchen</a>
 </div>
 
 <main id="top">
 
 <!-- ================= HERO ================= -->
 <header class="hero">
+  <svg class="sparkle" style="top:130px; left:5%;" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>
+  <svg class="sparkle mint" style="top:210px; right:8%; animation-delay:1.4s" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>
+  <svg class="sparkle" style="bottom:120px; left:42%; animation-delay:2.6s" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>
+  <svg class="sparkle mint" style="top:96px; left:34%; animation-delay:3.4s" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>
   <div class="container hero-grid">
     <div>
       <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Neue Patientinnen &amp; Patienten willkommen</span>
       <h1>Moderne Zahnmedizin mit <em>Herz</em> und Kompetenz.</h1>
       <p class="lead">Ihre Zahnarztpraxis im Luna Center in Hamburg-Wilhelmsburg. Wir nehmen uns Zeit für Sie – von der sanften Prophylaxe bis zum hochwertigen Zahnersatz, in modernen und hellen Räumen.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://www.doctolib.de/einzelpraxis/hamburg/hatipoglu-emre" target="_blank" rel="noopener">
+        <a class="btn btn-primary" href="#buchung">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Online Termin buchen
         </a>
@@ -414,7 +518,7 @@
     <div class="hero-visual">
       <div class="float-chip chip-a">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
-        Online-Buchung über Doctolib
+        Online-Buchung rund um die Uhr
       </div>
       <div class="float-chip chip-b">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
@@ -438,7 +542,7 @@
             Kostenlos stornieren oder verschieben
           </li>
         </ul>
-        <a class="btn btn-light" href="https://www.doctolib.de/einzelpraxis/hamburg/hatipoglu-emre" target="_blank" rel="noopener">Jetzt Termin sichern</a>
+        <a class="btn btn-light" href="#buchung">Jetzt Termin sichern</a>
       </div>
     </div>
   </div>
@@ -463,6 +567,28 @@
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 11h16"/><circle cx="8.5" cy="15.5" r="1"/><circle cx="15.5" cy="15.5" r="1"/><path d="m8 19-2 3m12-3 2 3"/></svg>
       <div><b>S3 / S31 Wilhelmsburg</b><span>nur 5 Minuten Fußweg</span></div>
     </div>
+  </div>
+</div>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Prophylaxe</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Implantologie</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Bleaching</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Aligner-Therapie</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Zahnersatz</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Kindervorsorge</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Endodontie</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Notfallbehandlung</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Prophylaxe</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Implantologie</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Bleaching</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Aligner-Therapie</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Zahnersatz</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Kindervorsorge</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Endodontie</span>
+    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></svg>Notfallbehandlung</span>
   </div>
 </div>
 
@@ -600,7 +726,7 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
         </div>
         <h3>Termin buchen</h3>
-        <p>Online über Doctolib – rund um die Uhr, auch am Wochenende. Oder rufen Sie uns einfach an.</p>
+        <p>Online über unseren Terminkalender – rund um die Uhr, auch am Wochenende. Oder rufen Sie uns einfach an.</p>
       </div>
       <div class="step-card reveal d1">
         <div class="step-icon">
@@ -705,7 +831,7 @@
     <div class="faq-wrap">
       <details class="reveal">
         <summary>Nehmen Sie neue Patientinnen und Patienten auf?<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <div class="faq-body">Ja, sehr gerne! Buchen Sie einfach online über Doctolib einen Termin oder rufen Sie uns unter 040&nbsp;754&nbsp;935&nbsp;21 an. Bringen Sie zum ersten Termin Ihre Versichertenkarte und – falls vorhanden – Ihr Bonusheft mit.</div>
+        <div class="faq-body">Ja, sehr gerne! Buchen Sie einfach online über unseren Terminkalender oder rufen Sie uns unter 040&nbsp;754&nbsp;935&nbsp;21 an. Bringen Sie zum ersten Termin Ihre Versichertenkarte und – falls vorhanden – Ihr Bonusheft mit.</div>
       </details>
       <details class="reveal">
         <summary>Was mache ich bei akuten Zahnschmerzen?<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
@@ -731,8 +857,101 @@
   </div>
 </section>
 
+<!-- ================= ONLINE-BUCHUNG (DEMO) ================= -->
+<section id="buchung" style="padding-top: 0;">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="kicker">Online-Termin</span>
+      <h2>Buchen Sie Ihren Wunschtermin – in unter einer Minute.</h2>
+      <p>Behandlung wählen, Tag und Uhrzeit aussuchen, fertig. Wir bestätigen Ihren Termin schnellstmöglich.</p>
+    </div>
+    <div class="booking reveal">
+      <div class="bk-steps" aria-hidden="true">
+        <div class="bk-step active" id="bkStep1"><span class="num">1</span><span class="lbl">Behandlung</span></div>
+        <div class="bk-step" id="bkStep2"><span class="num">2</span><span class="lbl">Datum &amp; Uhrzeit</span></div>
+        <div class="bk-step" id="bkStep3"><span class="num">3</span><span class="lbl">Ihre Daten</span></div>
+      </div>
+      <div class="bk-body">
+
+        <div class="bk-panel active" data-panel="1">
+          <div class="bk-services" id="bkServices" role="group" aria-label="Behandlung auswählen"></div>
+          <p class="bk-error" id="bkError1">Bitte wählen Sie zuerst eine Behandlung aus.</p>
+          <div class="bk-actions">
+            <span></span>
+            <button class="btn btn-primary" type="button" id="bkNext1">Weiter</button>
+          </div>
+        </div>
+
+        <div class="bk-panel" data-panel="2">
+          <div class="bk-datetime">
+            <div>
+              <div class="cal-head">
+                <b id="calTitle">Monat</b>
+                <div class="cal-nav">
+                  <button type="button" id="calPrev" aria-label="Voriger Monat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                  <button type="button" id="calNext" aria-label="Nächster Monat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+                </div>
+              </div>
+              <div class="cal-grid" id="calGrid"></div>
+            </div>
+            <div class="slots">
+              <h4 id="slotTitle">Bitte wählen Sie zuerst einen Tag.</h4>
+              <div class="slot-grid" id="slotGrid"></div>
+            </div>
+          </div>
+          <p class="bk-error" id="bkError2">Bitte wählen Sie einen Tag und eine Uhrzeit aus.</p>
+          <div class="bk-actions">
+            <button class="btn btn-ghost" type="button" id="bkBack2">Zurück</button>
+            <button class="btn btn-primary" type="button" id="bkNext2">Weiter</button>
+          </div>
+        </div>
+
+        <div class="bk-panel" data-panel="3">
+          <div class="bk-summary" id="bkSummary"></div>
+          <form class="bk-form" id="bkForm" novalidate>
+            <div class="bk-field">
+              <label for="bkName">Name *</label>
+              <input id="bkName" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="bk-field">
+              <label for="bkPhone">Telefon *</label>
+              <input id="bkPhone" name="tel" type="tel" autocomplete="tel" required>
+            </div>
+            <div class="bk-field full">
+              <label for="bkMail">E-Mail (optional)</label>
+              <input id="bkMail" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="bk-field full">
+              <label for="bkNote">Anmerkung (optional)</label>
+              <textarea id="bkNote" name="note" rows="3" placeholder="z. B. Angstpatient, Schmerzen seit gestern, …"></textarea>
+            </div>
+          </form>
+          <p class="bk-error" id="bkError3">Bitte geben Sie Ihren Namen und Ihre Telefonnummer an.</p>
+          <div class="bk-actions">
+            <button class="btn btn-ghost" type="button" id="bkBack3">Zurück</button>
+            <button class="btn btn-primary" type="button" id="bkSubmit">Termin anfragen</button>
+          </div>
+        </div>
+
+        <div class="bk-panel" data-panel="4">
+          <div class="bk-success">
+            <svg class="check-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46"/><path d="M32 52l12 12 24-26"/></svg>
+            <h3 style="font-size:1.5rem; margin-bottom:10px;">Vielen Dank, <span id="bkDoneName"></span>!</h3>
+            <p style="color:var(--muted); max-width:34em; margin:0 auto;" id="bkDoneText"></p>
+            <span class="bk-demo-note">Demo-Vorschau – die Buchung ist noch nicht mit dem Praxiskalender verknüpft.</span>
+            <div class="bk-actions" style="justify-content:center;">
+              <button class="btn btn-ghost" type="button" id="bkReset">Weiteren Termin buchen</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= KONTAKT / ANFAHRT ================= -->
-<section id="kontakt" style="padding-top: 0;">
+<section id="kontakt">
   <div class="container">
     <div class="sec-head reveal">
       <span class="kicker">Kontakt &amp; Anfahrt</span>
@@ -763,7 +982,7 @@
               <tr><td>Freitag</td><td>08:00 – 15:00</td></tr>
               <tr><td>Samstag &amp; Sonntag</td><td>geschlossen</td></tr>
             </table>
-            <p class="hours-note">Termine nach Vereinbarung – aktuelle Zeiten finden Sie in unserem Doctolib-Kalender.</p>
+            <p class="hours-note">Termine nach Vereinbarung – aktuelle Zeiten sehen Sie direkt in unserem Online-Kalender.</p>
           </div>
         </div>
       </div>
@@ -788,7 +1007,7 @@
     <h2>Bereit für Ihr <em>gesündestes</em> Lächeln?</h2>
     <p>Sichern Sie sich jetzt Ihren Wunschtermin – online in unter zwei Minuten oder ganz klassisch per Telefon.</p>
     <div class="hero-ctas">
-      <a class="btn btn-light" href="https://www.doctolib.de/einzelpraxis/hamburg/hatipoglu-emre" target="_blank" rel="noopener">
+      <a class="btn btn-light" href="#buchung">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Online Termin buchen
       </a>
@@ -845,7 +1064,7 @@
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     Anrufen
   </a>
-  <a class="btn btn-primary" href="https://www.doctolib.de/einzelpraxis/hamburg/hatipoglu-emre" target="_blank" rel="noopener">Termin buchen</a>
+  <a class="btn btn-primary" href="#buchung">Termin buchen</a>
 </div>
 
 <script>
@@ -873,6 +1092,158 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll-Fortschrittsbalken
+  const prog = document.getElementById('scrollProgress');
+  addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
+  }, { passive: true });
+
+  // ===== Online-Buchung (Demo, ohne Kalender-Anbindung) =====
+  (() => {
+    const services = [
+      'Kontrolluntersuchung', 'Professionelle Zahnreinigung', 'Akute Schmerzen / Notfall',
+      'Beratung Zahnersatz & Implantate', 'Bleaching', 'Kindervorsorge'
+    ];
+    const state = { service: null, date: null, slot: null, month: null };
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const maxMonth = new Date(today.getFullYear(), today.getMonth() + 2, 1);
+    state.month = new Date(minMonth);
+    const booked = new Set();
+    const dayKey = d => d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    const fmt = d => d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const err = (n, show) => document.getElementById('bkError' + n).classList.toggle('show', show);
+
+    // Behandlungen
+    const svcWrap = document.getElementById('bkServices');
+    services.forEach(s => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'bk-svc';
+      b.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a7 7 0 0 0-7 7c0 3 1.5 4.5 2 8 .2 1.4 1 2 2 2s1.6-.8 1.8-2.2c.3-1.9.6-2.8 1.2-2.8s.9.9 1.2 2.8C13.4 19.2 14 20 15 20s1.8-.6 2-2c.5-3.5 2-5 2-8a7 7 0 0 0-7-7z"/></svg><span>' + s + '</span>';
+      b.addEventListener('click', () => {
+        state.service = s;
+        svcWrap.querySelectorAll('.bk-svc').forEach(x => x.classList.remove('selected'));
+        b.classList.add('selected');
+        err(1, false);
+      });
+      svcWrap.appendChild(b);
+    });
+
+    // Schritt-Navigation
+    const panels = document.querySelectorAll('.bk-panel');
+    const tabs = [1, 2, 3].map(i => document.getElementById('bkStep' + i));
+    function go(n) {
+      panels.forEach(p => p.classList.toggle('active', +p.dataset.panel === n));
+      tabs.forEach((t, i) => {
+        t.classList.toggle('active', i === Math.min(n, 3) - 1);
+        t.classList.toggle('done', i < Math.min(n, 4) - 1);
+      });
+    }
+
+    // Kalender
+    const grid = document.getElementById('calGrid');
+    const title = document.getElementById('calTitle');
+    const prevBtn = document.getElementById('calPrev');
+    const nextBtn = document.getElementById('calNext');
+    function renderCal() {
+      title.textContent = state.month.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+      prevBtn.disabled = state.month.getTime() <= minMonth.getTime();
+      nextBtn.disabled = state.month.getTime() >= maxMonth.getTime();
+      grid.innerHTML = '';
+      ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'].forEach(d => {
+        const s = document.createElement('span'); s.className = 'dow'; s.textContent = d; grid.appendChild(s);
+      });
+      const blanks = (state.month.getDay() + 6) % 7;
+      for (let i = 0; i < blanks; i++) grid.appendChild(document.createElement('span'));
+      const days = new Date(state.month.getFullYear(), state.month.getMonth() + 1, 0).getDate();
+      for (let d = 1; d <= days; d++) {
+        const date = new Date(state.month.getFullYear(), state.month.getMonth(), d);
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'cal-day'; btn.textContent = d;
+        btn.setAttribute('aria-label', fmt(date));
+        const wd = date.getDay();
+        if (wd === 0 || wd === 6 || date.getTime() <= today.getTime()) btn.disabled = true;
+        if (date.getTime() === today.getTime()) btn.classList.add('today');
+        if (state.date && date.getTime() === state.date.getTime()) btn.classList.add('selected');
+        btn.addEventListener('click', () => { state.date = date; state.slot = null; err(2, false); renderCal(); renderSlots(); });
+        grid.appendChild(btn);
+      }
+    }
+
+    // Freie Zeiten: deterministisch "zufällig", damit die Demo stabil wirkt
+    // (Mo–Do 8–18 Uhr, Fr 8–15 Uhr, passend zu den Öffnungszeiten-Platzhaltern)
+    function slotsFor(date) {
+      const lastStart = date.getDay() === 5 ? 14.5 : 17.5;
+      const out = [];
+      for (let t = 8, i = 0; t <= lastStart + 0.001; t += 0.5, i++) {
+        const seed = date.getDate() * 13 + date.getMonth() * 7 + i * 3;
+        if (seed % 7 === 0 || seed % 5 === 1) continue;
+        const label = String(Math.floor(t)).padStart(2, '0') + ':' + (t % 1 ? '30' : '00');
+        if (!booked.has(dayKey(date) + label)) out.push(label);
+      }
+      return out;
+    }
+    const slotGrid = document.getElementById('slotGrid');
+    const slotTitle = document.getElementById('slotTitle');
+    function renderSlots() {
+      slotGrid.innerHTML = '';
+      if (!state.date) { slotTitle.textContent = 'Bitte wählen Sie zuerst einen Tag.'; return; }
+      slotTitle.textContent = 'Freie Zeiten am ' + state.date.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+      const list = slotsFor(state.date);
+      if (!list.length) {
+        slotGrid.innerHTML = '<p class="empty">An diesem Tag sind leider keine Zeiten mehr frei – bitte wählen Sie einen anderen Tag.</p>';
+        return;
+      }
+      list.forEach(t => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'slot'; b.textContent = t + ' Uhr';
+        if (state.slot === t) b.classList.add('selected');
+        b.addEventListener('click', () => { state.slot = t; err(2, false); renderSlots(); });
+        slotGrid.appendChild(b);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => { state.month = new Date(state.month.getFullYear(), state.month.getMonth() - 1, 1); renderCal(); });
+    nextBtn.addEventListener('click', () => { state.month = new Date(state.month.getFullYear(), state.month.getMonth() + 1, 1); renderCal(); });
+
+    document.getElementById('bkNext1').addEventListener('click', () => {
+      if (!state.service) return err(1, true);
+      go(2);
+    });
+    document.getElementById('bkBack2').addEventListener('click', () => go(1));
+    document.getElementById('bkNext2').addEventListener('click', () => {
+      if (!state.date || !state.slot) return err(2, true);
+      document.getElementById('bkSummary').innerHTML =
+        '<span><b>Behandlung:</b> ' + state.service + '</span>' +
+        '<span><b>Termin:</b> ' + fmt(state.date) + ' um ' + state.slot + ' Uhr</span>' +
+        '<span><b>Praxis:</b> Zahnärzte im Luna, Wilhelm-Strauß-Weg 2B, 21109 Hamburg</span>';
+      go(3);
+    });
+    document.getElementById('bkBack3').addEventListener('click', () => go(2));
+    document.getElementById('bkSubmit').addEventListener('click', () => {
+      const name = document.getElementById('bkName').value.trim();
+      const phone = document.getElementById('bkPhone').value.trim();
+      if (!name || !phone) return err(3, true);
+      err(3, false);
+      booked.add(dayKey(state.date) + state.slot);
+      document.getElementById('bkDoneName').textContent = name;
+      document.getElementById('bkDoneText').textContent =
+        'Ihre Terminanfrage für „' + state.service + '" am ' + fmt(state.date) + ' um ' + state.slot +
+        ' Uhr ist eingegangen. Wir melden uns zur Bestätigung unter ' + phone + '.';
+      go(4);
+    });
+    document.getElementById('bkReset').addEventListener('click', () => {
+      state.service = null; state.date = null; state.slot = null;
+      svcWrap.querySelectorAll('.bk-svc').forEach(x => x.classList.remove('selected'));
+      document.getElementById('bkForm').reset();
+      renderCal(); renderSlots();
+      go(1);
+    });
+
+    renderCal(); renderSlots();
+  })();
 </script>
 
 </body>
