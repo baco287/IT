@@ -7,6 +7,7 @@
 <meta name="description" content="QONTEX plant, baut und betreibt Ihre digitale Welt: Webseiten, Server & Hosting, Online-Marketing, IT-Infrastruktur und Software – alles aus einer Hand, zum Festpreis. Jetzt kostenloses Erstgespräch sichern.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -106,44 +107,31 @@
   .hero-scroll::after { content: ''; width: 1px; height: 46px; background: linear-gradient(180deg, var(--accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
   @keyframes scrollPulse { 0%, 100% { opacity: .3; transform: scaleY(.6); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } }
 
-  /* ---- Hero: Fotorealistische CPU ---- */
-  .hero-chip { position: absolute; top: 7%; right: 5%; z-index: 0; animation: chipFloat 9s ease-in-out infinite; perspective: 1100px; }
-  @keyframes chipFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
-  .cpu { position: relative; width: min(340px, 26vw); aspect-ratio: 1; transform: rotateX(48deg) rotateZ(-38deg); transform-style: preserve-3d; }
-  .cpu-sub { position: absolute; inset: 0; border-radius: 10px;
-    background:
-      radial-gradient(circle at 30% 25%, rgba(255,255,255,.08), transparent 55%),
-      linear-gradient(135deg, #0E2E20 0%, #123B29 45%, #0B241A 100%);
-    border: 1px solid rgba(0,0,0,.75);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.1),
-      26px 44px 70px rgba(0,0,0,.6),
-      0 0 110px rgba(255,90,43,.12); }
-  .cpu-pins { position: absolute; box-shadow: inset 0 1px 1px rgba(255,255,255,.4), inset 0 -1px 2px rgba(0,0,0,.55); border-radius: 2px; }
-  .pins-t, .pins-b { left: 30px; right: 30px; height: 13px; background: repeating-linear-gradient(90deg, #6E5716 0 2.5px, #F3D97B 2.5px 5px, #C9A63C 5px 7.5px); }
-  .pins-l, .pins-r { top: 30px; bottom: 30px; width: 13px; background: repeating-linear-gradient(0deg, #6E5716 0 2.5px, #F3D97B 2.5px 5px, #C9A63C 5px 7.5px); }
-  .pins-t { top: 9px; } .pins-b { bottom: 9px; } .pins-l { left: 9px; } .pins-r { right: 9px; }
-  .smd { position: absolute; border-radius: 1.5px; box-shadow: 0 1px 2px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.25); }
-  .smd-1 { width: 18px; height: 8px; top: 32px; left: 38px; background: linear-gradient(180deg, #C89A3A, #7A5A0C); }
-  .smd-2 { width: 8px; height: 16px; top: 34px; right: 40px; background: linear-gradient(90deg, #9298A0, #52575D); }
-  .smd-3 { width: 16px; height: 7px; bottom: 34px; left: 44px; background: linear-gradient(180deg, #8D9298, #4E5359); }
-  .smd-4 { width: 7px; height: 15px; bottom: 36px; right: 36px; background: linear-gradient(90deg, #C89A3A, #7A5A0C); }
-  .cpu-ihs { position: absolute; inset: 48px; overflow: hidden;
-    clip-path: polygon(0 16%, 16% 0, 84% 0, 100% 16%, 100% 84%, 84% 100%, 16% 100%, 0 84%);
-    background:
-      repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 3px),
-      linear-gradient(148deg, #C2C7CE 0%, #9298A0 28%, #D6DBE1 47%, #7E848C 68%, #ABB1B8 100%);
-    box-shadow: inset 0 2px 3px rgba(255,255,255,.65), inset 0 -3px 6px rgba(0,0,0,.4);
-    display: grid; place-items: center; }
-  .ihs-shine { position: absolute; inset: -20%; transform: translateX(-130%) rotate(8deg);
-    background: linear-gradient(115deg, transparent 34%, rgba(255,255,255,.5) 47%, rgba(255,255,255,.14) 53%, transparent 66%);
-    animation: ihsSweep 5s ease-in-out infinite; }
-  @keyframes ihsSweep { 0%, 52% { transform: translateX(-130%) rotate(8deg); } 82%, 100% { transform: translateX(130%) rotate(8deg); } }
-  .ihs-text { position: relative; text-align: center; font-family: var(--font-mono); color: rgba(42,47,54,.92);
-    text-shadow: 0 1px 0 rgba(255,255,255,.45); letter-spacing: 2px; line-height: 1.55; }
-  .ihs-text b { display: block; font-size: 19px; font-weight: 600; letter-spacing: 3px; }
-  .ihs-text span { display: block; font-size: 9.5px; letter-spacing: 1.5px; }
-  .ihs-text .lasered { margin-top: 7px; font-size: 8px; color: rgba(42,47,54,.65); }
+  /* ---- Hero: CPU-Produkt-Shot mit Energie-Effekten ---- */
+  @property --ea { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  .hero-chip { position: absolute; top: 10%; right: 5%; z-index: 0; animation: chipFloat 9s ease-in-out infinite; }
+  @keyframes chipFloat { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-18px) rotate(1deg); } }
+  .cpu-shot { position: relative; width: min(400px, 29vw); aspect-ratio: 1; }
+  .cpu-shot::before { content: ''; position: absolute; inset: -46px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(255,90,43,.3), rgba(255,197,61,.1) 45%, transparent 68%);
+    animation: glowPulse 3.6s ease-in-out infinite; }
+  @keyframes glowPulse { 0%, 100% { opacity: .65; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+  .energy { position: absolute; inset: -4px; border-radius: 22px; filter: blur(7px);
+    background: conic-gradient(from var(--ea),
+      transparent 0turn .28turn, var(--accent) .36turn, var(--warn) .42turn, transparent .5turn,
+      transparent .78turn, rgba(255,90,43,.8) .86turn, var(--warn) .92turn, transparent 1turn);
+    animation: ringSpin 4.5s linear infinite; }
+  @keyframes ringSpin { to { --ea: 360deg; } }
+  .cpu-shot img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 44px 90px rgba(0,0,0,.65), 0 0 60px rgba(255,90,43,.18), inset 0 1px 0 rgba(255,255,255,.2); }
+  .shot-sweep { position: absolute; inset: 0; z-index: 2; border-radius: 18px; overflow: hidden; pointer-events: none; }
+  .shot-sweep::after { content: ''; position: absolute; inset: -30%; transform: translateX(-130%) rotate(10deg);
+    background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.3) 48%, rgba(255,255,255,.08) 54%, transparent 64%);
+    animation: shotSweep 5.5s ease-in-out infinite; }
+  @keyframes shotSweep { 0%, 55% { transform: translateX(-130%) rotate(10deg); } 85%, 100% { transform: translateX(130%) rotate(10deg); } }
+  .shot-tag { position: absolute; z-index: 3; bottom: 18px; left: 18px; font-family: var(--font-mono); font-size: .64rem; letter-spacing: 2px; text-transform: uppercase;
+    background: rgba(11,11,12,.8); backdrop-filter: blur(6px); border: 1px solid rgba(255,90,43,.5); color: var(--warn); padding: 7px 13px; }
 
   /* ---- Platinen-Band (Leiterbahnen mit Datenimpulsen) ---- */
   .circuit-band { background: var(--bg-2); border-top: 1px solid var(--line-d); border-bottom: 1px solid var(--line-d); overflow: hidden; }
@@ -438,7 +426,7 @@
     .ab, .cl i { opacity: 1; transform: none; animation: none; }
     .acursor, .marquee-track, .dataflow i, .ping::before, .ping::after, .art-radar .ring, .art-radar .sweep, .finale .rings i { animation: none !important; display: none; }
     .circuit-band .flow { animation: none !important; display: none; }
-    .hero-chip, .unit .fan svg, .ihs-shine { animation: none !important; }
+    .hero-chip, .unit .fan svg, .energy, .shot-sweep::after, .cpu-shot::before { animation: none !important; }
     * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 
@@ -498,26 +486,11 @@
   <canvas id="waveCanvas" aria-hidden="true"></canvas>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-chip" aria-hidden="true">
-    <div class="cpu">
-      <div class="cpu-sub">
-        <span class="cpu-pins pins-t"></span>
-        <span class="cpu-pins pins-b"></span>
-        <span class="cpu-pins pins-l"></span>
-        <span class="cpu-pins pins-r"></span>
-        <span class="smd smd-1"></span>
-        <span class="smd smd-2"></span>
-        <span class="smd smd-3"></span>
-        <span class="smd smd-4"></span>
-        <div class="cpu-ihs">
-          <div class="ihs-shine"></div>
-          <div class="ihs-text">
-            <b>QONTEX</b>
-            <span>CORE X1 · 16C/32T</span>
-            <span>3.9 GHZ TURBO 5.4</span>
-            <span class="lasered">DE-2026 · SN 0287-QTX</span>
-          </div>
-        </div>
-      </div>
+    <div class="cpu-shot">
+      <span class="energy"></span>
+      <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=880&h=880&q=80" alt="" width="440" height="440" loading="eager" decoding="async">
+      <span class="shot-sweep"></span>
+      <span class="shot-tag">QONTEX · HIGH PERFORMANCE</span>
     </div>
   </div>
   <div class="container hero-inner">
