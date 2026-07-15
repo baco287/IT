@@ -3,843 +3,548 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QONTEX – IT, die Ihr Geschäft nach vorn bringt | Webseiten, Server, Marketing & Software</title>
+<title>QONTEX – IT auf höchstem Niveau | Webseiten, Server, Marketing & Software</title>
 <meta name="description" content="QONTEX plant, baut und betreibt Ihre digitale Welt: Webseiten, Server & Hosting, Online-Marketing, IT-Infrastruktur und Software – alles aus einer Hand, zum Festpreis. Jetzt kostenloses Erstgespräch sichern.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FAF6EF;
-    --paper: #FFFFFF;
-    --ink: #171310;
-    --ink-2: #201B14;
-    --muted: #6E6657;
-    --line: #E9E1D2;
-    --line-soft: #F1EADD;
-    --accent: #C65735;
-    --accent-deep: #A84424;
-    --accent-soft: #F7E8DF;
-    --ok: #3E7C5B;
-    --warn: #C99A2E;
-    --bad: #C0442E;
-    --shadow-s: 0 1px 2px rgba(23,19,16,.05), 0 4px 16px rgba(23,19,16,.05);
-    --shadow-m: 0 2px 6px rgba(23,19,16,.06), 0 18px 44px rgba(23,19,16,.09);
-    --r: 22px;
-    --font-head: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+    --bg: #0B0B0C;
+    --bg-2: #121214;
+    --paper: #F4F1EA;
+    --ink: #0B0B0C;
+    --white: #FFFFFF;
+    --muted-d: rgba(255,255,255,.62);
+    --muted-l: #6B6558;
+    --line-d: rgba(255,255,255,.14);
+    --line-l: rgba(11,11,12,.12);
+    --accent: #FF5A2B;
+    --accent-deep: #E04617;
+    --font-display: 'Anton', 'Arial Black', sans-serif;
     --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Consolas', monospace;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-body); color: var(--ink); background: var(--bg); line-height: 1.7; overflow-x: hidden; }
+  body { font-family: var(--font-body); color: var(--white); background: var(--bg); line-height: 1.7; overflow-x: hidden; }
   img { display: block; max-width: 100%; }
   ::selection { background: var(--accent); color: #fff; }
 
-  h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.12; letter-spacing: -1px; }
-  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .display { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; line-height: .96; letter-spacing: .5px; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 
-  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
-    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
   }
 
-  /* ============ NAV (schwebende Pille) ============ */
-  .nav-wrap { position: fixed; top: 16px; left: 0; right: 0; z-index: 200; padding: 0 16px; }
-  .nav-pill { max-width: 1040px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 18px;
-    background: rgba(255,255,255,.82); backdrop-filter: blur(14px); border: 1px solid var(--line);
-    border-radius: 999px; padding: 10px 12px 10px 20px; transition: box-shadow .3s, background .3s; }
-  .nav-wrap.scrolled .nav-pill { box-shadow: var(--shadow-m); background: rgba(255,255,255,.94); }
+  /* ============ NAV ============ */
+  .site-head { position: fixed; top: 0; left: 0; right: 0; z-index: 200; transition: background .35s, border-color .35s, backdrop-filter .35s; border-bottom: 1px solid transparent; }
+  .site-head.scrolled { background: rgba(11,11,12,.82); backdrop-filter: blur(14px); border-bottom-color: var(--line-d); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 0; }
+  .site-head.scrolled .nav-inner { padding: 14px 0; }
 
-  .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--font-head); font-weight: 700; font-size: 1.18rem; letter-spacing: .5px; }
-  .logo .mark { width: 30px; height: 30px; flex: none; }
+  .logo { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: var(--white); font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 2px; text-transform: uppercase; }
+  .logo .mark { width: 32px; height: 32px; flex: none; }
   .logo em { font-style: normal; color: var(--accent); }
 
-  .nav-links { display: flex; gap: 26px; list-style: none; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links { display: flex; gap: 34px; list-style: none; }
+  .nav-links a { color: var(--muted-d); text-decoration: none; font-family: var(--font-mono); font-size: .78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
 
   .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-    padding: 14px 26px; border-radius: 999px; border: none; cursor: pointer;
-    font-family: var(--font-body); font-size: .93rem; font-weight: 600; text-decoration: none;
-    transition: background .22s, color .22s, border-color .22s, box-shadow .25s, transform .25s;
+    position: relative; overflow: hidden;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 34px; border: none; cursor: pointer;
+    font-family: var(--font-mono); font-size: .82rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    transition: background .25s, color .25s, border-color .25s, transform .25s;
   }
-  .btn svg { flex: none; }
-  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 22px rgba(198,87,53,.28); }
-  .btn-primary:hover { background: var(--accent-deep); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(198,87,53,.36); }
-  .btn-dark { background: var(--ink); color: #fff; }
-  .btn-dark:hover { background: var(--accent); transform: translateY(-2px); }
-  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
-  .btn-ghost:hover { border-color: var(--ink); }
-  .btn-light { background: #fff; color: var(--ink); }
-  .btn-light:hover { background: var(--accent-soft); transform: translateY(-2px); }
-  .nav-cta { padding: 10px 20px; font-size: .87rem; }
-
-  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--ink); border-radius: 999px; }
-  .mobile-menu { display: none; position: fixed; top: 78px; left: 16px; right: 16px; z-index: 190; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 14px; box-shadow: var(--shadow-m); }
-  .mobile-menu.open { display: block; }
-  .mobile-menu a { display: block; padding: 13px 14px; border-radius: 12px; text-decoration: none; color: var(--ink); font-weight: 500; }
-  .mobile-menu a:hover { background: var(--line-soft); }
-
-  /* ============ BADGES & SECTION-KÖPFE ============ */
-  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 15px; border-radius: 999px;
-    background: #fff; border: 1px solid var(--line); font-size: .8rem; font-weight: 600; color: var(--muted); }
-  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-  .badge.tint { background: var(--accent-soft); border-color: transparent; color: var(--accent-deep); }
-
-  .sec-head { max-width: 640px; margin: 0 auto 56px; text-align: center; }
-  .sec-head .badge { margin-bottom: 18px; }
-  .sec-head h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); margin-bottom: 14px; }
-  .sec-head h2 em { font-style: normal; color: var(--accent); }
-  .sec-head p { color: var(--muted); font-size: 1.02rem; }
-
-  section { padding: 100px 0; }
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-accent:hover { background: var(--accent-deep); transform: translateY(-2px); }
+  .btn-accent::after { content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(105deg, transparent, rgba(255,255,255,.3), transparent); transform: skewX(-20deg); transition: left .55s ease; }
+  .btn-accent:hover::after { left: 130%; }
+  .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.4); }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+  .nav-cta { padding: 12px 24px; font-size: .74rem; }
 
   /* ============ HERO ============ */
-  .hero { position: relative; padding: 190px 0 110px; text-align: center; overflow: hidden; }
-  .hero-blob { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; filter: none; }
-  .blob-1 { width: 640px; height: 640px; top: -260px; left: 50%; transform: translateX(-50%); background: radial-gradient(circle, rgba(198,87,53,.13), transparent 65%); }
-  .blob-2 { width: 420px; height: 420px; bottom: -180px; right: -140px; background: radial-gradient(circle, rgba(201,154,46,.12), transparent 65%); }
-  .hero-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
-  .hero .badge { margin-bottom: 26px; }
-  .hero .badge .stars { color: var(--accent); letter-spacing: 1px; }
-  .hero h1 { font-size: clamp(2.6rem, 6.2vw, 4.6rem); letter-spacing: -2.2px; margin-bottom: 24px; }
-  .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero .lead { font-size: 1.14rem; color: var(--muted); max-width: 620px; margin: 0 auto 36px; }
-  .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
-  .hero-trust { display: flex; gap: 10px 26px; justify-content: center; flex-wrap: wrap; list-style: none; font-size: .88rem; font-weight: 500; color: var(--muted); }
-  .hero-trust li { display: inline-flex; align-items: center; gap: 7px; }
-  .hero-trust svg { color: var(--ok); flex: none; }
+  .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
+  .hero-bg { position: absolute; inset: -6% 0; z-index: 0; background:
+      url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2100&q=80') center / cover no-repeat;
+    animation: heroZoom 14s ease-out forwards; will-change: transform; }
+  @keyframes heroZoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+  .hero::after { content: ''; position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(180deg, rgba(11,11,12,.55) 0%, rgba(11,11,12,.25) 40%, rgba(11,11,12,.92) 100%); }
+  .hero-inner { position: relative; z-index: 1; width: 100%; padding-bottom: 72px; }
+  .hero-kicker { display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: .78rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; }
+  .hero-kicker::before { content: ''; width: 46px; height: 2px; background: var(--accent); }
+  .hero h1 { font-size: clamp(4rem, 13vw, 12rem); color: var(--white); }
+  .hero h1 .row { display: block; overflow: hidden; }
+  .hero h1 .row > span { display: inline-block; transform: translateY(110%); animation: lineUp 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero h1 .row:nth-child(2) > span { animation-delay: .12s; }
+  .hero h1 .row .out { color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,.9); }
+  .hero h1 .row .acc { color: var(--accent); }
+  @keyframes lineUp { to { transform: translateY(0); } }
+  .hero-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 34px; flex-wrap: wrap; margin-top: 34px; opacity: 0; animation: fadeUp .9s .5s cubic-bezier(.2,.7,.25,1) forwards; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-foot p { max-width: 460px; color: var(--muted-d); font-size: 1.04rem; }
+  .hero-foot p b { color: var(--white); }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-scroll { position: absolute; right: 32px; bottom: 30px; z-index: 1; font-family: var(--font-mono); font-size: .66rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted-d); writing-mode: vertical-rl; display: flex; align-items: center; gap: 10px; }
+  .hero-scroll::after { content: ''; width: 1px; height: 46px; background: linear-gradient(180deg, var(--accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: .3; transform: scaleY(.6); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } }
 
-  /* ============ PROBLEM ============ */
-  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .p-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; box-shadow: var(--shadow-s); transition: transform .3s cubic-bezier(.2,.7,.25,1), box-shadow .3s; }
-  .p-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-m); }
-  .p-viz { height: 168px; border-radius: 15px; background: var(--bg); border: 1px solid var(--line-soft); margin-bottom: 20px; padding: 18px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; position: relative; }
-  .p-card h3 { font-size: 1.18rem; margin-bottom: 8px; padding: 0 6px; }
-  .p-card p { color: var(--muted); font-size: .93rem; padding: 0 6px 6px; }
+  /* ============ MANIFEST (helle Fläche) ============ */
+  .manifest { background: var(--paper); color: var(--ink); padding: 130px 0; }
+  .manifest .kicker { font-family: var(--font-mono); font-size: .76rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 26px; display: flex; align-items: center; gap: 14px; }
+  .manifest .kicker::before { content: ''; width: 46px; height: 2px; background: var(--accent); }
+  .manifest .statement { font-size: clamp(2.2rem, 5.6vw, 4.6rem); max-width: 1050px; }
+  .manifest .statement em { font-style: normal; color: var(--accent-deep); }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 76px; border-top: 2px solid var(--ink); padding-top: 36px; }
+  .stat .v { font-family: var(--font-display); font-size: clamp(2.6rem, 5vw, 4.4rem); line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat .v .a { color: var(--accent-deep); }
+  .stat .l { font-family: var(--font-mono); font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-l); margin-top: 10px; }
 
-  /* Viz 1: Balkendiagramm */
-  .viz-chart { display: flex; align-items: flex-end; gap: 9px; height: 100%; }
-  .viz-chart .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 7px; height: 100%; justify-content: flex-end; }
-  .viz-chart .b { width: 100%; border-radius: 6px 6px 3px 3px; background: #E5DCCB; min-height: 8px; transform-origin: bottom; }
-  .viz-chart .b.hot { background: var(--accent); }
-  .viz-chart .m { font-size: .58rem; font-weight: 600; letter-spacing: .5px; color: var(--muted); }
-  .viz-tip { position: absolute; top: 16px; right: 16px; background: var(--ink); color: #fff; font-size: .68rem; font-weight: 600; padding: 5px 11px; border-radius: 999px; }
-  .in .viz-chart .b { animation: grow .9s cubic-bezier(.2,.7,.25,1) backwards; }
-  @keyframes grow { from { transform: scaleY(0); } }
+  /* ============ KAPITEL (Scrollytelling) ============ */
+  .chapter { position: relative; min-height: 92svh; display: flex; align-items: center; overflow: hidden; }
+  .chapter .bg { position: absolute; inset: -8% 0; z-index: 0; background-position: center; background-size: cover; background-repeat: no-repeat; will-change: transform; }
+  .chapter::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(11,11,12,.86) 8%, rgba(11,11,12,.45) 55%, rgba(11,11,12,.25) 100%); }
+  .chapter.flip::after { background: linear-gradient(270deg, rgba(11,11,12,.86) 8%, rgba(11,11,12,.45) 55%, rgba(11,11,12,.25) 100%); }
+  .chapter .container { position: relative; z-index: 1; width: 100%; }
+  .chapter.flip .ch-copy { margin-left: auto; text-align: right; }
+  .chapter.flip .ch-kicker { justify-content: flex-end; }
+  .chapter.flip .ch-kicker::before { order: 2; }
+  .ch-copy { max-width: 640px; padding: 90px 0; }
+  .ch-kicker { display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: .76rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .ch-kicker::before { content: ''; width: 46px; height: 2px; background: var(--accent); }
+  .ch-copy h2 { font-size: clamp(3rem, 8vw, 6.6rem); color: var(--white); }
+  .ch-copy h2 .row { display: block; overflow: hidden; }
+  .ch-copy h2 .row > span { display: inline-block; }
+  .rise .row > span { transform: translateY(110%); }
+  .rise.in .row > span { transform: translateY(0); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .rise.in .row:nth-child(2) > span { transition-delay: .1s; }
+  .ch-copy p { color: var(--muted-d); font-size: 1.02rem; max-width: 480px; margin: 22px 0 30px; }
+  .chapter.flip .ch-copy p { margin-left: auto; }
+  .ch-link { display: inline-flex; align-items: center; gap: 12px; color: var(--white); text-decoration: none; font-family: var(--font-mono); font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; border-bottom: 2px solid var(--accent); padding-bottom: 6px; transition: color .25s, gap .25s; }
+  .ch-link:hover { color: var(--accent); gap: 18px; }
 
-  /* Viz 2: Status-Liste */
-  .viz-status { display: grid; gap: 9px; justify-content: stretch; align-content: center; height: 100%; }
-  .viz-status .row { display: flex; align-items: center; gap: 9px; background: #fff; border: 1px solid var(--line-soft); border-radius: 10px; padding: 8px 12px; font-size: .72rem; font-weight: 600; color: var(--ink); box-shadow: var(--shadow-s); }
-  .viz-status .row .st { width: 8px; height: 8px; border-radius: 50%; flex: none; }
-  .viz-status .row span:last-child { margin-left: auto; color: var(--muted); font-weight: 500; font-size: .66rem; }
-  .st.bad { background: var(--bad); } .st.warn { background: var(--warn); } .st.ok { background: var(--ok); }
+  /* ============ REFERENZEN ============ */
+  .work { background: var(--paper); color: var(--ink); padding: 130px 0; }
+  .work .kicker { font-family: var(--font-mono); font-size: .76rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 22px; display: flex; align-items: center; gap: 14px; }
+  .work .kicker::before { content: ''; width: 46px; height: 2px; background: var(--accent); }
+  .work-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: 64px; }
+  .work-head h2 { font-size: clamp(2.6rem, 6vw, 5rem); }
+  .work-head p { max-width: 380px; color: var(--muted-l); font-size: .98rem; }
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .work-card { position: relative; display: flex; flex-direction: column; text-decoration: none; color: var(--ink); background: #fff; border: 1px solid var(--line-l); overflow: hidden; transition: transform .35s cubic-bezier(.2,.7,.25,1), box-shadow .35s; }
+  .work-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(11,11,12,.16); }
+  .work-visual { height: 240px; display: grid; place-items: center; padding: 30px 30px 0; overflow: hidden; }
+  .work-visual.wk { background: linear-gradient(140deg, #1B1B22, #2A2A33); }
+  .work-visual.vg { background: linear-gradient(140deg, #12306B, #1D4ED8); }
+  .work-visual.hv { background: linear-gradient(140deg, #8F1D4C, #D6336C); }
+  .mock { width: 100%; max-width: 300px; background: #0f0f13; border: 1px solid rgba(255,255,255,.14); border-radius: 10px 10px 0 0; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.4); transform: translateY(8px); transition: transform .45s cubic-bezier(.2,.7,.25,1); }
+  .work-card:hover .mock { transform: translateY(0); }
+  .mock .bar { display: flex; gap: 5px; padding: 9px 11px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .mock .bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .mock .page { padding: 18px 18px 20px; }
+  .mock .t { font-family: var(--font-display); font-size: 1rem; letter-spacing: 1px; color: #fff; text-transform: uppercase; }
+  .mock .ln { height: 6px; border-radius: 4px; background: rgba(255,255,255,.14); margin-top: 10px; }
+  .mock .ln.short { width: 60%; }
+  .mock .cta-dot { display: inline-block; margin-top: 12px; padding: 6px 14px; color: #fff; font-size: .64rem; font-weight: 700; font-family: var(--font-mono); letter-spacing: 1px; text-transform: uppercase; }
+  .work-body { padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .work-body .tag { font-family: var(--font-mono); font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-l); }
+  .work-body h3 { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .5px; text-transform: uppercase; }
+  .work-body p { color: var(--muted-l); font-size: .9rem; flex: 1; }
+  .work-body .go { display: inline-flex; align-items: center; gap: 9px; margin-top: 8px; font-family: var(--font-mono); font-size: .74rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--accent-deep); }
+  .work-card:hover .go { text-decoration: underline; }
 
-  /* Viz 3: Aktivitätsraster */
-  .viz-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; align-content: center; height: 100%; }
-  .viz-grid i { aspect-ratio: 1; border-radius: 5px; background: #E5DCCB; }
-  .viz-grid i.on { background: var(--accent); opacity: .85; }
-  .viz-grid i.half { background: #DFA989; }
+  /* ============ CTA-FINALE + KONTAKT ============ */
+  .finale { position: relative; padding: 150px 0 120px; overflow: hidden; }
+  .finale .bg { position: absolute; inset: -8% 0; z-index: 0;
+    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2100&q=80') center / cover no-repeat; will-change: transform; }
+  .finale::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(11,11,12,.94) 0%, rgba(11,11,12,.82) 100%); }
+  .finale .container { position: relative; z-index: 1; }
+  .finale-head { text-align: center; margin-bottom: 70px; }
+  .finale-head h2 { font-size: clamp(3.4rem, 10vw, 9rem); color: var(--white); }
+  .finale-head h2 em { font-style: normal; color: var(--accent); }
+  .finale-head p { color: var(--muted-d); font-family: var(--font-mono); font-size: .8rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 22px; }
 
-  /* ============ LÖSUNG (dunkles Band) ============ */
-  .solution { padding: 30px 0 100px; }
-  .sol-band { background: var(--ink); border-radius: 32px; padding: 76px 56px; color: #F5F1E8; position: relative; overflow: hidden; }
-  .sol-band::before { content: ''; position: absolute; width: 520px; height: 520px; border-radius: 50%; top: -240px; right: -160px; background: radial-gradient(circle, rgba(198,87,53,.3), transparent 65%); }
-  .sol-band .sec-head { text-align: left; margin: 0 0 48px; position: relative; }
-  .sol-band .sec-head h2 { color: #fff; }
-  .sol-band .sec-head p { color: rgba(245,241,232,.65); }
-  .sol-band .badge { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.15); color: rgba(245,241,232,.85); }
-  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; position: relative; }
-  .metric { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 28px 24px; transition: background .3s, transform .3s; }
-  .metric:hover { background: rgba(255,255,255,.09); transform: translateY(-4px); }
-  .metric .v { font-family: var(--font-head); font-weight: 700; font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: -1.5px; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
-  .metric .v .a { color: var(--accent); }
-  .metric .t { font-weight: 600; font-size: .95rem; margin: 12px 0 6px; color: #fff; }
-  .metric .d { font-size: .84rem; color: rgba(245,241,232,.6); }
-  .sol-cta { margin-top: 44px; position: relative; }
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; max-width: 1080px; margin: 0 auto; }
+  .contact-side h3 { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+  .contact-side > p { color: var(--muted-d); margin-bottom: 28px; font-size: .97rem; }
+  .contact-facts { list-style: none; display: grid; gap: 18px; }
+  .contact-facts li { display: flex; gap: 14px; align-items: flex-start; border-left: 2px solid var(--accent); padding-left: 16px; }
+  .contact-facts b { display: block; font-size: .92rem; }
+  .contact-facts span { color: var(--muted-d); font-size: .86rem; }
 
-  /* ============ LEISTUNGEN ============ */
-  .srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .srv-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 30px 28px; box-shadow: var(--shadow-s); display: flex; flex-direction: column; gap: 12px; transition: transform .3s cubic-bezier(.2,.7,.25,1), box-shadow .3s, border-color .3s; }
-  .srv-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-m); border-color: #E0D2BC; }
-  .srv-card .icon { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-deep); transition: transform .3s cubic-bezier(.2,.7,.25,1); }
-  .srv-card:hover .icon { transform: scale(1.08) rotate(-4deg); }
-  .srv-card h3 { font-size: 1.16rem; }
-  .srv-card p { color: var(--muted); font-size: .92rem; flex: 1; }
-  .srv-card a { color: var(--accent-deep); text-decoration: none; font-weight: 600; font-size: .88rem; display: inline-flex; align-items: center; gap: 7px; }
-  .srv-card a svg { transition: transform .25s; }
-  .srv-card a:hover svg { transform: translateX(4px); }
-
-  /* ============ VALUE / PILLS ============ */
-  .value { text-align: center; }
-  .value h2 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); letter-spacing: -1.8px; margin-bottom: 16px; }
-  .value h2 em { font-style: normal; color: var(--accent); }
-  .value > .container > p { color: var(--muted); max-width: 560px; margin: 0 auto 34px; font-size: 1.02rem; }
-  .pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 940px; margin: 52px auto 0; }
-  .pill-card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; text-align: left; display: flex; gap: 16px; align-items: flex-start; box-shadow: var(--shadow-s); transition: transform .3s, box-shadow .3s; }
-  .pill-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-m); }
-  .pill-card .icon { width: 42px; height: 42px; flex: none; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-deep); }
-  .pill-card b { display: block; font-size: .98rem; margin-bottom: 3px; }
-  .pill-card span { color: var(--muted); font-size: .86rem; line-height: 1.55; display: block; }
-
-  /* ============ REFERENZ ============ */
-  .ref-card { display: grid; grid-template-columns: 1fr 1.05fr; gap: 0; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 26px; box-shadow: var(--shadow-s); }
-  .ref-visual { position: relative; min-height: 360px; background: linear-gradient(140deg, #F3E9DA, #EADDC8); display: grid; place-items: center; padding: 40px; overflow: hidden; }
-  .fake-browser { width: 100%; max-width: 400px; background: #17141a; border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(23,19,16,.25); }
-  .fake-browser .bar { display: flex; gap: 6px; padding: 11px 13px; border-bottom: 1px solid rgba(255,255,255,.08); }
-  .fake-browser .bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.18); }
-  .fake-browser .page { padding: 24px; }
-  .fake-browser .t { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; color: #fff; }
-  .fake-browser .t span { color: #fb4d8c; }
-  .fake-browser .ln { height: 8px; border-radius: 5px; background: rgba(255,255,255,.12); margin-top: 12px; }
-  .fake-browser .ln.short { width: 65%; }
-  .fake-browser .cta-dot { display: inline-block; margin-top: 16px; padding: 8px 18px; border-radius: 8px; background: #fb4d8c; color: #fff; font-size: .76rem; font-weight: 700; }
-  .ref-body { padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; gap: 15px; }
-  .ref-body .badge { width: fit-content; }
-  .ref-body h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
-  .ref-body p { color: var(--muted); font-size: .96rem; }
-  .ref-points { list-style: none; display: grid; gap: 9px; margin: 4px 0 10px; }
-  .ref-points li { display: flex; align-items: center; gap: 10px; font-size: .91rem; font-weight: 500; }
-  .ref-points svg { color: var(--ok); flex: none; }
-
-  /* Weitere Referenzen (Mini-Karten) */
-  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-  .ref-mini { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-s); display: flex; flex-direction: column; transition: transform .3s cubic-bezier(.2,.7,.25,1), box-shadow .3s; }
-  .ref-mini:hover { transform: translateY(-6px); box-shadow: var(--shadow-m); }
-  .ref-mini .visual { min-height: 220px; display: grid; place-items: center; padding: 32px 32px 0; overflow: hidden; }
-  .ref-mini .visual.volt { background: linear-gradient(140deg, #E3EDFB, #CFE0F6); }
-  .ref-mini .visual.hair { background: linear-gradient(140deg, #FBE8F0, #F6D4E3); }
-  .fb-light { width: 100%; max-width: 330px; background: #fff; border: 1px solid rgba(23,19,16,.1); border-radius: 12px 12px 0 0; overflow: hidden; box-shadow: 0 18px 44px rgba(23,19,16,.16); }
-  .fb-light .bar { display: flex; gap: 6px; padding: 10px 12px; border-bottom: 1px solid rgba(23,19,16,.07); }
-  .fb-light .bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(23,19,16,.14); }
-  .fb-light .page { padding: 20px 20px 24px; }
-  .fb-light .t { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; color: var(--ink); }
-  .fb-light .ln { height: 7px; border-radius: 5px; background: rgba(23,19,16,.08); margin-top: 11px; position: relative; overflow: hidden; }
-  .fb-light .ln::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(23,19,16,.05), transparent); animation: shimmer 2.6s ease-in-out infinite; }
-  .fb-light .ln.short { width: 60%; }
-  .fb-light .cta-dot { display: inline-block; margin-top: 14px; padding: 7px 16px; border-radius: 8px; color: #fff; font-size: .72rem; font-weight: 700; }
-  .ref-mini .body { padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .ref-mini .badge { width: fit-content; font-size: .72rem; padding: 6px 12px; }
-  .ref-mini h3 { font-size: 1.2rem; }
-  .ref-mini p { color: var(--muted); font-size: .9rem; flex: 1; }
-  .ref-mini .live { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-deep); text-decoration: none; font-weight: 600; font-size: .88rem; width: fit-content; }
-  .ref-mini .live svg { transition: transform .25s; }
-  .ref-mini .live:hover svg { transform: translateX(4px); }
-  @media (max-width: 760px) { .ref-grid { grid-template-columns: 1fr; } }
-
-  /* ============ FAQ ============ */
-  .faq-list { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
-  .faq-item { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: box-shadow .3s; }
-  .faq-item[open] { box-shadow: var(--shadow-s); }
-  .faq-item summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; cursor: pointer; font-weight: 600; font-size: .99rem; }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary .plus { width: 30px; height: 30px; flex: none; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); transition: transform .35s cubic-bezier(.2,.7,.25,1), background .3s, color .3s, border-color .3s; }
-  .faq-item[open] summary .plus { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: #fff; }
-  .faq-item .a { padding: 0 24px 22px; color: var(--muted); font-size: .93rem; max-width: 640px; }
-
-  /* ============ KONTAKT ============ */
-  .contact-wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start; }
-  .contact-side h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin: 16px 0 14px; }
-  .contact-side h2 em { font-style: normal; color: var(--accent); }
-  .contact-side > p { color: var(--muted); margin-bottom: 26px; }
-  .contact-facts { list-style: none; display: grid; gap: 15px; }
-  .contact-facts li { display: flex; gap: 13px; align-items: flex-start; }
-  .contact-facts .icon { width: 40px; height: 40px; flex: none; border-radius: 11px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-deep); }
-  .contact-facts b { display: block; font-size: .93rem; }
-  .contact-facts span { color: var(--muted); font-size: .86rem; }
-
-  .lead-form { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 38px 36px; box-shadow: var(--shadow-m); }
-  .lead-form h3 { font-size: 1.3rem; margin-bottom: 5px; }
-  .lead-form .sub { color: var(--muted); font-size: .9rem; margin-bottom: 24px; }
-  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .f-group { margin-bottom: 14px; }
-  .f-group label { display: block; font-size: .83rem; font-weight: 600; margin-bottom: 6px; }
-  .f-group label span { color: var(--muted); font-weight: 400; }
+  .lead-form { background: rgba(255,255,255,.045); border: 1px solid var(--line-d); backdrop-filter: blur(10px); padding: 40px 38px; }
+  .lead-form h3 { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .lead-form .sub { color: var(--muted-d); font-size: .88rem; margin-bottom: 26px; }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .f-group { margin-bottom: 16px; }
+  .f-group label { display: block; font-family: var(--font-mono); font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: var(--muted-d); }
   .f-group input, .f-group select, .f-group textarea {
-    width: 100%; padding: 13px 15px; border-radius: 12px; font-family: var(--font-body); font-size: .93rem;
-    background: var(--bg); border: 1px solid var(--line); color: var(--ink); transition: border-color .2s, box-shadow .2s, background .2s;
+    width: 100%; padding: 13px 15px; font-family: var(--font-body); font-size: .94rem;
+    background: rgba(11,11,12,.55); border: 1px solid var(--line-d); color: var(--white); transition: border-color .2s, background .2s;
   }
-  .f-group input::placeholder, .f-group textarea::placeholder { color: #B4AA97; }
-  .f-group input:focus, .f-group select:focus, .f-group textarea:focus { border-color: var(--accent); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(198,87,53,.14); }
-  .f-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236E6657' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+  .f-group input::placeholder, .f-group textarea::placeholder { color: rgba(255,255,255,.32); }
+  .f-group input:focus, .f-group select:focus, .f-group textarea:focus { border-color: var(--accent); outline: none; background: rgba(11,11,12,.8); }
+  .f-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='.6' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+  .f-group select option { background: var(--bg-2); color: var(--white); }
   .f-group textarea { resize: vertical; min-height: 100px; }
-  .lead-form button[type=submit] { width: 100%; margin-top: 4px; }
-  .form-note { font-size: .77rem; color: var(--muted); margin-top: 13px; text-align: center; }
+  .lead-form button[type=submit] { width: 100%; margin-top: 6px; }
+  .form-note { font-size: .74rem; color: var(--muted-d); margin-top: 14px; text-align: center; }
   .honey { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
 
-  .form-success { display: none; text-align: center; padding: 40px 10px; }
-  .form-success .ok-ring { width: 68px; height: 68px; margin: 0 auto 20px; border-radius: 50%; display: grid; place-items: center; background: rgba(62,124,91,.1); border: 1.5px solid rgba(62,124,91,.4); color: var(--ok); }
-  .form-success h3 { margin-bottom: 8px; }
-  .form-success p { color: var(--muted); font-size: .93rem; }
+  .form-success { display: none; text-align: center; padding: 44px 10px; }
+  .form-success .ok-ring { width: 70px; height: 70px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--accent); color: var(--accent); }
+  .form-success h3 { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .form-success p { color: var(--muted-d); font-size: .93rem; }
 
   /* ============ FOOTER ============ */
-  footer { background: var(--ink); color: #F5F1E8; border-radius: 32px 32px 0 0; margin-top: 40px; padding: 80px 0 34px; }
-  .foot-cta { text-align: center; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 52px; }
-  .foot-cta h2 { font-size: clamp(2rem, 4.6vw, 3.3rem); letter-spacing: -1.8px; color: #fff; margin-bottom: 14px; }
-  .foot-cta h2 em { font-style: normal; color: var(--accent); }
-  .foot-cta p { color: rgba(245,241,232,.65); margin-bottom: 30px; }
-  .foot-inner { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; align-items: flex-start; }
-  .foot-brand p { color: rgba(245,241,232,.6); font-size: .87rem; max-width: 300px; margin-top: 12px; }
-  .foot-brand .logo { color: #fff; }
-  .foot-links { display: flex; gap: 56px; flex-wrap: wrap; }
-  .foot-links h4 { font-size: .78rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(245,241,232,.5); margin-bottom: 14px; font-weight: 600; }
-  .foot-links ul { list-style: none; display: grid; gap: 9px; }
-  .foot-links a { color: rgba(245,241,232,.85); text-decoration: none; font-size: .89rem; }
-  .foot-links a:hover { color: var(--accent); }
-  .foot-bottom { margin-top: 48px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: .8rem; color: rgba(245,241,232,.5); }
+  footer { background: var(--bg); border-top: 1px solid var(--line-d); padding: 46px 0 30px; }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .foot-nav { display: flex; gap: 26px; list-style: none; flex-wrap: wrap; }
+  .foot-nav a { color: var(--muted-d); text-decoration: none; font-family: var(--font-mono); font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; }
+  .foot-nav a:hover { color: var(--accent); }
+  .foot-bottom { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line-d); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: .78rem; color: var(--muted-d); }
 
   /* Zurück nach oben */
-  #toTop { position: fixed; right: 22px; bottom: 22px; z-index: 150; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255,255,255,.9); backdrop-filter: blur(8px); color: var(--ink); display: grid; place-items: center; cursor: pointer; opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity .3s, transform .3s, background .3s; box-shadow: var(--shadow-s); }
+  #toTop { position: fixed; right: 24px; bottom: 24px; z-index: 150; width: 48px; height: 48px; border: 1px solid var(--line-d); background: rgba(18,18,20,.85); backdrop-filter: blur(8px); color: var(--white); display: grid; place-items: center; cursor: pointer; opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity .3s, transform .3s, background .3s; }
   #toTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  #toTop:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  #toTop:hover { background: var(--accent); border-color: var(--accent); }
 
   /* Reveal */
-  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s cubic-bezier(.2,.7,.25,1), transform .65s cubic-bezier(.2,.7,.25,1); }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.25,1), transform .7s cubic-bezier(.2,.7,.25,1); }
   .reveal.in { opacity: 1; transform: translateY(0); }
-  .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; } .d3 { transition-delay: .24s; }
-
-  /* ============ EFFEKTE & ANIMATIONEN ============ */
-  /* Scroll-Fortschritt */
-  #scrollbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 300; background: linear-gradient(90deg, var(--accent), var(--warn)); border-radius: 0 3px 3px 0; }
-
-  /* Hero-Intro: gestaffeltes Aufsteigen */
-  .hero-inner > * { opacity: 0; transform: translateY(24px); animation: rise .85s cubic-bezier(.2,.7,.25,1) forwards; }
-  .hero-inner > *:nth-child(1) { animation-delay: .08s; }
-  .hero-inner > *:nth-child(2) { animation-delay: .2s; }
-  .hero-inner > *:nth-child(3) { animation-delay: .34s; }
-  .hero-inner > *:nth-child(4) { animation-delay: .48s; }
-  .hero-inner > *:nth-child(5) { animation-delay: .62s; }
-  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
-
-  /* Cursor-Glow im Hero */
-  #heroGlow { position: absolute; width: 460px; height: 460px; left: 50%; top: 38%; border-radius: 50%; z-index: 0; pointer-events: none;
-    background: radial-gradient(circle, rgba(198,87,53,.12), transparent 65%); transform: translate(-50%, -50%); }
-
-  /* Schwebende Status-Chips */
-  #chipLayer { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-  .chip { position: absolute; display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 999px;
-    padding: 9px 16px; font-size: .78rem; font-weight: 600; color: var(--ink); box-shadow: var(--shadow-m); white-space: nowrap;
-    opacity: 0; animation: chipIn .8s cubic-bezier(.2,.7,.25,1) forwards; }
-  .chip .float { display: inline-flex; align-items: center; gap: 8px; animation: floatChip 7s ease-in-out infinite; }
-  .chip .st { width: 8px; height: 8px; border-radius: 50%; flex: none; }
-  .chip svg { flex: none; }
-  .chip-1 { top: 26%; left: 4%; animation-delay: .9s; }
-  .chip-2 { top: 34%; right: 3.5%; animation-delay: 1.1s; }
-  .chip-2 .float { animation-duration: 8.5s; animation-direction: reverse; }
-  .chip-3 { bottom: 17%; left: 10%; animation-delay: 1.3s; }
-  .chip-3 .float { animation-duration: 9s; }
-  .chip-4 { bottom: 24%; right: 10%; animation-delay: 1.5s; }
-  .chip-4 .float { animation-duration: 7.6s; animation-direction: reverse; }
-  @keyframes chipIn { from { opacity: 0; transform: translateY(18px) scale(.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
-  @keyframes floatChip { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-13px); } }
-
-  /* Tech-Marquee */
-  .tech-marquee { padding: 20px 0; background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
-  .tech-inner { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .tech-track { display: flex; align-items: center; gap: 48px; width: max-content; animation: marq 26s linear infinite; }
-  .tech-inner:hover .tech-track { animation-play-state: paused; }
-  .tech-track span { display: inline-flex; align-items: center; gap: 48px; font-family: var(--font-head); font-weight: 600; font-size: .98rem; letter-spacing: .3px; color: var(--muted); white-space: nowrap; }
-  .tech-track span::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: .55; flex: none; }
-  @keyframes marq { to { transform: translateX(-50%); } }
-
-  /* Problem-Visualisierungen: Leben einhauchen */
-  .in .viz-status .row { animation: slideRow .55s cubic-bezier(.2,.7,.25,1) backwards; }
-  .in .viz-status .row:nth-child(1) { animation-delay: .15s; }
-  .in .viz-status .row:nth-child(2) { animation-delay: .3s; }
-  .in .viz-status .row:nth-child(3) { animation-delay: .45s; }
-  .in .viz-status .row:nth-child(4) { animation-delay: .6s; }
-  @keyframes slideRow { from { opacity: 0; transform: translateX(-16px); } }
-  .st.bad, .st.warn { animation: blinkDot 2.2s ease-in-out infinite; }
-  @keyframes blinkDot { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
-  .in .viz-grid i { animation: pop .5s cubic-bezier(.34,1.56,.64,1) backwards; }
-  @keyframes pop { from { transform: scale(0); } }
-  .in .viz-tip { animation: pop .55s .55s cubic-bezier(.34,1.56,.64,1) backwards; }
-
-  /* Buttons: Glanz-Sweep */
-  .btn { position: relative; overflow: hidden; }
-  .btn-primary::after, .btn-dark::after { content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
-    background: linear-gradient(105deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg); transition: left .55s ease; }
-  .btn-primary:hover::after, .btn-dark:hover::after { left: 130%; }
-
-  /* Referenz-Mock: Shimmer + Puls */
-  .fake-browser .ln { position: relative; overflow: hidden; }
-  .fake-browser .ln::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%);
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent); animation: shimmer 2.6s ease-in-out infinite; }
-  @keyframes shimmer { 60%, 100% { transform: translateX(100%); } }
-  .fake-browser .cta-dot { animation: ctaPulse 2.8s ease-in-out infinite; }
-  @keyframes ctaPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(251,77,140,.45); } 55% { box-shadow: 0 0 0 12px rgba(251,77,140,0); } }
-  .fake-browser { animation: floaty 7s ease-in-out infinite; }
-  @keyframes floaty { 0%, 100% { transform: translateY(0) rotate(-.4deg); } 50% { transform: translateY(-10px) rotate(.4deg); } }
-
-  /* Karten-Tilt (per JS gesteuert) */
-  .p-card, .srv-card, .pill-card { will-change: transform; }
-
-  @media (max-width: 1000px) { .chip { display: none; } }
+  .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .reveal, .hero-inner > *, .chip { opacity: 1; transform: none; transition: none; animation: none; }
-    .in .viz-chart .b, .tech-track, .fake-browser, .chip .float, .st.bad, .st.warn { animation: none !important; }
+    .reveal, .hero-foot { opacity: 1; transform: none; transition: none; animation: none; }
+    .hero h1 .row > span, .rise .row > span { transform: none; animation: none; transition: none; }
+    .hero-bg { animation: none; }
     * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 
   /* ============ RESPONSIVE ============ */
-  @media (max-width: 1000px) {
+  @media (max-width: 900px) {
     .nav-links { display: none; }
-    .nav-toggle { display: block; }
-    .cards-3, .srv-grid, .pills { grid-template-columns: 1fr 1fr; }
-    .metrics { grid-template-columns: 1fr 1fr; }
-    .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
-    .sol-band { padding: 56px 36px; }
+    .stats-row { grid-template-columns: 1fr 1fr; gap: 36px 22px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 42px; }
+    .chapter { min-height: 78svh; }
+    .chapter.flip .ch-copy { text-align: left; margin-left: 0; }
+    .chapter.flip .ch-kicker { justify-content: flex-start; }
+    .chapter.flip .ch-kicker::before { order: 0; }
+    .chapter.flip .ch-copy p { margin-left: 0; }
+    .chapter.flip::after { background: linear-gradient(90deg, rgba(11,11,12,.86) 8%, rgba(11,11,12,.45) 55%, rgba(11,11,12,.25) 100%); }
+    .hero-scroll { display: none; }
   }
-  @media (max-width: 640px) {
-    section { padding: 76px 0; }
-    .hero { padding: 160px 0 86px; }
-    .cards-3, .srv-grid, .pills, .metrics { grid-template-columns: 1fr; }
-    .ref-card { grid-template-columns: 1fr; }
+  @media (max-width: 560px) {
+    .container { padding: 0 22px; }
+    .manifest, .work { padding: 90px 0; }
     .f-row { grid-template-columns: 1fr; }
     .lead-form { padding: 28px 20px; }
     .hero-ctas .btn { width: 100%; }
-    .sol-band { padding: 46px 24px; border-radius: 24px; }
-    .nav-cta { display: none; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
     #toTop { right: 14px; bottom: 14px; }
   }
 </style>
 </head>
 <body id="top">
 
-<div id="scrollbar" aria-hidden="true"></div>
-
 <!-- ============ NAV ============ -->
-<div class="nav-wrap" id="navWrap">
-  <div class="nav-pill">
+<header class="site-head" id="siteHead">
+  <div class="container nav-inner">
     <a class="logo" href="#top" aria-label="QONTEX – Startseite">
       <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M20 3 35 11.5v17L20 37 5 28.5v-17L20 3Z" stroke="#171310" stroke-width="2.6" stroke-linejoin="round"/>
-        <circle cx="20" cy="20" r="5.5" fill="none" stroke="#C65735" stroke-width="2.4"/>
-        <path d="m24 24 5 5" stroke="#C65735" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M20 3 35 11.5v17L20 37 5 28.5v-17L20 3Z" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round"/>
+        <circle cx="20" cy="20" r="5.5" fill="none" stroke="#FF5A2B" stroke-width="2.4"/>
+        <path d="m24 24 5 5" stroke="#FF5A2B" stroke-width="2.4" stroke-linecap="round"/>
       </svg>
       QONTE<em>X</em>
     </a>
     <nav aria-label="Hauptnavigation">
       <ul class="nav-links">
-        <li><a href="#problem">Problem</a></li>
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#referenzen">Referenzen</a></li>
-        <li><a href="#faq">FAQ</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
-    <div style="display:flex;align-items:center;gap:8px">
-      <a href="#kontakt" class="btn btn-dark nav-cta">Projekt anfragen</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-  </div>
-</div>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#problem">Problem</a>
-  <a href="#leistungen">Leistungen</a>
-  <a href="#referenzen">Referenzen</a>
-  <a href="#faq">FAQ</a>
-  <a href="#kontakt">Kontakt</a>
-</div>
-
-<!-- ============ HERO ============ -->
-<header class="hero">
-  <div class="hero-blob blob-1" aria-hidden="true"></div>
-  <div class="hero-blob blob-2" aria-hidden="true"></div>
-  <div id="heroGlow" aria-hidden="true"></div>
-  <div id="chipLayer" aria-hidden="true">
-    <div class="chip chip-1"><span class="float"><span class="st" style="background:var(--ok)"></span>Server online · 99,9 % Uptime</span></div>
-    <div class="chip chip-2"><span class="float"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C65735" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M21 7v6h-6"/></svg>+38 % mehr Anfragen</span></div>
-    <div class="chip chip-3"><span class="float"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E7C5B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Backup erledigt · 02:00 Uhr</span></div>
-    <div class="chip chip-4"><span class="float"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C99A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>Ladezeit 0,4 s</span></div>
-  </div>
-  <div class="container hero-inner">
-    <span class="badge"><span class="stars" aria-hidden="true">★★★★★</span> Vertraut von Unternehmen &amp; Selbstständigen</span>
-    <h1>IT, die nicht nur läuft – sondern Ihr Geschäft <em>nach vorn bringt.</em></h1>
-    <p class="lead">Webseiten, Server, Marketing, Infrastruktur und Software – geplant, gebaut und betrieben von einem Partner. Zum Festpreis, ohne Fachchinesisch.</p>
-    <div class="hero-ctas">
-      <a href="#kontakt" class="btn btn-primary">
-        Projekt anfragen
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-      </a>
-      <a href="#leistungen" class="btn btn-ghost">Leistungen ansehen</a>
-    </div>
-    <ul class="hero-trust">
-      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>100 % Festpreis</li>
-      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>Antwort in 24 h</li>
-      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>Hosting in Deutschland</li>
-    </ul>
+    <a href="#kontakt" class="btn btn-accent nav-cta">Erstgespräch</a>
   </div>
 </header>
 
-<!-- ============ TECH-MARQUEE ============ -->
-<div class="tech-marquee" aria-hidden="true">
-  <div class="tech-inner">
-    <div class="tech-track" id="techTrack">
-      <span>Webentwicklung</span><span>E-Commerce</span><span>Cloud &amp; Hosting</span><span>SEO &amp; Ads</span><span>IT-Security</span><span>Automatisierung</span><span>Netzwerke</span><span>Individualsoftware</span>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <p class="hero-kicker">IT-Dienstleistungen aus einer Hand</p>
+    <h1 class="display" aria-label="Digitale Performance.">
+      <span class="row" aria-hidden="true"><span>Digitale</span></span>
+      <span class="row" aria-hidden="true"><span class="out">Perfor</span><span class="acc">mance.</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p><b>Webseiten. Server. Marketing. Software.</b> Gebaut und betrieben von einem Partner – zum Festpreis, ohne Kompromisse.</p>
+      <div class="hero-ctas">
+        <a href="#kontakt" class="btn btn-accent">Projekt starten</a>
+        <a href="#leistungen" class="btn btn-outline">Entdecken</a>
+      </div>
     </div>
   </div>
-</div>
+  <div class="hero-scroll" aria-hidden="true">Scroll</div>
+</section>
 
-<!-- ============ PROBLEM ============ -->
-<section id="problem">
+<!-- ============ MANIFEST ============ -->
+<section class="manifest">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="badge tint">Das Problem</span>
-      <h2>Ihre IT sieht okay aus – <em>bremst aber Ihr Geschäft?</em></h2>
-      <p>Die meisten Unternehmen verlieren Kunden nicht an die Konkurrenz, sondern an ihre eigene Technik.</p>
-    </div>
-    <div class="cards-3">
-      <article class="p-card reveal">
-        <div class="p-viz" aria-hidden="true">
-          <span class="viz-tip">0 Anfragen</span>
-          <div class="viz-chart">
-            <div class="col"><div class="b" style="height:64%;animation-delay:.05s"></div><span class="m">JAN</span></div>
-            <div class="col"><div class="b" style="height:78%;animation-delay:.1s"></div><span class="m">FEB</span></div>
-            <div class="col"><div class="b" style="height:58%;animation-delay:.15s"></div><span class="m">MRZ</span></div>
-            <div class="col"><div class="b" style="height:84%;animation-delay:.2s"></div><span class="m">APR</span></div>
-            <div class="col"><div class="b" style="height:70%;animation-delay:.25s"></div><span class="m">MAI</span></div>
-            <div class="col"><div class="b hot" style="height:12%;animation-delay:.3s"></div><span class="m">JUN</span></div>
-          </div>
-        </div>
-        <h3>Besucher, aber keine Anfragen</h3>
-        <p>Ihre Website wird besucht – aber niemand ruft an. Ohne klaren Funnel bleibt jeder Klick wertlos.</p>
-      </article>
-      <article class="p-card reveal d1">
-        <div class="p-viz" aria-hidden="true">
-          <div class="viz-status">
-            <div class="row"><span class="st bad"></span>Server nicht erreichbar<span>03:12 Uhr</span></div>
-            <div class="row"><span class="st warn"></span>Backup fehlgeschlagen<span>Gestern</span></div>
-            <div class="row"><span class="st warn"></span>Updates überfällig<span>34 Tage</span></div>
-            <div class="row"><span class="st bad"></span>SSL-Zertifikat abgelaufen<span>Heute</span></div>
-          </div>
-        </div>
-        <h3>Ausfälle statt Umsatz</h3>
-        <p>Jede Stunde Downtime kostet Geld und Vertrauen. Ohne Monitoring merken Sie es erst, wenn Kunden sich beschweren.</p>
-      </article>
-      <article class="p-card reveal d2">
-        <div class="p-viz" aria-hidden="true">
-          <div class="viz-grid">
-            <i class="on"></i><i></i><i></i><i class="half"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i>
-            <i></i><i class="half"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i>
-            <i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i class="half"></i><i></i><i></i>
-            <i class="half"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i class="on"></i>
-          </div>
-        </div>
-        <h3>Insellösungen &amp; Chaos</h3>
-        <p>Fünf Dienstleister, zehn Logins, keiner fühlt sich zuständig. So wird jede kleine Änderung zum Projekt.</p>
-      </article>
+    <p class="kicker reveal">Das Versprechen</p>
+    <h2 class="display statement reveal">Technik, die <em>liefert</em> – nicht nur läuft. Ein Partner für Ihre gesamte digitale Welt.</h2>
+    <div class="stats-row">
+      <div class="stat reveal"><div class="v"><span class="count" data-count="100">0</span><span class="a">%</span></div><div class="l">Festpreis-Projekte</div></div>
+      <div class="stat reveal d1"><div class="v">&lt;<span class="count" data-count="24">0</span><span class="a">h</span></div><div class="l">Reaktionszeit</div></div>
+      <div class="stat reveal d2"><div class="v"><span class="count" data-count="6">0</span><span class="a">+</span></div><div class="l">Leistungsbereiche</div></div>
+      <div class="stat reveal d2"><div class="v"><span class="count a" data-count="1">0</span></div><div class="l">Ansprechpartner</div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ LÖSUNG ============ -->
-<div class="solution" id="loesung">
+<!-- ============ KAPITEL 01 ============ -->
+<section class="chapter" id="leistungen">
+  <div class="bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=2100&q=80')" aria-hidden="true"></div>
   <div class="container">
-    <div class="sol-band reveal">
-      <div class="sec-head">
-        <span class="badge">So lösen wir das</span>
-        <h2>Ein Partner. Ein System.<br>Alles läuft.</h2>
-        <p>QONTEX übernimmt Ihre komplette digitale Welt – als System, das ineinandergreift, statt als Flickenteppich.</p>
-      </div>
-      <div class="metrics">
-        <div class="metric">
-          <div class="v"><span class="count" data-count="100">0</span><span class="a">%</span></div>
-          <div class="t">Festpreis-Projekte</div>
-          <div class="d">Der Preis im Angebot ist der Preis auf der Rechnung.</div>
-        </div>
-        <div class="metric">
-          <div class="v">&lt;<span class="count" data-count="24">0</span><span class="a">h</span></div>
-          <div class="t">Reaktionszeit</div>
-          <div class="d">Antwort innerhalb eines Werktags – im Wartungsvertrag schneller.</div>
-        </div>
-        <div class="metric">
-          <div class="v"><span class="count" data-count="6">0</span><span class="a">+</span></div>
-          <div class="t">Leistungsbereiche</div>
-          <div class="d">Von der Website bis zur Individualsoftware – ohne Schnittstellen-Chaos.</div>
-        </div>
-        <div class="metric">
-          <div class="v"><span class="count" data-count="1">0</span></div>
-          <div class="t">Ansprechpartner</div>
-          <div class="d">Sie erklären Ihr Anliegen genau einmal. Wir kümmern uns.</div>
-        </div>
-      </div>
-      <div class="sol-cta">
-        <a href="#referenzen" class="btn btn-light">
-          Referenz ansehen
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============ LEISTUNGEN ============ -->
-<section id="leistungen">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="badge tint">Leistungen</span>
-      <h2>Was wir für Sie <em>bauen und betreiben</em></h2>
-      <p>Sechs Bereiche, ein Anspruch: Technik, die für Sie arbeitet – nicht umgekehrt.</p>
-    </div>
-    <div class="srv-grid">
-      <article class="srv-card reveal">
-        <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8m-4-3v3"/></svg></div>
-        <h3>Webseiten &amp; Shops</h3>
-        <p>Moderne, schnelle Websites, die Kunden gewinnen – von der Landingpage bis zum Online-Shop. Inklusive SEO und Texten.</p>
-        <a href="#kontakt">Projekt anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      </article>
-      <article class="srv-card reveal d1">
-        <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg></div>
-        <h3>Server &amp; Hosting</h3>
-        <p>Einrichtung, Betrieb und Monitoring in deutschen Rechenzentren. Wir kümmern uns – Sie schlafen ruhig.</p>
-        <a href="#kontakt">Beratung anfragen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      </article>
-      <article class="srv-card reveal d2">
-        <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v3a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M14 8.5a5 5 0 0 1 0 7M17.5 6a9 9 0 0 1 0 12"/></svg></div>
-        <h3>Online-Marketing</h3>
-        <p>Google Ads, Social Media und SEO – damit Ihre Kunden Sie finden, bevor sie die Konkurrenz finden.</p>
-        <a href="#kontakt">Sichtbarkeit steigern <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      </article>
-      <article class="srv-card reveal">
-        <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="4.5" cy="5" r="2"/><circle cx="19.5" cy="5" r="2"/><circle cx="4.5" cy="19" r="2"/><circle cx="19.5" cy="19" r="2"/><path d="M6 6.3 9.8 9.8M18 6.3l-3.8 3.5M6 17.7l3.8-3.5m8.2 3.5-3.8-3.5"/></svg></div>
-        <h3>IT-Infrastruktur</h3>
-        <p>Netzwerke, Arbeitsplätze, Cloud und Backups – eine IT, die einfach läuft und mitwächst.</p>
-        <a href="#kontakt">Infrastruktur planen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      </article>
-      <article class="srv-card reveal d1">
-        <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6M13 4l-2 16"/></svg></div>
-        <h3>Software-Lösungen</h3>
-        <p>Individuelle Tools, Schnittstellen und Automatisierungen, die exakt zu Ihren Abläufen passen.</p>
-        <a href="#kontakt">Idee besprechen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      </article>
-      <article class="srv-card reveal d2">
-        <div class="icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.3 8 10 4.6-1.7 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Wartung &amp; Support</h3>
-        <p>Updates, Sicherheit, Monitoring und schnelle Hilfe – als planbarer Monatsvertrag.</p>
-        <a href="#kontakt">Betreuung sichern <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ VALUE ============ -->
-<section class="value" id="warum">
-  <div class="container">
-    <div class="reveal">
-      <span class="badge tint">Warum QONTEX</span>
-      <h2 style="margin-top:18px">Mehr Wachstum.<br><em>Weniger IT-Stress.</em></h2>
-      <p>Sie konzentrieren sich auf Ihr Geschäft – wir sorgen dafür, dass die Technik dahinter Umsatz bringt statt Nerven zu kosten.</p>
-      <a href="#kontakt" class="btn btn-primary">Jetzt starten
+    <div class="ch-copy">
+      <p class="ch-kicker">01 — Webseiten &amp; Shops</p>
+      <h2 class="display rise" aria-label="Auftritte, die verkaufen.">
+        <span class="row" aria-hidden="true"><span>Auftritte,</span></span>
+        <span class="row" aria-hidden="true"><span>die verkaufen.</span></span>
+      </h2>
+      <p>Von der Landingpage bis zum Online-Shop: schnell, suchmaschinenstark und gebaut, um aus Besuchern Kunden zu machen.</p>
+      <a class="ch-link" href="#kontakt">Projekt anfragen
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
       </a>
     </div>
-    <div class="pills">
-      <div class="pill-card reveal">
-        <div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
-        <div><b>Schnelle Umsetzung</b><span>Klare Meilensteine statt monatelanger Agentur-Schleifen – Landingpages oft in 2–3 Wochen live.</span></div>
-      </div>
-      <div class="pill-card reveal d1">
-        <div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.3 8 10 4.6-1.7 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <div><b>Festpreis-Garantie</b><span>Angebot heißt bei uns: Der Preis steht. Mehraufwand ist unser Risiko, nicht Ihres.</span></div>
-      </div>
-      <div class="pill-card reveal d2">
-        <div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M21 7v6h-6"/></svg></div>
-        <div><b>Wachstums-Fokus</b><span>Wir bauen nicht, was hübsch ist, sondern was Anfragen, Kunden und Umsatz bringt.</span></div>
-      </div>
+  </div>
+</section>
+
+<!-- ============ KAPITEL 02 ============ -->
+<section class="chapter flip">
+  <div class="bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=2100&q=80')" aria-hidden="true"></div>
+  <div class="container">
+    <div class="ch-copy">
+      <p class="ch-kicker">02 — Server &amp; Hosting</p>
+      <h2 class="display rise" aria-label="Läuft. Immer.">
+        <span class="row" aria-hidden="true"><span>Läuft.</span></span>
+        <span class="row" aria-hidden="true"><span>Immer.</span></span>
+      </h2>
+      <p>Betrieb, Monitoring und Backups in deutschen Rechenzentren. Sie merken von uns nichts – und genau das ist der Punkt.</p>
+      <a class="ch-link" href="#kontakt">Beratung anfragen
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ REFERENZ ============ -->
-<section id="referenzen">
+<!-- ============ KAPITEL 03 ============ -->
+<section class="chapter">
+  <div class="bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2100&q=80')" aria-hidden="true"></div>
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="badge tint">Referenz</span>
-      <h2>Projekte, die <em>Ergebnisse liefern</em></h2>
+    <div class="ch-copy">
+      <p class="ch-kicker">03 — Online-Marketing</p>
+      <h2 class="display rise" aria-label="Sichtbar. Überall.">
+        <span class="row" aria-hidden="true"><span>Sichtbar.</span></span>
+        <span class="row" aria-hidden="true"><span>Überall.</span></span>
+      </h2>
+      <p>Google Ads, Social Media und SEO mit einem Ziel: dass Ihre Kunden Sie finden, bevor sie die Konkurrenz finden.</p>
+      <a class="ch-link" href="#kontakt">Sichtbarkeit steigern
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </a>
     </div>
-    <div class="ref-card reveal">
-      <div class="ref-visual" aria-hidden="true">
-        <div class="fake-browser">
-          <div class="bar"><i></i><i></i><i></i></div>
-          <div class="page">
-            <div class="t">Wärme<span>kraft</span></div>
-            <div class="ln"></div>
-            <div class="ln short"></div>
-            <span class="cta-dot">Angebot anfordern</span>
+  </div>
+</section>
+
+<!-- ============ KAPITEL 04 ============ -->
+<section class="chapter flip">
+  <div class="bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=2100&q=80')" aria-hidden="true"></div>
+  <div class="container">
+    <div class="ch-copy">
+      <p class="ch-kicker">04 — Software &amp; Automatisierung</p>
+      <h2 class="display rise" aria-label="Maßgeschneidert.">
+        <span class="row" aria-hidden="true"><span>Maß-</span></span>
+        <span class="row" aria-hidden="true"><span>geschneidert.</span></span>
+      </h2>
+      <p>Individuelle Tools, Schnittstellen und Automatisierungen, die exakt zu Ihren Abläufen passen – statt Standardsoftware, die keiner nutzt.</p>
+      <a class="ch-link" href="#kontakt">Idee besprechen
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KAPITEL 05 ============ -->
+<section class="chapter">
+  <div class="bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2100&q=80')" aria-hidden="true"></div>
+  <div class="container">
+    <div class="ch-copy">
+      <p class="ch-kicker">05 — Infrastruktur &amp; Support</p>
+      <h2 class="display rise" aria-label="Rundum betreut.">
+        <span class="row" aria-hidden="true"><span>Rundum</span></span>
+        <span class="row" aria-hidden="true"><span>betreut.</span></span>
+      </h2>
+      <p>Netzwerke, Cloud, Arbeitsplätze und Wartung als planbarer Monatsvertrag – Updates, Security und schnelle Hilfe inklusive.</p>
+      <a class="ch-link" href="#kontakt">Betreuung sichern
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFERENZEN ============ -->
+<section class="work" id="referenzen">
+  <div class="container">
+    <p class="kicker reveal">Referenzen</p>
+    <div class="work-head reveal">
+      <h2 class="display">Gebaut. Geliefert.</h2>
+      <p>Drei Projekte, drei Branchen – ein Anspruch: Ergebnisse statt schöner Schein.</p>
+    </div>
+    <div class="work-grid">
+      <a class="work-card reveal" href="#kontakt">
+        <div class="work-visual wk" aria-hidden="true">
+          <div class="mock">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="page">
+              <div class="t">Wärme<span style="color:#fb4d8c">kraft</span></div>
+              <div class="ln"></div>
+              <div class="ln short"></div>
+              <span class="cta-dot" style="background:#fb4d8c">Angebot</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="ref-body">
-        <span class="badge">Website · Lead-Funnel · Marketing</span>
-        <h3>Wärmekraft – Wärmepumpen &amp; Photovoltaik</h3>
-        <p>Landingpage mit mehrstufigem Lead-Funnel für einen Energie-Dienstleister: Konzept, Design, Umsetzung, Ersparnis-Rechner und direkte CRM-Anbindung.</p>
-        <ul class="ref-points">
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>Mehrstufiger Anfrage-Funnel mit Ersparnis-Rechner</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>Automatische Lead-Übergabe ans CRM</li>
-          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>Optimiert für Google- und Social-Kampagnen</li>
+        <div class="work-body">
+          <span class="tag">Website · Lead-Funnel · CRM</span>
+          <h3>Wärmekraft</h3>
+          <p>Landingpage mit mehrstufigem Lead-Funnel, Ersparnis-Rechner und CRM-Anbindung für einen Energie-Dienstleister.</p>
+          <span class="go">Ähnliches anfragen →</span>
+        </div>
+      </a>
+      <a class="work-card reveal d1" href="https://volt-gas.de" target="_blank" rel="noopener">
+        <div class="work-visual vg" aria-hidden="true">
+          <div class="mock">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="page">
+              <div class="t">Volt<span style="color:#F59E0B">-</span>Gas</div>
+              <div class="ln"></div>
+              <div class="ln short"></div>
+              <span class="cta-dot" style="background:#F59E0B;color:#0B0B0C">Vergleichen</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <span class="tag">Website · Vergleichsrechner · CRM</span>
+          <h3>Volt-Gas</h3>
+          <p>Strom- &amp; Gas-Wechselservice mit Tarifrechner über 1.200 Anbieter, Lead-Strecke und persönlichem Kundenservice.</p>
+          <span class="go">volt-gas.de ↗</span>
+        </div>
+      </a>
+      <a class="work-card reveal d2" href="https://hairvenly.de" target="_blank" rel="noopener">
+        <div class="work-visual hv" aria-hidden="true">
+          <div class="mock">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="page">
+              <div class="t">hairvenly</div>
+              <div class="ln"></div>
+              <div class="ln short"></div>
+              <span class="cta-dot" style="background:#fff;color:#D6336C">Shoppen</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <span class="tag">E-Commerce · Shop · Branding</span>
+          <h3>Hairvenly</h3>
+          <p>Online-Shop für salongetestete Echthaar-Extensions – Produktwelt, Markenauftritt und Verkauf an Kundinnen wie Salons.</p>
+          <span class="go">hairvenly.de ↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINALE + KONTAKT ============ -->
+<section class="finale" id="kontakt">
+  <div class="bg" data-parallax aria-hidden="true"></div>
+  <div class="container">
+    <div class="finale-head">
+      <h2 class="display rise" aria-label="Bereit?">
+        <span class="row" aria-hidden="true"><span>Bere<em>it?</em></span></span>
+      </h2>
+      <p>Kostenloses Erstgespräch · Antwort in 24 h · 100 % unverbindlich</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-side reveal">
+        <h3>Sprechen wir über Ihr Projekt</h3>
+        <p>Im kostenlosen Erstgespräch klären wir, was Sie wirklich brauchen – und was nicht. Ehrlich, verständlich und unverbindlich.</p>
+        <ul class="contact-facts">
+          <li><div><b>Erstgespräch</b><span>30 Minuten, kostenlos – vor Ort oder per Video.</span></div></li>
+          <li><div><b>Antwortzeit</b><span>Rückmeldung innerhalb von 24 Stunden.</span></div></li>
+          <li><div><b>Ihre Daten</b><span>Werden ausschließlich zur Bearbeitung Ihrer Anfrage genutzt.</span></div></li>
         </ul>
-        <a href="#kontakt" class="btn btn-ghost" style="width:fit-content">Ähnliches Projekt anfragen</a>
       </div>
-    </div>
-    <div class="ref-grid">
-      <article class="ref-mini reveal">
-        <div class="visual volt" aria-hidden="true">
-          <div class="fb-light">
-            <div class="bar"><i></i><i></i><i></i></div>
-            <div class="page">
-              <div class="t" style="color:#1D4ED8">Volt<span style="color:#F59E0B">-</span>Gas</div>
-              <div class="ln"></div>
-              <div class="ln short"></div>
-              <span class="cta-dot" style="background:#1D4ED8">Jetzt vergleichen</span>
+      <div class="lead-form reveal d1">
+        <form id="contactForm" novalidate>
+          <h3>Erstgespräch anfragen</h3>
+          <p class="sub">Kurz ausfüllen – wir melden uns innerhalb von 24 Stunden.</p>
+          <div class="f-row">
+            <div class="f-group">
+              <label for="fName">Name *</label>
+              <input type="text" id="fName" name="name" placeholder="Max Mustermann" required autocomplete="name">
+            </div>
+            <div class="f-group">
+              <label for="fFirma">Firma</label>
+              <input type="text" id="fFirma" name="firma" placeholder="Mustermann GmbH" autocomplete="organization">
             </div>
           </div>
-        </div>
-        <div class="body">
-          <span class="badge">Website · Vergleichsrechner · CRM</span>
-          <h3>Volt-Gas – Strom- &amp; Gas-Wechselservice</h3>
-          <p>Vergleichsportal mit Tarifrechner-Einstieg über 1.200 Anbieter: Lead-Strecke, Wechselservice-Funnel und CRM-Anbindung für den persönlichen Kundenservice.</p>
-          <a class="live" href="https://volt-gas.de" target="_blank" rel="noopener">volt-gas.de ansehen
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
-        </div>
-      </article>
-      <article class="ref-mini reveal d1">
-        <div class="visual hair" aria-hidden="true">
-          <div class="fb-light">
-            <div class="bar"><i></i><i></i><i></i></div>
-            <div class="page">
-              <div class="t" style="color:#D6336C">hairvenly</div>
-              <div class="ln"></div>
-              <div class="ln short"></div>
-              <span class="cta-dot" style="background:#D6336C">Jetzt shoppen</span>
+          <div class="f-row">
+            <div class="f-group">
+              <label for="fMail">E-Mail *</label>
+              <input type="email" id="fMail" name="email" placeholder="max@firma.de" required autocomplete="email">
+            </div>
+            <div class="f-group">
+              <label for="fTel">Telefon</label>
+              <input type="tel" id="fTel" name="telefon" placeholder="0170 1234567" autocomplete="tel">
             </div>
           </div>
-        </div>
-        <div class="body">
-          <span class="badge">E-Commerce · Shop · Branding</span>
-          <h3>Hairvenly – Echthaar-Extensions</h3>
-          <p>Online-Shop für salongetestete Echthaar-Extensions aus Bremen: Produktwelt von Tape-ins bis Clip-ins, Markenauftritt und Verkauf an Endkundinnen wie Salons.</p>
-          <a class="live" href="https://hairvenly.de" target="_blank" rel="noopener">hairvenly.de ansehen
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="badge tint">FAQ</span>
-      <h2>Alles, was Sie <em>wissen müssen</em></h2>
-    </div>
-    <div class="faq-list reveal">
-      <details class="faq-item">
-        <summary>Was kostet eine Website bei QONTEX?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="a">Das hängt vom Umfang ab – eine fokussierte Landingpage kostet deutlich weniger als ein Shop mit Anbindungen. Nach dem kostenlosen Erstgespräch erhalten Sie ein Festpreis-Angebot: Der Preis, der dort steht, ist der Preis, den Sie zahlen.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Wie schnell ist mein Projekt fertig?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="a">Landingpages gehen oft in 2–3 Wochen live, größere Projekte planen wir mit klaren Meilensteinen. Sie wissen von Anfang an, wann was fertig ist – und geben jeden Schritt frei, bevor er live geht.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Übernehmen Sie auch bestehende Websites oder Server?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="a">Ja. Wir analysieren den Bestand, dokumentieren alles und übernehmen den Betrieb – inklusive Aufräumen von Altlasten. Sie müssen nicht bei null anfangen, um einen ordentlichen Zustand zu bekommen.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Was bedeutet Festpreis genau?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="a">Das Angebot enthält einen klar definierten Leistungsumfang zu einem festen Preis. Brauchen wir länger als geplant, ist das unser Risiko. Nur wenn Sie zusätzliche Wünsche haben, besprechen wir diese vorher transparent als Erweiterung.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Wo werden meine Daten gehostet?<span class="plus" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="a">In deutschen Rechenzentren, DSGVO-konform, mit regelmäßigen Backups. Auf Wunsch erhalten Sie alle Zugänge und Dokumentationen – Ihre Systeme gehören Ihnen, nicht uns.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ KONTAKT ============ -->
-<section id="kontakt">
-  <div class="container contact-wrap">
-    <div class="contact-side reveal">
-      <span class="badge tint">Kontakt</span>
-      <h2>Sprechen wir über <em>Ihr Projekt</em></h2>
-      <p>Im kostenlosen Erstgespräch klären wir, was Sie wirklich brauchen – und was nicht. Ehrlich, verständlich und unverbindlich.</p>
-      <ul class="contact-facts">
-        <li>
-          <div class="icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 8 6 8-6M4 6h16v12H4V6Z"/></svg></div>
-          <div><b>E-Mail</b><span>Anfrage über das Formular – Antwort innerhalb von 24&nbsp;Stunden.</span></div>
-        </li>
-        <li>
-          <div class="icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
-          <div><b>Erstgespräch</b><span>30 Minuten, kostenlos und unverbindlich – vor Ort oder per Video.</span></div>
-        </li>
-        <li>
-          <div class="icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.3 8 10 4.6-1.7 8-5 8-10V6l-8-4Z"/></svg></div>
-          <div><b>Ihre Daten</b><span>Werden ausschließlich zur Bearbeitung Ihrer Anfrage genutzt.</span></div>
-        </li>
-      </ul>
-    </div>
-    <div class="lead-form reveal d1">
-      <form id="contactForm" novalidate>
-        <h3>Kostenloses Erstgespräch anfragen</h3>
-        <p class="sub">Kurz ausfüllen – wir melden uns innerhalb von 24 Stunden.</p>
-        <div class="f-row">
           <div class="f-group">
-            <label for="fName">Name *</label>
-            <input type="text" id="fName" name="name" placeholder="Max Mustermann" required autocomplete="name">
+            <label for="fInteresse">Worum geht es? *</label>
+            <select id="fInteresse" name="interesse" required>
+              <option value="" disabled selected>Bitte auswählen …</option>
+              <option>Webseite / Online-Shop</option>
+              <option>Server &amp; Hosting</option>
+              <option>Online-Marketing</option>
+              <option>IT-Infrastruktur</option>
+              <option>Software-Lösung</option>
+              <option>Wartung &amp; Support</option>
+              <option>Allgemeine Beratung</option>
+            </select>
           </div>
           <div class="f-group">
-            <label for="fFirma">Firma <span>(optional)</span></label>
-            <input type="text" id="fFirma" name="firma" placeholder="Mustermann GmbH" autocomplete="organization">
+            <label for="fMsg">Ihre Nachricht</label>
+            <textarea id="fMsg" name="nachricht" placeholder="Beschreiben Sie kurz Ihr Vorhaben …"></textarea>
           </div>
-        </div>
-        <div class="f-row">
-          <div class="f-group">
-            <label for="fMail">E-Mail *</label>
-            <input type="email" id="fMail" name="email" placeholder="max@firma.de" required autocomplete="email">
+          <div class="honey" aria-hidden="true">
+            <label for="fHoney">Bitte leer lassen</label>
+            <input type="text" id="fHoney" name="_honey" tabindex="-1" autocomplete="off">
           </div>
-          <div class="f-group">
-            <label for="fTel">Telefon <span>(optional)</span></label>
-            <input type="tel" id="fTel" name="telefon" placeholder="0170 1234567" autocomplete="tel">
-          </div>
+          <button type="submit" class="btn btn-accent">Anfrage senden</button>
+          <p class="form-note">Kostenlos &amp; unverbindlich. Ihre Daten werden nicht weitergegeben.</p>
+        </form>
+        <div class="form-success" id="formSuccess" role="status">
+          <div class="ok-ring" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></div>
+          <h3>Danke für Ihre Anfrage!</h3>
+          <p>Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
         </div>
-        <div class="f-group">
-          <label for="fInteresse">Worum geht es? *</label>
-          <select id="fInteresse" name="interesse" required>
-            <option value="" disabled selected>Bitte auswählen …</option>
-            <option>Webseite / Online-Shop</option>
-            <option>Server &amp; Hosting</option>
-            <option>Online-Marketing</option>
-            <option>IT-Infrastruktur</option>
-            <option>Software-Lösung</option>
-            <option>Wartung &amp; Support</option>
-            <option>Allgemeine Beratung</option>
-          </select>
-        </div>
-        <div class="f-group">
-          <label for="fMsg">Ihre Nachricht <span>(optional)</span></label>
-          <textarea id="fMsg" name="nachricht" placeholder="Beschreiben Sie kurz Ihr Vorhaben …"></textarea>
-        </div>
-        <div class="honey" aria-hidden="true">
-          <label for="fHoney">Bitte leer lassen</label>
-          <input type="text" id="fHoney" name="_honey" tabindex="-1" autocomplete="off">
-        </div>
-        <button type="submit" class="btn btn-primary">Anfrage senden</button>
-        <p class="form-note">Kostenlos &amp; unverbindlich. Ihre Daten werden nicht weitergegeben.</p>
-      </form>
-      <div class="form-success" id="formSuccess" role="status">
-        <div class="ok-ring" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></div>
-        <h3>Vielen Dank für Ihre Anfrage!</h3>
-        <p>Wir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.</p>
       </div>
     </div>
   </div>
@@ -848,53 +553,22 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
-    <div class="foot-cta">
-      <h2>Bereit für IT, die <em>liefert?</em></h2>
-      <p>Kostenloses Erstgespräch · Antwort in 24 h · 100 % unverbindlich</p>
-      <a href="#kontakt" class="btn btn-primary" style="padding:17px 36px">
-        Projekt anfragen
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-      </a>
-    </div>
     <div class="foot-inner">
-      <div class="foot-brand">
-        <a class="logo" href="#top" aria-label="QONTEX – nach oben">
-          <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M20 3 35 11.5v17L20 37 5 28.5v-17L20 3Z" stroke="#F5F1E8" stroke-width="2.6" stroke-linejoin="round"/>
-            <circle cx="20" cy="20" r="5.5" fill="none" stroke="#C65735" stroke-width="2.4"/>
-            <path d="m24 24 5 5" stroke="#C65735" stroke-width="2.4" stroke-linecap="round"/>
-          </svg>
-          QONTE<em>X</em>
-        </a>
-        <p>IT-Dienstleistungen aus einer Hand: Webseiten, Server &amp; Hosting, Marketing, Infrastruktur und Software.</p>
-      </div>
-      <div class="foot-links">
-        <div>
-          <h4>Leistungen</h4>
-          <ul>
-            <li><a href="#leistungen">Webseiten &amp; Shops</a></li>
-            <li><a href="#leistungen">Server &amp; Hosting</a></li>
-            <li><a href="#leistungen">Online-Marketing</a></li>
-            <li><a href="#leistungen">Software-Lösungen</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Unternehmen</h4>
-          <ul>
-            <li><a href="#problem">Das Problem</a></li>
-            <li><a href="#referenzen">Referenzen</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Rechtliches</h4>
-          <ul>
-            <li><a href="impressum.html">Impressum</a></li>
-            <li><a href="datenschutz.html">Datenschutz</a></li>
-          </ul>
-        </div>
-      </div>
+      <a class="logo" href="#top" aria-label="QONTEX – nach oben">
+        <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 3 35 11.5v17L20 37 5 28.5v-17L20 3Z" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round"/>
+          <circle cx="20" cy="20" r="5.5" fill="none" stroke="#FF5A2B" stroke-width="2.4"/>
+          <path d="m24 24 5 5" stroke="#FF5A2B" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        QONTE<em>X</em>
+      </a>
+      <ul class="foot-nav">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
     </div>
     <div class="foot-bottom">
       <span>© 2026 QONTEX. Alle Rechte vorbehalten.</span>
@@ -910,45 +584,28 @@
 <script>
   const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const FINE = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-  // Nav-Zustand + Scroll-Fortschritt + Zurück-nach-oben
-  const navWrap = document.getElementById('navWrap');
+  // Nav + Zurück-nach-oben
+  const head = document.getElementById('siteHead');
   const toTop = document.getElementById('toTop');
-  const bar = document.getElementById('scrollbar');
   const onScroll = () => {
-    navWrap.classList.toggle('scrolled', window.scrollY > 16);
-    toTop.classList.toggle('show', window.scrollY > 600);
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    head.classList.toggle('scrolled', window.scrollY > 30);
+    toTop.classList.toggle('show', window.scrollY > 700);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }));
 
-  // Mobiles Menü
-  const toggle = document.getElementById('navToggle');
-  const menu = document.getElementById('mobileMenu');
-  toggle.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-  });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    menu.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }));
-
-  // Sanftes Einblenden beim Scrollen
+  // Reveal + Zeilen-Aufstieg
   if (!RM && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal, .rise').forEach(el => io.observe(el));
   } else {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    document.querySelectorAll('.reveal, .rise').forEach(el => el.classList.add('in'));
   }
 
-  // Animierte Zähler
+  // Zähler
   const counters = document.querySelectorAll('.count');
   function runCounter(el) {
     const target = parseInt(el.dataset.count, 10);
@@ -969,73 +626,25 @@
     counters.forEach(el => cio.observe(el));
   }
 
-  // Marquee duplizieren für nahtlosen Loop
-  const techTrack = document.getElementById('techTrack');
-  techTrack.innerHTML += techTrack.innerHTML;
-
-  // Aktivitätsraster: Zellen gestaffelt einploppen
-  document.querySelectorAll('.viz-grid i').forEach((el, i) => {
-    el.style.animationDelay = (i * 16) + 'ms';
-  });
-
-  // Hero: Glow und Chips folgen sanft der Maus
-  if (FINE && !RM) {
-    const glow = document.getElementById('heroGlow');
-    const chipLayer = document.getElementById('chipLayer');
-    const hero = document.querySelector('.hero');
-    let gx = 0, gy = 0, tx = 0, ty = 0;
-    hero.addEventListener('pointermove', e => {
-      const r = hero.getBoundingClientRect();
-      tx = e.clientX - r.left; ty = e.clientY - r.top;
+  // Parallaxe auf Kapitel-Hintergründen (nur Desktop, transform-basiert)
+  if (!RM && window.matchMedia('(min-width: 900px)').matches) {
+    const layers = Array.from(document.querySelectorAll('[data-parallax]'));
+    let ticking = false;
+    function parallax() {
+      const vh = window.innerHeight;
+      layers.forEach(bg => {
+        const r = bg.parentElement.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        const progress = (r.top + r.height / 2 - vh / 2) / (vh + r.height);
+        bg.style.transform = 'translateY(' + (progress * -60).toFixed(1) + 'px)';
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(parallax); }
     }, { passive: true });
-    (function glowLoop() {
-      if (tx || ty) {
-        gx += (tx - gx) * .07; gy += (ty - gy) * .07;
-        glow.style.left = gx + 'px'; glow.style.top = gy + 'px';
-        const px = (gx / hero.offsetWidth - .5) * 18;
-        const py = (gy / hero.offsetHeight - .5) * 14;
-        chipLayer.style.transform = 'translate(' + (-px).toFixed(1) + 'px,' + (-py).toFixed(1) + 'px)';
-      }
-      requestAnimationFrame(glowLoop);
-    })();
-
-    // Karten-Tilt (dezent)
-    document.querySelectorAll('.p-card, .srv-card').forEach(card => {
-      card.addEventListener('pointermove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width;
-        const y = (e.clientY - r.top) / r.height;
-        card.style.transform = 'translateY(-6px) perspective(800px) rotateX(' + ((.5 - y) * 4).toFixed(2) + 'deg) rotateY(' + ((x - .5) * 4).toFixed(2) + 'deg)';
-      });
-      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-    });
-
-    // Magnetische Haupt-CTAs
-    document.querySelectorAll('.hero-ctas .btn-primary, .foot-cta .btn-primary').forEach(mag => {
-      mag.addEventListener('pointermove', e => {
-        const r = mag.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2);
-        const dy = e.clientY - (r.top + r.height / 2);
-        mag.style.transform = 'translate(' + (dx * .16).toFixed(1) + 'px,' + (dy * .28).toFixed(1) + 'px)';
-      });
-      mag.addEventListener('pointerleave', () => { mag.style.transform = ''; });
-    });
+    parallax();
   }
-
-  // Immer nur ein FAQ-Eintrag offen + weiches Einblenden der Antwort
-  document.querySelectorAll('.faq-item').forEach(d => {
-    d.addEventListener('toggle', () => {
-      if (d.open) {
-        document.querySelectorAll('.faq-item[open]').forEach(o => { if (o !== d) o.open = false; });
-        if (!RM && d.querySelector('.a').animate) {
-          d.querySelector('.a').animate(
-            [{ opacity: 0, transform: 'translateY(-8px)' }, { opacity: 1, transform: 'none' }],
-            { duration: 280, easing: 'cubic-bezier(.2,.7,.25,1)' }
-          );
-        }
-      }
-    });
-  });
 
   // Lead-Formular (FormSubmit-Backend)
   const form = document.getElementById('contactForm');
