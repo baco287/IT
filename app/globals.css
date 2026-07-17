@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-night: #05090f;
+  --color-abyss: #070d16;
+  --color-navy: #0a1220;
+  --color-slate-glass: #0e1726;
+  --color-mist: #c9d6e6;
+  --color-fog: #8fa1b8;
+  --color-cyan: #2dd4ea;
+  --color-cyan-soft: #67e3f4;
+  --color-violet: #a78bfa;
+  --font-display: "Clash Display", "Segoe UI", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-mist);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-cyan);
+  color: #04222b;
+}
+
+/* Feine Körnung über der gesamten Seite */
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Glas-Grundfläche */
+.glass {
+  background: linear-gradient(
+    165deg,
+    rgba(190, 220, 255, 0.055),
+    rgba(190, 220, 255, 0.015) 60%
+  );
+  border: 1px solid rgba(190, 220, 255, 0.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.glass-strong {
+  background: rgba(10, 18, 32, 0.66);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(190, 220, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Sichtbare Fokuszustände */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Dezentes technisches Raster für Sektionshintergründe */
+.tech-grid {
+  background-image: linear-gradient(rgba(190, 220, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(190, 220, 255, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
