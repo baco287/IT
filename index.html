@@ -8,7 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://s0.wp.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #060B14;
@@ -24,7 +25,7 @@
     --accent-soft: rgba(34,211,238,.1);
     --ok: #3ECF8E;
     --r: 14px;
-    --font-head: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+    --font-head: 'Clash Display', 'Segoe UI', system-ui, sans-serif;
     --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', 'Consolas', monospace;
   }
@@ -273,6 +274,14 @@
   #toTop { position: fixed; right: 22px; bottom: 22px; z-index: 150; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: rgba(16,16,23,.85); backdrop-filter: blur(8px); color: var(--text); display: grid; place-items: center; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .3s, transform .3s, border-color .3s; }
   #toTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
   #toTop:hover { border-color: rgba(34,211,238,.6); }
+
+  /* Glas-Hologramm-Look (Referenz-Renderstil) */
+  .srv-card, .step, .why-item, .tile, .work-card, .faq-item, .contact-panel, .srow {
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), inset 0 0 24px rgba(120,180,255,.03); }
+  .srv-card:hover, .step:hover, .why-item:hover {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 0 30px rgba(34,211,238,.06), 0 0 34px rgba(34,211,238,.08); }
+  .sec-head h2, .why-side h2, .contact-side h2 { letter-spacing: -.8px; }
 
   /* Reveal */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.2,.7,.25,1), transform .65s cubic-bezier(.2,.7,.25,1); }
@@ -783,8 +792,8 @@
     grid2.position.y = 5.2;
     scene.add(grid1, grid2);
 
-    const glassMat = new THREE.MeshBasicMaterial({ color: 0xcfe6f5, transparent: true, opacity: .07, side: THREE.DoubleSide, depthWrite: false });
-    const edgeMat = new THREE.LineBasicMaterial({ color: EDGE, transparent: true, opacity: .4 });
+    const glassMat = new THREE.MeshBasicMaterial({ color: 0xcfe6f5, transparent: true, opacity: .09, side: THREE.DoubleSide, depthWrite: false });
+    const edgeMat = new THREE.LineBasicMaterial({ color: EDGE, transparent: true, opacity: .5 });
 
     function rnd(a, b) { return a + Math.random() * (b - a); }
 
@@ -806,6 +815,19 @@
       }
       return group;
     }
+
+    // Schwebende Lichtpartikel im Raum (Hologramm-Staub)
+    const DUST = isMobile ? 90 : 220;
+    const dustPos = new Float32Array(DUST * 3);
+    for (let i = 0; i < DUST; i++) {
+      dustPos[i * 3] = rnd(-9, 9);
+      dustPos[i * 3 + 1] = rnd(-4, 5);
+      dustPos[i * 3 + 2] = -rnd(0, SPAN);
+    }
+    const dustGeo = new THREE.BufferGeometry();
+    dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+    const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color: 0x7fd8f0, size: .06, transparent: true, opacity: .7, blending: THREE.AdditiveBlending, depthWrite: false }));
+    scene.add(dust);
 
     const panels = [];
     function placePanel(p, zBase) {
@@ -851,6 +873,11 @@
       panels.forEach(p => {
         if (p.position.z > camera.position.z + 2) placePanel(p, camera.position.z - SPAN + rnd(0, 6));
       });
+      const dp = dustGeo.attributes.position.array;
+      for (let i = 2; i < dp.length; i += 3) {
+        if (dp[i] > camera.position.z + 2) dp[i] -= SPAN;
+      }
+      dustGeo.attributes.position.needsUpdate = true;
       const cell = 2;
       grid1.position.z = grid2.position.z = camera.position.z - (camera.position.z % cell);
       mx += (tx - mx) * .04; my += (ty - my) * .04;
