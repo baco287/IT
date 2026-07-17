@@ -8,21 +8,21 @@ import ramImg from "@/public/images/ram.jpg";
 const ROWS = [
   {
     img: serverImg,
-    alt: "Beleuchtete Server-Racks in einem modernen Rechenzentrum",
+    alt: "Gestapelte Server-Systeme mit leuchtenden Statusanzeigen und Netzwerkverbindungen",
     kicker: "Server & Infrastruktur",
     title: "Das stabile Fundament Ihres Unternehmens",
     text: "Leistungsfähige, stabile und skalierbare Systeme als zuverlässige Grundlage Ihres Unternehmens – geplant, aufgebaut und kontinuierlich betreut.",
   },
   {
     img: cpuImg,
-    alt: "Prozessor auf einem Server-Mainboard in Nahaufnahme",
+    alt: "Hochleistungs-Prozessor auf gläsernem Sockel mit leuchtenden Schaltkreisen",
     kicker: "Prozessorleistung",
     title: "Hardware, die zu Ihren Anforderungen passt",
     text: "Optimal abgestimmte Hardware für anspruchsvolle Anwendungen, virtuelle Umgebungen und moderne Arbeitsprozesse.",
   },
   {
     img: ramImg,
-    alt: "Arbeitsspeicher-Module in Nahaufnahme",
+    alt: "Arbeitsspeicher-Module mit transparenten Kühlkörpern auf gläsernen Stufen",
     kicker: "Arbeitsspeicher",
     title: "Leistung, die nicht nachlässt",
     text: "Schnelle und zuverlässige Systeme, die auch bei steigenden Anforderungen leistungsfähig bleiben.",
