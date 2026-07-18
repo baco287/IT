@@ -20,18 +20,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  icons: {
-    icon: [
-      {
-        url:
-          "data:image/svg+xml," +
-          encodeURIComponent(
-            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0a1220"/><text x="32" y="43" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="#2dd4ea">QX</text></svg>`
-          ),
-        type: "image/svg+xml",
-      },
-    ],
-  },
 };
 
 export default function RootLayout({
