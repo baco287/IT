@@ -18,12 +18,11 @@ const SERVICES = [
   "Allgemeine Beratung",
 ];
 
-/* Deutlich markierte Platzhalter – hier echte Unternehmensdaten eintragen. */
 const CONTACT_FACTS = [
-  { icon: Phone, label: "Telefon", value: "[Telefonnummer folgt]" },
-  { icon: Mail, label: "E-Mail", value: "[E-Mail-Adresse folgt]" },
-  { icon: MapPin, label: "Adresse", value: "[Geschäftsadresse folgt]" },
-  { icon: Clock, label: "Erreichbarkeit", value: "[Öffnungszeiten folgen]" },
+  { icon: Phone, label: "Telefon", value: "+49 176 25041651" },
+  { icon: Mail, label: "E-Mail", value: "info@volt-gas.de" },
+  { icon: MapPin, label: "Adresse", value: "Pappelallee 64, 10437 Berlin" },
+  { icon: Clock, label: "Erreichbarkeit", value: "Termine nach Vereinbarung" },
 ];
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -105,8 +104,7 @@ export default function Contact() {
               ))}
             </ul>
             <p className="mt-4 text-xs leading-relaxed text-fog">
-              Hinweis: Die Kontaktdaten werden nach Abschluss der Unternehmens­anmeldung
-              ergänzt. Anfragen über das Formular erreichen uns bereits jetzt zuverlässig.
+              QonteX ist ein Angebot der Volt Gas UG (haftungsbeschränkt), Berlin.
             </p>
           </Reveal>
 

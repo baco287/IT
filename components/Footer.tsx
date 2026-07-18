@@ -1,30 +1,30 @@
+import Link from "next/link";
 import Wordmark from "./Wordmark";
 
 const GROUPS = [
   {
     title: "Leistungen",
     links: [
-      { label: "Managed IT Services", href: "#leistungen" },
-      { label: "Cloud-Lösungen", href: "#leistungen" },
-      { label: "Cybersecurity", href: "#leistungen" },
-      { label: "Server & Netzwerke", href: "#leistungen" },
+      { label: "Managed IT Services", href: "/#leistungen" },
+      { label: "Cloud-Lösungen", href: "/#leistungen" },
+      { label: "Cybersecurity", href: "/#leistungen" },
+      { label: "Server & Netzwerke", href: "/#leistungen" },
     ],
   },
   {
     title: "Unternehmen",
     links: [
-      { label: "Über QonteX", href: "#ueber" },
-      { label: "Lösungen", href: "#loesungen" },
-      { label: "FAQ", href: "#faq" },
-      { label: "Kontakt", href: "#kontakt" },
+      { label: "Über QonteX", href: "/#ueber" },
+      { label: "Lösungen", href: "/#loesungen" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Kontakt", href: "/#kontakt" },
     ],
   },
   {
     title: "Rechtliches",
     links: [
-      { label: "Impressum", href: "#impressum" },
-      { label: "Datenschutz", href: "#datenschutz" },
-      { label: "Cookie-Einstellungen", href: "#cookies" },
+      { label: "Impressum", href: "/impressum" },
+      { label: "Datenschutz", href: "/datenschutz" },
     ],
   },
 ];
@@ -50,12 +50,12 @@ export default function Footer() {
                 <ul className="mt-4 space-y-2.5">
                   {g.links.map((l) => (
                     <li key={l.label}>
-                      <a
+                      <Link
                         href={l.href}
                         className="text-sm text-mist/80 transition-colors hover:text-cyan"
                       >
                         {l.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -64,7 +64,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-white/8 pt-6 text-xs text-fog">
-          <p>© {new Date().getFullYear()} QonteX. Alle Rechte vorbehalten.</p>
+          <p>
+            © {new Date().getFullYear()} QonteX · ein Angebot der Volt Gas UG
+            (haftungsbeschränkt)
+          </p>
           <p>IT-Dienstleistungen · Made in Germany</p>
         </div>
       </div>
