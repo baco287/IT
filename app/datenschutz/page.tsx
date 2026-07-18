@@ -30,7 +30,7 @@ export default function Datenschutz() {
           <br />
           Pappelallee 64, 10437 Berlin, Deutschland
           <br />
-          Telefon: +49 176 25041651 · E-Mail: info@volt-gas.de
+          Telefon: +49 176 25041651 · E-Mail: info@qontex.de
         </p>
 
         <h2 className={h2}>2. Allgemeines zur Datenverarbeitung</h2>
@@ -107,7 +107,7 @@ export default function Datenschutz() {
           Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit
           (Art. 20 DSGVO) sowie Widerspruch gegen die Verarbeitung (Art. 21
           DSGVO). Zur Ausübung Ihrer Rechte genügt eine formlose Nachricht an
-          info@volt-gas.de.
+          info@qontex.de.
         </p>
         <p className={p}>
           Ihnen steht zudem ein Beschwerderecht bei einer

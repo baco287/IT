@@ -20,7 +20,7 @@ const SERVICES = [
 
 const CONTACT_FACTS = [
   { icon: Phone, label: "Telefon", value: "+49 176 25041651" },
-  { icon: Mail, label: "E-Mail", value: "info@volt-gas.de" },
+  { icon: Mail, label: "E-Mail", value: "info@qontex.de" },
   { icon: MapPin, label: "Adresse", value: "Pappelallee 64, 10437 Berlin" },
   { icon: Clock, label: "Erreichbarkeit", value: "Termine nach Vereinbarung" },
 ];

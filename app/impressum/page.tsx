@@ -40,7 +40,7 @@ export default function Impressum() {
         <p className={p}>
           Telefon: +49 176 25041651
           <br />
-          E-Mail: info@volt-gas.de
+          E-Mail: info@qontex.de
         </p>
 
         <h2 className={h2}>Registereintrag</h2>
