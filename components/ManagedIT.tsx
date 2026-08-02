@@ -31,8 +31,12 @@ const STEPS = [
 export default function ManagedIT() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative px-6 py-28">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative overflow-hidden border-y border-white/5 bg-abyss px-6 py-28">
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_10%_20%,rgba(45,212,234,0.05),transparent_65%)]"
+        aria-hidden
+      />
+      <div className="relative mx-auto max-w-6xl">
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <Reveal>

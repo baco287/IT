@@ -79,7 +79,7 @@ function Item({ faq, index }: { faq: (typeof FAQS)[number]; index: number }) {
 
 export default function Faq() {
   return (
-    <section id="faq" className="px-6 py-28">
+    <section id="faq" className="border-y border-white/5 bg-abyss px-6 py-28">
       <div className="mx-auto max-w-3xl">
         <SectionHead label="FAQ" title="Häufige Fragen" />
         <div className="space-y-3">

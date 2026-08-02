@@ -44,6 +44,12 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap"
           rel="stylesheet"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{var t=localStorage.getItem("qx-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t}}catch(e){}',
+          }}
+        />
       </head>
       <body className="noise">{children}</body>
     </html>

@@ -5,10 +5,12 @@ const GROUPS = [
   {
     title: "Leistungen",
     links: [
-      { label: "Managed IT Services", href: "/#leistungen" },
-      { label: "Cloud-Lösungen", href: "/#leistungen" },
-      { label: "Cybersecurity", href: "/#leistungen" },
-      { label: "Server & Netzwerke", href: "/#leistungen" },
+      { label: "Managed IT Services", href: "/leistungen/managed-it" },
+      { label: "IT-Support", href: "/leistungen/it-support" },
+      { label: "Cloud-Lösungen", href: "/leistungen/cloud-loesungen" },
+      { label: "Cybersecurity", href: "/leistungen/cybersecurity" },
+      { label: "Server & Netzwerke", href: "/leistungen/server-netzwerke" },
+      { label: "Backup & Recovery", href: "/leistungen/backup-recovery" },
     ],
   },
   {

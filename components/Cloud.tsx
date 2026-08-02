@@ -18,24 +18,38 @@ export default function Cloud() {
     <section className="relative px-6 py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <Reveal className="order-2 lg:order-1">
-          <div className="relative">
-            <div className="glass relative z-10 w-[78%] overflow-hidden rounded-2xl">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="glass col-span-2 overflow-hidden rounded-2xl">
               <Image
                 src={cloudImg}
                 alt="Blau beleuchtete Netzwerktechnik in einem Rechenzentrum"
-                className="aspect-[16/11] w-full object-cover"
-                sizes="(max-width: 1024px) 78vw, 40vw"
+                className="aspect-[16/8] w-full object-cover"
+                sizes="(max-width: 1024px) 100vw, 45vw"
                 placeholder="blur"
               />
             </div>
-            <div className="glass absolute -bottom-10 right-0 z-20 w-[52%] overflow-hidden rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.45)]">
+            <div className="glass overflow-hidden rounded-2xl">
               <Image
                 src={globeImg}
                 alt="Globales Netzwerk mit leuchtenden Verbindungslinien"
-                className="aspect-[16/11] w-full object-cover"
-                sizes="(max-width: 1024px) 52vw, 26vw"
+                className="aspect-square w-full object-cover"
+                sizes="(max-width: 1024px) 50vw, 22vw"
                 placeholder="blur"
               />
+            </div>
+            <div className="glass flex flex-col justify-center gap-3 rounded-2xl p-5">
+              <div>
+                <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-white">
+                  Microsoft 365
+                </p>
+                <p className="text-xs text-fog">zentral eingerichtet und verwaltet</p>
+              </div>
+              <div className="border-t border-white/8 pt-3">
+                <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-white">
+                  Standorte & Homeoffice
+                </p>
+                <p className="text-xs text-fog">sicher verbunden statt improvisiert</p>
+              </div>
             </div>
           </div>
         </Reveal>

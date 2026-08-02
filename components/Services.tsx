@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import {
   MonitorCog,
@@ -17,36 +18,42 @@ import SectionHead from "./SectionHead";
 const SERVICES = [
   {
     icon: MonitorCog,
+    slug: "managed-it",
     title: "Managed IT Services",
     text: "Wir betreiben und pflegen Ihre komplette IT-Umgebung – Updates, Wartung und Optimierung inklusive.",
     tint: "from-cyan/14 to-transparent",
   },
   {
     icon: Headset,
+    slug: "it-support",
     title: "IT-Support",
     text: "Schnelle, verständliche Hilfe bei allen IT-Fragen – per Fernwartung oder direkt vor Ort.",
     tint: "from-violet/14 to-transparent",
   },
   {
     icon: CloudCog,
+    slug: "cloud-loesungen",
     title: "Cloud-Lösungen",
     text: "Sichere Cloud-Umgebungen und Microsoft 365 – flexibel, ortsunabhängig und zentral verwaltet.",
     tint: "from-cyan/14 to-transparent",
   },
   {
     icon: ShieldHalf,
+    slug: "cybersecurity",
     title: "Cybersecurity",
     text: "Mehrstufige Sicherheitskonzepte, die Ihre Systeme, Daten und Mitarbeiter wirksam schützen.",
     tint: "from-violet/14 to-transparent",
   },
   {
     icon: Network,
+    slug: "server-netzwerke",
     title: "Server & Netzwerke",
     text: "Stabile Server- und Netzwerkinfrastrukturen – geplant, aufgebaut und kontinuierlich überwacht.",
     tint: "from-cyan/14 to-transparent",
   },
   {
     icon: DatabaseBackup,
+    slug: "backup-recovery",
     title: "Backup & Recovery",
     text: "Durchdachte Datensicherung und klare Wiederherstellungspläne für den Fall der Fälle.",
     tint: "from-violet/14 to-transparent",
@@ -109,18 +116,18 @@ function ServiceCard({
             {s.title}
           </h3>
           <p className="mt-2.5 text-sm leading-relaxed text-fog">{s.text}</p>
-          <a
-            href="#kontakt"
+          <Link
+            href={`/leistungen/${s.slug}`}
             className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan opacity-90 transition-opacity hover:opacity-100"
           >
-            Mehr erfahren
+            Mehr zu {s.title}
             <ArrowRight
               size={14}
               strokeWidth={2.5}
               className="transition-transform group-hover:translate-x-0.5"
               aria-hidden
             />
-          </a>
+          </Link>
         </div>
       </div>
     </Reveal>
@@ -129,8 +136,12 @@ function ServiceCard({
 
 export default function Services() {
   return (
-    <section id="leistungen" className="relative px-6 py-28">
-      <div className="mx-auto max-w-6xl">
+    <section id="leistungen" className="relative overflow-hidden px-6 py-28">
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_0%,rgba(45,212,234,0.06),transparent_65%)]"
+        aria-hidden
+      />
+      <div className="relative mx-auto max-w-6xl">
         <SectionHead
           label="Leistungen"
           title="Ganzheitliche IT-Lösungen aus einer Hand"

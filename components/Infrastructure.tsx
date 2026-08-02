@@ -31,8 +31,15 @@ const ROWS = [
 
 export default function Infrastructure() {
   return (
-    <section id="loesungen" className="relative px-6 py-28">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="loesungen"
+      className="relative overflow-hidden border-y border-white/5 bg-abyss px-6 py-28"
+    >
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_85%_15%,rgba(167,139,250,0.06),transparent_65%)]"
+        aria-hidden
+      />
+      <div className="relative mx-auto max-w-6xl">
         <SectionHead
           label="Infrastruktur"
           title="Technologie, auf die Verlass ist"
