@@ -11,6 +11,7 @@ import {
   Network,
   DatabaseBackup,
   ArrowRight,
+  Bot,
 } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
@@ -152,6 +153,50 @@ export default function Services() {
             <ServiceCard key={s.title} s={s} index={i} />
           ))}
         </div>
+
+        {/* Hervorgehobene Leistung: KI-Agenten */}
+        <Reveal delay={0.1}>
+          <Link
+            href="/leistungen/ki-agenten"
+            className="glass group relative mt-5 flex flex-col items-start gap-6 overflow-hidden rounded-2xl border-cyan/25 p-7 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-cyan/45 sm:flex-row sm:items-center sm:p-8"
+          >
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-cyan/10 via-transparent to-violet/10"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-cyan/60 to-transparent"
+              aria-hidden
+            />
+            <span className="relative grid h-14 w-14 flex-none place-items-center rounded-2xl bg-gradient-to-br from-cyan/20 to-violet/20 text-cyan ring-1 ring-cyan/30 transition-transform duration-300 group-hover:scale-105">
+              <Bot size={26} strokeWidth={1.9} aria-hidden />
+            </span>
+            <span className="relative flex-1">
+              <span className="mb-1.5 flex flex-wrap items-center gap-2.5">
+                <span className="font-[family-name:var(--font-display)] text-lg font-semibold text-white">
+                  KI-Agenten & Automatisierung
+                </span>
+                <span className="rounded-full bg-cyan/12 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-cyan">
+                  Neu
+                </span>
+              </span>
+              <span className="block max-w-2xl text-sm leading-relaxed text-fog">
+                Wir entwickeln KI-Agenten, die wiederkehrende Aufgaben übernehmen –
+                von der E-Mail-Vorsortierung bis zum internen Wissensassistenten.
+                Integriert in Ihre Systeme, mit Kontrolle bei Ihnen.
+              </span>
+            </span>
+            <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-cyan">
+              Mehr zu KI-Agenten
+              <ArrowRight
+                size={14}
+                strokeWidth={2.5}
+                className="transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </span>
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

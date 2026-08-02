@@ -210,6 +210,41 @@ export const SERVICES: Service[] = [
     ],
     ctaText: "Lassen Sie uns prüfen, ob Ihre aktuelle Datensicherung im Ernstfall wirklich trägt.",
   },
+  {
+    slug: "ki-agenten",
+    name: "KI-Agenten & Automatisierung",
+    title: "KI-Agenten und Automatisierung",
+    metaDescription:
+      "KI-Agenten von QonteX: Individuelle KI-Assistenten und Automatisierungen, die wiederkehrende Aufgaben übernehmen – integriert in Ihre Systeme, mit klaren Kontrollmechanismen.",
+    intro:
+      "Künstliche Intelligenz ist für uns kein Buzzword, sondern ein Werkzeug: Wir entwickeln KI-Agenten, die wiederkehrende Aufgaben in Ihrem Unternehmen übernehmen – von der E-Mail-Vorsortierung über Dokumentenverarbeitung bis zum internen Wissensassistenten. Integriert in Ihre bestehenden Systeme, mit klaren Kontrollmechanismen und menschlicher Freigabe, wo sie hingehört.",
+    scopeTitle: "Das entwickeln wir für Sie",
+    scope: [
+      "Analyse, welche Prozesse sich sinnvoll automatisieren lassen",
+      "Individuelle KI-Agenten für wiederkehrende Aufgaben",
+      "Chat-Assistenten für Ihre Website oder Ihr Team",
+      "Automatisierte Verarbeitung von Dokumenten und E-Mails",
+      "Anbindung an Ihre Systeme (E-Mail, CRM, Microsoft 365)",
+      "Kontrollmechanismen und menschliche Freigabeschritte",
+      "Betrieb, Überwachung und laufende Verbesserung",
+    ],
+    benefits: [
+      {
+        title: "Zeit für das Wesentliche",
+        text: "Routineaufgaben laufen automatisch – Ihr Team kümmert sich um das, was Menschen besser können.",
+      },
+      {
+        title: "Integriert statt Insellösung",
+        text: "Agenten arbeiten in Ihren bestehenden Systemen, nicht in einem weiteren Tool daneben.",
+      },
+      {
+        title: "Verantwortungsvoll eingesetzt",
+        text: "Datenschutzbewusste Umsetzung, nachvollziehbare Ergebnisse und Kontrolle bleiben bei Ihnen.",
+      },
+    ],
+    ctaText:
+      "Lassen Sie uns gemeinsam herausfinden, welche Aufgaben in Ihrem Unternehmen ein KI-Agent übernehmen kann.",
+  },
 ];
 
 export function getService(slug: string): Service | undefined {

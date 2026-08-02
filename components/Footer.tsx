@@ -11,6 +11,7 @@ const GROUPS = [
       { label: "Cybersecurity", href: "/leistungen/cybersecurity" },
       { label: "Server & Netzwerke", href: "/leistungen/server-netzwerke" },
       { label: "Backup & Recovery", href: "/leistungen/backup-recovery" },
+      { label: "KI-Agenten & Automatisierung", href: "/leistungen/ki-agenten" },
     ],
   },
   {

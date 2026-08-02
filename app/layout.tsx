@@ -10,9 +10,9 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "QonteX – IT-Dienstleistungen für Unternehmen | Managed IT, Cloud & Cybersecurity",
+  title: "QonteX – IT-Dienstleistungen für Unternehmen | Managed IT, Cloud, Cybersecurity & KI-Agenten",
   description:
-    "QonteX entwickelt sichere, leistungsfähige und zuverlässige IT-Lösungen für kleine und mittelständische Unternehmen – Managed IT, Cloud, Cybersecurity und persönlicher Support aus einer Hand.",
+    "QonteX entwickelt sichere, leistungsfähige und zuverlässige IT-Lösungen für kleine und mittelständische Unternehmen – Managed IT, Cloud, Cybersecurity, KI-Agenten und persönlicher Support aus einer Hand.",
   openGraph: {
     title: "QonteX – IT, die Ihr Unternehmen voranbringt",
     description:

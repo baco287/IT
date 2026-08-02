@@ -28,6 +28,10 @@ const FAQS = [
     a: "Ja. Wir planen und begleiten Cloud-Migrationen, richten Microsoft 365 sicher ein und verwalten hybride Umgebungen – inklusive Zugriffskonzepten, Datensicherung und zentraler Administration.",
   },
   {
+    q: "Entwickelt QonteX auch KI-Lösungen?",
+    a: "Ja. Wir bauen individuelle KI-Agenten und Automatisierungen, die wiederkehrende Aufgaben übernehmen – etwa E-Mail-Vorsortierung, Dokumentenverarbeitung oder interne Wissensassistenten. Dabei achten wir auf datenschutzbewusste Umsetzung, Anbindung an Ihre bestehenden Systeme und menschliche Kontrolle über alle wichtigen Schritte.",
+  },
+  {
     q: "Wie läuft eine erste IT-Beratung ab?",
     a: "Im kostenlosen Erstgespräch besprechen wir Ihre aktuelle Situation und Ihre Ziele – verständlich und ohne Fachchinesisch. Danach erhalten Sie eine klare Empfehlung, wie ein sinnvoller nächster Schritt aussieht. Das Gespräch ist unverbindlich.",
   },
