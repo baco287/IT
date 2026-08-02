@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Mail, MessageCircle, Phone } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -99,6 +99,62 @@ export default async function ServicePage({
             </ul>
           </div>
         </section>
+
+        {/* Kanäle (nur wenn hinterlegt, z. B. KI-Agenten) */}
+        {service.channels && (
+          <section
+            className="border-y border-white/5 bg-abyss px-6 py-16"
+            aria-labelledby="channels-heading"
+          >
+            <div className="mx-auto max-w-4xl">
+              <Reveal>
+                <h2
+                  id="channels-heading"
+                  className="font-[family-name:var(--font-display)] text-2xl font-semibold text-white"
+                >
+                  {service.channelsTitle}
+                </h2>
+                {service.channelsIntro && (
+                  <p className="mt-3 max-w-2xl leading-relaxed text-fog">
+                    {service.channelsIntro}
+                  </p>
+                )}
+              </Reveal>
+              <div className="mt-8 grid gap-4 lg:grid-cols-3">
+                {service.channels.map((c, i) => {
+                  const Icon =
+                    c.key === "whatsapp" ? MessageCircle : c.key === "telefon" ? Phone : Mail;
+                  return (
+                    <Reveal key={c.key} delay={0.07 * i}>
+                      <div className="glass flex h-full flex-col rounded-2xl p-6">
+                        <span className="grid h-11 w-11 place-items-center rounded-xl bg-cyan/10 text-cyan ring-1 ring-cyan/25">
+                          <Icon size={20} strokeWidth={1.9} aria-hidden />
+                        </span>
+                        <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold text-white">
+                          {c.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-fog">{c.text}</p>
+                        <ul className="mt-4 space-y-2 border-t border-white/8 pt-4">
+                          {c.points.map((p) => (
+                            <li key={p} className="flex items-start gap-2.5 text-[13px] leading-relaxed text-mist">
+                              <Check
+                                size={13}
+                                strokeWidth={3}
+                                className="mt-1 flex-none text-cyan"
+                                aria-hidden
+                              />
+                              {p}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Vorteile */}
         <section className="px-6 py-14" aria-labelledby="benefits-heading">

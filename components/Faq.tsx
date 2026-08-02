@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "Entwickelt QonteX auch KI-Lösungen?",
-    a: "Ja. Wir bauen individuelle KI-Agenten und Automatisierungen, die wiederkehrende Aufgaben übernehmen – etwa E-Mail-Vorsortierung, Dokumentenverarbeitung oder interne Wissensassistenten. Dabei achten wir auf datenschutzbewusste Umsetzung, Anbindung an Ihre bestehenden Systeme und menschliche Kontrolle über alle wichtigen Schritte.",
+    a: "Ja. Wir bauen individuelle KI-Agenten, die Kundenanfragen auf WhatsApp, am Telefon und per E-Mail rund um die Uhr aufnehmen und beantworten – dazu Automatisierungen für Dokumente und interne Wissensassistenten. Dabei achten wir auf datenschutzbewusste Umsetzung, Anbindung an Ihre bestehenden Systeme und menschliche Kontrolle über alle wichtigen Schritte.",
   },
   {
     q: "Wie läuft eine erste IT-Beratung ab?",

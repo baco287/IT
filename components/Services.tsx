@@ -181,9 +181,9 @@ export default function Services() {
                 </span>
               </span>
               <span className="block max-w-2xl text-sm leading-relaxed text-fog">
-                Wir entwickeln KI-Agenten, die wiederkehrende Aufgaben übernehmen –
-                von der E-Mail-Vorsortierung bis zum internen Wissensassistenten.
-                Integriert in Ihre Systeme, mit Kontrolle bei Ihnen.
+                KI-Assistenten, die Ihre Kundenanfragen auf WhatsApp, am Telefon und
+                per E-Mail rund um die Uhr aufnehmen und beantworten – integriert in
+                Ihre Systeme, mit Übergabe an Ihr Team im richtigen Moment.
               </span>
             </span>
             <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-cyan">

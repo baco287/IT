@@ -1,3 +1,10 @@
+export type ServiceChannel = {
+  key: "whatsapp" | "telefon" | "mail";
+  title: string;
+  text: string;
+  points: string[];
+};
+
 export type Service = {
   slug: string;
   name: string;
@@ -6,6 +13,9 @@ export type Service = {
   intro: string;
   scopeTitle: string;
   scope: string[];
+  channelsTitle?: string;
+  channelsIntro?: string;
+  channels?: ServiceChannel[];
   benefits: { title: string; text: string }[];
   ctaText: string;
 };
@@ -227,6 +237,44 @@ export const SERVICES: Service[] = [
       "Anbindung an Ihre Systeme (E-Mail, CRM, Microsoft 365)",
       "Kontrollmechanismen und menschliche Freigabeschritte",
       "Betrieb, Überwachung und laufende Verbesserung",
+    ],
+    channelsTitle: "Automatisierung dort, wo Ihre Kunden sind",
+    channelsIntro:
+      "Die meisten Anfragen erreichen Unternehmen über drei Kanäle: WhatsApp, Telefon und E-Mail. Genau dort setzen unsere KI-Agenten an – rund um die Uhr erreichbar, mit Übergabe an Ihr Team, sobald es persönlich werden soll.",
+    channels: [
+      {
+        key: "whatsapp",
+        title: "WhatsApp-Assistent",
+        text: "Ihre Kunden schreiben, wann es ihnen passt – Ihr KI-Assistent antwortet sofort, auch abends und am Wochenende. Er beantwortet wiederkehrende Fragen, nimmt Anliegen strukturiert auf und übergibt an Ihr Team, sobald ein Mensch gefragt ist.",
+        points: [
+          "Sofortige Antworten auf häufige Fragen – rund um die Uhr",
+          "Termin- und Rückrufanfragen strukturiert aufnehmen",
+          "Vorqualifizierung: Anliegen, Kontaktdaten, Dringlichkeit",
+          "Nahtlose Übergabe an Mitarbeiter im richtigen Moment",
+        ],
+      },
+      {
+        key: "telefon",
+        title: "Telefon-Assistent",
+        text: "Kein Anruf geht mehr verloren: Der KI-Telefonassistent nimmt Gespräche an, wenn Ihr Team belegt oder außerhalb der Zeiten ist. Er versteht das Anliegen, nimmt Rückrufwünsche auf und fasst jedes Gespräch schriftlich für Sie zusammen.",
+        points: [
+          "Anrufannahme bei Besetzt, Abwesenheit und nach Feierabend",
+          "Anliegen und Rückrufwünsche strukturiert erfassen",
+          "Schriftliche Gesprächszusammenfassung in Ihr Postfach oder CRM",
+          "Weiterleitung dringender Anrufe nach Ihren Regeln",
+        ],
+      },
+      {
+        key: "mail",
+        title: "E-Mail-Assistent",
+        text: "Ihr Postfach sortiert sich selbst: Der E-Mail-Agent kategorisiert eingehende Nachrichten, beantwortet Standardanfragen und legt für alles andere fertige Antwortentwürfe bereit – Sie geben nur noch frei.",
+        points: [
+          "Automatische Kategorisierung und Priorisierung des Posteingangs",
+          "Sofortantworten für Standardanfragen, Entwürfe für den Rest",
+          "Zusammenfassung langer E-Mail-Verläufe auf den Punkt",
+          "Übergabe an das richtige Teammitglied oder Ihr CRM",
+        ],
+      },
     ],
     benefits: [
       {

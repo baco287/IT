@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   basePath: "/IT",
   trailingSlash: true,
   images: { unoptimized: true },
+  experimental: { cpus: 2, workerThreads: false },
 };
 
 export default nextConfig;
