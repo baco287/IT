@@ -17,10 +17,10 @@ const GROUPS = [
   {
     title: "Unternehmen",
     links: [
-      { label: "Über QonteX", href: "/#ueber" },
-      { label: "Lösungen", href: "/#loesungen" },
-      { label: "FAQ", href: "/#faq" },
-      { label: "Kontakt", href: "/#kontakt" },
+      { label: "Über QonteX", href: "/ueber" },
+      { label: "Lösungen", href: "/loesungen" },
+      { label: "FAQ", href: "/kontakt#faq" },
+      { label: "Kontakt", href: "/kontakt" },
     ],
   },
   {

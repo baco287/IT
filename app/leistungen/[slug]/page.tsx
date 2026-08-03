@@ -48,7 +48,7 @@ export default async function ServicePage({
           />
           <div className="relative mx-auto max-w-4xl">
             <nav aria-label="Pfadnavigation" className="mb-6 text-sm text-fog">
-              <Link href="/#leistungen" className="transition-colors hover:text-cyan">
+              <Link href="/leistungen" className="transition-colors hover:text-cyan">
                 Leistungen
               </Link>
               <span className="mx-2" aria-hidden>
@@ -64,7 +64,7 @@ export default async function ServicePage({
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/#kontakt"
+                href="/kontakt"
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-6 py-3 font-semibold text-[#04222b] shadow-[0_10px_30px_rgba(45,212,234,0.28)] transition-shadow hover:shadow-[0_14px_36px_rgba(45,212,234,0.4)]"
               >
                 Kostenlose Erstberatung
@@ -193,7 +193,7 @@ export default async function ServicePage({
               </p>
               <div className="relative mt-6">
                 <Link
-                  href="/#kontakt"
+                  href="/kontakt"
                   className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-7 py-3.5 font-semibold text-[#04222b] shadow-[0_10px_30px_rgba(45,212,234,0.28)]"
                 >
                   IT-Beratung anfragen

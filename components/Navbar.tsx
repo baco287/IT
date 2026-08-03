@@ -8,11 +8,11 @@ import Wordmark from "./Wordmark";
 import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
-  { href: "/#start", label: "Startseite" },
-  { href: "/#leistungen", label: "Leistungen" },
-  { href: "/#loesungen", label: "Lösungen" },
-  { href: "/#ueber", label: "Über QonteX" },
-  { href: "/#kontakt", label: "Kontakt" },
+  { href: "/", label: "Startseite" },
+  { href: "/leistungen", label: "Leistungen" },
+  { href: "/loesungen", label: "Lösungen" },
+  { href: "/ueber", label: "Über QonteX" },
+  { href: "/kontakt", label: "Kontakt" },
 ];
 
 export default function Navbar() {
@@ -33,7 +33,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/#start" aria-label="QonteX – zur Startseite">
+        <Link href="/" aria-label="QonteX – zur Startseite">
           <Wordmark />
         </Link>
 
@@ -55,7 +55,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2.5">
           <ThemeToggle />
           <Link
-            href="/#kontakt"
+            href="/kontakt"
             className="hidden items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-5 py-2.5 text-sm font-semibold text-[#04222b] shadow-[0_8px_24px_rgba(45,212,234,0.25)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(45,212,234,0.35)] sm:inline-flex"
           >
             IT-Beratung anfragen
@@ -101,7 +101,7 @@ export default function Navbar() {
               ))}
               <li className="mt-2 border-t border-white/10 pt-3">
                 <Link
-                  href="/#kontakt"
+                  href="/kontakt"
                   onClick={() => setOpen(false)}
                   className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-4 py-3 font-semibold text-[#04222b]"
                 >
