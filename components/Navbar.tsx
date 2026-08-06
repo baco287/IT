@@ -11,6 +11,7 @@ const LINKS = [
   { href: "/", label: "Startseite" },
   { href: "/leistungen", label: "Leistungen" },
   { href: "/loesungen", label: "Lösungen" },
+  { href: "/referenzen", label: "Referenzen" },
   { href: "/ueber", label: "Über QonteX" },
   { href: "/kontakt", label: "Kontakt" },
 ];
