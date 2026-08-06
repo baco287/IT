@@ -10,6 +10,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://qontex.de"),
   title: "QonteX – IT-Dienstleistungen für Unternehmen | Managed IT, Cloud, Cybersecurity & KI-Agenten",
   description:
     "QonteX entwickelt sichere, leistungsfähige und zuverlässige IT-Lösungen für kleine und mittelständische Unternehmen – Managed IT, Cloud, Cybersecurity, KI-Agenten und persönlicher Support aus einer Hand.",
