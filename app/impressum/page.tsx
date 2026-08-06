@@ -38,25 +38,35 @@ export default function Impressum() {
 
         <h2 className={h2}>Kontakt</h2>
         <p className={p}>
-          Telefon: +49 176 25041651
+          Telefon: 0176 / 250 416 51
           <br />
           E-Mail: info@qontex.de
+          <br />
+          Website: https://qontex.de
         </p>
 
-        <h2 className={h2}>Registereintrag</h2>
+        <h2 className={h2}>Handelsregister</h2>
         <p className={p}>
-          Eintragung im Handelsregister
-          <br />
           Registergericht: Amtsgericht Charlottenburg (Berlin)
           <br />
           Registernummer: HRB 289458 B
         </p>
 
-        <h2 className={h2}>Umsatzsteuer-ID</h2>
+        <h2 className={h2}>Umsatzsteuer</h2>
         <p className={p}>
           Die Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG ist beim
           zuständigen Finanzamt beantragt und wird nach Erteilung an dieser
           Stelle nachgetragen.
+        </p>
+
+        <h2 className={h2}>Tätigkeitsbereich</h2>
+        <p className={p}>
+          QonteX erbringt IT-Dienstleistungen für Unternehmen, insbesondere
+          Managed IT Services, IT-Support, Cloud-Lösungen, Cybersecurity,
+          Server- und Netzwerkmanagement, Backup und Disaster Recovery sowie
+          die Entwicklung von KI-Agenten und Automatisierungslösungen. Die
+          Leistungen werden im Auftrag der Kunden auf Grundlage individueller
+          Vereinbarungen erbracht.
         </p>
 
         <h2 className={h2}>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
@@ -78,42 +88,9 @@ export default function Impressum() {
           >
             https://ec.europa.eu/consumers/odr/
           </a>
-          . Unsere E-Mail-Adresse finden Sie oben im Impressum.
-        </p>
-
-        <h2 className={h2}>Verbraucherstreitbeilegung</h2>
-        <p className={p}>
-          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
-          vor einer Verbraucherschlichtungsstelle teilzunehmen.
-        </p>
-
-        <h2 className={h2}>Haftung für Inhalte</h2>
-        <p className={p}>
-          Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach
-          den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht
-          verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
-          überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
-          Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der
-          Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon
-          unberührt.
-        </p>
-
-        <h2 className={h2}>Haftung für Links</h2>
-        <p className={p}>
-          Unser Angebot enthält Links zu externen Websites Dritter, auf deren
-          Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten
-          Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
-          Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche
-          Rechtsverstöße überprüft.
-        </p>
-
-        <h2 className={h2}>Urheberrecht</h2>
-        <p className={p}>
-          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
-          Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
-          Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
-          Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des
-          jeweiligen Autors bzw. Erstellers.
+          . Unsere E-Mail-Adresse finden Sie oben im Impressum. Wir sind nicht
+          bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
         </p>
       </main>
       <Footer />
