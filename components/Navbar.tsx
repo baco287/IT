@@ -5,7 +5,6 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Wordmark from "./Wordmark";
-import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
   { href: "/", label: "Startseite" },
@@ -54,7 +53,6 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <ThemeToggle />
           <Link
             href="/kontakt"
             className="hidden items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-5 py-2.5 text-sm font-semibold text-[#04222b] shadow-[0_8px_24px_rgba(45,212,234,0.25)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(45,212,234,0.35)] sm:inline-flex"

@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-night: #05090f;
-  --color-abyss: #070d16;
-  --color-navy: #0a1220;
-  --color-slate-glass: #0e1726;
-  --color-mist: #c9d6e6;
-  --color-fog: #8fa1b8;
-  --color-cyan: #2dd4ea;
-  --color-cyan-soft: #67e3f4;
-  --color-violet: #a78bfa;
-  --font-display: "Clash Display", "Segoe UI", system-ui, sans-serif;
+  /* Helles, nüchternes Designsystem – Tokennamen bleiben stabil,
+     damit alle Komponenten weiterverwendet werden können. */
+  --color-night: #f6f8fa;
+  --color-abyss: #ffffff;
+  --color-navy: #ffffff;
+  --color-slate-glass: #ffffff;
+  --color-mist: #17253a;
+  --color-fog: #52627a;
+  --color-cyan: #1b5fae;
+  --color-cyan-soft: #2f7bd0;
+  --color-violet: #1b5fae;
+  --font-display: var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), Consolas, monospace;
 }
@@ -35,38 +37,26 @@ body {
 
 ::selection {
   background: var(--color-cyan);
-  color: #04222b;
+  color: #ffffff;
 }
 
-/* Feine Körnung über der gesamten Seite */
-.noise::before {
-  content: "";
-  position: fixed;
-  inset: -50%;
-  z-index: 70;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Glas-Grundfläche */
+/* Ehemals Glasfläche – jetzt schlichte Karte */
 .glass {
-  background: linear-gradient(
-    165deg,
-    rgba(190, 220, 255, 0.055),
-    rgba(190, 220, 255, 0.015) 60%
-  );
-  border: 1px solid rgba(190, 220, 255, 0.11);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.09),
-    0 20px 50px rgba(0, 0, 0, 0.35);
+  background: #ffffff;
+  border: 1px solid #e3e9f0;
+  box-shadow: 0 1px 2px rgba(23, 37, 58, 0.05);
 }
 
 .glass-strong {
-  background: rgba(10, 18, 32, 0.66);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(190, 220, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid #e3e9f0;
+  box-shadow: 0 1px 3px rgba(23, 37, 58, 0.07);
+}
+
+/* Ehemals Verlaufs-Text – jetzt schlichte Akzentfarbe */
+.grad {
+  color: var(--color-cyan);
 }
 
 /* Sichtbare Fokuszustände */
@@ -80,88 +70,52 @@ textarea:focus-visible {
   border-radius: 6px;
 }
 
-/* Dezentes technisches Raster für Sektionshintergründe */
-.tech-grid {
-  background-image: linear-gradient(rgba(190, 220, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(190, 220, 255, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
+/* Kompatibilität: dunkle Utility-Klassen auf helles Design abbilden */
+.text-white {
+  color: #10203a;
+}
+.border-white\/5 {
+  border-color: #e8edf3;
+}
+.border-white\/8 {
+  border-color: #e3e9f0;
+}
+.border-white\/10 {
+  border-color: #dde4ec;
+}
+.border-white\/15 {
+  border-color: #d3dce6;
+}
+.ring-white\/10 {
+  --tw-ring-color: #dde4ec;
+}
+.bg-white\/5,
+.hover\:bg-white\/5:hover {
+  background-color: #f0f4f8;
+}
+.bg-white\/\[0\.04\] {
+  background-color: #f6f8fb;
+}
+.focus\:bg-white\/\[0\.06\]:focus {
+  background-color: #ffffff;
+}
+.bg-black\/25 {
+  background-color: #f1f5f9;
+}
+.bg-white\/15 {
+  background-color: #cdd6e0;
 }
 
-/* ============ Light-Theme ============ */
-[data-theme="light"] {
-  --color-night: #f2f5fa;
-  --color-abyss: #e8edf5;
-  --color-navy: #ffffff;
-  --color-slate-glass: #ffffff;
-  --color-mist: #1a2634;
-  --color-fog: #4e5f78;
-  --color-cyan: #0a7f9f;
-  --color-cyan-soft: #38c6df;
-  --color-violet: #6d4fd4;
+/* KI-Effekte stilllegen: Farbverläufe im Hintergrund und Neon-Schatten */
+[class*="radial-gradient"] {
+  background-image: none !important;
 }
-
-[data-theme="light"] .glass {
-  background: rgba(255, 255, 255, 0.74);
-  border-color: rgba(18, 38, 66, 0.1);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 16px 40px rgba(18, 38, 66, 0.08);
+[class*="45,212,234"] {
+  box-shadow: 0 1px 2px rgba(20, 46, 84, 0.16) !important;
 }
-
-[data-theme="light"] .glass-strong {
-  background: rgba(255, 255, 255, 0.82);
-  border-color: rgba(18, 38, 66, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+.bg-\[\#04070c\] {
+  background-color: #eef2f7;
 }
-
-[data-theme="light"] .tech-grid {
-  background-image: linear-gradient(rgba(18, 38, 66, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 38, 66, 0.06) 1px, transparent 1px);
-}
-
-[data-theme="light"] .noise::before {
-  opacity: 0.02;
-}
-
-/* Kompatibilitäts-Overrides für hartkodierte Weiß-Utilities */
-[data-theme="light"] .text-white {
-  color: #0e1b2a;
-}
-[data-theme="light"] .border-white\/5 {
-  border-color: rgba(14, 27, 42, 0.07);
-}
-[data-theme="light"] .border-white\/8 {
-  border-color: rgba(14, 27, 42, 0.1);
-}
-[data-theme="light"] .border-white\/10 {
-  border-color: rgba(14, 27, 42, 0.12);
-}
-[data-theme="light"] .border-white\/15 {
-  border-color: rgba(14, 27, 42, 0.16);
-}
-[data-theme="light"] .ring-white\/10 {
-  --tw-ring-color: rgba(14, 27, 42, 0.12);
-}
-[data-theme="light"] .bg-white\/5,
-[data-theme="light"] .hover\:bg-white\/5:hover {
-  background-color: rgba(14, 27, 42, 0.05);
-}
-[data-theme="light"] .bg-white\/\[0\.04\] {
-  background-color: rgba(14, 27, 42, 0.045);
-}
-[data-theme="light"] .focus\:bg-white\/\[0\.06\]:focus {
-  background-color: rgba(14, 27, 42, 0.07);
-}
-
-/* Sektionshintergründe mit hartkodierten Dunkelwerten */
-[data-theme="light"] #start {
-  background: radial-gradient(
-    ellipse 75% 60% at 50% 8%,
-    #d9e6f5 0%,
-    #e9eff8 45%,
-    var(--color-night) 100%
-  );
-}
-[data-theme="light"] .bg-\[\#04070c\] {
-  background-color: #dde6f1;
+.text-\[\#04222b\] {
+  color: #ffffff;
 }

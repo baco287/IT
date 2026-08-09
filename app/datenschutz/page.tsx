@@ -82,21 +82,11 @@ export default function Datenschutz() {
         </p>
 
         <h2 className={h2}>5. Schriftarten</h2>
-        <h3 className={h3}>Lokal eingebundene Schriften</h3>
         <p className={p}>
-          Die Schriftarten Inter und JetBrains Mono sind lokal auf unserem
-          Hosting eingebunden. Beim Laden dieser Schriften findet keine
-          Verbindung zu Servern von Google statt.
-        </p>
-        <h3 className={h3}>Fontshare</h3>
-        <p className={p}>
-          Die Überschriften-Schriftart Clash Display wird über das Content
-          Delivery Network von Fontshare (Indian Type Foundry) geladen. Dabei
-          wird Ihre IP-Adresse an die Server von Fontshare übermittelt, um die
-          Schriftdateien auszuliefern. Rechtsgrundlage ist unser berechtigtes
-          Interesse an einer einheitlichen Darstellung der Website (Art. 6
-          Abs. 1 lit. f DSGVO). Fontshare gibt an, keine Nutzerprofile zu
-          erstellen und keine Cookies zu setzen.
+          Alle auf dieser Website verwendeten Schriftarten sind lokal auf
+          unserem Hosting eingebunden. Beim Laden der Schriften findet keine
+          Verbindung zu Servern von Google oder anderen Schriftanbietern
+          statt.
         </p>
 
         <h2 className={h2}>6. Ihre Rechte</h2>
