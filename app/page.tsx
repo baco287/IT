@@ -2,8 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
 import Services from "@/components/Services";
+import SecurityBand from "@/components/SecurityBand";
 import References from "@/components/References";
-import Stats from "@/components/Stats";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 
@@ -15,8 +15,8 @@ export default function Home() {
         <Hero />
         <TrustBar />
         <Services />
+        <SecurityBand />
         <References />
-        <Stats />
         <Cta />
       </main>
       <Footer />

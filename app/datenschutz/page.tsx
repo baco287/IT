@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 };
 
 const h2 = "mt-10 mb-3 font-[family-name:var(--font-display)] text-xl font-semibold text-white";
-const h3 = "mt-6 mb-2 text-base font-semibold text-mist";
 const p = "mb-3 text-sm leading-relaxed text-fog";
 
 export default function Datenschutz() {
@@ -83,10 +82,10 @@ export default function Datenschutz() {
 
         <h2 className={h2}>5. Schriftarten</h2>
         <p className={p}>
-          Alle auf dieser Website verwendeten Schriftarten sind lokal auf
-          unserem Hosting eingebunden. Beim Laden der Schriften findet keine
-          Verbindung zu Servern von Google oder anderen Schriftanbietern
-          statt.
+          Die verwendeten Schriftarten (Inter, Manrope und JetBrains Mono)
+          sind lokal auf unserem Hosting eingebunden. Beim Laden der Schriften
+          findet keine Verbindung zu Servern von Google oder anderen
+          Schriftanbietern statt.
         </p>
 
         <h2 className={h2}>6. Ihre Rechte</h2>
