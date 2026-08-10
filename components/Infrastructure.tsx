@@ -1,31 +1,40 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
-import SectionHead from "./SectionHead";
 import serverImg from "@/public/images/server.jpg";
-import cpuImg from "@/public/images/cpu.jpg";
-import ramImg from "@/public/images/ram.jpg";
+import networkImg from "@/public/images/network.jpg";
+import fiberImg from "@/public/images/fiber.jpg";
 
-const ROWS = [
+type Card = {
+  img: StaticImageData;
+  alt: string;
+  kicker: string;
+  title: string;
+  text: string;
+};
+
+const CARDS: Card[] = [
   {
     img: serverImg,
-    alt: "Beleuchtete Server-Racks in einem modernen Rechenzentrum",
-    kicker: "Server & Infrastruktur",
-    title: "Das stabile Fundament Ihres Unternehmens",
-    text: "Leistungsfähige, stabile und skalierbare Systeme als zuverlässige Grundlage Ihres Unternehmens – geplant, aufgebaut und kontinuierlich betreut.",
+    alt: "Server-Racks in einem Rechenzentrum",
+    kicker: "Server & Rechenzentrum",
+    title: "Leistung, die stabil bleibt",
+    text: "Sorgfältig dimensionierte Server in deutschen Rechenzentren – überwacht, gesichert und skalierbar.",
   },
   {
-    img: cpuImg,
-    alt: "Prozessor auf einem Server-Mainboard in Nahaufnahme",
-    kicker: "Prozessorleistung",
-    title: "Hardware, die zu Ihren Anforderungen passt",
-    text: "Optimal abgestimmte Hardware für anspruchsvolle Anwendungen, virtuelle Umgebungen und moderne Arbeitsprozesse.",
+    img: networkImg,
+    alt: "Netzwerk-Switch mit angeschlossenem blauem Netzwerkkabel",
+    kicker: "Netzwerke",
+    title: "Verbindungen, die halten",
+    text: "Strukturierte Netzwerke und WLAN, sauber dokumentiert und segmentiert – im Büro wie zwischen Standorten.",
   },
   {
-    img: ramImg,
-    alt: "Arbeitsspeicher-Module in Nahaufnahme",
-    kicker: "Arbeitsspeicher",
-    title: "Leistung, die nicht nachlässt",
-    text: "Schnelle und zuverlässige Systeme, die auch bei steigenden Anforderungen leistungsfähig bleiben.",
+    img: fiberImg,
+    alt: "Leuchtende blaue Glasfaser-Verbindungen",
+    kicker: "Konnektivität",
+    title: "Standorte sicher verbunden",
+    text: "Schnelle, verschlüsselte Anbindung von Homeoffice, Filialen und Cloud – zentral verwaltet.",
   },
 ];
 
@@ -33,53 +42,61 @@ export default function Infrastructure() {
   return (
     <section
       id="loesungen"
-      className="relative overflow-hidden border-y border-white/5 bg-abyss px-6 py-28"
+      className="relative overflow-hidden px-6 py-24"
+      style={{
+        background:
+          "radial-gradient(ellipse 90% 70% at 80% 0%, #1a4a8f 0%, transparent 55%), linear-gradient(180deg, #123a72 0%, #0e2c58 100%)",
+      }}
     >
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_85%_15%,rgba(167,139,250,0.06),transparent_65%)]"
-        aria-hidden
-      />
-      <div className="relative mx-auto max-w-6xl">
-        <SectionHead
-          label="Infrastruktur"
-          title="Technologie, auf die Verlass ist"
-          text="Von der einzelnen Komponente bis zum kompletten Serverraum – wir dimensionieren Ihre Systeme sorgfältig statt überdimensioniert."
-        />
-        <div className="space-y-16">
-          {ROWS.map((r, i) => (
-            <div
-              key={r.kicker}
-              className={`grid items-center gap-10 lg:grid-cols-2 ${
-                i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <Reveal>
-                <div className="glass group relative overflow-hidden rounded-2xl">
+      <div className="mx-auto max-w-6xl">
+        <Reveal className="max-w-2xl">
+          <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#bcd6f5]">
+            Infrastruktur
+          </p>
+          <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Das Fundament Ihrer IT – von uns aufgebaut und betreut.
+          </h2>
+          <p className="mt-4 leading-relaxed text-[#c3d6f0]">
+            Server, Netzwerke und Anbindungen greifen ineinander. Wir planen sie
+            als Gesamtsystem, betreiben sie zuverlässig und lassen sie mit Ihrem
+            Unternehmen wachsen.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {CARDS.map((c, i) => (
+            <Reveal key={c.kicker} delay={0.08 * i}>
+              <div className="group h-full overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] shadow-[0_20px_50px_rgba(6,20,44,0.35)] transition-transform duration-300 hover:-translate-y-1">
+                <div className="overflow-hidden">
                   <Image
-                    src={r.img}
-                    alt={r.alt}
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    src={c.img}
+                    alt={c.alt}
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     placeholder="blur"
                   />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent"
-                    aria-hidden
-                  />
                 </div>
-              </Reveal>
-              <Reveal delay={0.12}>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan">
-                  {r.kicker}
-                </p>
-                <h3 className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold text-white sm:text-3xl">
-                  {r.title}
-                </h3>
-                <p className="mt-4 max-w-md leading-relaxed text-fog">{r.text}</p>
-              </Reveal>
-            </div>
+                <div className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#8fbaf0]">
+                    {c.kicker}
+                  </p>
+                  <h3 className="mt-2 text-lg font-semibold text-white">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#c3d6f0]">{c.text}</p>
+                </div>
+              </div>
+            </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.1}>
+          <Link
+            href="/leistungen/server-netzwerke"
+            className="mt-10 inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-[#123a72] transition-transform hover:-translate-y-0.5"
+          >
+            Mehr zu Server &amp; Netzwerken
+            <ArrowRight size={16} strokeWidth={2.5} aria-hidden />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );
