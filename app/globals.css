@@ -28,6 +28,10 @@ html {
 
 body {
   background-color: var(--color-night);
+  background-image:
+    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(34, 211, 238, 0.06), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 5%, rgba(70, 130, 200, 0.05), transparent 55%);
+  background-repeat: no-repeat;
   color: var(--color-mist);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
