@@ -201,6 +201,21 @@ textarea:focus-visible {
   }
 }
 
+/* Halftone-Wallpaper: Punktraster mit Farbverlauf, rahmt das Hero-Visual ein */
+.halftone {
+  background-image: linear-gradient(
+    115deg,
+    #0e7c8e 0%,
+    #22d3ee 32%,
+    #45e6be 58%,
+    #d9a441 100%
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 3.6px, transparent 4.2px);
+  -webkit-mask-size: 13px 13px;
+  mask-image: radial-gradient(circle, #000 3.6px, transparent 4.2px);
+  mask-size: 13px 13px;
+}
+
 /* Punkt-Raster als dezenter Hintergrund */
 .dotgrid {
   background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);

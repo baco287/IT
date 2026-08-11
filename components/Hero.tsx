@@ -78,9 +78,11 @@ export default function Hero() {
               animate: { opacity: 1, y: 0 },
               transition: { duration: 0.9, delay: 0.4, ease: [0.2, 0.7, 0.25, 1] as const },
             })}
-        className="relative z-10 mx-auto mt-16 max-w-4xl"
+        className="relative z-10 mx-auto mt-16 max-w-5xl"
       >
-        <div className="overflow-hidden rounded-xl border border-white/10 bg-navy shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
+        <div className="relative rounded-2xl p-4 sm:p-10">
+          <div className="halftone absolute inset-0 rounded-2xl opacity-55" aria-hidden />
+          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-navy shadow-[0_40px_120px_rgba(0,0,0,0.6)]">
           <div className="flex items-center gap-2 border-b border-white/8 px-4 py-2.5">
             <span className="h-3 w-3 rounded-full bg-white/12" />
             <span className="h-3 w-3 rounded-full bg-white/12" />
@@ -97,6 +99,7 @@ export default function Hero() {
             placeholder="blur"
             priority
           />
+          </div>
         </div>
         <a
           href="/referenzen"
