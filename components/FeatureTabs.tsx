@@ -12,7 +12,6 @@ import {
   Check,
 } from "lucide-react";
 import SectionHead from "./SectionHead";
-import Typewriter from "./Typewriter";
 
 const TABS = [
   {
@@ -22,9 +21,13 @@ const TABS = [
     tab: "Managed IT",
     title: "Ihre komplette IT – betrieben und gepflegt",
     text: "Wir übernehmen den laufenden Betrieb Ihrer Systeme: Updates, Monitoring, Wartung und Weiterentwicklung. Planbar zum Monatspreis.",
-    points: ["Proaktives 24/7-Monitoring", "Updates & Patch-Management", "Dokumentierte Systeme"],
-    cmd: "qontex monitor --all",
-    out: "42 Systeme · 0 Vorfälle · Ø 14 min Reaktion",
+    includes: [
+      "Proaktives Monitoring Ihrer Systeme",
+      "Regelmäßige Updates und Patch-Management",
+      "Verwaltung von Konten und Berechtigungen",
+      "Saubere Dokumentation aller Systeme",
+      "Fester Ansprechpartner statt Ticketsystem",
+    ],
   },
   {
     icon: CloudCog,
@@ -33,9 +36,13 @@ const TABS = [
     tab: "Cloud",
     title: "Sicher in der Cloud arbeiten – von überall",
     text: "Cloud-Migration, Microsoft 365 und sichere Remote-Arbeitsplätze – zentral verwaltet und auf Ihr Unternehmen zugeschnitten.",
-    points: ["Microsoft 365 & Migration", "Sichere Remote-Zugänge", "Standortvernetzung"],
-    cmd: "qontex cloud sync",
-    out: "Microsoft 365 · 38 Nutzer · verschlüsselt",
+    includes: [
+      "Analyse: was gehört in die Cloud, was nicht",
+      "Migration von E-Mail, Daten und Anwendungen",
+      "Microsoft 365 einrichten und verwalten",
+      "Sichere Remote- und Standort-Zugänge",
+      "Zentrale Verwaltung und Datensicherung",
+    ],
   },
   {
     icon: ShieldHalf,
@@ -44,9 +51,13 @@ const TABS = [
     tab: "Cybersecurity",
     title: "Schutz, bevor ein Angriff passiert",
     text: "Mehrschichtige Sicherheit aus Firewall, Endpoint-Schutz, E-Mail-Sicherheit und Monitoring – abgestimmt statt zusammengewürfelt.",
-    points: ["Endpoint & Firewall", "E-Mail-Sicherheit", "Getestete Backups"],
-    cmd: "qontex security scan",
-    out: "0 kritische Funde · Backups geprüft",
+    includes: [
+      "Endpoint-Schutz für alle Arbeitsplätze",
+      "Firewall- und Netzwerksicherheit",
+      "E-Mail-Sicherheit gegen Phishing",
+      "Backup-Strategien mit getesteter Wiederherstellung",
+      "Sensibilisierung Ihrer Mitarbeiter",
+    ],
   },
   {
     icon: Bot,
@@ -55,9 +66,13 @@ const TABS = [
     tab: "KI-Agenten",
     title: "Anfragen automatisiert beantworten",
     text: "KI-Agenten nehmen Kundenanfragen auf WhatsApp, am Telefon und per E-Mail rund um die Uhr auf – mit Übergabe an Ihr Team.",
-    points: ["WhatsApp, Telefon & E-Mail", "In Ihre Systeme integriert", "Kontrolle bleibt bei Ihnen"],
-    cmd: "qontex agent status",
-    out: "3 Kanäle aktiv · 128 Anfragen heute",
+    includes: [
+      "WhatsApp-, Telefon- und E-Mail-Assistenten",
+      "Antworten rund um die Uhr",
+      "Anbindung an Ihre bestehenden Systeme",
+      "Übergabe an Mitarbeiter im richtigen Moment",
+      "Kontrolle und Freigaben bleiben bei Ihnen",
+    ],
   },
 ];
 
@@ -68,14 +83,13 @@ export default function FeatureTabs() {
 
   return (
     <section id="leistungen" className="relative px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-5xl">
         <SectionHead
           label="Leistungen"
           title="Alles, was Ihre IT braucht – aus einer Hand"
           text="Vier Kernbereiche, ein verantwortlicher Partner. Wählen Sie einen Bereich."
         />
 
-        {/* Tab-Leiste */}
         <div className="flex flex-wrap justify-center gap-2">
           {TABS.map((tab, i) => (
             <button
@@ -93,33 +107,22 @@ export default function FeatureTabs() {
           ))}
         </div>
 
-        {/* Panel mit leuchtendem, rotierendem Rand */}
-        <div className="glow-border mt-8 overflow-hidden">
+        <div className="glass mt-8 overflow-hidden rounded-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={t.key}
-              initial={reduce ? false : { opacity: 0, y: 12 }}
+              initial={reduce ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? {} : { opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: [0.2, 0.7, 0.25, 1] }}
-              className="grid items-center gap-8 rounded-[17px] bg-navy p-8 md:grid-cols-2 md:p-10"
+              exit={reduce ? {} : { opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: [0.2, 0.7, 0.25, 1] }}
+              className="grid gap-10 p-8 md:grid-cols-2 md:p-12"
             >
               <div>
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-cyan/12 text-cyan ring-1 ring-cyan/25">
+                <span className="grid h-12 w-12 place-items-center rounded-xl bg-cyan/12 text-cyan">
                   <t.icon size={22} strokeWidth={1.9} aria-hidden />
                 </span>
-                <h3 className="mt-5 text-2xl font-bold text-white">{t.title}</h3>
-                <p className="mt-3 leading-relaxed text-fog">{t.text}</p>
-                <ul className="mt-5 grid gap-2.5">
-                  {t.points.map((p) => (
-                    <li key={p} className="flex items-center gap-2.5 text-sm font-medium text-mist">
-                      <span className="grid h-5 w-5 flex-none place-items-center rounded bg-cyan/12 text-cyan">
-                        <Check size={12} strokeWidth={3} aria-hidden />
-                      </span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="mt-6 text-2xl font-bold text-white">{t.title}</h3>
+                <p className="mt-4 leading-relaxed text-fog">{t.text}</p>
                 <Link
                   href={`/leistungen/${t.slug}`}
                   className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan hover:underline"
@@ -128,34 +131,20 @@ export default function FeatureTabs() {
                   <ArrowRight size={14} strokeWidth={2.5} aria-hidden />
                 </Link>
               </div>
-              <div className="terminal p-5">
-                <div className="flex items-center gap-1.5 pb-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/12" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/12" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/12" />
-                </div>
-                <p className="font-[family-name:var(--font-mono)] text-[13px] text-fog">
-                  <span className="text-cyan">$</span>{" "}
-                  <Typewriter key={t.key + "-cmd"} text={t.cmd} className="text-mist" />
+              <div className="md:border-l md:border-white/8 md:pl-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-fog">
+                  Das ist enthalten
                 </p>
-                <p className="mt-2 min-h-[1.2em] font-[family-name:var(--font-mono)] text-[13px] text-cyan">
-                  <Typewriter key={t.key + "-out"} text={t.out} speed={18} />
-                </p>
-                <div className="dataflow my-4" aria-hidden />
-                <div className="grid grid-cols-3 gap-2">
-                  {t.points.map((p, i) => (
-                    <motion.div
-                      key={p}
-                      initial={reduce ? false : { opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15 * i }}
-                      className="rounded-md border border-white/6 bg-white/[0.02] px-2.5 py-3 text-center transition-colors hover:border-cyan/40 hover:bg-cyan/5"
-                    >
-                      <Check size={15} strokeWidth={3} className="mx-auto text-cyan" aria-hidden />
-                      <span className="mt-1.5 block text-[10px] leading-tight text-fog">{p}</span>
-                    </motion.div>
+                <ul className="mt-5 grid gap-3.5">
+                  {t.includes.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-[15px] text-mist">
+                      <span className="mt-0.5 grid h-5 w-5 flex-none place-items-center rounded-full bg-cyan/12 text-cyan">
+                        <Check size={12} strokeWidth={3} aria-hidden />
+                      </span>
+                      {item}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             </motion.div>
           </AnimatePresence>

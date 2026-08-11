@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Terminal } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 
 export default function Cta() {
@@ -15,14 +15,7 @@ export default function Cta() {
           Im kostenlosen Erstgespräch klären wir, was Ihre IT sicherer,
           leistungsfähiger und zukunftsfähiger macht. Ehrlich und unverbindlich.
         </p>
-        <div className="mx-auto mt-8 flex max-w-md items-center justify-between rounded-lg border border-white/10 bg-[rgba(6,10,20,0.7)] px-4 py-3 font-[family-name:var(--font-mono)] text-sm">
-          <span className="flex items-center gap-2 text-fog">
-            <Terminal size={14} className="text-cyan" aria-hidden />
-            <span className="text-cyan">$</span> qontex beratung --kostenlos
-          </span>
-          <span className="status-dot" aria-hidden />
-        </div>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/kontakt"
             className="inline-flex items-center gap-2 rounded-lg bg-cyan px-7 py-3.5 font-semibold text-[#04222b] shadow-[0_0_0_1px_rgba(34,211,238,0.4),0_10px_30px_rgba(34,211,238,0.25)] transition-all hover:-translate-y-0.5 hover:bg-cyan-soft"

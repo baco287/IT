@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
-import OpsDashboard from "./OpsDashboard";
+import { ArrowRight, Check, ArrowUpRight } from "lucide-react";
+import shot from "@/public/images/refs/volt-gas.jpg";
 
 const TRUST = [
   "Persönlicher Ansprechpartner",
@@ -17,66 +18,48 @@ export default function Hero() {
     reduce
       ? {}
       : {
-          initial: { opacity: 0, y: 22 },
+          initial: { opacity: 0, y: 20 },
           animate: { opacity: 1, y: 0 },
           transition: { duration: 0.7, delay, ease: [0.2, 0.7, 0.25, 1] as const },
         };
 
   return (
     <section id="start" className="relative overflow-hidden px-6 pb-24 pt-36 text-center">
-      {/* Große, wandernde Glow-Flächen */}
-      <motion.div
-        className="glow left-1/2 top-[-8rem] h-[40rem] w-[54rem] -translate-x-1/2 bg-[#0e7c8e]/25"
-        animate={reduce ? {} : { x: [0, 60, 0], opacity: [0.8, 1, 0.8] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        aria-hidden
-      />
-      <motion.div
-        className="glow left-[8%] top-[6rem] h-[26rem] w-[26rem] bg-[#2660b4]/18"
-        animate={reduce ? {} : { x: [0, 40, 0], y: [0, 30, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        aria-hidden
-      />
+      {/* Ein einziger, ruhiger Glow – kein animiertes Flackern */}
       <div
-        className="dotgrid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_18%,#000_20%,transparent_78%)]"
+        className="glow left-1/2 top-[-6rem] h-[32rem] w-[48rem] -translate-x-1/2 bg-[#0e7c8e]/18"
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto max-w-4xl">
-        <motion.div {...rise(0.02)}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-sm font-medium text-fog">
-            <span className="status-dot" aria-hidden />
-            IT-Dienstleistungen aus einer Hand
-          </span>
-        </motion.div>
+      <div className="relative z-10 mx-auto max-w-3xl">
         <motion.h1
-          {...rise(0.1)}
-          className="mx-auto mt-7 max-w-3xl text-[2.9rem] font-bold leading-[1.03] text-mist sm:text-[4.2rem]"
+          {...rise(0.05)}
+          className="text-[2.9rem] font-bold leading-[1.05] text-mist sm:text-[4rem]"
         >
-          Die IT-Basis für{" "}
-          <span className="grad">Unternehmen, die laufen.</span>
+          IT, die läuft. Betreut von{" "}
+          <span className="grad">Menschen, nicht Hotlines.</span>
         </motion.h1>
-        <motion.p {...rise(0.2)} className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-fog">
-          QonteX plant, betreibt und schützt Ihre IT – Server, Cloud,
-          Sicherheit und Support aus einer Hand. Persönlich betreut, überwacht
-          rund um die Uhr, ohne Ausfallzeiten.
+        <motion.p {...rise(0.15)} className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-fog">
+          QonteX plant, betreibt und schützt die IT von Unternehmen – Server,
+          Cloud, Sicherheit und Support aus einer Hand. Persönlich, verlässlich
+          und ohne Fachchinesisch.
         </motion.p>
-        <motion.div {...rise(0.3)} className="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <motion.div {...rise(0.25)} className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/kontakt"
-            className="inline-flex items-center gap-2 rounded-lg bg-cyan px-7 py-3.5 font-semibold text-[#04222b] shadow-[0_0_0_1px_rgba(34,211,238,0.4),0_10px_30px_rgba(34,211,238,0.25)] transition-all hover:-translate-y-0.5 hover:bg-cyan-soft"
+            className="inline-flex items-center gap-2 rounded-lg bg-cyan px-7 py-3.5 font-semibold text-[#04222b] transition-all hover:-translate-y-0.5 hover:bg-cyan-soft"
           >
             Kostenlose Erstberatung
             <ArrowRight size={17} strokeWidth={2.5} aria-hidden />
           </Link>
           <Link
             href="/leistungen"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/12 bg-white/[0.03] px-7 py-3.5 font-semibold text-mist transition-colors hover:border-white/25 hover:bg-white/[0.06]"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/12 bg-white/[0.03] px-7 py-3.5 font-semibold text-mist transition-colors hover:border-white/25"
           >
             Leistungen ansehen
           </Link>
         </motion.div>
-        <motion.ul {...rise(0.4)} className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-2">
+        <motion.ul {...rise(0.35)} className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-2">
           {TRUST.map((t) => (
             <li key={t} className="flex items-center gap-2 text-sm font-medium text-fog">
               <Check size={15} strokeWidth={3} className="text-cyan" aria-hidden />
@@ -86,18 +69,42 @@ export default function Hero() {
         </motion.ul>
       </div>
 
-      {/* Großes Operations-Dashboard */}
+      {/* Echter Referenz-Screenshot statt erfundenem Dashboard */}
       <motion.div
         {...(reduce
           ? {}
           : {
-              initial: { opacity: 0, y: 40 },
+              initial: { opacity: 0, y: 36 },
               animate: { opacity: 1, y: 0 },
-              transition: { duration: 0.9, delay: 0.35, ease: [0.2, 0.7, 0.25, 1] as const },
+              transition: { duration: 0.9, delay: 0.4, ease: [0.2, 0.7, 0.25, 1] as const },
             })}
-        className="relative z-10 mx-auto mt-16 max-w-5xl text-left"
+        className="relative z-10 mx-auto mt-16 max-w-4xl"
       >
-        <OpsDashboard />
+        <div className="overflow-hidden rounded-xl border border-white/10 bg-navy shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
+          <div className="flex items-center gap-2 border-b border-white/8 px-4 py-2.5">
+            <span className="h-3 w-3 rounded-full bg-white/12" />
+            <span className="h-3 w-3 rounded-full bg-white/12" />
+            <span className="h-3 w-3 rounded-full bg-white/12" />
+            <span className="ml-3 font-[family-name:var(--font-mono)] text-xs text-fog">
+              volt-gas.de
+            </span>
+          </div>
+          <Image
+            src={shot}
+            alt="Von QonteX umgesetzt: die Website volt-gas.de"
+            className="w-full"
+            sizes="(max-width: 1024px) 100vw, 900px"
+            placeholder="blur"
+            priority
+          />
+        </div>
+        <a
+          href="/referenzen"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-fog transition-colors hover:text-cyan"
+        >
+          Aus unserer Arbeit – weitere Referenzen ansehen
+          <ArrowUpRight size={15} strokeWidth={2.5} aria-hidden />
+        </a>
       </motion.div>
     </section>
   );
