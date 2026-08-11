@@ -1,47 +1,32 @@
-import { ShieldCheck, Activity, Lock, TrendingUp } from "lucide-react";
-import Reveal from "./Reveal";
-
-const ITEMS = [
-  {
-    icon: ShieldCheck,
-    title: "Zuverlässiger IT-Partner",
-    text: "Feste Ansprechpartner statt anonymer Ticketsysteme.",
-  },
-  {
-    icon: Activity,
-    title: "Proaktive Überwachung",
-    text: "Probleme erkennen, bevor sie den Betrieb stören.",
-  },
-  {
-    icon: Lock,
-    title: "Moderne Sicherheitskonzepte",
-    text: "Schutz für Systeme, Daten und Arbeitsplätze.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Skalierbare Lösungen",
-    text: "IT, die mit Ihrem Unternehmen mitwächst.",
-  },
+const NAMES = [
+  "Volt-Gas",
+  "DeutscheZulassung",
+  "Heizwechsel",
+  "Hairvenly",
+  "Reifencenter",
 ];
 
 export default function TrustBar() {
+  const row = [...NAMES, ...NAMES];
   return (
-    <section aria-label="Vorteile" className="relative z-10 -mt-10 px-6">
-      <Reveal className="mx-auto max-w-6xl">
-        <div className="glass grid grid-cols-1 gap-6 rounded-2xl p-7 sm:grid-cols-2 lg:grid-cols-4">
-          {ITEMS.map((it) => (
-            <div key={it.title} className="flex items-start gap-3.5">
-              <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-cyan/10 text-cyan">
-                <it.icon size={19} strokeWidth={2} aria-hidden />
+    <section aria-label="Referenzen" className="border-y border-white/6 px-6 py-10">
+      <div className="mx-auto max-w-6xl">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-fog/70">
+          Im Einsatz bei Unternehmen aus unterschiedlichen Branchen
+        </p>
+        <div className="marquee mt-6 overflow-hidden">
+          <div className="marquee-track items-center gap-14">
+            {row.map((n, i) => (
+              <span
+                key={i}
+                className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-fog/55"
+              >
+                {n}
               </span>
-              <div>
-                <p className="text-sm font-semibold text-white">{it.title}</p>
-                <p className="mt-0.5 text-sm leading-relaxed text-fog">{it.text}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  /* Professionelles Enterprise-Blau. Tokennamen bleiben stabil,
-     damit die bestehenden Komponenten weiterlaufen. */
-  --color-night: #f4f7fb;
-  --color-abyss: #ffffff;
-  --color-navy: #0d213c;
-  --color-slate-glass: #ffffff;
-  --color-mist: #0f2440;
-  --color-fog: #55647c;
-  --color-cyan: #1857b8;
-  --color-cyan-soft: #2f74d8;
-  --color-violet: #1857b8;
+  /* Dark, developer-grade Theme (neon.com-Stil). Tokennamen bleiben stabil.
+     "cyan" ist jetzt der grüne Akzent, damit bestehende Komponenten passen. */
+  --color-night: #0a0f1c;
+  --color-abyss: #070b15;
+  --color-navy: #0d1424;
+  --color-slate-glass: #111a2e;
+  --color-mist: #f2f6fc;
+  --color-fog: #93a2ba;
+  --color-cyan: #29d17e;
+  --color-cyan-soft: #4ce69a;
+  --color-violet: #29d17e;
   --font-display: var(--font-manrope), "Segoe UI", system-ui, sans-serif;
   --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), Consolas, monospace;
@@ -20,7 +20,6 @@
 html {
   scroll-behavior: smooth;
 }
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -44,26 +43,40 @@ h3 {
 
 ::selection {
   background: var(--color-cyan);
-  color: #ffffff;
+  color: #052012;
 }
 
-/* Karte (ehemals „glass") – flach, hell, mit feiner Kante und weichem Schatten */
+/* Feine Körnung für Tiefe (wie bei Neon) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Karte: dunkles Glas mit feiner Kante */
 .glass {
-  background: #ffffff;
-  border: 1px solid #e3e9f2;
-  box-shadow: 0 1px 2px rgba(15, 36, 64, 0.04);
-  transition: box-shadow 0.28s ease, transform 0.28s cubic-bezier(0.2, 0.7, 0.25, 1),
-    border-color 0.28s ease;
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.25s ease, background 0.25s ease,
+    transform 0.28s cubic-bezier(0.2, 0.7, 0.25, 1), box-shadow 0.28s ease;
 }
 .glass-strong {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  border: 1px solid #e3e9f2;
-  box-shadow: 0 4px 20px rgba(15, 36, 64, 0.06);
+  background: rgba(10, 15, 28, 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Grüner Akzent-Verlaufstext */
 .grad {
-  color: var(--color-cyan);
+  background: linear-gradient(92deg, #4ce69a 0%, #29d17e 60%, #7cf0b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Sichtbare Fokuszustände */
@@ -77,72 +90,34 @@ textarea:focus-visible {
   border-radius: 6px;
 }
 
-/* Dunkle „Enterprise"-Flächen für Gravitas (Sicherheit, Footer) */
+/* Dunklere Sektion für Rhythmus */
 .section-dark {
-  background:
-    radial-gradient(ellipse 80% 70% at 85% 0%, rgba(38, 96, 180, 0.22), transparent 60%),
-    linear-gradient(180deg, #0d213c 0%, #0a1a30 100%);
-  color: #eaf1fb;
+  background: var(--color-abyss);
 }
-.section-dark h2,
-.section-dark h3 {
-  color: #ffffff;
-}
-
-/* Kompatibilität: dunkle Utility-Klassen auf das helle System abbilden */
-.text-white {
-  color: #0f2440;
-}
-.section-dark .text-white {
-  color: #ffffff;
-}
-.border-white\/5 {
-  border-color: #eaeff5;
-}
-.border-white\/8 {
-  border-color: #e3e9f2;
-}
-.border-white\/10 {
-  border-color: #dde5ef;
-}
-.border-white\/15 {
-  border-color: #d3dce8;
-}
-.ring-white\/10 {
-  --tw-ring-color: #dde5ef;
-}
-.bg-white\/5,
-.hover\:bg-white\/5:hover {
-  background-color: #eff3f9;
-}
-.bg-white\/\[0\.04\] {
-  background-color: #f5f8fc;
-}
-.focus\:bg-white\/\[0\.06\]:focus {
-  background-color: #ffffff;
-}
-.bg-black\/25 {
-  background-color: #eef2f8;
-}
-.bg-white\/15 {
-  background-color: #c9d4e2;
-}
-
-/* Alt-Sektionen (bg-abyss) sanft absetzen statt weiß auf weiß */
 .bg-abyss {
-  background-color: #eef3f9 !important;
-}
-.bg-\[\#04070c\] {
-  background-color: #eef3f9;
-}
-.text-\[\#04222b\] {
-  color: #ffffff;
+  background-color: var(--color-abyss) !important;
 }
 
-/* Effekt-Reste aus dem alten Dark-Design neutralisieren */
-[class*="rgba(45,212,234"],
-[class*="45,212,234"] {
-  box-shadow: none !important;
+/* Terminal-Block (neon.com-Stil) */
+.terminal {
+  font-family: var(--font-mono);
+  background: rgba(6, 10, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+}
+
+/* Punkt-Raster als dezenter Hintergrund */
+.dotgrid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Grüner Glow-Fleck */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
 }
 
 /* Scroll-Reveal */
@@ -157,21 +132,21 @@ textarea:focus-visible {
   transform: translateY(0);
 }
 
-/* Betriebs-Status: ruhiger, pulsierender Punkt */
+/* Betriebs-Status-Punkt */
 .status-dot {
   position: relative;
   display: inline-block;
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #34c27a;
+  background: #29d17e;
 }
 .status-dot::after {
   content: "";
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 2px solid rgba(52, 194, 122, 0.5);
+  border: 2px solid rgba(41, 209, 126, 0.55);
   animation: statusPulse 2.4s ease-out infinite;
 }
 @keyframes statusPulse {
@@ -186,6 +161,27 @@ textarea:focus-visible {
 }
 @media (prefers-reduced-motion: reduce) {
   .status-dot::after {
+    animation: none;
+  }
+}
+
+/* Marquee für Referenz-Logos */
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
     animation: none;
   }
 }

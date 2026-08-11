@@ -9,7 +9,7 @@ const GROUPS = [
       { label: "Cloud-Lösungen", href: "/leistungen/cloud-loesungen" },
       { label: "Cybersecurity", href: "/leistungen/cybersecurity" },
       { label: "Server & Netzwerke", href: "/leistungen/server-netzwerke" },
-      { label: "KI-Agenten & Automatisierung", href: "/leistungen/ki-agenten" },
+      { label: "KI-Agenten", href: "/leistungen/ki-agenten" },
     ],
   },
   {
@@ -32,18 +32,18 @@ const GROUPS = [
 
 export default function Footer() {
   return (
-    <footer className="section-dark px-6 pb-8 pt-16">
+    <footer className="section-dark border-t border-white/8 px-6 pb-8 pt-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-start justify-between gap-10">
           <div className="max-w-xs">
             <span className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-white">
-              Qonte<span className="text-[#8fb6ec]">X</span>
+              Qonte<span className="text-cyan">X</span>
             </span>
-            <p className="mt-4 text-sm leading-relaxed text-[#a9bbd4]">
+            <p className="mt-4 text-sm leading-relaxed text-fog">
               Professionelle IT-Dienstleistungen für Unternehmen: Managed IT,
               Cloud, Cybersecurity und persönlicher Support aus einer Hand.
             </p>
-            <p className="mt-4 flex items-center gap-2 text-xs font-medium text-[#8fb6ec]">
+            <p className="mt-4 flex items-center gap-2 text-xs font-medium text-cyan">
               <span className="status-dot" aria-hidden />
               Systeme betriebsbereit
             </p>
@@ -51,7 +51,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-x-14 gap-y-8">
             {GROUPS.map((g) => (
               <nav key={g.title} aria-label={g.title}>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#7f93b0]">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-fog/70">
                   {g.title}
                 </p>
                 <ul className="mt-4 space-y-2.5">
@@ -59,7 +59,7 @@ export default function Footer() {
                     <li key={l.label}>
                       <Link
                         href={l.href}
-                        className="text-sm text-[#c3d0e4] transition-colors hover:text-white"
+                        className="text-sm text-fog transition-colors hover:text-white"
                       >
                         {l.label}
                       </Link>
@@ -70,7 +70,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-[#8b9cb6]">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-white/8 pt-6 text-xs text-fog">
           <p>© {new Date().getFullYear()} QonteX · ein Angebot der Volt Gas UG (haftungsbeschränkt)</p>
           <p>IT-Dienstleistungen · Made in Germany</p>
         </div>
