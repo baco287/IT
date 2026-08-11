@@ -12,6 +12,7 @@ import {
   Check,
 } from "lucide-react";
 import SectionHead from "./SectionHead";
+import Typewriter from "./Typewriter";
 
 const TABS = [
   {
@@ -92,8 +93,8 @@ export default function FeatureTabs() {
           ))}
         </div>
 
-        {/* Panel */}
-        <div className="glass mt-8 overflow-hidden rounded-2xl">
+        {/* Panel mit leuchtendem, rotierendem Rand */}
+        <div className="glow-border mt-8 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={t.key}
@@ -101,7 +102,7 @@ export default function FeatureTabs() {
               animate={{ opacity: 1, y: 0 }}
               exit={reduce ? {} : { opacity: 0, y: -12 }}
               transition={{ duration: 0.35, ease: [0.2, 0.7, 0.25, 1] }}
-              className="grid items-center gap-8 p-8 md:grid-cols-2 md:p-10"
+              className="grid items-center gap-8 rounded-[17px] bg-navy p-8 md:grid-cols-2 md:p-10"
             >
               <div>
                 <span className="grid h-12 w-12 place-items-center rounded-xl bg-cyan/12 text-cyan ring-1 ring-cyan/25">
@@ -127,23 +128,32 @@ export default function FeatureTabs() {
                   <ArrowRight size={14} strokeWidth={2.5} aria-hidden />
                 </Link>
               </div>
-              <div className="terminal p-5" aria-hidden>
+              <div className="terminal p-5">
+                <div className="flex items-center gap-1.5 pb-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/12" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/12" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/12" />
+                </div>
                 <p className="font-[family-name:var(--font-mono)] text-[13px] text-fog">
-                  <span className="text-cyan">$</span> {t.cmd}
+                  <span className="text-cyan">$</span>{" "}
+                  <Typewriter key={t.key + "-cmd"} text={t.cmd} className="text-mist" />
                 </p>
-                <p className="mt-2 font-[family-name:var(--font-mono)] text-[13px] text-mist">
-                  {t.out}
+                <p className="mt-2 min-h-[1.2em] font-[family-name:var(--font-mono)] text-[13px] text-cyan">
+                  <Typewriter key={t.key + "-out"} text={t.out} speed={18} />
                 </p>
-                <div className="mt-4 h-px w-full bg-white/8" />
-                <div className="mt-4 grid grid-cols-3 gap-2">
-                  {t.points.map((p) => (
-                    <div
+                <div className="dataflow my-4" aria-hidden />
+                <div className="grid grid-cols-3 gap-2">
+                  {t.points.map((p, i) => (
+                    <motion.div
                       key={p}
-                      className="rounded-md border border-white/6 bg-white/[0.02] px-2.5 py-3 text-center"
+                      initial={reduce ? false : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 * i }}
+                      className="rounded-md border border-white/6 bg-white/[0.02] px-2.5 py-3 text-center transition-colors hover:border-cyan/40 hover:bg-cyan/5"
                     >
                       <Check size={15} strokeWidth={3} className="mx-auto text-cyan" aria-hidden />
                       <span className="mt-1.5 block text-[10px] leading-tight text-fog">{p}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
