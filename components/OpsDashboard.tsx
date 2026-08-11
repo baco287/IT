@@ -26,7 +26,7 @@ export default function OpsDashboard() {
   return (
     <div className="relative">
       {/* Glow hinter dem Panel */}
-      <div className="glow left-1/2 top-8 h-[22rem] w-[80%] -translate-x-1/2 bg-[#1f7a4d]/30" aria-hidden />
+      <div className="glow left-1/2 top-8 h-[22rem] w-[80%] -translate-x-1/2 bg-[#0e7c8e]/30" aria-hidden />
 
       <div className="glass relative overflow-hidden rounded-2xl p-2 shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
         {/* Licht-Sweep */}
@@ -35,7 +35,7 @@ export default function OpsDashboard() {
             className="pointer-events-none absolute inset-0 z-10"
             style={{
               background:
-                "linear-gradient(110deg, transparent 35%, rgba(76,230,154,0.10) 48%, rgba(255,255,255,0.06) 52%, transparent 66%)",
+                "linear-gradient(110deg, transparent 35%, rgba(75,227,194,0.10) 48%, rgba(255,255,255,0.06) 52%, transparent 66%)",
             }}
             initial={{ x: "-120%" }}
             animate={{ x: "120%" }}

@@ -82,7 +82,7 @@ export default function FeatureTabs() {
               onClick={() => setActive(i)}
               className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                 i === active
-                  ? "bg-cyan text-[#04210f]"
+                  ? "bg-cyan text-[#04222b]"
                   : "border border-white/10 bg-white/[0.03] text-fog hover:border-white/25 hover:text-mist"
               }`}
             >

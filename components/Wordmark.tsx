@@ -1,23 +1,12 @@
-import Image from "next/image";
-import logoMark from "@/public/images/logo-mark.png";
-
-/** QonteX-Logo: QX-Bildmarke plus typografische Wortmarke. */
+/** QonteX-Wortmarke im Logo-Stil: Q und X im Cyan-Teal-Verlauf, „onte" weiß. */
 export default function Wordmark({ large = false }: { large?: boolean }) {
   return (
-    <span className="inline-flex items-center gap-2.5">
-      <Image
-        src={logoMark}
-        alt=""
-        aria-hidden
-        className={`w-auto ${large ? "h-11" : "h-9"}`}
-      />
-      <span
-        className={`font-[family-name:var(--font-display)] font-bold tracking-tight text-mist ${
-          large ? "text-2xl" : "text-xl"
-        }`}
-      >
-        Qonte<span className="text-cyan">X</span>
-      </span>
+    <span
+      className={`font-[family-name:var(--font-display)] font-bold tracking-tight text-white ${
+        large ? "text-2xl" : "text-xl"
+      }`}
+    >
+      <span className="grad">Q</span>onte<span className="grad">X</span>
     </span>
   );
 }

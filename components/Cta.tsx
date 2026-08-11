@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 export default function Cta() {
   return (
     <section className="relative overflow-hidden px-6 py-24">
-      <div className="glow left-1/2 top-1/2 h-[26rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 bg-[#1f7a4d]/20" aria-hidden />
+      <div className="glow left-1/2 top-1/2 h-[26rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 bg-[#0e7c8e]/20" aria-hidden />
       <Reveal className="relative mx-auto max-w-4xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
           Bereit für eine IT, die{" "}
@@ -25,7 +25,7 @@ export default function Cta() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/kontakt"
-            className="inline-flex items-center gap-2 rounded-lg bg-cyan px-7 py-3.5 font-semibold text-[#04210f] shadow-[0_0_0_1px_rgba(41,209,126,0.4),0_10px_30px_rgba(41,209,126,0.25)] transition-all hover:-translate-y-0.5 hover:bg-cyan-soft"
+            className="inline-flex items-center gap-2 rounded-lg bg-cyan px-7 py-3.5 font-semibold text-[#04222b] shadow-[0_0_0_1px_rgba(34,211,238,0.4),0_10px_30px_rgba(34,211,238,0.25)] transition-all hover:-translate-y-0.5 hover:bg-cyan-soft"
           >
             Kostenlose Erstberatung
             <ArrowRight size={17} strokeWidth={2.5} aria-hidden />

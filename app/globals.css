@@ -9,9 +9,9 @@
   --color-slate-glass: #111a2e;
   --color-mist: #f2f6fc;
   --color-fog: #93a2ba;
-  --color-cyan: #29d17e;
-  --color-cyan-soft: #4ce69a;
-  --color-violet: #29d17e;
+  --color-cyan: #22d3ee;
+  --color-cyan-soft: #4be3c2;
+  --color-violet: #22d3ee;
   --font-display: var(--font-manrope), "Segoe UI", system-ui, sans-serif;
   --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), Consolas, monospace;
@@ -43,7 +43,7 @@ h3 {
 
 ::selection {
   background: var(--color-cyan);
-  color: #052012;
+  color: #04222b;
 }
 
 /* Feine Körnung für Tiefe (wie bei Neon) */
@@ -71,9 +71,9 @@ body::before {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Grüner Akzent-Verlaufstext */
+/* Cyan-Teal Akzent-Verlaufstext (passend zum Logo) */
 .grad {
-  background: linear-gradient(92deg, #4ce69a 0%, #29d17e 60%, #7cf0b6 100%);
+  background: linear-gradient(95deg, #38d9f0 0%, #22d3ee 45%, #45e6be 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -139,14 +139,14 @@ textarea:focus-visible {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #29d17e;
+  background: #34d9b0;
 }
 .status-dot::after {
   content: "";
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 2px solid rgba(41, 209, 126, 0.55);
+  border: 2px solid rgba(52, 217, 176, 0.55);
   animation: statusPulse 2.4s ease-out infinite;
 }
 @keyframes statusPulse {

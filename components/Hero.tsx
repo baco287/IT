@@ -26,7 +26,7 @@ export default function Hero() {
     <section id="start" className="relative overflow-hidden px-6 pb-24 pt-36 text-center">
       {/* Große, wandernde Glow-Flächen */}
       <motion.div
-        className="glow left-1/2 top-[-8rem] h-[40rem] w-[54rem] -translate-x-1/2 bg-[#1f7a4d]/25"
+        className="glow left-1/2 top-[-8rem] h-[40rem] w-[54rem] -translate-x-1/2 bg-[#0e7c8e]/25"
         animate={reduce ? {} : { x: [0, 60, 0], opacity: [0.8, 1, 0.8] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden
@@ -64,7 +64,7 @@ export default function Hero() {
         <motion.div {...rise(0.3)} className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/kontakt"
-            className="inline-flex items-center gap-2 rounded-lg bg-cyan px-7 py-3.5 font-semibold text-[#04210f] shadow-[0_0_0_1px_rgba(41,209,126,0.4),0_10px_30px_rgba(41,209,126,0.25)] transition-all hover:-translate-y-0.5 hover:bg-cyan-soft"
+            className="inline-flex items-center gap-2 rounded-lg bg-cyan px-7 py-3.5 font-semibold text-[#04222b] shadow-[0_0_0_1px_rgba(34,211,238,0.4),0_10px_30px_rgba(34,211,238,0.25)] transition-all hover:-translate-y-0.5 hover:bg-cyan-soft"
           >
             Kostenlose Erstberatung
             <ArrowRight size={17} strokeWidth={2.5} aria-hidden />
