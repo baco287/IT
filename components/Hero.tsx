@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, ArrowUpRight } from "lucide-react";
+import HeroBackdrop from "./HeroBackdrop";
 import shot from "@/public/images/refs/volt-gas.jpg";
 
 const TRUST = [
@@ -25,6 +26,8 @@ export default function Hero() {
 
   return (
     <section id="start" className="relative overflow-hidden px-6 pb-24 pt-36 text-center">
+      {/* Schwebende Referenz-Screenshots als "Hintergrund-Video" */}
+      <HeroBackdrop />
       {/* Ein einziger, ruhiger Glow – kein animiertes Flackern */}
       <div
         className="glow left-1/2 top-[-6rem] h-[32rem] w-[48rem] -translate-x-1/2 bg-[#0e7c8e]/18"
