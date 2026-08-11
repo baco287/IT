@@ -13,15 +13,19 @@ export default function SectionHead({
 }) {
   return (
     <Reveal
-      className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""} mb-14`}
+      className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""} mb-16`}
     >
-      <p className="glass mb-5 inline-flex rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-cyan">
+      <p className="mb-4 inline-flex rounded-full border border-cyan/25 bg-cyan/[0.07] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan">
         {label}
       </p>
-      <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+      <h2 className="font-[family-name:var(--font-display)] text-[2rem] font-bold leading-[1.1] tracking-tight text-white sm:text-[2.75rem]">
         {title}
       </h2>
-      {text && <p className="mt-4 text-base leading-relaxed text-fog">{text}</p>}
+      {text && (
+        <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-fog">
+          {text}
+        </p>
+      )}
     </Reveal>
   );
 }
