@@ -37,7 +37,7 @@ export default function Hero() {
           className="text-[2.9rem] font-bold leading-[1.05] text-mist sm:text-[4rem]"
         >
           IT, die läuft. Betreut von{" "}
-          <span className="grad">Menschen, nicht Hotlines.</span>
+          <span className="grad">Menschen</span>, nicht Hotlines.
         </motion.h1>
         <motion.p {...rise(0.15)} className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-fog">
           QonteX plant, betreibt und schützt die IT von Unternehmen – Server,
