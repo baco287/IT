@@ -18,6 +18,7 @@ const GROUPS = [
       { label: "Webseiten & Online-Shops", href: "/leistungen/webseiten" },
       { label: "Ads & Online-Marketing", href: "/leistungen/online-marketing" },
       { label: "Social Media", href: "/leistungen/social-media" },
+      { label: "Dashboards & Reporting", href: "/leistungen/dashboards" },
       { label: "KI-Agenten", href: "/leistungen/ki-agenten" },
     ],
   },

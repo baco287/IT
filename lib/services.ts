@@ -323,6 +323,40 @@ export const SERVICES: Service[] = [
       "Lass uns schauen, welche Kanäle für dein Unternehmen wirklich Sinn ergeben.",
   },
   {
+    slug: "dashboards",
+    name: "Dashboards & Reporting",
+    title: "Dashboards und Reporting",
+    metaDescription:
+      "Dashboards von QonteX: Individuelle Finanz-, Marketing- und IT-Dashboards, die deine Kennzahlen aus verschiedenen Quellen live auf einen Blick zeigen – statt Excel-Listen und manueller Reports.",
+    intro:
+      "Wichtige Zahlen liegen in den meisten Unternehmen verstreut in Excel-Listen, Tools und Postfächern. Wir entwickeln Dashboards, die deine Kennzahlen aus verschiedenen Quellen zusammenführen und live auf einen Blick zeigen – vom Umsatz über Kampagnen bis zum Zustand deiner IT. Damit Entscheidungen auf aktuellen Daten basieren statt auf dem Stand des letzten Monatsreports.",
+    scopeTitle: "Diese Dashboards bauen wir für dich",
+    scope: [
+      "Finanz-Dashboards: Umsatz, Kosten und offene Posten auf einen Blick",
+      "Marketing-Dashboards: Google Ads, Meta, Website- und Social-Media-Kennzahlen in einer Ansicht",
+      "IT-Dashboards: Systemstatus, Backups und Tickets deiner gesamten Umgebung",
+      "Anbindung deiner Datenquellen: Buchhaltung, Shops, Werbekonten, Microsoft 365",
+      "Umsetzung als individuelle Web-Anwendung oder mit Power BI",
+      "Zugriffsrechte, Hosting in Deutschland und laufende Betreuung",
+    ],
+    benefits: [
+      {
+        title: "Eine Zahl, eine Wahrheit",
+        text: "Alle sehen dieselben aktuellen Kennzahlen – Diskussionen über veraltete Excel-Stände entfallen.",
+      },
+      {
+        title: "Zeit zurückgewonnen",
+        text: "Automatische Aktualisierung ersetzt das manuelle Zusammenkopieren von Monatsreports.",
+      },
+      {
+        title: "Entscheidungen mit Grundlage",
+        text: "Trends und Ausreißer werden sichtbar, wenn sie passieren – nicht Wochen später.",
+      },
+    ],
+    ctaText:
+      "Lass uns besprechen, welche Kennzahlen dein Unternehmen wirklich steuern – und wie ein Dashboard dafür aussehen kann.",
+  },
+  {
     slug: "ki-agenten",
     name: "KI-Agenten & Automatisierung",
     title: "KI-Agenten und Automatisierung",
