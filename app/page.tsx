@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
-import FeatureTabs from "@/components/FeatureTabs";
+import ServicePanel from "@/components/ServicePanel";
 import FeatureGrid from "@/components/FeatureGrid";
 import References from "@/components/References";
 import Cta from "@/components/Cta";
@@ -14,7 +14,7 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBar />
-        <FeatureTabs />
+        <ServicePanel />
         <FeatureGrid />
         <References />
         <Cta />
