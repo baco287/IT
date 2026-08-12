@@ -221,6 +221,11 @@ textarea:focus-visible {
   background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 22px 22px;
 }
+/* Dunkles Punkt-Raster als Ornament auf hellen Flächen */
+.dotgrid-dark {
+  background-image: radial-gradient(rgba(10, 15, 28, 0.35) 1.5px, transparent 1.6px);
+  background-size: 8px 8px;
+}
 
 /* Grüner Glow-Fleck */
 .glow {
