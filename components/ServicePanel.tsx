@@ -211,7 +211,7 @@ export default function ServicePanel() {
 
                 <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/8 px-5 py-4">
                   <p className="text-sm text-mist">
-                    Überzeugen Sie sich selbst – im kostenlosen Erstgespräch.
+                    Überzeug dich selbst – im kostenlosen Erstgespräch.
                   </p>
                   <Link
                     href="/kontakt"

@@ -12,7 +12,7 @@ import Cta from "@/components/Cta";
 export const metadata: Metadata = {
   title: "Über QonteX | IT-Partnerschaft statt anonymer Hotline",
   description:
-    "Lernen Sie QonteX kennen: persönliche IT-Betreuung, proaktive Arbeitsweise und ein klarer Ablauf von der Analyse bis zum laufenden Betrieb.",
+    "Lern QonteX kennen: persönliche IT-Betreuung, proaktive Arbeitsweise und ein klarer Ablauf von der Analyse bis zum laufenden Betrieb.",
 };
 
 export default function UeberPage() {

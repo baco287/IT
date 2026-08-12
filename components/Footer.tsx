@@ -2,13 +2,22 @@ import Link from "next/link";
 
 const GROUPS = [
   {
-    title: "Leistungen",
+    title: "IT-Leistungen",
     links: [
       { label: "Managed IT Services", href: "/leistungen/managed-it" },
       { label: "IT-Support", href: "/leistungen/it-support" },
       { label: "Cloud-Lösungen", href: "/leistungen/cloud-loesungen" },
       { label: "Cybersecurity", href: "/leistungen/cybersecurity" },
       { label: "Server & Netzwerke", href: "/leistungen/server-netzwerke" },
+      { label: "Backup & Recovery", href: "/leistungen/backup-recovery" },
+    ],
+  },
+  {
+    title: "Digital & Marketing",
+    links: [
+      { label: "Webseiten & Online-Shops", href: "/leistungen/webseiten" },
+      { label: "Ads & Online-Marketing", href: "/leistungen/online-marketing" },
+      { label: "Social Media", href: "/leistungen/social-media" },
       { label: "KI-Agenten", href: "/leistungen/ki-agenten" },
     ],
   },
@@ -40,8 +49,9 @@ export default function Footer() {
               Qonte<span className="text-cyan">X</span>
             </span>
             <p className="mt-4 text-sm leading-relaxed text-fog">
-              Professionelle IT-Dienstleistungen für Unternehmen: Managed IT,
-              Cloud, Cybersecurity und persönlicher Support aus einer Hand.
+              Professionelle IT- und Digital-Dienstleistungen für Unternehmen:
+              Managed IT, Cloud, Cybersecurity, Webseiten und Marketing aus
+              einer Hand.
             </p>
             <p className="mt-4 flex items-center gap-2 text-xs font-medium text-cyan">
               <span className="status-dot" aria-hidden />

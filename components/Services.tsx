@@ -20,7 +20,7 @@ const SERVICES = [
     icon: MonitorCog,
     slug: "managed-it",
     title: "Managed IT Services",
-    text: "Wir betreiben und pflegen Ihre komplette IT-Umgebung – Updates, Wartung und Optimierung inklusive.",
+    text: "Wir betreiben und pflegen deine komplette IT-Umgebung – Updates, Wartung und Optimierung inklusive.",
   },
   {
     icon: Headset,
@@ -38,7 +38,7 @@ const SERVICES = [
     icon: ShieldHalf,
     slug: "cybersecurity",
     title: "Cybersecurity",
-    text: "Mehrstufige Sicherheitskonzepte, die Ihre Systeme, Daten und Mitarbeiter wirksam schützen.",
+    text: "Mehrstufige Sicherheitskonzepte, die deine Systeme, Daten und Mitarbeiter wirksam schützen.",
   },
   {
     icon: Network,
@@ -62,13 +62,13 @@ const SERVICES = [
     icon: Megaphone,
     slug: "online-marketing",
     title: "Ads & Online-Marketing",
-    text: "Google- und Meta-Kampagnen mit sauberem Tracking und Reporting, das Sie wirklich verstehen.",
+    text: "Google- und Meta-Kampagnen mit sauberem Tracking und Reporting, das du wirklich verstehst.",
   },
   {
     icon: Share2,
     slug: "social-media",
     title: "Social Media",
-    text: "Strategie, Content und Betreuung Ihrer Kanäle – konstant sichtbar statt sporadisch aktiv.",
+    text: "Strategie, Content und Betreuung deiner Kanäle – konstant sichtbar statt sporadisch aktiv.",
   },
 ];
 
@@ -79,7 +79,7 @@ export default function Services() {
         <SectionHead
           label="Leistungen"
           title="Ganzheitliche IT-Lösungen aus einer Hand"
-          text="Neun Kernbereiche, ein verantwortlicher Partner – abgestimmt aufeinander statt zusammengestückelt."
+          text="Zehn Kernbereiche, ein verantwortlicher Partner – abgestimmt aufeinander statt zusammengestückelt."
         />
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
@@ -123,9 +123,9 @@ export default function Services() {
                 </span>
               </span>
               <span className="block max-w-2xl text-sm leading-relaxed text-fog">
-                KI-Assistenten, die Ihre Kundenanfragen auf WhatsApp, am Telefon und
+                KI-Assistenten, die deine Kundenanfragen auf WhatsApp, am Telefon und
                 per E-Mail rund um die Uhr aufnehmen und beantworten – integriert in
-                Ihre Systeme, mit Übergabe an Ihr Team im richtigen Moment.
+                deine Systeme, mit Übergabe an dein Team im richtigen Moment.
               </span>
             </span>
             <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan">

@@ -18,7 +18,7 @@ const PILLARS = [
   {
     icon: Activity,
     title: "24/7-Monitoring",
-    text: "Wir sehen Probleme, bevor Sie sie bemerken – mit klaren Eskalationswegen, wenn es darauf ankommt.",
+    text: "Wir sehen Probleme, bevor du sie bemerkst – mit klaren Eskalationswegen, wenn es darauf ankommt.",
   },
   {
     icon: HardDriveDownload,
@@ -47,7 +47,7 @@ export default function SecurityBand() {
             IT, die läuft – und geschützt bleibt.
           </h2>
           <p className="mt-4 leading-relaxed text-[#b9c8de]">
-            Sicherheit ist bei uns kein Zusatz, sondern Grundlage. Ihre Systeme
+            Sicherheit ist bei uns kein Zusatz, sondern Grundlage. Deine Systeme
             werden kontinuierlich überwacht, aktuell gehalten und gesichert –
             damit ein Zwischenfall kein Stillstand wird.
           </p>

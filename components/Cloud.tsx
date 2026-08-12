@@ -67,8 +67,8 @@ export default function Cloud() {
               Flexibel arbeiten. Sicher verbunden.
             </h2>
             <p className="mt-4 max-w-lg leading-relaxed text-fog">
-              Wir entwickeln Cloud- und Netzwerklösungen, die Ihren Mitarbeitern
-              sicheren Zugriff ermöglichen und mit Ihrem Unternehmen wachsen.
+              Wir entwickeln Cloud- und Netzwerklösungen, die deinen Mitarbeitern
+              sicheren Zugriff ermöglichen und mit deinem Unternehmen wachsen.
             </p>
           </Reveal>
           <ul className="mt-7 grid grid-cols-1 gap-2.5 sm:grid-cols-2">

@@ -13,15 +13,15 @@ const ROWS = [
     img: serverImg,
     alt: "Beleuchtete Server-Racks in einem modernen Rechenzentrum",
     kicker: "Server & Infrastruktur",
-    title: "Das stabile Fundament Ihres Unternehmens",
-    text: "Leistungsfähige, stabile und skalierbare Systeme als zuverlässige Grundlage Ihres Unternehmens – geplant, aufgebaut und kontinuierlich betreut.",
+    title: "Das stabile Fundament deines Unternehmens",
+    text: "Leistungsfähige, stabile und skalierbare Systeme als zuverlässige Grundlage deines Unternehmens – geplant, aufgebaut und kontinuierlich betreut.",
   },
   {
     media: MEDIA.solutions.processor,
     img: cpuImg,
     alt: "Prozessor auf einem Server-Mainboard in Nahaufnahme",
     kicker: "Prozessorleistung",
-    title: "Hardware, die zu Ihren Anforderungen passt",
+    title: "Hardware, die zu deinen Anforderungen passt",
     text: "Optimal abgestimmte Hardware für anspruchsvolle Anwendungen, virtuelle Umgebungen und moderne Arbeitsprozesse.",
   },
   {
@@ -48,7 +48,7 @@ export default function Infrastructure() {
         <SectionHead
           label="Infrastruktur"
           title="Technologie, auf die Verlass ist"
-          text="Von der einzelnen Komponente bis zum kompletten Serverraum – wir dimensionieren Ihre Systeme sorgfältig statt überdimensioniert."
+          text="Von der einzelnen Komponente bis zum kompletten Serverraum – wir dimensionieren deine Systeme sorgfältig statt überdimensioniert."
         />
         <div className="space-y-16">
           {ROWS.map((r, i) => (

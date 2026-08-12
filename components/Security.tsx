@@ -40,7 +40,7 @@ export default function Security() {
               Sicherheit beginnt, bevor ein Angriff passiert.
             </h2>
             <p className="mt-4 max-w-lg leading-relaxed text-fog">
-              QonteX schützt Ihre Systeme, Daten und digitalen Arbeitsplätze mit
+              QonteX schützt deine Systeme, Daten und digitalen Arbeitsplätze mit
               modernen Sicherheitskonzepten, kontinuierlicher Überwachung und klar
               definierten Schutzmaßnahmen.
             </p>

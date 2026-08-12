@@ -46,7 +46,7 @@ export default function Cta() {
         <Reveal className="mt-28 flex flex-wrap items-end justify-between gap-8">
           <p className="max-w-sm leading-relaxed text-fog">
             Betreut von Menschen, nicht Hotlines. Im kostenlosen Erstgespräch
-            klären wir, was Ihre IT sicherer und verlässlicher macht – ehrlich
+            klären wir, was deine IT sicherer und verlässlicher macht – ehrlich
             und unverbindlich.
           </p>
           <div className="flex flex-wrap items-center gap-3.5">

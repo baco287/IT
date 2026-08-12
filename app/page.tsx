@@ -6,6 +6,7 @@ import MonitoringStat from "@/components/MonitoringStat";
 import KiTrio from "@/components/KiTrio";
 import FeatureGrid from "@/components/FeatureGrid";
 import References from "@/components/References";
+import DigitalTrio from "@/components/DigitalTrio";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 
@@ -21,6 +22,7 @@ export default function Home() {
         <KiTrio />
         <FeatureGrid />
         <References />
+        <DigitalTrio />
         <Cta />
       </main>
       <Footer />

@@ -8,7 +8,7 @@ const CARDS = [
   {
     media: MEDIA.ai.whatsapp,
     title: "WhatsApp-Assistent",
-    text: "Beantwortet Kundenanfragen im Chat, vereinbart Termine und übergibt an Ihr Team, sobald es persönlich wird.",
+    text: "Beantwortet Kundenanfragen im Chat, vereinbart Termine und übergibt an dein Team, sobald es persönlich wird.",
     visual: (
       <div className="flex h-32 flex-col justify-center gap-2 px-5">
         <span className="w-fit max-w-[85%] rounded-lg bg-night/6 px-3 py-1.5 text-xs text-night">
@@ -32,7 +32,7 @@ const CARDS = [
         <p>14:02 · Anruf angenommen</p>
         <p>14:03 · Anliegen: Drucker im Büro Ost</p>
         <p>14:04 · Ticket erstellt, Rückruf zugesagt</p>
-        <p className="text-[#0d9b8a]">✓ zusammengefasst an ihr team</p>
+        <p className="text-[#0d9b8a]">✓ zusammengefasst an dein team</p>
       </div>
     ),
   },

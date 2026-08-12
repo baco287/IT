@@ -37,14 +37,14 @@ export default function Contact() {
     const data = new FormData(form);
 
     const next: Record<string, string> = {};
-    if (!String(data.get("name") ?? "").trim()) next.name = "Bitte geben Sie Ihren Namen an.";
+    if (!String(data.get("name") ?? "").trim()) next.name = "Bitte gib deinen Namen an.";
     const email = String(data.get("email") ?? "").trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      next.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
+      next.email = "Bitte gib eine gültige E-Mail-Adresse an.";
     if (!String(data.get("leistung") ?? ""))
-      next.leistung = "Bitte wählen Sie eine Leistung aus.";
+      next.leistung = "Bitte wähle eine Leistung aus.";
     if (!data.get("datenschutz"))
-      next.datenschutz = "Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.";
+      next.datenschutz = "Bitte stimme der Verarbeitung deiner Daten zu.";
     if (String(data.get("_honey") ?? "")) return; // Spam-Schutz
 
     setErrors(next);
@@ -83,8 +83,8 @@ export default function Contact() {
       <div className="mx-auto max-w-6xl">
         <SectionHead
           label="Kontakt"
-          title="Sprechen wir über Ihre IT"
-          text="Stellen Sie Ihre Anfrage – wir melden uns zeitnah mit einer ehrlichen Einschätzung zurück."
+          title="Sprechen wir über deine IT"
+          text="Stell deine Anfrage – wir melden uns zeitnah mit einer ehrlichen Einschätzung zurück."
         />
         <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
           <Reveal>
@@ -116,10 +116,10 @@ export default function Contact() {
                     <Check size={28} strokeWidth={2.5} aria-hidden />
                   </span>
                   <h3 className="mt-5 font-[family-name:var(--font-display)] text-xl font-semibold text-white">
-                    Vielen Dank für Ihre Anfrage!
+                    Vielen Dank für deine Anfrage!
                   </h3>
                   <p className="mt-2 text-sm text-fog">
-                    Wir melden uns zeitnah bei Ihnen zurück.
+                    Wir melden uns zeitnah bei dir zurück.
                   </p>
                 </div>
               ) : (
@@ -172,7 +172,7 @@ export default function Contact() {
                     <label htmlFor="c-msg" className="mb-1.5 block text-xs font-semibold text-mist">
                       Nachricht
                     </label>
-                    <textarea id="c-msg" name="nachricht" rows={4} placeholder="Beschreiben Sie kurz Ihr Anliegen …" className={`${inputCls} resize-y`} />
+                    <textarea id="c-msg" name="nachricht" rows={4} placeholder="Beschreib kurz dein Anliegen …" className={`${inputCls} resize-y`} />
                   </div>
                   <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="absolute -left-[9999px] h-0 opacity-0" aria-hidden />
                   <div className="mt-4">
@@ -187,7 +187,7 @@ export default function Contact() {
                   </div>
                   {status === "error" && (
                     <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-xs text-red-300" role="alert">
-                      Das Senden hat leider nicht geklappt. Bitte versuchen Sie es in
+                      Das Senden hat leider nicht geklappt. Bitte versuch es in
                       einem Moment erneut.
                     </p>
                   )}

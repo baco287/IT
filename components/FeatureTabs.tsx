@@ -19,10 +19,10 @@ const TABS = [
     key: "managed",
     slug: "managed-it",
     tab: "Managed IT",
-    title: "Ihre komplette IT – betrieben und gepflegt",
-    text: "Wir übernehmen den laufenden Betrieb Ihrer Systeme: Updates, Monitoring, Wartung und Weiterentwicklung. Planbar zum Monatspreis.",
+    title: "Deine komplette IT – betrieben und gepflegt",
+    text: "Wir übernehmen den laufenden Betrieb deiner Systeme: Updates, Monitoring, Wartung und Weiterentwicklung. Planbar zum Monatspreis.",
     includes: [
-      "Proaktives Monitoring Ihrer Systeme",
+      "Proaktives Monitoring deiner Systeme",
       "Regelmäßige Updates und Patch-Management",
       "Verwaltung von Konten und Berechtigungen",
       "Saubere Dokumentation aller Systeme",
@@ -35,7 +35,7 @@ const TABS = [
     slug: "cloud-loesungen",
     tab: "Cloud",
     title: "Sicher in der Cloud arbeiten – von überall",
-    text: "Cloud-Migration, Microsoft 365 und sichere Remote-Arbeitsplätze – zentral verwaltet und auf Ihr Unternehmen zugeschnitten.",
+    text: "Cloud-Migration, Microsoft 365 und sichere Remote-Arbeitsplätze – zentral verwaltet und auf dein Unternehmen zugeschnitten.",
     includes: [
       "Analyse: was gehört in die Cloud, was nicht",
       "Migration von E-Mail, Daten und Anwendungen",
@@ -56,7 +56,7 @@ const TABS = [
       "Firewall- und Netzwerksicherheit",
       "E-Mail-Sicherheit gegen Phishing",
       "Backup-Strategien mit getesteter Wiederherstellung",
-      "Sensibilisierung Ihrer Mitarbeiter",
+      "Sensibilisierung deiner Mitarbeiter",
     ],
   },
   {
@@ -65,13 +65,13 @@ const TABS = [
     slug: "ki-agenten",
     tab: "KI-Agenten",
     title: "Anfragen automatisiert beantworten",
-    text: "KI-Agenten nehmen Kundenanfragen auf WhatsApp, am Telefon und per E-Mail rund um die Uhr auf – mit Übergabe an Ihr Team.",
+    text: "KI-Agenten nehmen Kundenanfragen auf WhatsApp, am Telefon und per E-Mail rund um die Uhr auf – mit Übergabe an dein Team.",
     includes: [
       "WhatsApp-, Telefon- und E-Mail-Assistenten",
       "Antworten rund um die Uhr",
-      "Anbindung an Ihre bestehenden Systeme",
+      "Anbindung an deine bestehenden Systeme",
       "Übergabe an Mitarbeiter im richtigen Moment",
-      "Kontrolle und Freigaben bleiben bei Ihnen",
+      "Kontrolle und Freigaben bleiben bei dir",
     ],
   },
 ];
@@ -86,8 +86,8 @@ export default function FeatureTabs() {
       <div className="mx-auto max-w-5xl">
         <SectionHead
           label="Leistungen"
-          title="Alles, was Ihre IT braucht – aus einer Hand"
-          text="Vier Kernbereiche, ein verantwortlicher Partner. Wählen Sie einen Bereich."
+          title="Alles, was deine IT braucht – aus einer Hand"
+          text="Vier Kernbereiche, ein verantwortlicher Partner. Wähl einen Bereich."
         />
 
         <div className="flex flex-wrap justify-center gap-2">

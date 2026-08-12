@@ -3,11 +3,11 @@ import Reveal from "./Reveal";
 const ITEMS = [
   {
     title: "DSGVO-konform.",
-    text: "Saubere Verträge, Auftragsverarbeitung und ein datenschutzbewusster Umgang mit Ihren Systemen.",
+    text: "Saubere Verträge, Auftragsverarbeitung und ein datenschutzbewusster Umgang mit deinen Systemen.",
   },
   {
     title: "Hosting in Deutschland.",
-    text: "Ihre Daten liegen in deutschen Rechenzentren – keine Grauzonen, kein Auslandstransfer.",
+    text: "Deine Daten liegen in deutschen Rechenzentren – keine Grauzonen, kein Auslandstransfer.",
   },
   {
     title: "24/7-Monitoring.",
@@ -19,7 +19,7 @@ const ITEMS = [
   },
   {
     title: "Persönlicher Ansprechpartner.",
-    text: "Feste Kontaktperson, die Ihre Umgebung kennt – kein anonymes Ticketsystem.",
+    text: "Feste Kontaktperson, die deine Umgebung kennt – kein anonymes Ticketsystem.",
   },
   {
     title: "Transparente Festpreise.",

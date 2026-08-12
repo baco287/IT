@@ -9,12 +9,12 @@ const STEPS = [
   {
     n: "01",
     title: "Analyse",
-    text: "Wir verschaffen uns ein klares Bild Ihrer aktuellen IT-Landschaft und Ihrer Ziele.",
+    text: "Wir verschaffen uns ein klares Bild deiner aktuellen IT-Landschaft und deiner Ziele.",
   },
   {
     n: "02",
     title: "Individuelles IT-Konzept",
-    text: "Sie erhalten einen verständlichen Plan mit klaren Empfehlungen und Prioritäten.",
+    text: "Du erhältst einen verständlichen Plan mit klaren Empfehlungen und Prioritäten.",
   },
   {
     n: "03",
@@ -24,7 +24,7 @@ const STEPS = [
   {
     n: "04",
     title: "Monitoring & Betreuung",
-    text: "Ihre Systeme werden kontinuierlich überwacht, gepflegt und weiterentwickelt.",
+    text: "Deine Systeme werden kontinuierlich überwacht, gepflegt und weiterentwickelt.",
   },
 ];
 
@@ -44,11 +44,11 @@ export default function ManagedIT() {
                 Managed IT & Support
               </p>
               <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Ihre IT in zuverlässigen Händen
+                Deine IT in zuverlässigen Händen
               </h2>
               <p className="mt-4 max-w-lg leading-relaxed text-fog">
-                Wir kümmern uns kontinuierlich um Ihre Systeme, damit Sie sich auf
-                Ihr Kerngeschäft konzentrieren können.
+                Wir kümmern uns kontinuierlich um deine Systeme, damit du dich auf
+                dein Kerngeschäft konzentrieren kannst.
               </p>
             </Reveal>
 
@@ -103,7 +103,7 @@ export default function ManagedIT() {
                   Persönlich statt anonym
                 </p>
                 <p className="mt-0.5 text-xs leading-relaxed text-fog">
-                  Sie sprechen mit Menschen, die Ihre Systeme wirklich kennen.
+                  Du sprichst mit Menschen, die deine Systeme wirklich kennen.
                 </p>
               </div>
             </div>

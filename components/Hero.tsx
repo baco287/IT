@@ -36,7 +36,7 @@ const STREAKS: Array<{
 const COLUMNS = [
   {
     name: "Managed IT.",
-    text: "Betrieb, Updates und Monitoring Ihrer kompletten IT.",
+    text: "Betrieb, Updates und Monitoring deiner kompletten IT.",
     slug: "managed-it",
     thumb: (
       <svg viewBox="0 0 140 64" className="h-16 w-full" aria-hidden>

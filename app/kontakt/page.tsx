@@ -7,7 +7,7 @@ import Faq from "@/components/Faq";
 export const metadata: Metadata = {
   title: "Kontakt | QonteX – Kostenlose IT-Erstberatung anfragen",
   description:
-    "Nehmen Sie Kontakt zu QonteX auf: kostenlose Erstberatung, Antwort innerhalb kurzer Zeit und ehrliche Empfehlungen für Ihre IT.",
+    "Nimm Kontakt zu QonteX auf: kostenlose Erstberatung, Antwort innerhalb kurzer Zeit und ehrliche Empfehlungen für deine IT.",
 };
 
 export default function KontaktPage() {

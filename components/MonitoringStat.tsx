@@ -74,7 +74,7 @@ export default function MonitoringStat() {
             </p>
             <p className="mt-4 max-w-xs font-[family-name:var(--font-mono)] text-[11px] uppercase leading-relaxed tracking-[0.14em] text-[#5b6b74]">
               Überwachung aller betreuten Systeme – Störungen werden gemeldet,
-              bevor Ihre Mitarbeiter sie bemerken
+              bevor deine Mitarbeiter sie bemerken
             </p>
           </div>
 

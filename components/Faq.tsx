@@ -9,7 +9,7 @@ import SectionHead from "./SectionHead";
 const FAQS = [
   {
     q: "Für welche Unternehmen arbeitet QonteX?",
-    a: "Wir betreuen kleine und mittelständische Unternehmen, die einen zuverlässigen IT-Partner suchen – unabhängig von der Branche. Entscheidend ist nicht Ihre Größe, sondern der Anspruch, dass IT verlässlich funktionieren soll.",
+    a: "Wir betreuen kleine und mittelständische Unternehmen, die einen zuverlässigen IT-Partner suchen – unabhängig von der Branche. Entscheidend ist nicht deine Größe, sondern der Anspruch, dass IT verlässlich funktionieren soll.",
   },
   {
     q: "Übernimmt QonteX auch bestehende IT-Infrastrukturen?",
@@ -17,11 +17,11 @@ const FAQS = [
   },
   {
     q: "Bietet QonteX laufenden IT-Support an?",
-    a: "Ja, als planbaren Betreuungsvertrag: Updates, Monitoring, Datensicherung und direkter Support gehören dazu. Sie erreichen dabei feste Ansprechpartner, die Ihre Umgebung kennen.",
+    a: "Ja, als planbaren Betreuungsvertrag: Updates, Monitoring, Datensicherung und direkter Support gehören dazu. Du erreichst dabei feste Ansprechpartner, die deine Umgebung kennen.",
   },
   {
     q: "Wie schnell erhalten Kunden Unterstützung?",
-    a: "Anfragen beantworten wir werktags in der Regel innerhalb kurzer Zeit; im Betreuungsvertrag vereinbaren wir verbindliche Reaktionszeiten, die zu Ihrem Betrieb passen. Kritische Störungen behandeln wir mit Priorität.",
+    a: "Anfragen beantworten wir werktags in der Regel innerhalb kurzer Zeit; im Betreuungsvertrag vereinbaren wir verbindliche Reaktionszeiten, die zu deinem Betrieb passen. Kritische Störungen behandeln wir mit Priorität.",
   },
   {
     q: "Unterstützt QonteX Cloud- und Microsoft-365-Umgebungen?",
@@ -29,11 +29,11 @@ const FAQS = [
   },
   {
     q: "Entwickelt QonteX auch KI-Lösungen?",
-    a: "Ja. Wir bauen individuelle KI-Agenten, die Kundenanfragen auf WhatsApp, am Telefon und per E-Mail rund um die Uhr aufnehmen und beantworten – dazu Automatisierungen für Dokumente und interne Wissensassistenten. Dabei achten wir auf datenschutzbewusste Umsetzung, Anbindung an Ihre bestehenden Systeme und menschliche Kontrolle über alle wichtigen Schritte.",
+    a: "Ja. Wir bauen individuelle KI-Agenten, die Kundenanfragen auf WhatsApp, am Telefon und per E-Mail rund um die Uhr aufnehmen und beantworten – dazu Automatisierungen für Dokumente und interne Wissensassistenten. Dabei achten wir auf datenschutzbewusste Umsetzung, Anbindung an deine bestehenden Systeme und menschliche Kontrolle über alle wichtigen Schritte.",
   },
   {
     q: "Wie läuft eine erste IT-Beratung ab?",
-    a: "Im kostenlosen Erstgespräch besprechen wir Ihre aktuelle Situation und Ihre Ziele – verständlich und ohne Fachchinesisch. Danach erhalten Sie eine klare Empfehlung, wie ein sinnvoller nächster Schritt aussieht. Das Gespräch ist unverbindlich.",
+    a: "Im kostenlosen Erstgespräch besprechen wir deine aktuelle Situation und deine Ziele – verständlich und ohne Fachchinesisch. Danach erhältst du eine klare Empfehlung, wie ein sinnvoller nächster Schritt aussieht. Das Gespräch ist unverbindlich.",
   },
 ];
 
