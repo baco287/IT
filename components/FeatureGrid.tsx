@@ -44,9 +44,11 @@ export default function FeatureGrid() {
         <ul className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {ITEMS.map((it, i) => (
             <Reveal key={it.title} delay={(i % 3) * 0.06}>
-              <li className="border-t border-white/12 pt-5">
-                <p className="text-sm leading-relaxed text-fog">
-                  <span className="font-semibold text-white">{it.title}</span>{" "}
+              <li className="group border-t border-white/12 pt-5 transition-[border-color] duration-300 hover:border-cyan/60">
+                <p className="text-sm leading-relaxed text-fog transition-transform duration-300 group-hover:-translate-y-0.5">
+                  <span className="font-semibold text-white/85 transition-colors duration-300 group-hover:text-white">
+                    {it.title}
+                  </span>{" "}
                   {it.text}
                 </p>
               </li>

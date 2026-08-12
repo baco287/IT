@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
+import SmartAmbientVideo from "./SmartAmbientVideo";
+import { MEDIA } from "@/lib/media";
 import serverImg from "@/public/images/server.jpg";
 import cpuImg from "@/public/images/cpu.jpg";
 import ramImg from "@/public/images/ram.jpg";
 
 const ROWS = [
   {
+    media: MEDIA.solutions.server,
     img: serverImg,
     alt: "Beleuchtete Server-Racks in einem modernen Rechenzentrum",
     kicker: "Server & Infrastruktur",
@@ -14,6 +17,7 @@ const ROWS = [
     text: "Leistungsfähige, stabile und skalierbare Systeme als zuverlässige Grundlage Ihres Unternehmens – geplant, aufgebaut und kontinuierlich betreut.",
   },
   {
+    media: MEDIA.solutions.processor,
     img: cpuImg,
     alt: "Prozessor auf einem Server-Mainboard in Nahaufnahme",
     kicker: "Prozessorleistung",
@@ -21,6 +25,7 @@ const ROWS = [
     text: "Optimal abgestimmte Hardware für anspruchsvolle Anwendungen, virtuelle Umgebungen und moderne Arbeitsprozesse.",
   },
   {
+    media: MEDIA.solutions.memory,
     img: ramImg,
     alt: "Arbeitsspeicher-Module in Nahaufnahme",
     kicker: "Arbeitsspeicher",
@@ -55,13 +60,17 @@ export default function Infrastructure() {
             >
               <Reveal>
                 <div className="glass group relative overflow-hidden rounded-2xl">
-                  <Image
-                    src={r.img}
-                    alt={r.alt}
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    placeholder="blur"
-                  />
+                  {/* Cinemagraph ersetzt das Bild erst, wenn die Datei
+                      vorliegt und in lib/media.ts aktiviert ist */}
+                  <SmartAmbientVideo asset={r.media}>
+                    <Image
+                      src={r.img}
+                      alt={r.alt}
+                      className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      placeholder="blur"
+                    />
+                  </SmartAmbientVideo>
                   <div
                     className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent"
                     aria-hidden

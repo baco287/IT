@@ -2,6 +2,8 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
+import ReferenceMedia from "./ReferenceMedia";
+import { MEDIA } from "@/lib/media";
 import voltgasShot from "@/public/images/refs/volt-gas.jpg";
 import zulassungShot from "@/public/images/refs/deutschezulassung.jpg";
 import heizwechselShot from "@/public/images/refs/heizwechsel.jpg";
@@ -9,6 +11,7 @@ import hairvenlyShot from "@/public/images/refs/hairvenly.jpg";
 
 const REFERENCES = [
   {
+    media: MEDIA.references["volt-gas"],
     name: "Volt-Gas",
     domain: "volt-gas.de",
     url: "https://www.volt-gas.de/",
@@ -18,6 +21,7 @@ const REFERENCES = [
     alt: "Startseite von volt-gas.de mit Tarifrechner für Strom und Gas",
   },
   {
+    media: MEDIA.references.deutschezulassung,
     name: "DeutscheZulassung",
     domain: "deutschezulassung.de",
     url: "https://deutschezulassung.de/",
@@ -27,6 +31,7 @@ const REFERENCES = [
     alt: "Startseite von deutschezulassung.de mit digitalem Zulassungsprozess in vier Schritten",
   },
   {
+    media: MEDIA.references.heizwechsel,
     name: "Heizwechsel",
     domain: "heizwechsel.de",
     url: "https://heizwechsel.de/",
@@ -36,6 +41,7 @@ const REFERENCES = [
     alt: "Startseite von heizwechsel.de mit Erst-Check für Heizungsmodernisierung",
   },
   {
+    media: MEDIA.references.hairvenly,
     name: "Hairvenly",
     domain: "hairvenly.de",
     url: "https://hairvenly.de/",
@@ -81,13 +87,17 @@ export default function References() {
                     </span>
                   </div>
                   <div className="overflow-hidden">
-                    <Image
-                      src={r.img}
-                      alt={r.alt}
-                      className="aspect-[3/2] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      placeholder="blur"
-                    />
+                    {/* Hover-Video erst, wenn Dateien vorliegen und in
+                        lib/media.ts aktiviert – bis dahin nur Screenshot */}
+                    <ReferenceMedia asset={r.media}>
+                      <Image
+                        src={r.img}
+                        alt={r.alt}
+                        className="aspect-[3/2] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        placeholder="blur"
+                      />
+                    </ReferenceMedia>
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col gap-2 p-6">

@@ -280,6 +280,40 @@ textarea:focus-visible {
   }
 }
 
+/* Einmaliger Scan durchs Leitstand-Fenster (nach der Terminal-Sequenz) */
+.scan-sweep {
+  transform: translateY(-120%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scan-sweep {
+    animation: scansweep 1.4s ease-in-out 1 both;
+  }
+}
+@keyframes scansweep {
+  from {
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(1100%);
+  }
+}
+
+/* Extrem langsame Tiefendrift der CTA-Kacheln */
+@media (prefers-reduced-motion: no-preference) {
+  .tiledrift {
+    animation: tiledrift 26s ease-in-out infinite;
+  }
+}
+@keyframes tiledrift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
 /* Marquee für Referenz-Logos */
 .marquee {
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);

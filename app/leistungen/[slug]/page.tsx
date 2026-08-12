@@ -5,7 +5,9 @@ import { ArrowRight, Check, Mail, MessageCircle, Phone } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import SmartAmbientVideo from "@/components/SmartAmbientVideo";
 import { SERVICES, getService } from "@/lib/services";
+import { MEDIA } from "@/lib/media";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -35,6 +37,7 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const others = SERVICES.filter((s) => s.slug !== service.slug);
+  const heroMedia = MEDIA.services[slug];
 
   return (
     <>
@@ -46,31 +49,48 @@ export default async function ServicePage({
             className="absolute inset-0 -top-36 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(45,212,234,0.09),transparent_65%)]"
             aria-hidden
           />
-          <div className="relative mx-auto max-w-4xl">
-            <nav aria-label="Pfadnavigation" className="mb-6 text-sm text-fog">
-              <Link href="/leistungen" className="transition-colors hover:text-cyan">
-                Leistungen
-              </Link>
-              <span className="mx-2" aria-hidden>
-                /
-              </span>
-              <span className="text-mist">{service.name}</span>
-            </nav>
-            <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              {service.title}
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fog">
-              {service.intro}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-6 py-3 font-semibold text-[#04222b] shadow-[0_10px_30px_rgba(45,212,234,0.28)] transition-shadow hover:shadow-[0_14px_36px_rgba(45,212,234,0.4)]"
-              >
-                Kostenlose Erstberatung
-                <ArrowRight size={16} strokeWidth={2.5} aria-hidden />
-              </Link>
+          <div
+            className={`relative mx-auto ${
+              heroMedia?.enabled
+                ? "max-w-6xl lg:grid lg:grid-cols-[1fr_0.8fr] lg:items-center lg:gap-14"
+                : "max-w-4xl"
+            }`}
+          >
+            <div>
+              <nav aria-label="Pfadnavigation" className="mb-6 text-sm text-fog">
+                <Link href="/leistungen" className="transition-colors hover:text-cyan">
+                  Leistungen
+                </Link>
+                <span className="mx-2" aria-hidden>
+                  /
+                </span>
+                <span className="text-mist">{service.name}</span>
+              </nav>
+              <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                {service.title}
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fog">
+                {service.intro}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/kontakt"
+                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-6 py-3 font-semibold text-[#04222b] shadow-[0_10px_30px_rgba(45,212,234,0.28)] transition-shadow hover:shadow-[0_14px_36px_rgba(45,212,234,0.4)]"
+                >
+                  Kostenlose Erstberatung
+                  <ArrowRight size={16} strokeWidth={2.5} aria-hidden />
+                </Link>
+              </div>
             </div>
+            {/* Optionaler Hero-Medienbereich rechts – erscheint nur, wenn die
+                Dateien vorliegen und in lib/media.ts aktiviert sind. Auf
+                Mobilgeräten rutscht er unter den Text (Poster). */}
+            {heroMedia?.enabled && (
+              <SmartAmbientVideo
+                asset={heroMedia}
+                className="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-navy lg:mt-0"
+              />
+            )}
           </div>
         </header>
 

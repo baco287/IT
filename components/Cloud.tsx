@@ -1,4 +1,6 @@
 import Image from "next/image";
+import SmartAmbientVideo from "./SmartAmbientVideo";
+import { MEDIA } from "@/lib/media";
 import { Check } from "lucide-react";
 import Reveal from "./Reveal";
 import cloudImg from "@/public/images/cloud.jpg";
@@ -20,13 +22,16 @@ export default function Cloud() {
         <Reveal className="order-2 lg:order-1">
           <div className="grid grid-cols-2 gap-4">
             <div className="glass col-span-2 overflow-hidden rounded-2xl">
-              <Image
-                src={cloudImg}
-                alt="Blau beleuchtete Netzwerktechnik in einem Rechenzentrum"
-                className="aspect-[16/8] w-full object-cover"
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                placeholder="blur"
-              />
+              {/* Cinemagraph-Platz: aktiviert sich nur über lib/media.ts */}
+              <SmartAmbientVideo asset={MEDIA.solutions.cloud}>
+                <Image
+                  src={cloudImg}
+                  alt="Blau beleuchtete Netzwerktechnik in einem Rechenzentrum"
+                  className="aspect-[16/8] w-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  placeholder="blur"
+                />
+              </SmartAmbientVideo>
             </div>
             <div className="glass overflow-hidden rounded-2xl">
               <Image

@@ -23,12 +23,15 @@ export default function Cta() {
         aria-hidden
       >
         {TILES.map((t, i) => (
-          <div
-            key={i}
-            className={`absolute overflow-hidden rounded-xl border border-white/5 ${t.cls}`}
-          >
-            <Image src={t.img} alt="" className="w-full" sizes="320px" />
-            <div className="absolute inset-0 bg-night/60" />
+          <div key={i} className={`absolute ${t.cls}`}>
+            {/* Innere Ebene driftet extrem langsam – je Kachel anderes Tempo */}
+            <div
+              className="tiledrift relative overflow-hidden rounded-xl border border-white/5"
+              style={{ animationDuration: `${22 + i * 4}s`, animationDelay: `${i * 3}s` }}
+            >
+              <Image src={t.img} alt="" className="w-full" sizes="320px" />
+              <div className="absolute inset-0 bg-night/60" />
+            </div>
           </div>
         ))}
       </div>

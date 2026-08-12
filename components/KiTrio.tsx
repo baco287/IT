@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
+import SmartAmbientVideo from "./SmartAmbientVideo";
+import { MEDIA } from "@/lib/media";
 
 const CARDS = [
   {
+    media: MEDIA.ai.whatsapp,
     title: "WhatsApp-Assistent",
     text: "Beantwortet Kundenanfragen im Chat, vereinbart Termine und übergibt an Ihr Team, sobald es persönlich wird.",
     visual: (
@@ -21,6 +24,7 @@ const CARDS = [
     ),
   },
   {
+    media: MEDIA.ai.phone,
     title: "Telefon-Assistent",
     text: "Nimmt jeden Anruf an – auch nachts und am Wochenende. Notfälle werden sofort eskaliert, alles andere sauber notiert.",
     visual: (
@@ -33,6 +37,7 @@ const CARDS = [
     ),
   },
   {
+    media: MEDIA.ai.email,
     title: "E-Mail-Assistent",
     text: "Sortiert das Postfach, beantwortet Standardfragen automatisch und legt Entwürfe für alles Übrige bereit.",
     visual: (
@@ -61,10 +66,16 @@ export default function KiTrio() {
         </Reveal>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {CARDS.map((c) => (
+          {CARDS.map((c, i) => (
             <Reveal key={c.title}>
               <article className="h-full overflow-hidden rounded-xl border border-night/10 bg-white">
-                <div className="border-b border-night/8 bg-[#f7fafa]">{c.visual}</div>
+                <div className="border-b border-night/8 bg-[#f7fafa]">
+                  {/* Video ersetzt nur den Illustrationsbereich – erst wenn
+                      die Dateien vorliegen und in lib/media.ts aktiviert sind */}
+                  <SmartAmbientVideo asset={c.media} delayMs={i * 400}>
+                    {c.visual}
+                  </SmartAmbientVideo>
+                </div>
                 <div className="p-6">
                   <h3 className="font-semibold">{c.title}</h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-[#3c4a53]">
