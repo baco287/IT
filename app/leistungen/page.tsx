@@ -5,9 +5,9 @@ import Services from "@/components/Services";
 import Cta from "@/components/Cta";
 
 export const metadata: Metadata = {
-  title: "Leistungen | QonteX – Managed IT, Cloud, Cybersecurity & KI-Agenten",
+  title: "Leistungen | QonteX – Managed IT, Cloud, Webseiten, Marketing & KI-Agenten",
   description:
-    "Alle IT-Leistungen von QonteX im Überblick: Managed IT Services, IT-Support, Cloud-Lösungen, Cybersecurity, Server & Netzwerke, Backup & Recovery und KI-Agenten.",
+    "Alle Leistungen von QonteX im Überblick: Managed IT, IT-Support, Cloud, Cybersecurity, Server & Netzwerke, Backup & Recovery, Webseiten, Ads & Online-Marketing, Social Media und KI-Agenten.",
 };
 
 export default function LeistungenPage() {

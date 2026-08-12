@@ -221,6 +221,108 @@ export const SERVICES: Service[] = [
     ctaText: "Lassen Sie uns prüfen, ob Ihre aktuelle Datensicherung im Ernstfall wirklich trägt.",
   },
   {
+    slug: "webseiten",
+    name: "Webseiten & Online-Shops",
+    title: "Webseiten und Online-Shops",
+    metaDescription:
+      "Webdesign von QonteX: Moderne, schnelle Webseiten und Online-Shops – von der Konzeption über das Design bis zu Hosting, Wartung und DSGVO-konformem Betrieb.",
+    intro:
+      "Ihre Website ist oft der erste Eindruck, den Kunden von Ihnen bekommen. Wir konzipieren, gestalten und entwickeln Webseiten und Online-Shops, die schnell laden, auf jedem Gerät funktionieren und Anfragen bringen – und betreiben sie danach zuverlässig weiter. Wie das aussieht, zeigen unsere Referenzen: Jede Seite dort ist von uns gebaut und live im Einsatz.",
+    scopeTitle: "Das setzen wir für Sie um",
+    scope: [
+      "Konzeption, Design und Entwicklung Ihrer Website",
+      "Online-Shops mit Zahlungsanbindung und Warenwirtschaft",
+      "Landingpages für Kampagnen und Leadgewinnung",
+      "Texte, Struktur und Suchmaschinenoptimierung (SEO)",
+      "Hosting in Deutschland, SSL und DSGVO-konformer Betrieb",
+      "Laufende Pflege, Updates und Weiterentwicklung",
+    ],
+    benefits: [
+      {
+        title: "Live zu sehen",
+        text: "Unsere Referenzen sind keine Mockups – jede Seite ist im echten Einsatz für echte Unternehmen.",
+      },
+      {
+        title: "Schnell und auffindbar",
+        text: "Kurze Ladezeiten, sauberes SEO-Fundament und mobile Darstellung ab dem ersten Tag.",
+      },
+      {
+        title: "Betreut statt abgeliefert",
+        text: "Nach dem Launch bleiben wir dran – Updates, Sicherheit und Änderungen inklusive.",
+      },
+    ],
+    ctaText:
+      "Lassen Sie uns besprechen, wie Ihre neue Website aussehen kann – wir zeigen Ihnen gern Live-Beispiele aus unserer Arbeit.",
+  },
+  {
+    slug: "online-marketing",
+    name: "Ads & Online-Marketing",
+    title: "Werbeanzeigen und Online-Marketing",
+    metaDescription:
+      "Online-Marketing von QonteX: Google Ads und Meta Ads mit klarem Budget, sauberem Tracking und ehrlichem Reporting – Kampagnen, die Anfragen bringen.",
+    intro:
+      "Werbebudget ist schnell ausgegeben – die Kunst ist, dass daraus Anfragen werden. Wir planen und betreiben Kampagnen auf Google und Meta mit sauberem Tracking, klaren Zielen und einem Reporting, das Sie wirklich verstehen: Was hat es gekostet, was kam dabei raus.",
+    scopeTitle: "Das übernehmen wir für Sie",
+    scope: [
+      "Strategie: Zielgruppen, Kanäle und realistisches Budget",
+      "Google Ads: Suchkampagnen für Menschen, die aktiv suchen",
+      "Meta Ads: Facebook- und Instagram-Anzeigen für Reichweite und Leads",
+      "Landingpages, die aus Klicks Anfragen machen",
+      "DSGVO-bewusstes Conversion-Tracking",
+      "Monatliches Reporting in verständlicher Sprache",
+    ],
+    benefits: [
+      {
+        title: "Messbar statt gefühlt",
+        text: "Jeder Euro ist nachvollziehbar – Sie sehen Kosten pro Anfrage, nicht nur Klickzahlen.",
+      },
+      {
+        title: "Alles aus einer Hand",
+        text: "Anzeige, Landingpage und Technik kommen vom selben Team – keine Reibungsverluste.",
+      },
+      {
+        title: "Ehrliches Budget",
+        text: "Wir sagen Ihnen auch, wenn ein Kanal für Ihr Geschäft nicht funktioniert.",
+      },
+    ],
+    ctaText:
+      "Lassen Sie uns durchrechnen, was eine Anfrage über Google oder Meta für Ihr Unternehmen kosten darf.",
+  },
+  {
+    slug: "social-media",
+    name: "Social Media",
+    title: "Social-Media-Betreuung",
+    metaDescription:
+      "Social Media von QonteX: Strategie, Content-Erstellung und Betreuung Ihrer Kanäle auf Instagram, Facebook, LinkedIn und TikTok – konsistent und planbar.",
+    intro:
+      "Sichtbarkeit entsteht nicht durch einen viralen Zufallstreffer, sondern durch konstante, gute Inhalte. Wir entwickeln Ihre Social-Media-Strategie, produzieren Inhalte und betreuen Ihre Kanäle – damit Ihr Unternehmen dort präsent ist, wo Ihre Kunden täglich unterwegs sind.",
+    scopeTitle: "Das machen wir für Sie",
+    scope: [
+      "Strategie: Kanäle, Themen und Tonalität passend zu Ihrer Marke",
+      "Content-Erstellung: Grafiken, Kurzvideos und Texte",
+      "Redaktionsplan und regelmäßige Veröffentlichung",
+      "Betreuung von Instagram, Facebook, LinkedIn und TikTok",
+      "Community-Management: Kommentare und Nachrichten im Blick",
+      "Monatliche Auswertung: was funktioniert, was nicht",
+    ],
+    benefits: [
+      {
+        title: "Konstant statt sporadisch",
+        text: "Ein fester Redaktionsplan sorgt für regelmäßige Präsenz – ohne dass Ihr Team daran denken muss.",
+      },
+      {
+        title: "Zur Marke passend",
+        text: "Inhalte in Ihrem Ton und Ihrem Look – nicht aus der Vorlagen-Fabrik.",
+      },
+      {
+        title: "Verzahnt mit Ads",
+        text: "Organische Inhalte und bezahlte Reichweite greifen ineinander statt nebeneinander zu laufen.",
+      },
+    ],
+    ctaText:
+      "Lassen Sie uns schauen, welche Kanäle für Ihr Unternehmen wirklich Sinn ergeben.",
+  },
+  {
     slug: "ki-agenten",
     name: "KI-Agenten & Automatisierung",
     title: "KI-Agenten und Automatisierung",

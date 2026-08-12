@@ -6,6 +6,9 @@ import {
   ShieldHalf,
   Network,
   DatabaseBackup,
+  Globe,
+  Megaphone,
+  Share2,
   ArrowRight,
   Bot,
 } from "lucide-react";
@@ -49,6 +52,24 @@ const SERVICES = [
     title: "Backup & Recovery",
     text: "Durchdachte Datensicherung und klare Wiederherstellungspläne für den Fall der Fälle.",
   },
+  {
+    icon: Globe,
+    slug: "webseiten",
+    title: "Webseiten & Online-Shops",
+    text: "Moderne, schnelle Webseiten und Shops – konzipiert, gebaut und danach zuverlässig betreut.",
+  },
+  {
+    icon: Megaphone,
+    slug: "online-marketing",
+    title: "Ads & Online-Marketing",
+    text: "Google- und Meta-Kampagnen mit sauberem Tracking und Reporting, das Sie wirklich verstehen.",
+  },
+  {
+    icon: Share2,
+    slug: "social-media",
+    title: "Social Media",
+    text: "Strategie, Content und Betreuung Ihrer Kanäle – konstant sichtbar statt sporadisch aktiv.",
+  },
 ];
 
 export default function Services() {
@@ -58,7 +79,7 @@ export default function Services() {
         <SectionHead
           label="Leistungen"
           title="Ganzheitliche IT-Lösungen aus einer Hand"
-          text="Sechs Kernbereiche, ein verantwortlicher Partner – abgestimmt aufeinander statt zusammengestückelt."
+          text="Neun Kernbereiche, ein verantwortlicher Partner – abgestimmt aufeinander statt zusammengestückelt."
         />
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
