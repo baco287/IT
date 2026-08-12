@@ -153,8 +153,17 @@ export default function Hero() {
           {...rise(0.12)}
           className="max-w-4xl text-[2.7rem] font-semibold leading-[1.06] tracking-tight text-white sm:text-[3.9rem]"
         >
-          IT, die läuft. Betreut von Menschen, nicht Hotlines.
+          <span className="block text-fog">Deine Probleme?</span>
+          Unsere Lösung.
         </motion.h1>
+        <motion.p
+          {...rise(0.18)}
+          className="mt-6 max-w-xl text-lg leading-relaxed text-fog"
+        >
+          QonteX betreibt und schützt die IT von Unternehmen – Server, Cloud,
+          Sicherheit und Support aus einer Hand. Betreut von Menschen, nicht
+          Hotlines.
+        </motion.p>
 
         <motion.div {...rise(0.22)} className="mt-9 flex flex-wrap items-center gap-3.5">
           <Link
