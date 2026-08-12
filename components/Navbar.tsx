@@ -32,6 +32,15 @@ export default function Navbar() {
         scrolled ? "glass-strong" : "bg-transparent"
       }`}
     >
+      {!scrolled && (
+        <Link
+          href="/leistungen/ki-agenten"
+          className="block border-b border-white/8 bg-abyss px-4 py-2 text-center text-xs text-fog transition-colors hover:text-mist"
+        >
+          Neu: KI-Agenten für WhatsApp, Telefon &amp; E-Mail – Anfragen rund um
+          die Uhr beantworten <span aria-hidden>→</span>
+        </Link>
+      )}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" aria-label="QonteX – zur Startseite">
           <Wordmark />
@@ -55,7 +64,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2.5">
           <Link
             href="/kontakt"
-            className="hidden items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-5 py-2.5 text-sm font-semibold text-[#04222b] shadow-[0_8px_24px_rgba(45,212,234,0.25)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(45,212,234,0.35)] sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-night transition-colors hover:bg-mist sm:inline-flex"
           >
             IT-Beratung anfragen
             <ArrowRight size={15} strokeWidth={2.5} aria-hidden />
@@ -102,7 +111,7 @@ export default function Navbar() {
                 <Link
                   href="/kontakt"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-4 py-3 font-semibold text-[#04222b]"
+                  className="flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3 font-semibold text-night"
                 >
                   IT-Beratung anfragen
                   <ArrowRight size={15} strokeWidth={2.5} aria-hidden />
