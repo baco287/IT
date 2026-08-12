@@ -9,6 +9,7 @@ import {
   Globe,
   Megaphone,
   Share2,
+  LayoutDashboard,
   ArrowRight,
   Bot,
 } from "lucide-react";
@@ -70,6 +71,12 @@ const SERVICES = [
     title: "Social Media",
     text: "Strategie, Content und Betreuung deiner Kanäle – konstant sichtbar statt sporadisch aktiv.",
   },
+  {
+    icon: LayoutDashboard,
+    slug: "dashboards",
+    title: "Dashboards & Reporting",
+    text: "Finanz-, Marketing- und IT-Kennzahlen aus allen Quellen – live auf einen Blick statt in Excel-Listen.",
+  },
 ];
 
 export default function Services() {
@@ -79,7 +86,7 @@ export default function Services() {
         <SectionHead
           label="Leistungen"
           title="Ganzheitliche IT-Lösungen aus einer Hand"
-          text="Zehn Kernbereiche, ein verantwortlicher Partner – abgestimmt aufeinander statt zusammengestückelt."
+          text="Alle Kernbereiche, ein verantwortlicher Partner – abgestimmt aufeinander statt zusammengestückelt."
         />
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
