@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import DataCore from "./DataCore";
 
 /* Abstrakte Lichtstreifen im Hero-Hintergrund (neon-Stil), rein CSS */
 const STREAKS: Array<{
@@ -139,6 +140,9 @@ export default function Hero() {
           />
         ))}
       </div>
+
+      {/* QonteX Data Core – dezentes Netzwerk auf der rechten Hero-Hälfte */}
+      <DataCore />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <motion.p
