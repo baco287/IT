@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Wordmark from "./Wordmark";
+import agentHead from "@/public/images/qontex-agent-head.png";
 
 const LINKS = [
   { href: "/", label: "Startseite" },
@@ -42,7 +44,17 @@ export default function Navbar() {
         </Link>
       )}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" aria-label="QonteX – zur Startseite">
+        <Link
+          href="/"
+          aria-label="QonteX – zur Startseite"
+          className="flex items-center gap-3"
+        >
+          <Image
+            src={agentHead}
+            alt=""
+            className="h-10 w-10 rounded-full ring-1 ring-cyan/30"
+            priority
+          />
           <Wordmark />
         </Link>
 
