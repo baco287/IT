@@ -43,48 +43,6 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-  # ── Produktion: all-inkl Webspace (qontex.de) ───────────────────────────
-  # Läuft erst, wenn die Secrets FTP_SERVER / FTP_USERNAME / FTP_PASSWORD
-  # im Repo hinterlegt sind (gleiche Werte wie im Zulassungsdienst-Repo).
-  deploy-allinkl:
-    runs-on: ubuntu-latest
-    env:
-      HAS_FTP: ${{ secrets.FTP_PASSWORD }}
-    steps:
-      - uses: actions/checkout@v4
-        if: env.HAS_FTP != ''
-      - uses: actions/setup-node@v4
-        if: env.HAS_FTP != ''
-        with:
-          node-version: 22
-          cache: npm
-      - name: Abhängigkeiten installieren
-        if: env.HAS_FTP != ''
-        run: npm ci
-      - name: Build (Root-Pfad für qontex.de)
-        if: env.HAS_FTP != ''
-        run: npm run build
-      - name: Per FTPS zu all-inkl deployen (lftp)
-        if: env.HAS_FTP != ''
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq lftp
-          printf 'machine %s\nlogin %s\npassword %s\n' \
-            "$FTP_SERVER" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
-          chmod 600 ~/.netrc
-          lftp -e "
-            set ftp:ssl-force true;
-            set ftp:ssl-protect-data true;
-            set ssl:verify-certificate true;
-            set ftp:passive-mode true;
-            set net:max-retries 2;
-            set net:timeout 60;
-            open $FTP_SERVER;
-            mirror -R --delete --verbose=1 ./out/ /qontex.de/;
-            bye
-          "
-          rm -f ~/.netrc
+  # ── Produktion: eigener Hetzner-Server (qontex.de, 178.104.204.155) ─────
+  # Kein Deploy-Job nötig: Der Server zieht main selbst per Cron alle 5 Min
+  # (/opt/qontex-deploy.sh) und baut bei Änderungen neu.
