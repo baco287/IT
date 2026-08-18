@@ -24,13 +24,13 @@ const fade = { opacity: [0, 0, 1, 1, 0], y: [6, 6, 0, 0, 0] };
 
 export function WhatsAppVisual() {
   const reduce = useReducedMotion();
-  const bubble = "w-fit max-w-[85%] rounded-lg px-3 py-1.5 text-xs";
+  const bubble = "w-fit max-w-[85%] rounded-lg px-2.5 py-1 text-[11px] leading-snug";
   const inCls = `${bubble} bg-night/6 text-night`;
   const outCls = `${bubble} ml-auto bg-[#0d9b8a] text-white`;
 
   if (reduce) {
     return (
-      <div className="flex h-32 flex-col justify-center gap-2 px-5">
+      <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5">
         <span className={inCls}>Habt ihr morgen noch einen Termin frei?</span>
         <span className={outCls}>Ja – 10:30 oder 14:00 Uhr. Was passt besser?</span>
         <span className={inCls}>14 Uhr bitte!</span>
@@ -39,35 +39,43 @@ export function WhatsAppVisual() {
   }
 
   return (
-    <div className="flex h-32 flex-col justify-center gap-2 px-5">
+    <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5">
       <motion.span className={inCls} animate={fade} transition={step(0.4)}>
         Habt ihr morgen noch einen Termin frei?
       </motion.span>
 
-      {/* Tipp-Indikator, verschwindet sobald die Antwort kommt */}
-      <motion.span
-        className={`${outCls} flex gap-1 py-2.5`}
-        animate={{ opacity: [0, 0, 1, 1, 0, 0] }}
-        transition={{
-          duration: LOOP,
-          repeat: Infinity,
-          ease: "linear",
-          times: [0, 0.14, 0.18, 0.29, 0.33, 1],
-        }}
-      >
-        {[0, 1, 2].map((i) => (
-          <motion.i
-            key={i}
-            className="block h-1.5 w-1.5 rounded-full bg-white/80"
-            animate={{ opacity: [0.3, 1, 0.3] }}
-            transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }}
-          />
-        ))}
-      </motion.span>
+      {/* Tipp-Indikator liegt absolut ueber der Antwortblase und belegt
+          daher keine eigene Hoehe – sonst laeuft die Karte ueber. */}
+      <div className="relative">
+        <motion.span
+          className={`${outCls} absolute right-0 top-0 flex gap-1 py-2.5`}
+          animate={{ opacity: [0, 0, 1, 1, 0, 0] }}
+          transition={{
+            duration: LOOP,
+            repeat: Infinity,
+            ease: "linear",
+            times: [0, 0.14, 0.18, 0.29, 0.33, 1],
+          }}
+        >
+          {[0, 1, 2].map((i) => (
+            <motion.i
+              key={i}
+              className="block h-1.5 w-1.5 rounded-full bg-white/80"
+              animate={{ opacity: [0.3, 1, 0.3] }}
+              transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }}
+            />
+          ))}
+        </motion.span>
 
-      <motion.span className={outCls} animate={fade} transition={step(3.2)}>
-        Ja – 10:30 oder 14:00 Uhr. Was passt besser?
-      </motion.span>
+        <motion.span
+          className={`${outCls} block`}
+          animate={fade}
+          transition={step(3.2)}
+        >
+          Ja – 10:30 oder 14:00 Uhr. Was passt besser?
+        </motion.span>
+      </div>
+
       <motion.span className={inCls} animate={fade} transition={step(5.2)}>
         14 Uhr bitte!
       </motion.span>
@@ -89,7 +97,7 @@ export function PhoneVisual() {
 
   if (reduce) {
     return (
-      <div className="flex h-32 flex-col justify-center gap-1.5 px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
+      <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
         {lines.map((l) => (
           <p key={l}>{l}</p>
         ))}
@@ -99,15 +107,15 @@ export function PhoneVisual() {
   }
 
   return (
-    <div className="flex h-32 flex-col justify-center gap-2 px-5">
+    <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5">
       {/* Wellenform */}
-      <div className="flex h-6 items-center gap-[3px]">
+      <div className="flex h-5 items-center gap-[3px]">
         {BARS.map((h, i) => (
           <motion.span
             key={i}
             className="w-[3px] flex-none rounded-full bg-[#0d9b8a]/70"
             animate={{ scaleY: [h * 0.3, h, h * 0.4, h * 0.85, h * 0.3] }}
-            style={{ height: 22, originY: 0.5 }}
+            style={{ height: 18, originY: 0.5 }}
             transition={{
               duration: 1.4,
               repeat: Infinity,
@@ -118,7 +126,7 @@ export function PhoneVisual() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-1 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
+      <div className="flex flex-col gap-1 font-[family-name:var(--font-mono)] text-[11px] leading-snug text-[#3c4a53]">
         {lines.map((l, i) => (
           <motion.p key={l} animate={fade} transition={step(0.5 + i * 1.9)}>
             {l}
@@ -149,7 +157,7 @@ export function EmailVisual() {
 
   if (reduce) {
     return (
-      <div className="flex h-32 flex-col justify-center gap-1.5 px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
+      <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
         {MAILS.map((m) => (
           <p key={m.from} className="flex justify-between">
             <span>{m.from}</span>
@@ -161,7 +169,7 @@ export function EmailVisual() {
   }
 
   return (
-    <div className="flex h-32 flex-col justify-center gap-1.5 px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
+    <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
       {MAILS.map((m, i) => (
         <motion.p
           key={m.from}
