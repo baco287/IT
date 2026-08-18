@@ -105,6 +105,30 @@ const COLUMNS = [
     ),
     caption: "Täglich geprüft",
   },
+  {
+    name: "Dashboards.",
+    text: "Finanz-, Marketing- und IT-Kennzahlen live auf einen Blick.",
+    slug: "dashboards",
+    thumb: (
+      <div className="flex h-16 flex-col justify-center gap-2 px-1" aria-hidden>
+        <div className="flex h-8 items-end gap-1">
+          {[40, 55, 45, 70, 58, 84, 72, 100].map((h, i) => (
+            <span
+              key={i}
+              className={`flex-1 rounded-[1px] ${
+                i >= 5 ? "bg-[#45e6be]" : "bg-white/14"
+              }`}
+              style={{ height: `${h}%` }}
+            />
+          ))}
+        </div>
+        <span className="font-[family-name:var(--font-mono)] text-[9px] leading-none text-fog">
+          anfragen <span className="text-[#45e6be]">+24 %</span>
+        </span>
+      </div>
+    ),
+    caption: "Live-Daten",
+  },
 ];
 
 export default function Hero() {
@@ -184,10 +208,10 @@ export default function Hero() {
           </Link>
         </motion.div>
 
-        {/* 5-spaltige Leistungszeile mit Mini-Thumbnails */}
+        {/* 6-spaltige Leistungszeile mit Mini-Thumbnails */}
         <motion.ul
           {...rise(0.34)}
-          className="mt-20 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5"
+          className="mt-20 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
         >
           {COLUMNS.map((c) => (
             <li key={c.slug}>
