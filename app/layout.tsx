@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "QonteX entwickelt sichere, leistungsfähige und zuverlässige IT-Lösungen für kleine und mittelständische Unternehmen – Managed IT, Cloud, Cybersecurity, KI-Agenten und persönlicher Support aus einer Hand.",
   openGraph: {
-    title: "QonteX – IT, die Ihr Unternehmen voranbringt",
+    title: "QonteX – IT, die dein Unternehmen voranbringt",
     description:
       "Managed IT Services, Cloud-Lösungen und Cybersecurity für den Mittelstand – persönlich betreut, transparent und zuverlässig.",
     type: "website",

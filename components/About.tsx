@@ -22,8 +22,8 @@ export default function About() {
         </p>
         <p className="mt-4 leading-relaxed text-fog">
           Jede Empfehlung, die wir aussprechen, muss zwei Fragen bestehen: Macht
-          sie Ihr Unternehmen sicherer oder leistungsfähiger – und würden wir sie
-          auch für unsere eigene IT treffen?
+          sie dein Unternehmen sicherer oder leistungsfähiger – und würden wir
+          sie auch für unsere eigene IT treffen?
         </p>
       </Reveal>
     </section>

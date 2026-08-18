@@ -184,7 +184,7 @@ export default async function ServicePage({
                 id="benefits-heading"
                 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-white"
               >
-                Ihr Vorteil mit QonteX
+                Dein Vorteil mit QonteX
               </h2>
             </Reveal>
             <div className="mt-7 grid gap-4 sm:grid-cols-3">
