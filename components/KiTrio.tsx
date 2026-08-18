@@ -3,50 +3,26 @@ import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 import SmartAmbientVideo from "./SmartAmbientVideo";
 import { MEDIA } from "@/lib/media";
+import { WhatsAppVisual, PhoneVisual, EmailVisual } from "./KiVisuals";
 
 const CARDS = [
   {
     media: MEDIA.ai.whatsapp,
     title: "WhatsApp-Assistent",
     text: "Beantwortet Kundenanfragen im Chat, vereinbart Termine und übergibt an dein Team, sobald es persönlich wird.",
-    visual: (
-      <div className="flex h-32 flex-col justify-center gap-2 px-5">
-        <span className="w-fit max-w-[85%] rounded-lg bg-night/6 px-3 py-1.5 text-xs text-night">
-          Habt ihr morgen noch einen Termin frei?
-        </span>
-        <span className="ml-auto w-fit max-w-[85%] rounded-lg bg-[#0d9b8a] px-3 py-1.5 text-xs text-white">
-          Ja – 10:30 oder 14:00 Uhr. Was passt besser?
-        </span>
-        <span className="w-fit max-w-[85%] rounded-lg bg-night/6 px-3 py-1.5 text-xs text-night">
-          14 Uhr bitte!
-        </span>
-      </div>
-    ),
+    visual: <WhatsAppVisual />,
   },
   {
     media: MEDIA.ai.phone,
     title: "Telefon-Assistent",
     text: "Nimmt jeden Anruf an – auch nachts und am Wochenende. Notfälle werden sofort eskaliert, alles andere sauber notiert.",
-    visual: (
-      <div className="flex h-32 flex-col justify-center gap-1.5 px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
-        <p>14:02 · Anruf angenommen</p>
-        <p>14:03 · Anliegen: Drucker im Büro Ost</p>
-        <p>14:04 · Ticket erstellt, Rückruf zugesagt</p>
-        <p className="text-[#0d9b8a]">✓ zusammengefasst an dein team</p>
-      </div>
-    ),
+    visual: <PhoneVisual />,
   },
   {
     media: MEDIA.ai.email,
     title: "E-Mail-Assistent",
     text: "Sortiert das Postfach, beantwortet Standardfragen automatisch und legt Entwürfe für alles Übrige bereit.",
-    visual: (
-      <div className="flex h-32 flex-col justify-center gap-1.5 px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
-        <p className="flex justify-between"><span>anfrage@… Angebot</span><span className="text-[#0d9b8a]">beantwortet</span></p>
-        <p className="flex justify-between"><span>kunde@… Rechnung</span><span className="text-[#0d9b8a]">beantwortet</span></p>
-        <p className="flex justify-between"><span>partner@… Projekt</span><span className="text-[#b0653a]">entwurf bereit</span></p>
-      </div>
-    ),
+    visual: <EmailVisual />,
   },
 ];
 
