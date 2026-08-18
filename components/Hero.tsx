@@ -214,22 +214,38 @@ export default function Hero() {
           className="mt-20 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
         >
           {COLUMNS.map((c) => (
-            <li key={c.slug}>
-              <p className="text-sm leading-relaxed text-fog">
-                <Link
-                  href={`/leistungen/${c.slug}`}
-                  className="font-semibold text-white hover:text-cyan"
-                >
-                  {c.name}
-                </Link>{" "}
-                {c.text}
-              </p>
-              <div className="mt-4 overflow-hidden rounded-lg border border-white/8 bg-white/[0.02] px-2 py-1.5">
-                {c.thumb}
-                <p className="mt-1 border-t border-white/6 px-1 pt-1.5 font-[family-name:var(--font-mono)] text-[8px] uppercase tracking-wider text-white/35">
-                  {c.caption}
+            <li key={c.slug} className="h-full">
+              <Link
+                href={`/leistungen/${c.slug}`}
+                className="group flex h-full flex-col border-t border-white/12 pt-5 transition-colors duration-300 hover:border-cyan/60 focus-visible:border-cyan/60"
+              >
+                <p className="text-sm leading-relaxed text-fog">
+                  <span className="font-semibold text-white transition-colors duration-300 group-hover:text-cyan">
+                    {c.name}
+                  </span>{" "}
+                  {c.text}
                 </p>
-              </div>
+
+                {/* Thumbnail sitzt bei allen Karten auf gleicher Grundlinie */}
+                <div className="mt-auto pt-5">
+                  <div className="overflow-hidden rounded-lg border border-white/8 bg-white/[0.02] px-2 py-1.5 transition-colors duration-300 group-hover:border-white/16">
+                    <div className="h-16 overflow-hidden">{c.thumb}</div>
+                    <p className="mt-1 border-t border-white/6 px-1 pt-1.5 font-[family-name:var(--font-mono)] text-[8px] uppercase tracking-wider text-white/35">
+                      {c.caption}
+                    </p>
+                  </div>
+
+                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-fog transition-colors duration-300 group-hover:text-cyan">
+                    Mehr erfahren
+                    <ArrowRight
+                      size={12}
+                      strokeWidth={2.5}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  </span>
+                </div>
+              </Link>
             </li>
           ))}
         </motion.ul>
