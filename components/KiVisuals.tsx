@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { Transition } from "framer-motion";
 
 /* Animierte Illustrationen für die KI-Agenten-Karten.
-   Bewusst im hellen Farbschema der Sektion (kein Dark-Mode-Fremdkörper).
+   Im dunklen Farbschema der Seite.
    Laufen nur im sichtbaren Bereich und stehen bei reduzierter Bewegung
    sofort im Endzustand – identisch zur bisherigen statischen Variante. */
 
@@ -25,8 +25,8 @@ const fade = { opacity: [0, 0, 1, 1, 0], y: [6, 6, 0, 0, 0] };
 export function WhatsAppVisual() {
   const reduce = useReducedMotion();
   const bubble = "w-fit max-w-[85%] rounded-lg px-2.5 py-1 text-[11px] leading-snug";
-  const inCls = `${bubble} bg-night/6 text-night`;
-  const outCls = `${bubble} ml-auto bg-[#0d9b8a] text-white`;
+  const inCls = `${bubble} bg-white/10 text-mist`;
+  const outCls = `${bubble} ml-auto bg-gradient-to-r from-[#0e8f9e] to-[#11a98a] text-white`;
 
   if (reduce) {
     return (
@@ -97,11 +97,11 @@ export function PhoneVisual() {
 
   if (reduce) {
     return (
-      <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
+      <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-white/70">
         {lines.map((l) => (
           <p key={l}>{l}</p>
         ))}
-        <p className="text-[#0d9b8a]">✓ zusammengefasst an dein team</p>
+        <p className="text-cyan-soft">✓ zusammengefasst an dein team</p>
       </div>
     );
   }
@@ -113,7 +113,7 @@ export function PhoneVisual() {
         {BARS.map((h, i) => (
           <motion.span
             key={i}
-            className="w-[3px] flex-none rounded-full bg-[#0d9b8a]/70"
+            className="w-[3px] flex-none rounded-full bg-cyan-soft/80"
             animate={{ scaleY: [h * 0.3, h, h * 0.4, h * 0.85, h * 0.3] }}
             style={{ height: 18, originY: 0.5 }}
             transition={{
@@ -126,14 +126,14 @@ export function PhoneVisual() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-1 font-[family-name:var(--font-mono)] text-[11px] leading-snug text-[#3c4a53]">
+      <div className="flex flex-col gap-1 font-[family-name:var(--font-mono)] text-[11px] leading-snug text-white/70">
         {lines.map((l, i) => (
           <motion.p key={l} animate={fade} transition={step(0.5 + i * 1.9)}>
             {l}
           </motion.p>
         ))}
         <motion.p
-          className="text-[#0d9b8a]"
+          className="text-cyan-soft"
           animate={fade}
           transition={step(6.2)}
         >
@@ -147,9 +147,9 @@ export function PhoneVisual() {
 /* ---------------- E-Mail ---------------- */
 
 const MAILS = [
-  { from: "anfrage@… Angebot", status: "beantwortet", tone: "text-[#0d9b8a]" },
-  { from: "kunde@… Rechnung", status: "beantwortet", tone: "text-[#0d9b8a]" },
-  { from: "partner@… Projekt", status: "entwurf bereit", tone: "text-[#b0653a]" },
+  { from: "anfrage@… Angebot", status: "beantwortet", tone: "text-cyan-soft" },
+  { from: "kunde@… Rechnung", status: "beantwortet", tone: "text-cyan-soft" },
+  { from: "partner@… Projekt", status: "entwurf bereit", tone: "text-[#f5b83d]" },
 ];
 
 export function EmailVisual() {
@@ -157,7 +157,7 @@ export function EmailVisual() {
 
   if (reduce) {
     return (
-      <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
+      <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-white/70">
         {MAILS.map((m) => (
           <p key={m.from} className="flex justify-between">
             <span>{m.from}</span>
@@ -169,7 +169,7 @@ export function EmailVisual() {
   }
 
   return (
-    <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-[#3c4a53]">
+    <div className="flex h-40 flex-col justify-center gap-1.5 overflow-hidden px-4 sm:px-5 font-[family-name:var(--font-mono)] text-[11px] leading-relaxed text-white/70">
       {MAILS.map((m, i) => (
         <motion.p
           key={m.from}

@@ -13,7 +13,7 @@
   --color-cyan: #19d8f2;
   --color-cyan-soft: #22e6b5;
   --color-violet: #8b7df2;
-  --font-display: var(--font-manrope), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), Consolas, monospace;
 }
@@ -338,6 +338,41 @@ textarea:focus-visible {
   0%,
   100% {
     opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Leicht atmende Netzwerk-Balken im Hero-Dashboard */
+.netbar {
+  transform-origin: bottom;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .netbar {
+    animation: netbar 3.6s ease-in-out infinite;
+  }
+}
+@keyframes netbar {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.8);
+  }
+}
+
+/* Funkelnde Lichtpunkte im Hero-Hintergrund */
+@media (prefers-reduced-motion: no-preference) {
+  .twinkle {
+    animation: twinkle 4.5s ease-in-out infinite;
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
   }
   50% {
     opacity: 1;
