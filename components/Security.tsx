@@ -23,7 +23,7 @@ const POINTS = [
 
 export default function Security() {
   return (
-    <section className="relative overflow-hidden px-6 py-28">
+    <section id="sicherheit" className="relative overflow-hidden px-6 py-28">
       {/* Dunklerer, dramatischerer Grund */}
       <div className="absolute inset-0 bg-[#04070c]" aria-hidden />
       <div

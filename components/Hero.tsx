@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Users, Clock3 } from "lucide-react";
 import DataCore from "./DataCore";
+import OpsDashboard from "./OpsDashboard";
 
-/* Abstrakte Lichtstreifen im Hero-Hintergrund (neon-Stil), rein CSS */
+/* Abstrakte Lichtstreifen im Hero-Hintergrund, rein CSS */
 const STREAKS: Array<{
   left: string;
   height: number;
@@ -14,121 +15,28 @@ const STREAKS: Array<{
   blur: number;
   color: string;
 }> = [
-  { left: "4%", height: 150, width: 22, opacity: 0.1, blur: 18, color: "#22d3ee" },
-  { left: "9%", height: 230, width: 10, opacity: 0.2, blur: 10, color: "#45e6be" },
-  { left: "14%", height: 120, width: 26, opacity: 0.08, blur: 22, color: "#22d3ee" },
-  { left: "21%", height: 300, width: 8, opacity: 0.22, blur: 8, color: "#22d3ee" },
-  { left: "26%", height: 180, width: 16, opacity: 0.12, blur: 14, color: "#45e6be" },
-  { left: "33%", height: 260, width: 12, opacity: 0.18, blur: 12, color: "#22d3ee" },
+  { left: "4%", height: 150, width: 22, opacity: 0.1, blur: 18, color: "#19d8f2" },
+  { left: "9%", height: 230, width: 10, opacity: 0.2, blur: 10, color: "#22e6b5" },
+  { left: "14%", height: 120, width: 26, opacity: 0.08, blur: 22, color: "#19d8f2" },
+  { left: "21%", height: 300, width: 8, opacity: 0.22, blur: 8, color: "#19d8f2" },
+  { left: "26%", height: 180, width: 16, opacity: 0.12, blur: 14, color: "#22e6b5" },
+  { left: "33%", height: 260, width: 12, opacity: 0.18, blur: 12, color: "#19d8f2" },
   { left: "39%", height: 140, width: 20, opacity: 0.1, blur: 18, color: "#8be9f7" },
-  { left: "45%", height: 340, width: 9, opacity: 0.26, blur: 8, color: "#45e6be" },
-  { left: "52%", height: 220, width: 14, opacity: 0.16, blur: 12, color: "#22d3ee" },
-  { left: "58%", height: 420, width: 7, opacity: 0.5, blur: 4, color: "#eafcff" },
-  { left: "61%", height: 360, width: 12, opacity: 0.3, blur: 8, color: "#d9a441" },
-  { left: "66%", height: 280, width: 10, opacity: 0.22, blur: 10, color: "#22d3ee" },
-  { left: "73%", height: 190, width: 18, opacity: 0.12, blur: 16, color: "#45e6be" },
-  { left: "79%", height: 320, width: 9, opacity: 0.2, blur: 9, color: "#22d3ee" },
+  { left: "45%", height: 340, width: 9, opacity: 0.26, blur: 8, color: "#22e6b5" },
+  { left: "52%", height: 220, width: 14, opacity: 0.16, blur: 12, color: "#19d8f2" },
+  { left: "58%", height: 420, width: 7, opacity: 0.45, blur: 4, color: "#eafcff" },
+  { left: "61%", height: 360, width: 12, opacity: 0.26, blur: 8, color: "#22e6b5" },
+  { left: "66%", height: 280, width: 10, opacity: 0.22, blur: 10, color: "#19d8f2" },
+  { left: "73%", height: 190, width: 18, opacity: 0.12, blur: 16, color: "#22e6b5" },
+  { left: "79%", height: 320, width: 9, opacity: 0.2, blur: 9, color: "#19d8f2" },
   { left: "85%", height: 160, width: 22, opacity: 0.09, blur: 20, color: "#8be9f7" },
-  { left: "91%", height: 240, width: 11, opacity: 0.16, blur: 12, color: "#45e6be" },
+  { left: "91%", height: 240, width: 11, opacity: 0.16, blur: 12, color: "#22e6b5" },
 ];
 
-/* 5 Leistungsspalten mit Mini-UI-Thumbnails, wie neons Hero-Zeile */
-const COLUMNS = [
-  {
-    name: "Managed IT.",
-    text: "Betrieb, Updates und Monitoring deiner kompletten IT.",
-    slug: "managed-it",
-    thumb: (
-      <svg viewBox="0 0 140 64" className="h-16 w-full" aria-hidden>
-        <polyline
-          points="0,44 20,40 35,46 50,30 65,34 80,20 95,26 110,14 125,18 140,10"
-          fill="none"
-          stroke="#45e6be"
-          strokeWidth="1.5"
-        />
-        {[8, 28, 48, 68, 88, 108, 128].map((x, i) => (
-          <rect key={x} x={x} y={54 - (i % 3) * 4} width="6" height={10 + (i % 3) * 4} fill="rgba(255,255,255,0.14)" />
-        ))}
-      </svg>
-    ),
-    caption: "Monitoring",
-  },
-  {
-    name: "Cloud.",
-    text: "Microsoft 365 und sichere Remote-Arbeit, zentral verwaltet.",
-    slug: "cloud-loesungen",
-    thumb: (
-      <div className="flex h-16 flex-col justify-center gap-1.5 px-1 font-[family-name:var(--font-mono)] text-[9px] leading-none text-fog">
-        <span className="text-[#45e6be]">✓ postfach → microsoft 365</span>
-        <span>✓ dateien → sharepoint</span>
-        <span>✓ zugriff → vpn / sso</span>
-        <span className="text-white/40">synchronisiert · verschlüsselt</span>
-      </div>
-    ),
-    caption: "Migration",
-  },
-  {
-    name: "Cybersecurity.",
-    text: "Firewall, Endpoint-Schutz und E-Mail-Sicherheit.",
-    slug: "cybersecurity",
-    thumb: (
-      <div className="flex h-16 flex-col justify-center gap-1.5 px-1 font-[family-name:var(--font-mono)] text-[9px] leading-none text-fog">
-        <span>12:34:01 mail-filter <span className="text-[#45e6be]">ok</span></span>
-        <span>12:34:02 endpoint-scan <span className="text-[#45e6be]">ok</span></span>
-        <span className="rounded-sm bg-white/8 px-1 py-0.5 text-white">12:34:09 phishing blockiert</span>
-      </div>
-    ),
-    caption: "Abwehr",
-  },
-  {
-    name: "KI-Agenten.",
-    text: "Anfragen automatisch beantworten – WhatsApp, Telefon, E-Mail.",
-    slug: "ki-agenten",
-    thumb: (
-      <div className="flex h-16 flex-col justify-center gap-1.5 px-1">
-        <span className="w-fit rounded-md bg-white/8 px-2 py-1 text-[9px] leading-none text-mist">Habt ihr morgen einen Termin frei?</span>
-        <span className="ml-auto w-fit rounded-md bg-[#123d43] px-2 py-1 text-[9px] leading-none text-[#9beee0]">Ja – 10:30 oder 14:00 Uhr?</span>
-      </div>
-    ),
-    caption: "Rund um die Uhr",
-  },
-  {
-    name: "Backup & Recovery.",
-    text: "Getestete Sicherungen mit schneller Wiederherstellung.",
-    slug: "backup-recovery",
-    thumb: (
-      <div className="flex h-16 flex-col justify-center gap-1.5 px-1 font-[family-name:var(--font-mono)] text-[9px] leading-none text-fog">
-        <span>02:00 snapshot <span className="text-[#45e6be]">ok</span></span>
-        <span>02:12 offsite-kopie <span className="text-[#45e6be]">ok</span></span>
-        <span>05:00 restore-test <span className="text-[#45e6be]">bestanden</span></span>
-      </div>
-    ),
-    caption: "Täglich geprüft",
-  },
-  {
-    name: "Dashboards.",
-    text: "Finanz-, Marketing- und IT-Kennzahlen live auf einen Blick.",
-    slug: "dashboards",
-    thumb: (
-      <div className="flex h-16 flex-col justify-center gap-2 px-1" aria-hidden>
-        <div className="flex h-8 items-end gap-1">
-          {[40, 55, 45, 70, 58, 84, 72, 100].map((h, i) => (
-            <span
-              key={i}
-              className={`flex-1 rounded-[1px] ${
-                i >= 5 ? "bg-[#45e6be]" : "bg-white/14"
-              }`}
-              style={{ height: `${h}%` }}
-            />
-          ))}
-        </div>
-        <span className="font-[family-name:var(--font-mono)] text-[9px] leading-none text-fog">
-          anfragen <span className="text-[#45e6be]">+24 %</span>
-        </span>
-      </div>
-    ),
-    caption: "Live-Daten",
-  },
+const TRUST = [
+  { icon: ShieldCheck, line1: "100 %", line2: "Deutschland" },
+  { icon: Users, line1: "Persönliche", line2: "Ansprechpartner" },
+  { icon: Clock3, line1: "24/7", line2: "Überwachung" },
 ];
 
 export default function Hero() {
@@ -143,7 +51,7 @@ export default function Hero() {
         };
 
   return (
-    <section id="start" className="relative overflow-hidden pb-16 pt-64">
+    <section id="start" className="relative overflow-hidden pb-16 pt-32 lg:pt-36">
       {/* Lichtstreifen-Hintergrund */}
       <div
         className="absolute inset-x-0 top-0 h-[30rem] [mask-image:linear-gradient(to_bottom,black_35%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_35%,transparent)]"
@@ -165,99 +73,98 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* QonteX Data Core – dezentes Netzwerk auf der rechten Hero-Hälfte */}
+      {/* Dezentes Data-Core-Netzwerk */}
       <DataCore />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <motion.p
-          {...rise(0.05)}
-          className="mb-5 flex items-center gap-2.5 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-fog"
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan" aria-hidden />
-          IT-Service für den Mittelstand – aus Deutschland
-        </motion.p>
-
-        <motion.h1
-          {...rise(0.12)}
-          className="max-w-4xl text-[2.7rem] font-semibold leading-[1.06] tracking-tight text-white sm:text-[3.9rem]"
-        >
-          <span className="block text-fog">Deine Probleme?</span>
-          Unsere Lösung.
-        </motion.h1>
-        <motion.p
-          {...rise(0.18)}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-fog"
-        >
-          QonteX betreibt und schützt die IT von Unternehmen – Server, Cloud,
-          Sicherheit und Support aus einer Hand. Betreut von Menschen, nicht
-          Hotlines.
-        </motion.p>
-
-        <motion.div {...rise(0.22)} className="mt-9 flex flex-wrap items-center gap-3.5">
-          <Link
-            href="/kontakt"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-night transition-colors hover:bg-mist"
+      <div className="relative z-10 mx-auto grid max-w-[88rem] items-center gap-14 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:gap-10">
+        <div>
+          <motion.p
+            {...rise(0.05)}
+            className="mb-5 flex items-center gap-2.5 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-fog"
           >
-            Kostenlose Erstberatung
-          </Link>
-          <Link
-            href="/leistungen"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-mist transition-colors hover:border-white/40"
-          >
-            Leistungen ansehen
-          </Link>
-        </motion.div>
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan" aria-hidden />
+            IT-Service für den Mittelstand – aus Deutschland
+          </motion.p>
 
-        {/* 6-spaltige Leistungszeile mit Mini-Thumbnails */}
-        <motion.ul
-          {...rise(0.34)}
-          className="mt-20 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+          <motion.h1
+            {...rise(0.12)}
+            className="text-[2.9rem] font-bold leading-[1.02] tracking-[-0.03em] text-white sm:text-[4.1rem]"
+          >
+            Deine IT.
+            <br />
+            Unsere Mission.
+            <br />
+            <span className="grad">Ohne Ausfälle.</span>
+          </motion.h1>
+
+          <motion.p {...rise(0.2)} className="mt-6 max-w-xl text-lg leading-relaxed text-fog">
+            QonteX betreibt und schützt die IT von Unternehmen – Server, Cloud,
+            Sicherheit und Support aus einer Hand. Betreut von Menschen, nicht
+            Hotlines. Damit du dich auf das Wesentliche konzentrieren kannst:
+            dein Business.
+          </motion.p>
+
+          <motion.div {...rise(0.28)} className="mt-8 flex flex-wrap items-center gap-3.5">
+            <Link
+              href="/kontakt"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan to-cyan-soft px-6 py-3 text-sm font-semibold text-[#03222b] shadow-[0_10px_34px_rgba(25,216,242,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(25,216,242,0.4)]"
+            >
+              Kostenlose Erstberatung
+              <ArrowRight size={16} strokeWidth={2.5} aria-hidden />
+            </Link>
+            <Link
+              href="/leistungen"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-mist transition-colors hover:border-cyan/50"
+            >
+              Leistungen ansehen
+              <ArrowRight size={16} strokeWidth={2.5} aria-hidden />
+            </Link>
+          </motion.div>
+
+          <motion.ul {...rise(0.36)} className="mt-9 flex flex-wrap gap-x-9 gap-y-4">
+            {TRUST.map((t) => (
+              <li key={t.line2} className="flex items-center gap-2.5">
+                <span className="grid h-9 w-9 place-items-center rounded-lg border border-cyan/20 bg-cyan/8 text-cyan">
+                  <t.icon size={17} strokeWidth={1.9} aria-hidden />
+                </span>
+                <span className="text-sm leading-tight text-fog">
+                  <span className="block font-semibold text-mist">{t.line1}</span>
+                  {t.line2}
+                </span>
+              </li>
+            ))}
+          </motion.ul>
+        </div>
+
+        {/* Operations-Dashboard (Demo) */}
+        <motion.div
+          {...(reduce
+            ? {}
+            : {
+                initial: { opacity: 0, y: 28, scale: 0.98 },
+                animate: { opacity: 1, y: 0, scale: 1 },
+                transition: { duration: 0.9, delay: 0.3, ease: [0.2, 0.7, 0.25, 1] as const },
+              })}
         >
-          {COLUMNS.map((c) => (
-            <li key={c.slug} className="h-full">
-              <Link
-                href={`/leistungen/${c.slug}`}
-                className="group flex h-full flex-col border-t border-white/12 pt-5 transition-colors duration-300 hover:border-cyan/60 focus-visible:border-cyan/60"
-              >
-                <p className="text-sm leading-relaxed text-fog">
-                  <span className="font-semibold text-white transition-colors duration-300 group-hover:text-cyan">
-                    {c.name}
-                  </span>{" "}
-                  {c.text}
-                </p>
+          <div className="relative [perspective:1800px]">
+            {/* leichte räumliche Neigung wie in der Referenz – nur Desktop */}
+            <div className="lg:[transform:rotateY(-7deg)_rotateX(2deg)] lg:[transform-style:preserve-3d]">
+              <OpsDashboard />
+            </div>
 
-                {/* Thumbnail sitzt bei allen Karten auf gleicher Grundlinie */}
-                <div className="mt-auto pt-5">
-                  <div className="overflow-hidden rounded-lg border border-white/8 bg-white/[0.02] px-2 py-1.5 transition-colors duration-300 group-hover:border-white/16">
-                    <div className="h-16 overflow-hidden">{c.thumb}</div>
-                    <p className="mt-1 border-t border-white/6 px-1 pt-1.5 font-[family-name:var(--font-mono)] text-[8px] uppercase tracking-wider text-white/35">
-                      {c.caption}
-                    </p>
-                  </div>
-
-                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-fog transition-colors duration-300 group-hover:text-cyan">
-                    Mehr erfahren
-                    <ArrowRight
-                      size={12}
-                      strokeWidth={2.5}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5"
-                      aria-hidden
-                    />
-                  </span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </motion.ul>
-
-        <motion.div {...rise(0.42)} className="mt-14">
-          <Link
-            href="/referenzen"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-fog transition-colors hover:text-cyan"
-          >
-            Aus unserer Arbeit – Referenzen ansehen
-            <ArrowRight size={14} strokeWidth={2.5} aria-hidden />
-          </Link>
+            {/* Holografische Plattform mit Tagline */}
+            <div className="relative mx-auto -mt-3 hidden h-20 w-[88%] lg:block" aria-hidden>
+              <div className="absolute inset-x-0 top-4 h-10 rounded-[50%] border border-cyan/35 shadow-[0_0_40px_rgba(25,216,242,0.25),inset_0_0_30px_rgba(25,216,242,0.15)]" />
+              <div className="absolute inset-x-[8%] top-7 h-6 rounded-[50%] border border-cyan-soft/25" />
+              <div className="absolute inset-x-[30%] top-1 h-14 rounded-[50%] bg-cyan/15 blur-xl" />
+            </div>
+            <p className="relative z-10 mx-auto -mt-14 hidden w-fit rounded-full border border-cyan/40 bg-navy/90 px-5 py-1.5 text-sm font-medium text-mist shadow-[0_0_24px_rgba(25,216,242,0.25)] lg:block">
+              IT, die mitdenkt. Und voraus ist.
+            </p>
+          </div>
+          <p className="mt-5 text-center font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-white/35">
+            Demo-Ansicht unseres Leitstands – so sieht Betreuung bei QonteX aus
+          </p>
         </motion.div>
       </div>
     </section>

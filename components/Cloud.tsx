@@ -17,7 +17,7 @@ const POINTS = [
 
 export default function Cloud() {
   return (
-    <section className="relative px-6 py-28">
+    <section id="cloud" className="relative px-6 py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
         <Reveal className="order-2 lg:order-1">
           <div className="grid grid-cols-2 gap-4">
