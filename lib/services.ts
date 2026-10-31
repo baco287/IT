@@ -227,7 +227,7 @@ export const SERVICES: Service[] = [
     metaDescription:
       "Webdesign von QonteX: Moderne, schnelle Webseiten und Online-Shops – von der Konzeption über das Design bis zu Hosting, Wartung und DSGVO-konformem Betrieb.",
     intro:
-      "Deine Website ist oft der erste Eindruck, den Kunden von dir bekommen. Wir konzipieren, gestalten und entwickeln Webseiten und Online-Shops, die schnell laden, auf jedem Gerät funktionieren und Anfragen bringen – und betreiben sie danach zuverlässig weiter. Wie das aussieht, zeigen unsere Referenzen: Jede Seite dort ist von uns gebaut und live im Einsatz.",
+      "Deine Website ist oft der erste Eindruck, den Kunden von dir bekommen. Wir konzipieren, gestalten und entwickeln Webseiten und Online-Shops, die schnell laden, auf jedem Gerät funktionieren und Anfragen bringen – und betreiben sie danach zuverlässig weiter.",
     scopeTitle: "Das setzen wir für dich um",
     scope: [
       "Konzeption, Design und Entwicklung deiner Website",
@@ -239,8 +239,8 @@ export const SERVICES: Service[] = [
     ],
     benefits: [
       {
-        title: "Live zu sehen",
-        text: "Unsere Referenzen sind keine Mockups – jede Seite ist im echten Einsatz für echte Unternehmen.",
+        title: "Aus der Praxis",
+        text: "Wir bauen Webseiten, die im Alltag funktionieren – für echte Unternehmen, nicht für Design-Wettbewerbe.",
       },
       {
         title: "Schnell und auffindbar",

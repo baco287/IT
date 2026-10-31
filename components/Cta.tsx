@@ -1,20 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
-import zulassung from "@/public/images/refs/deutschezulassung.jpg";
-import heizwechsel from "@/public/images/refs/heizwechsel.jpg";
-import hairvenly from "@/public/images/refs/hairvenly.jpg";
-import voltgas from "@/public/images/refs/volt-gas.jpg";
 
+/* Abstrakte, unscharfe Interface-Flächen als Tiefenebene (keine Projekt-Screenshots) */
 const TILES = [
-  { img: voltgas, cls: "left-[-3rem] top-[9rem] w-[17rem] rotate-[-2deg] blur-[3px] opacity-25" },
-  { img: hairvenly, cls: "left-[16rem] top-[16rem] w-[13rem] rotate-[2deg] blur-[4px] opacity-20" },
-  { img: zulassung, cls: "right-[10rem] top-[7rem] w-[19rem] rotate-[2deg] blur-[2px] opacity-30" },
-  { img: heizwechsel, cls: "right-[-4rem] top-[18rem] w-[15rem] rotate-[-2.5deg] blur-[4px] opacity-20" },
+  { cls: "left-[-3rem] top-[9rem] h-[11rem] w-[17rem] rotate-[-2deg] blur-[3px] opacity-30", bars: [70, 45, 85, 30] },
+  { cls: "left-[16rem] top-[16rem] h-[8.5rem] w-[13rem] rotate-[2deg] blur-[4px] opacity-25", bars: [55, 80, 40] },
+  { cls: "right-[10rem] top-[7rem] h-[12rem] w-[19rem] rotate-[2deg] blur-[2px] opacity-35", bars: [60, 90, 50, 75] },
+  { cls: "right-[-4rem] top-[18rem] h-[10rem] w-[15rem] rotate-[-2.5deg] blur-[4px] opacity-25", bars: [80, 35, 65] },
 ];
 
-/* Finale CTA-Sektion im neon-Stil: Riesen-Headline, schwebende
-   Referenz-Kacheln, Buttons und Mono-Chip unten. */
+/* Finale CTA-Sektion: Riesen-Headline, schwebende Interface-Kacheln,
+   Buttons und Mono-Chip unten. */
 export default function Cta() {
   return (
     <section className="relative overflow-hidden px-6 pb-24 pt-36">
@@ -26,11 +22,23 @@ export default function Cta() {
           <div key={i} className={`absolute ${t.cls}`}>
             {/* Innere Ebene driftet extrem langsam – je Kachel anderes Tempo */}
             <div
-              className="tiledrift relative overflow-hidden rounded-xl border border-white/5"
+              className="tiledrift relative h-full overflow-hidden rounded-xl border border-cyan/20 bg-[linear-gradient(160deg,rgba(25,216,242,0.14),rgba(9,26,44,0.9))] p-4"
               style={{ animationDuration: `${22 + i * 4}s`, animationDelay: `${i * 3}s` }}
             >
-              <Image src={t.img} alt="" className="w-full" sizes="320px" />
-              <div className="absolute inset-0 bg-night/60" />
+              <div className="flex gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-white/25" />
+                <span className="h-2 w-2 rounded-full bg-white/25" />
+                <span className="h-2 w-2 rounded-full bg-white/25" />
+              </div>
+              <div className="mt-4 space-y-2.5">
+                {t.bars.map((w, j) => (
+                  <span
+                    key={j}
+                    className="block h-2 rounded-full bg-cyan/40"
+                    style={{ width: `${w}%` }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         ))}

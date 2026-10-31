@@ -6,7 +6,7 @@ const ITEMS = [
   {
     slug: "webseiten",
     title: "Webseiten & Online-Shops.",
-    text: "Moderne, schnelle Webseiten wie in den Referenzen oben – konzipiert, gebaut und danach zuverlässig betreut.",
+    text: "Moderne, schnelle Webseiten und Online-Shops – konzipiert, gebaut und danach zuverlässig betreut.",
     linkLabel: "Mehr zu Webseiten",
   },
   {
@@ -23,8 +23,7 @@ const ITEMS = [
   },
 ];
 
-/* Kompakte Sektion direkt nach den Referenzen: die Digital-Leistungen,
-   mit denen genau solche Projekte entstehen. */
+/* Kompakte Sektion zu den Digital-Leistungen. */
 export default function DigitalTrio() {
   return (
     <section className="px-6 py-24">

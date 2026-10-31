@@ -2,17 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  ArrowRight,
-  ShieldCheck,
-  Users,
-  Clock3,
-  Flame,
-  FileCheck2,
-  Thermometer,
-  Scissors,
-  CircleDot,
-} from "lucide-react";
+import { ArrowRight, ShieldCheck, Users, Clock3 } from "lucide-react";
 import OpsDashboard from "./OpsDashboard";
 import ServiceCards from "./ServiceCards";
 
@@ -20,15 +10,6 @@ const TRUST = [
   { icon: ShieldCheck, line1: "100 %", line2: "Deutschland" },
   { icon: Users, line1: "Persönliche", line2: "Ansprechpartner" },
   { icon: Clock3, line1: "24/7", line2: "Überwachung" },
-];
-
-/* Echte, live laufende QonteX-Projekte (keine fremden Herstellerlogos) */
-const PROJECTS = [
-  { name: "Volt-Gas", icon: Flame },
-  { name: "DeutscheZulassung", icon: FileCheck2 },
-  { name: "Heizwechsel", icon: Thermometer },
-  { name: "Hairvenly", icon: Scissors },
-  { name: "Reifencenter", icon: CircleDot },
 ];
 
 /* Deterministische Lichtpunkte für den Hintergrund */
@@ -204,23 +185,8 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* ---------- Projektleiste ---------- */}
-        <motion.div {...rise(0.45)} className="mt-14 lg:-mt-2">
-          <p className="font-[family-name:var(--font-mono)] text-[10.5px] uppercase tracking-[0.2em] text-white/70">
-            Im Einsatz bei Unternehmen aus Deutschland – echte Projekte, live online
-          </p>
-          <ul className="mt-4 flex flex-wrap items-center gap-x-12 gap-y-4 lg:max-w-[75%] lg:justify-between">
-            {PROJECTS.map((p) => (
-              <li key={p.name} className="flex items-center gap-2 text-[19px] font-bold tracking-tight text-white/90">
-                <p.icon size={20} strokeWidth={2} className="text-white/70" aria-hidden />
-                {p.name}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
         {/* ---------- Leistungskarten ---------- */}
-        <motion.div {...rise(0.55)} className="mt-7">
+        <motion.div {...rise(0.45)} className="mt-14 lg:mt-4">
           <ServiceCards />
         </motion.div>
 

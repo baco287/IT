@@ -41,15 +41,6 @@ export const MEDIA = {
     email: off("/media/ai/email-agent", "3/1.2"),
   },
 
-  /* Referenzkarten: kurzes Preview nur bei Hover/Fokus (Desktop).
-     Poster bleiben die vorhandenen Screenshots. */
-  references: {
-    "volt-gas": { enabled: false, webm: "/media/references/volt-gas-preview.webm", mp4: "/media/references/volt-gas-preview.mp4", aspect: "3/2", loop: true } as MediaAsset,
-    deutschezulassung: { enabled: false, webm: "/media/references/deutschezulassung-preview.webm", mp4: "/media/references/deutschezulassung-preview.mp4", aspect: "3/2", loop: true } as MediaAsset,
-    heizwechsel: { enabled: false, webm: "/media/references/heizwechsel-preview.webm", mp4: "/media/references/heizwechsel-preview.mp4", aspect: "3/2", loop: true } as MediaAsset,
-    hairvenly: { enabled: false, webm: "/media/references/hairvenly-preview.webm", mp4: "/media/references/hairvenly-preview.mp4", aspect: "3/2", loop: true } as MediaAsset,
-  },
-
   /* Hero-Medienbereich der Leistungs-Unterseiten (rechts neben dem Text). */
   services: {
     "ki-agenten": off("/media/services/ai-agents-loop"),

@@ -57,7 +57,6 @@ const LINKS: NavLink[] = [
       },
     ],
   },
-  { href: "/referenzen", label: "Referenzen" },
   { href: "/ueber", label: "Über QonteX" },
   { href: "/kontakt", label: "Kontakt" },
 ];
