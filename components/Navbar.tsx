@@ -39,6 +39,7 @@ const LINKS: NavLink[] = [
           { href: "/leistungen/webseiten", label: "Webseiten & Online-Shops" },
           { href: "/leistungen/online-marketing", label: "Ads & Online-Marketing" },
           { href: "/leistungen/social-media", label: "Social Media" },
+          { href: "/leistungen/dashboards", label: "Dashboards & Reporting" },
         ],
       },
     ],

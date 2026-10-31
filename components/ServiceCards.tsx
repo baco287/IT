@@ -131,9 +131,9 @@ const CARDS: Card[] = [
   },
   {
     icon: BarChart3,
-    title: "Dashboards & Monitoring",
+    title: "Dashboards & Reporting",
     text: "Alle Systeme, Kennzahlen und Services live auf einen Blick.",
-    href: "/loesungen",
+    href: "/leistungen/dashboards",
     accent: "#19d8f2",
     visual: vis.dash,
   },
