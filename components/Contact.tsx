@@ -3,29 +3,38 @@
 import { useState } from "react";
 import { Clock, Mail, MapPin, Phone, Check, Loader2 } from "lucide-react";
 import Reveal from "./Reveal";
-import SectionHead from "./SectionHead";
+import { EMAIL, PHONE_DISPLAY, PHONE_HREF } from "./Cta";
+import { IconTile, container } from "./ui";
 
 const FORM_ENDPOINT =
   "https://formsubmit.co/ajax/" + ["karakuss", "sezer"].join(".") + "@gmail" + ".com";
 
 const SERVICES = [
-  "Managed IT Services",
+  "IT-Betreuung (Managed IT)",
   "IT-Support",
-  "Cloud-Lösungen",
-  "Cybersecurity",
+  "Cloud & Microsoft 365",
+  "IT-Sicherheit",
   "Server & Netzwerke",
-  "Backup & Recovery",
+  "Backup & Wiederherstellung",
+  "KI-Agenten & Automatisierung",
+  "Webseite oder Online-Shop",
+  "Online-Marketing / Social Media",
   "Allgemeine Beratung",
 ];
 
 const CONTACT_FACTS = [
-  { icon: Phone, label: "Telefon", value: "+49 176 25041651" },
-  { icon: Mail, label: "E-Mail", value: "info@qontex.de" },
+  { icon: Phone, label: "Telefon", value: PHONE_DISPLAY, href: PHONE_HREF },
+  { icon: Mail, label: "E-Mail", value: EMAIL, href: `mailto:${EMAIL}` },
   { icon: MapPin, label: "Adresse", value: "Pappelallee 64, 10437 Berlin" },
   { icon: Clock, label: "Erreichbarkeit", value: "Termine nach Vereinbarung" },
 ];
 
 type Status = "idle" | "sending" | "success" | "error";
+
+const inputCls =
+  "w-full rounded-lg border border-line bg-white px-4 py-3 text-[15px] text-text placeholder:text-muted/60 transition-colors focus:border-teal-dark focus:outline-none focus:ring-2 focus:ring-teal/25";
+const labelCls = "mb-1.5 block text-sm font-semibold text-ink";
+const errCls = "mt-1.5 text-sm text-red-600";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
@@ -37,14 +46,13 @@ export default function Contact() {
     const data = new FormData(form);
 
     const next: Record<string, string> = {};
-    if (!String(data.get("name") ?? "").trim()) next.name = "Bitte gib deinen Namen an.";
+    if (!String(data.get("name") ?? "").trim()) next.name = "Bitte geben Sie Ihren Namen an.";
     const email = String(data.get("email") ?? "").trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      next.email = "Bitte gib eine gültige E-Mail-Adresse an.";
-    if (!String(data.get("leistung") ?? ""))
-      next.leistung = "Bitte wähle eine Leistung aus.";
+      next.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
+    if (!String(data.get("leistung") ?? "")) next.leistung = "Bitte wählen Sie eine Leistung aus.";
     if (!data.get("datenschutz"))
-      next.datenschutz = "Bitte stimme der Verarbeitung deiner Daten zu.";
+      next.datenschutz = "Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.";
     if (String(data.get("_honey") ?? "")) return; // Spam-Schutz
 
     setErrors(next);
@@ -75,141 +83,153 @@ export default function Contact() {
     }
   };
 
-  const inputCls =
-    "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-fog/50 transition-colors focus:border-cyan/50 focus:bg-white/[0.06] focus:outline-none";
-
   return (
-    <section id="kontakt" className="px-6 py-28">
-      <div className="mx-auto max-w-6xl">
-        <SectionHead
-          label="Kontakt"
-          title="Sprechen wir über deine IT"
-          text="Stell deine Anfrage – wir melden uns zeitnah mit einer ehrlichen Einschätzung zurück."
-        />
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-          <Reveal>
-            <ul className="space-y-4">
-              {CONTACT_FACTS.map((f) => (
-                <li key={f.label} className="glass flex items-center gap-4 rounded-xl px-5 py-4">
-                  <span className="grid h-10 w-10 flex-none place-items-center rounded-lg bg-cyan/10 text-cyan">
-                    <f.icon size={18} strokeWidth={2} aria-hidden />
+    <section id="kontakt" className="bg-white py-16 lg:py-20">
+      <div className={`${container} grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-14`}>
+        <Reveal>
+          <h2 className="text-2xl font-bold">So erreichen Sie uns</h2>
+          <ul className="mt-6 space-y-3">
+            {CONTACT_FACTS.map((f) => {
+              const body = (
+                <>
+                  <IconTile>
+                    <f.icon size={20} strokeWidth={1.9} aria-hidden />
+                  </IconTile>
+                  <span>
+                    <span className="block text-sm text-muted">{f.label}</span>
+                    <span className="block text-[16px] font-semibold text-ink">{f.value}</span>
                   </span>
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-fog">
-                      {f.label}
-                    </p>
-                    <p className="text-sm font-semibold text-mist">{f.value}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-xs leading-relaxed text-fog">
-              QonteX ist ein Angebot der Volt Gas UG (haftungsbeschränkt), Berlin.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.12}>
-            <div className="glass rounded-2xl p-8">
-              {status === "success" ? (
-                <div className="py-10 text-center" role="status">
-                  <span className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-cyan/50 bg-cyan/10 text-cyan">
-                    <Check size={28} strokeWidth={2.5} aria-hidden />
-                  </span>
-                  <h3 className="mt-5 font-[family-name:var(--font-display)] text-xl font-semibold text-white">
-                    Vielen Dank für deine Anfrage!
-                  </h3>
-                  <p className="mt-2 text-sm text-fog">
-                    Wir melden uns zeitnah bei dir zurück.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={onSubmit} noValidate>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="c-name" className="mb-1.5 block text-xs font-semibold text-mist">
-                        Name *
-                      </label>
-                      <input id="c-name" name="name" type="text" autoComplete="name" placeholder="Max Mustermann" className={inputCls} aria-invalid={!!errors.name} />
-                      {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
+                </>
+              );
+              return (
+                <li key={f.label}>
+                  {f.href ? (
+                    <a
+                      href={f.href}
+                      className="flex items-center gap-4 rounded-xl border border-line bg-white px-5 py-4 transition-colors hover:border-teal"
+                    >
+                      {body}
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-4 rounded-xl border border-line bg-white px-5 py-4">
+                      {body}
                     </div>
-                    <div>
-                      <label htmlFor="c-firma" className="mb-1.5 block text-xs font-semibold text-mist">
-                        Unternehmen
-                      </label>
-                      <input id="c-firma" name="unternehmen" type="text" autoComplete="organization" placeholder="Mustermann GmbH" className={inputCls} />
-                    </div>
-                    <div>
-                      <label htmlFor="c-mail" className="mb-1.5 block text-xs font-semibold text-mist">
-                        E-Mail *
-                      </label>
-                      <input id="c-mail" name="email" type="email" autoComplete="email" placeholder="max@firma.de" className={inputCls} aria-invalid={!!errors.email} />
-                      {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
-                    </div>
-                    <div>
-                      <label htmlFor="c-tel" className="mb-1.5 block text-xs font-semibold text-mist">
-                        Telefonnummer
-                      </label>
-                      <input id="c-tel" name="telefon" type="tel" autoComplete="tel" placeholder="0170 1234567" className={inputCls} />
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <label htmlFor="c-service" className="mb-1.5 block text-xs font-semibold text-mist">
-                      Gewünschte Leistung *
-                    </label>
-                    <select id="c-service" name="leistung" defaultValue="" className={`${inputCls} appearance-none bg-navy`} aria-invalid={!!errors.leistung}>
-                      <option value="" disabled>
-                        Bitte auswählen …
-                      </option>
-                      {SERVICES.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.leistung && <p className="mt-1 text-xs text-red-400">{errors.leistung}</p>}
-                  </div>
-                  <div className="mt-4">
-                    <label htmlFor="c-msg" className="mb-1.5 block text-xs font-semibold text-mist">
-                      Nachricht
-                    </label>
-                    <textarea id="c-msg" name="nachricht" rows={4} placeholder="Beschreib kurz dein Anliegen …" className={`${inputCls} resize-y`} />
-                  </div>
-                  <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="absolute -left-[9999px] h-0 opacity-0" aria-hidden />
-                  <div className="mt-4">
-                    <label className="flex items-start gap-3 text-xs leading-relaxed text-fog">
-                      <input type="checkbox" name="datenschutz" className="mt-0.5 h-4 w-4 flex-none accent-[#2dd4ea]" aria-invalid={!!errors.datenschutz} />
-                      <span>
-                        Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage
-                        verarbeitet werden. Die Daten werden nicht weitergegeben. *
-                      </span>
-                    </label>
-                    {errors.datenschutz && <p className="mt-1 text-xs text-red-400">{errors.datenschutz}</p>}
-                  </div>
-                  {status === "error" && (
-                    <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-xs text-red-300" role="alert">
-                      Das Senden hat leider nicht geklappt. Bitte versuch es in
-                      einem Moment erneut.
-                    </p>
                   )}
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-7 py-3.5 font-semibold text-[#04222b] shadow-[0_10px_30px_rgba(45,212,234,0.25)] transition-opacity disabled:opacity-70"
-                  >
-                    {status === "sending" ? (
-                      <>
-                        <Loader2 size={17} className="animate-spin" aria-hidden />
-                        Wird gesendet …
-                      </>
-                    ) : (
-                      "Anfrage senden"
-                    )}
-                  </button>
-                </form>
-              )}
-            </div>
-          </Reveal>
-        </div>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            QonteX ist ein Angebot der Volt Gas UG (haftungsbeschränkt), Berlin.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <div className="rounded-2xl border border-line bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
+            {status === "success" ? (
+              <div className="py-10 text-center" role="status">
+                <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-teal-tint text-teal-dark">
+                  <Check size={30} strokeWidth={2.5} aria-hidden />
+                </span>
+                <h3 className="mt-5 text-xl font-bold">Vielen Dank für Ihre Anfrage!</h3>
+                <p className="mt-2 text-muted">Wir melden uns zeitnah bei Ihnen.</p>
+              </div>
+            ) : (
+              <form onSubmit={onSubmit} noValidate>
+                <h2 className="text-2xl font-bold">Kostenloses Erstgespräch anfragen</h2>
+                <p className="mt-2 text-[15px] text-muted">
+                  Schildern Sie uns kurz Ihr Anliegen – wir melden uns mit einer ehrlichen
+                  Einschätzung zurück.
+                </p>
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="c-name" className={labelCls}>
+                      Name *
+                    </label>
+                    <input id="c-name" name="name" type="text" autoComplete="name" placeholder="Max Mustermann" className={inputCls} aria-invalid={!!errors.name} aria-describedby={errors.name ? "e-name" : undefined} />
+                    {errors.name && <p id="e-name" className={errCls}>{errors.name}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="c-firma" className={labelCls}>
+                      Unternehmen
+                    </label>
+                    <input id="c-firma" name="unternehmen" type="text" autoComplete="organization" placeholder="Mustermann GmbH" className={inputCls} />
+                  </div>
+                  <div>
+                    <label htmlFor="c-mail" className={labelCls}>
+                      E-Mail *
+                    </label>
+                    <input id="c-mail" name="email" type="email" autoComplete="email" placeholder="max@firma.de" className={inputCls} aria-invalid={!!errors.email} aria-describedby={errors.email ? "e-mail" : undefined} />
+                    {errors.email && <p id="e-mail" className={errCls}>{errors.email}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="c-tel" className={labelCls}>
+                      Telefonnummer
+                    </label>
+                    <input id="c-tel" name="telefon" type="tel" autoComplete="tel" placeholder="0170 1234567" className={inputCls} />
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <label htmlFor="c-service" className={labelCls}>
+                    Worum geht es? *
+                  </label>
+                  <select id="c-service" name="leistung" defaultValue="" className={inputCls} aria-invalid={!!errors.leistung} aria-describedby={errors.leistung ? "e-service" : undefined}>
+                    <option value="" disabled>
+                      Bitte auswählen …
+                    </option>
+                    {SERVICES.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.leistung && <p id="e-service" className={errCls}>{errors.leistung}</p>}
+                </div>
+                <div className="mt-4">
+                  <label htmlFor="c-msg" className={labelCls}>
+                    Nachricht
+                  </label>
+                  <textarea id="c-msg" name="nachricht" rows={4} placeholder="Beschreiben Sie kurz Ihr Anliegen …" className={`${inputCls} resize-y`} />
+                </div>
+                <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="absolute -left-[9999px] h-0 opacity-0" aria-hidden />
+                <div className="mt-4">
+                  <label className="flex items-start gap-3 text-sm leading-relaxed text-muted">
+                    <input type="checkbox" name="datenschutz" className="mt-0.5 h-5 w-5 flex-none accent-[#00a99d]" aria-invalid={!!errors.datenschutz} />
+                    <span>
+                      Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet
+                      werden. Details in der{" "}
+                      <a href="/datenschutz" className="font-medium text-teal-dark underline">
+                        Datenschutzerklärung
+                      </a>
+                      . *
+                    </span>
+                  </label>
+                  {errors.datenschutz && <p className={errCls}>{errors.datenschutz}</p>}
+                </div>
+                {status === "error" && (
+                  <p className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+                    Das Senden hat leider nicht geklappt. Bitte versuchen Sie es in einem Moment erneut
+                    oder rufen Sie uns an: {PHONE_DISPLAY}.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-ink px-7 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-ink-soft disabled:opacity-70"
+                >
+                  {status === "sending" ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" aria-hidden />
+                      Wird gesendet …
+                    </>
+                  ) : (
+                    "Anfrage senden"
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

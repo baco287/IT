@@ -1,30 +1,14 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
-/** Sanftes Scroll-Reveal mit optionaler Staffelung. */
+/** Layout-Wrapper für Inhaltsblöcke. Bewusst ohne Scroll-Animation:
+    Inhalte sind sofort sichtbar – auch ohne JavaScript. */
 export default function Reveal({
   children,
-  delay = 0,
   className,
-  y = 26,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
-  y?: number;
 }) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y }}
-      whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.2, 0.7, 0.25, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }

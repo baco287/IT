@@ -8,15 +8,16 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-const h2 = "mt-10 mb-3 font-[family-name:var(--font-display)] text-xl font-semibold text-white";
-const p = "text-sm leading-relaxed text-fog";
+const h2 = "mt-10 mb-3 text-xl font-bold text-ink";
+const p = "text-[15px] leading-relaxed text-muted";
+const link = "font-medium text-teal-dark underline-offset-2 hover:underline";
 
 export default function Impressum() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pb-24 pt-36">
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white">
+      <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
+        <h1 className="text-[2.2rem] font-extrabold tracking-tight">
           Impressum
         </h1>
 
@@ -24,7 +25,7 @@ export default function Impressum() {
         <p className={p}>
           QonteX ist ein Angebot der
           <br />
-          <strong className="text-mist">Volt Gas UG (haftungsbeschränkt)</strong>
+          <strong className="text-ink">Volt Gas UG (haftungsbeschränkt)</strong>
           <br />
           Pappelallee 64
           <br />
@@ -82,7 +83,7 @@ export default function Impressum() {
           Online-Streitbeilegung (OS) bereit:{" "}
           <a
             href="https://ec.europa.eu/consumers/odr/"
-            className="text-cyan underline-offset-2 hover:underline"
+            className={link}
             target="_blank"
             rel="noopener noreferrer"
           >

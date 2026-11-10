@@ -1,146 +1,144 @@
 import Link from "next/link";
 import {
-  MonitorCog,
+  Server,
+  Cloud,
+  ShieldCheck,
+  Sparkles,
   Headset,
-  CloudCog,
-  ShieldHalf,
   Network,
   DatabaseBackup,
   Globe,
   Megaphone,
   Share2,
-  LayoutDashboard,
-  ArrowRight,
+  BarChart3,
   Bot,
+  ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
 import Reveal from "./Reveal";
-import SectionHead from "./SectionHead";
+import { Eyebrow, IconTile, container } from "./ui";
 
-const SERVICES = [
+type Card = { icon: LucideIcon; title: string; text: string; href: string };
+
+/* Die vier Kernleistungen für die Startseite */
+const CORE: Card[] = [
   {
-    icon: MonitorCog,
-    slug: "managed-it",
-    title: "Managed IT Services",
-    text: "Wir betreiben und pflegen deine komplette IT-Umgebung – Updates, Wartung und Optimierung inklusive.",
+    icon: Server,
+    title: "IT-Betreuung",
+    text: "Wir übernehmen Betrieb, Wartung, Updates und Support Ihrer gesamten IT.",
+    href: "/leistungen/managed-it",
   },
   {
-    icon: Headset,
-    slug: "it-support",
-    title: "IT-Support",
-    text: "Schnelle, verständliche Hilfe bei allen IT-Fragen – per Fernwartung oder direkt vor Ort.",
+    icon: Cloud,
+    title: "Cloud & Microsoft 365",
+    text: "Moderne Arbeitsplätze, sichere Daten und zuverlässige Zusammenarbeit.",
+    href: "/leistungen/cloud-loesungen",
   },
   {
-    icon: CloudCog,
-    slug: "cloud-loesungen",
-    title: "Cloud-Lösungen",
-    text: "Sichere Cloud-Umgebungen und Microsoft 365 – flexibel, ortsunabhängig und zentral verwaltet.",
+    icon: ShieldCheck,
+    title: "IT-Sicherheit",
+    text: "Wir schützen Ihre Systeme, Daten und Mitarbeiter vor digitalen Risiken.",
+    href: "/leistungen/cybersecurity",
   },
   {
-    icon: ShieldHalf,
-    slug: "cybersecurity",
-    title: "Cybersecurity",
-    text: "Mehrstufige Sicherheitskonzepte, die deine Systeme, Daten und Mitarbeiter wirksam schützen.",
-  },
-  {
-    icon: Network,
-    slug: "server-netzwerke",
-    title: "Server & Netzwerke",
-    text: "Stabile Server- und Netzwerkinfrastrukturen – geplant, aufgebaut und kontinuierlich überwacht.",
-  },
-  {
-    icon: DatabaseBackup,
-    slug: "backup-recovery",
-    title: "Backup & Recovery",
-    text: "Durchdachte Datensicherung und klare Wiederherstellungspläne für den Fall der Fälle.",
-  },
-  {
-    icon: Globe,
-    slug: "webseiten",
-    title: "Webseiten & Online-Shops",
-    text: "Moderne, schnelle Webseiten und Shops – konzipiert, gebaut und danach zuverlässig betreut.",
-  },
-  {
-    icon: Megaphone,
-    slug: "online-marketing",
-    title: "Ads & Online-Marketing",
-    text: "Google- und Meta-Kampagnen mit sauberem Tracking und Reporting, das du wirklich verstehst.",
-  },
-  {
-    icon: Share2,
-    slug: "social-media",
-    title: "Social Media",
-    text: "Strategie, Content und Betreuung deiner Kanäle – konstant sichtbar statt sporadisch aktiv.",
-  },
-  {
-    icon: LayoutDashboard,
-    slug: "dashboards",
-    title: "Dashboards & Reporting",
-    text: "Finanz-, Marketing- und IT-Kennzahlen aus allen Quellen – live auf einen Blick statt in Excel-Listen.",
+    icon: Sparkles,
+    title: "KI & Automatisierung",
+    text: "Wiederkehrende Aufgaben automatisieren und Kundenanfragen schneller beantworten.",
+    href: "/leistungen/ki-agenten",
   },
 ];
 
-export default function Services() {
+/* Alle Leistungen für die Übersichtsseite */
+const GROUPS: Array<{ title: string; cards: Card[] }> = [
+  {
+    title: "IT-Betreuung & Infrastruktur",
+    cards: [
+      CORE[0],
+      { icon: Headset, title: "IT-Support", text: "Schnelle, verständliche Hilfe bei IT-Fragen – per Fernwartung oder vor Ort.", href: "/leistungen/it-support" },
+      CORE[1],
+      CORE[2],
+      { icon: Network, title: "Server & Netzwerke", text: "Stabile Server und Netzwerke – geplant, eingerichtet und überwacht.", href: "/leistungen/server-netzwerke" },
+      { icon: DatabaseBackup, title: "Backup & Wiederherstellung", text: "Regelmäßige Datensicherung mit getesteter Wiederherstellung für den Ernstfall.", href: "/leistungen/backup-recovery" },
+    ],
+  },
+  {
+    title: "Digital & Automatisierung",
+    cards: [
+      { icon: Bot, title: "KI-Agenten", text: "Kundenanfragen über WhatsApp, Telefon und E-Mail automatisch beantworten.", href: "/leistungen/ki-agenten" },
+      { icon: Globe, title: "Webseiten & Online-Shops", text: "Moderne, schnelle Webseiten – erstellt und danach zuverlässig betreut.", href: "/leistungen/webseiten" },
+      { icon: Megaphone, title: "Online-Marketing", text: "Werbeanzeigen bei Google und Meta mit klarem Budget und verständlichem Bericht.", href: "/leistungen/online-marketing" },
+      { icon: Share2, title: "Social Media", text: "Strategie, Inhalte und Betreuung Ihrer Kanäle – regelmäßig und planbar.", href: "/leistungen/social-media" },
+      { icon: BarChart3, title: "Dashboards & Reporting", text: "Wichtige Kennzahlen Ihres Unternehmens übersichtlich an einem Ort.", href: "/leistungen/dashboards" },
+    ],
+  },
+];
+
+function ServiceCard({ c }: { c: Card }) {
   return (
-    <section id="leistungen" className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <SectionHead
-          label="Leistungen"
-          title="Ganzheitliche IT-Lösungen aus einer Hand"
-          text="Alle Kernbereiche, ein verantwortlicher Partner – abgestimmt aufeinander statt zusammengestückelt."
-        />
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.slug} delay={(i % 3) * 0.07}>
-              <div className="glass flex h-full flex-col rounded-xl p-7 transition-shadow hover:shadow-[0_4px_16px_rgba(23,37,58,0.09)]">
-                <span className="grid h-11 w-11 place-items-center rounded-lg bg-cyan/8 text-cyan">
-                  <s.icon size={21} strokeWidth={1.9} aria-hidden />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold text-white">{s.title}</h3>
-                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-fog">
-                  {s.text}
-                </p>
-                <Link
-                  href={`/leistungen/${s.slug}`}
-                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan hover:underline"
-                >
-                  Mehr zu {s.title}
-                  <ArrowRight size={14} strokeWidth={2.5} aria-hidden />
-                </Link>
-              </div>
+    <Link
+      href={c.href}
+      className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1 hover:border-teal/60 hover:shadow-[var(--shadow-card-hover)]"
+    >
+      <IconTile>
+        <c.icon size={24} strokeWidth={1.8} aria-hidden />
+      </IconTile>
+      <h3 className="mt-5 text-xl font-bold">{c.title}</h3>
+      <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-muted">{c.text}</p>
+      <span className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-teal-dark">
+        Mehr erfahren
+        <ArrowRight size={16} strokeWidth={2.2} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
+      </span>
+    </Link>
+  );
+}
+
+export default function Services({ variant = "home" }: { variant?: "home" | "all" }) {
+  if (variant === "all") {
+    return (
+      <div className="space-y-14">
+        {GROUPS.map((g) => (
+          <section key={g.title} aria-labelledby={`g-${g.title}`}>
+            <h2 id={`g-${g.title}`} className="text-2xl font-bold">
+              {g.title}
+            </h2>
+            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {g.cards.map((c, i) => (
+                <Reveal key={c.href + c.title} delay={(i % 3) * 0.05} className="h-full">
+                  <ServiceCard c={c} />
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <section id="leistungen" className="bg-white py-14 lg:py-16">
+      <div className={container}>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <Eyebrow>Unsere Leistungen</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-[2.4rem]">
+              IT-Lösungen, die einfach funktionieren.
+            </h2>
+          </div>
+          <Link
+            href="/leistungen"
+            className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-ink hover:text-teal-dark"
+          >
+            Alle Leistungen ansehen
+            <ArrowRight size={16} strokeWidth={2.2} aria-hidden />
+          </Link>
+        </div>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {CORE.map((c, i) => (
+            <Reveal key={c.href} delay={i * 0.05} className="h-full">
+              <ServiceCard c={c} />
             </Reveal>
           ))}
         </div>
-
-        {/* Hervorgehobene Leistung: KI-Agenten */}
-        <Reveal delay={0.1}>
-          <Link
-            href="/leistungen/ki-agenten"
-            className="glass mt-5 flex flex-col items-start gap-6 rounded-xl border-cyan/35 p-7 transition-shadow hover:shadow-[0_4px_16px_rgba(23,37,58,0.09)] sm:flex-row sm:items-center sm:p-8"
-          >
-            <span className="grid h-13 w-13 flex-none place-items-center rounded-xl bg-cyan/8 p-3 text-cyan">
-              <Bot size={26} strokeWidth={1.9} aria-hidden />
-            </span>
-            <span className="flex-1">
-              <span className="mb-1.5 flex flex-wrap items-center gap-2.5">
-                <span className="text-lg font-semibold text-white">
-                  KI-Agenten & Automatisierung
-                </span>
-                <span className="rounded-full border border-cyan/40 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-cyan">
-                  Neu
-                </span>
-              </span>
-              <span className="block max-w-2xl text-sm leading-relaxed text-fog">
-                KI-Assistenten, die deine Kundenanfragen auf WhatsApp, am Telefon und
-                per E-Mail rund um die Uhr aufnehmen und beantworten – integriert in
-                deine Systeme, mit Übergabe an dein Team im richtigen Moment.
-              </span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan">
-              Mehr zu KI-Agenten
-              <ArrowRight size={14} strokeWidth={2.5} aria-hidden />
-            </span>
-          </Link>
-        </Reveal>
       </div>
     </section>
   );

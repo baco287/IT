@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, Mail, MessageCircle, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Users,
+  Target,
+  MessageCircle,
+  Phone,
+  Mail,
+  CalendarCheck,
+  ClipboardList,
+  Rocket,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import Cta from "@/components/Cta";
 import SmartAmbientVideo from "@/components/SmartAmbientVideo";
+import { Eyebrow, IconTile, btnPrimary, btnSecondary, container } from "@/components/ui";
 import { SERVICES, getService } from "@/lib/services";
 import { MEDIA } from "@/lib/media";
 
@@ -27,6 +41,26 @@ export async function generateMetadata({
   };
 }
 
+const STEPS = [
+  {
+    icon: CalendarCheck,
+    title: "Kostenloses Erstgespräch",
+    text: "Sie schildern uns Ihre Situation – telefonisch oder per Video, unverbindlich.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Analyse & Angebot",
+    text: "Wir prüfen Ihre Anforderungen und machen Ihnen ein klares, verständliches Angebot.",
+  },
+  {
+    icon: Rocket,
+    title: "Umsetzung & Betreuung",
+    text: "Wir setzen um und bleiben danach Ihr fester Ansprechpartner.",
+  },
+];
+
+const CHANNEL_ICONS = { whatsapp: MessageCircle, telefon: Phone, mail: Mail } as const;
+
 export default async function ServicePage({
   params,
 }: {
@@ -42,127 +76,105 @@ export default async function ServicePage({
   return (
     <>
       <Navbar />
-      <main className="pb-24 pt-36">
-        {/* Kopfbereich */}
-        <header className="relative overflow-hidden px-6 pb-16">
-          <div
-            className="absolute inset-0 -top-36 bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(45,212,234,0.09),transparent_65%)]"
-            aria-hidden
-          />
-          <div
-            className={`relative mx-auto ${
-              heroMedia?.enabled
-                ? "max-w-6xl lg:grid lg:grid-cols-[1fr_0.8fr] lg:items-center lg:gap-14"
-                : "max-w-4xl"
-            }`}
-          >
-            <div>
-              <nav aria-label="Pfadnavigation" className="mb-6 text-sm text-fog">
-                <Link href="/leistungen" className="transition-colors hover:text-cyan">
-                  Leistungen
-                </Link>
-                <span className="mx-2" aria-hidden>
-                  /
-                </span>
-                <span className="text-mist">{service.name}</span>
-              </nav>
-              <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                {service.title}
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fog">
-                {service.intro}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="/kontakt"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-6 py-3 font-semibold text-[#04222b] shadow-[0_10px_30px_rgba(45,212,234,0.28)] transition-shadow hover:shadow-[0_14px_36px_rgba(45,212,234,0.4)]"
-                >
-                  Kostenlose Erstberatung
-                  <ArrowRight size={16} strokeWidth={2.5} aria-hidden />
-                </Link>
-              </div>
-            </div>
-            {/* Optionaler Hero-Medienbereich rechts – erscheint nur, wenn die
-                Dateien vorliegen und in lib/media.ts aktiviert sind. Auf
-                Mobilgeräten rutscht er unter den Text (Poster). */}
-            {heroMedia?.enabled && (
-              <SmartAmbientVideo
-                asset={heroMedia}
-                className="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-navy lg:mt-0"
-              />
-            )}
+      <main>
+        {/* 1. Was ist die Leistung? */}
+        <PageHeader
+          eyebrow={service.name}
+          title={service.title}
+          intro={service.intro}
+          crumbs={[{ href: "/leistungen", label: "Leistungen" }, { label: service.name }]}
+        >
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link href="/kontakt" className={btnPrimary}>
+              Kostenloses Erstgespräch
+              <ArrowRight size={18} strokeWidth={2.2} aria-hidden />
+            </Link>
+            <Link href="#umfang" className={btnSecondary}>
+              Was wir übernehmen
+            </Link>
           </div>
-        </header>
+        </PageHeader>
 
-        {/* Leistungsumfang */}
-        <section className="px-6 py-14" aria-labelledby="scope-heading">
-          <div className="mx-auto max-w-4xl">
-            <Reveal>
-              <h2
-                id="scope-heading"
-                className="font-[family-name:var(--font-display)] text-2xl font-semibold text-white"
-              >
-                {service.scopeTitle}
-              </h2>
+        {/* Optionaler Medienbereich – nur sichtbar, wenn in lib/media.ts aktiviert */}
+        {heroMedia?.enabled && (
+          <div className={`${container} pt-12`}>
+            <SmartAmbientVideo
+              asset={heroMedia}
+              className="overflow-hidden rounded-2xl border border-line shadow-[var(--shadow-card)]"
+            />
+          </div>
+        )}
+
+        {/* 2. Für wen? / 3. Welches Problem? */}
+        <section className="bg-white py-16 lg:py-20">
+          <div className={`${container} grid gap-6 md:grid-cols-2`}>
+            <Reveal className="h-full">
+              <div className="h-full rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+                <IconTile>
+                  <Users size={24} strokeWidth={1.8} aria-hidden />
+                </IconTile>
+                <h2 className="mt-5 text-xl font-bold">Für wen eignet sich das?</h2>
+                <p className="mt-2.5 text-[16px] leading-relaxed text-muted">{service.audience}</p>
+              </div>
             </Reveal>
-            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
-              {service.scope.map((item, i) => (
-                <Reveal key={item} delay={0.04 * i}>
-                  <li className="glass flex items-start gap-3 rounded-xl px-5 py-4">
-                    <span className="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-md bg-cyan/10 text-cyan">
-                      <Check size={13} strokeWidth={3} aria-hidden />
-                    </span>
-                    <span className="text-sm leading-relaxed text-mist">{item}</span>
-                  </li>
-                </Reveal>
+            <Reveal delay={0.06} className="h-full">
+              <div className="h-full rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+                <IconTile>
+                  <Target size={24} strokeWidth={1.8} aria-hidden />
+                </IconTile>
+                <h2 className="mt-5 text-xl font-bold">Welches Problem lösen wir?</h2>
+                <p className="mt-2.5 text-[16px] leading-relaxed text-muted">{service.problem}</p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 4. Was übernimmt QonteX konkret? */}
+        <section id="umfang" className="bg-soft py-16 lg:py-20">
+          <div className={container}>
+            <Eyebrow>Leistungsumfang</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold">{service.scopeTitle}</h2>
+            <ul className="mt-8 grid gap-3 md:grid-cols-2">
+              {service.scope.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 rounded-xl border border-line bg-white px-5 py-4"
+                >
+                  <span className="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-full bg-teal-tint text-teal-dark">
+                    <Check size={14} strokeWidth={3} aria-hidden />
+                  </span>
+                  <span className="text-[15px] leading-relaxed text-text">{item}</span>
+                </li>
               ))}
             </ul>
           </div>
         </section>
 
-        {/* Kanäle (nur wenn hinterlegt, z. B. KI-Agenten) */}
+        {/* Kanäle (nur KI-Agenten) */}
         {service.channels && (
-          <section
-            className="border-y border-white/5 bg-abyss px-6 py-16"
-            aria-labelledby="channels-heading"
-          >
-            <div className="mx-auto max-w-4xl">
-              <Reveal>
-                <h2
-                  id="channels-heading"
-                  className="font-[family-name:var(--font-display)] text-2xl font-semibold text-white"
-                >
-                  {service.channelsTitle}
-                </h2>
-                {service.channelsIntro && (
-                  <p className="mt-3 max-w-2xl leading-relaxed text-fog">
-                    {service.channelsIntro}
-                  </p>
-                )}
-              </Reveal>
-              <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <section className="bg-white py-16 lg:py-20" aria-labelledby="channels-heading">
+            <div className={container}>
+              <h2 id="channels-heading" className="text-3xl font-bold">
+                {service.channelsTitle}
+              </h2>
+              {service.channelsIntro && (
+                <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted">{service.channelsIntro}</p>
+              )}
+              <div className="mt-8 grid gap-6 lg:grid-cols-3">
                 {service.channels.map((c, i) => {
-                  const Icon =
-                    c.key === "whatsapp" ? MessageCircle : c.key === "telefon" ? Phone : Mail;
+                  const Icon = CHANNEL_ICONS[c.key];
                   return (
-                    <Reveal key={c.key} delay={0.07 * i}>
-                      <div className="glass flex h-full flex-col rounded-2xl p-6">
-                        <span className="grid h-11 w-11 place-items-center rounded-xl bg-cyan/10 text-cyan ring-1 ring-cyan/25">
-                          <Icon size={20} strokeWidth={1.9} aria-hidden />
-                        </span>
-                        <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg font-semibold text-white">
-                          {c.title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-fog">{c.text}</p>
-                        <ul className="mt-4 space-y-2 border-t border-white/8 pt-4">
+                    <Reveal key={c.key} delay={i * 0.06} className="h-full">
+                      <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+                        <IconTile>
+                          <Icon size={22} strokeWidth={1.8} aria-hidden />
+                        </IconTile>
+                        <h3 className="mt-5 text-lg font-bold">{c.title}</h3>
+                        <p className="mt-2 text-[15px] leading-relaxed text-muted">{c.text}</p>
+                        <ul className="mt-5 space-y-2 border-t border-line pt-5">
                           {c.points.map((p) => (
-                            <li key={p} className="flex items-start gap-2.5 text-[13px] leading-relaxed text-mist">
-                              <Check
-                                size={13}
-                                strokeWidth={3}
-                                className="mt-1 flex-none text-cyan"
-                                aria-hidden
-                              />
+                            <li key={p} className="flex items-start gap-2.5 text-sm leading-relaxed text-text">
+                              <Check size={15} strokeWidth={2.6} className="mt-0.5 flex-none text-teal-dark" aria-hidden />
                               {p}
                             </li>
                           ))}
@@ -177,22 +189,16 @@ export default async function ServicePage({
         )}
 
         {/* Vorteile */}
-        <section className="px-6 py-14" aria-labelledby="benefits-heading">
-          <div className="mx-auto max-w-4xl">
-            <Reveal>
-              <h2
-                id="benefits-heading"
-                className="font-[family-name:var(--font-display)] text-2xl font-semibold text-white"
-              >
-                Dein Vorteil mit QonteX
-              </h2>
-            </Reveal>
-            <div className="mt-7 grid gap-4 sm:grid-cols-3">
+        <section className={service.channels ? "bg-soft py-16 lg:py-20" : "bg-white py-16 lg:py-20"}>
+          <div className={container}>
+            <Eyebrow>Ihr Vorteil</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold">Was Sie davon haben</h2>
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
               {service.benefits.map((b, i) => (
-                <Reveal key={b.title} delay={0.06 * i}>
-                  <div className="glass h-full rounded-2xl p-6">
-                    <h3 className="font-semibold text-white">{b.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-fog">{b.text}</p>
+                <Reveal key={b.title} delay={i * 0.05} className="h-full">
+                  <div className="h-full rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+                    <h3 className="text-lg font-bold">{b.title}</h3>
+                    <p className="mt-2 text-[15px] leading-relaxed text-muted">{b.text}</p>
                   </div>
                 </Reveal>
               ))}
@@ -200,45 +206,39 @@ export default async function ServicePage({
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="px-6 py-14">
-          <Reveal className="mx-auto max-w-4xl">
-            <div className="glass relative overflow-hidden rounded-2xl border-cyan/25 px-8 py-10 text-center">
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan/10 to-transparent"
-                aria-hidden
-              />
-              <p className="relative mx-auto max-w-xl text-lg leading-relaxed text-mist">
-                {service.ctaText}
-              </p>
-              <div className="relative mt-6">
-                <Link
-                  href="/kontakt"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-cyan-soft to-cyan px-7 py-3.5 font-semibold text-[#04222b] shadow-[0_10px_30px_rgba(45,212,234,0.28)]"
-                >
-                  IT-Beratung anfragen
-                  <ArrowRight size={17} strokeWidth={2.5} aria-hidden />
-                </Link>
-              </div>
-            </div>
-          </Reveal>
+        {/* 5. Wie kann der Kunde starten? */}
+        <section className={service.channels ? "bg-white py-16 lg:py-20" : "bg-soft py-16 lg:py-20"}>
+          <div className={container}>
+            <Eyebrow>So starten Sie</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold">In drei Schritten zur Lösung</h2>
+            <ol className="mt-8 grid gap-6 md:grid-cols-3">
+              {STEPS.map((s, i) => (
+                <li key={s.title} className="relative rounded-2xl border border-line bg-white p-7">
+                  <span className="absolute right-6 top-6 text-sm font-bold text-teal-dark">0{i + 1}</span>
+                  <IconTile>
+                    <s.icon size={22} strokeWidth={1.8} aria-hidden />
+                  </IconTile>
+                  <h3 className="mt-5 text-lg font-bold">{s.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text">{service.ctaText}</p>
+          </div>
         </section>
 
+        <Cta />
+
         {/* Weitere Leistungen */}
-        <section className="px-6 pt-10" aria-labelledby="more-heading">
-          <div className="mx-auto max-w-4xl">
-            <h2
-              id="more-heading"
-              className="text-xs font-semibold uppercase tracking-[0.14em] text-fog"
-            >
-              Weitere Leistungen
-            </h2>
+        <section className="bg-white pb-20">
+          <div className={container}>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">Weitere Leistungen</h2>
             <ul className="mt-4 flex flex-wrap gap-2.5">
               {others.map((o) => (
                 <li key={o.slug}>
                   <Link
                     href={`/leistungen/${o.slug}`}
-                    className="glass inline-flex rounded-full px-4 py-2 text-sm font-medium text-mist transition-colors hover:border-cyan/40 hover:text-white"
+                    className="inline-flex rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-teal hover:bg-teal-tint"
                   >
                     {o.name}
                   </Link>

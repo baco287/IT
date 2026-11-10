@@ -15,13 +15,13 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://qontex.de"),
-  title: "QonteX – IT-Dienstleistungen für Unternehmen | Managed IT, Cloud, Cybersecurity & KI-Agenten",
+  title: "QonteX – Ein Ansprechpartner für Ihre gesamte IT | IT-Betreuung, Cloud, IT-Sicherheit & KI",
   description:
-    "QonteX entwickelt sichere, leistungsfähige und zuverlässige IT-Lösungen für kleine und mittelständische Unternehmen – Managed IT, Cloud, Cybersecurity, KI-Agenten und persönlicher Support aus einer Hand.",
+    "QonteX betreut die IT von Unternehmen: IT-Betreuung, Cloud & Microsoft 365, IT-Sicherheit und KI-Agenten – persönlich, zuverlässig und aus einer Hand. Jetzt kostenloses Erstgespräch vereinbaren.",
   openGraph: {
-    title: "QonteX – IT, die dein Unternehmen voranbringt",
+    title: "QonteX – Ein Ansprechpartner für Ihre gesamte IT",
     description:
-      "Managed IT Services, Cloud-Lösungen und Cybersecurity für den Mittelstand – persönlich betreut, transparent und zuverlässig.",
+      "Wir betreuen Ihre Systeme, schützen Ihre Daten und automatisieren wiederkehrende Aufgaben. Persönlich, zuverlässig und aus einer Hand.",
     type: "website",
     locale: "de_DE",
   },

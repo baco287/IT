@@ -1,92 +1,70 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
-import SectionHead from "./SectionHead";
 import SmartAmbientVideo from "./SmartAmbientVideo";
+import { Eyebrow, container } from "./ui";
 import { MEDIA } from "@/lib/media";
 import serverImg from "@/public/images/server.jpg";
 import cpuImg from "@/public/images/cpu.jpg";
 import ramImg from "@/public/images/ram.jpg";
 
-const ROWS = [
+const ITEMS = [
   {
     media: MEDIA.solutions.server,
     img: serverImg,
-    alt: "Beleuchtete Server-Racks in einem modernen Rechenzentrum",
-    kicker: "Server & Infrastruktur",
-    title: "Das stabile Fundament deines Unternehmens",
-    text: "Leistungsfähige, stabile und skalierbare Systeme als zuverlässige Grundlage deines Unternehmens – geplant, aufgebaut und kontinuierlich betreut.",
+    alt: "Server-Racks in einem Rechenzentrum",
+    title: "Server & Infrastruktur",
+    text: "Stabile, gut dokumentierte Systeme als Grundlage Ihres Unternehmens – geplant, eingerichtet und laufend betreut.",
   },
   {
     media: MEDIA.solutions.processor,
     img: cpuImg,
-    alt: "Prozessor auf einem Server-Mainboard in Nahaufnahme",
-    kicker: "Prozessorleistung",
-    title: "Hardware, die zu deinen Anforderungen passt",
-    text: "Optimal abgestimmte Hardware für anspruchsvolle Anwendungen, virtuelle Umgebungen und moderne Arbeitsprozesse.",
+    alt: "Prozessor auf einem Server-Mainboard",
+    title: "Passende Hardware",
+    text: "Rechenleistung, die zu Ihren Anwendungen passt – sorgfältig dimensioniert statt überdimensioniert.",
   },
   {
     media: MEDIA.solutions.memory,
     img: ramImg,
-    alt: "Arbeitsspeicher-Module in Nahaufnahme",
-    kicker: "Arbeitsspeicher",
-    title: "Leistung, die nicht nachlässt",
-    text: "Schnelle und zuverlässige Systeme, die auch bei steigenden Anforderungen leistungsfähig bleiben.",
+    alt: "Arbeitsspeicher-Module",
+    title: "Leistung, die mitwächst",
+    text: "Systeme, die auch bei mehr Mitarbeitern und Daten zuverlässig schnell bleiben.",
   },
 ];
 
 export default function Infrastructure() {
   return (
-    <section
-      id="loesungen"
-      className="relative overflow-hidden border-y border-white/5 bg-abyss px-6 py-28"
-    >
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_85%_15%,rgba(167,139,250,0.06),transparent_65%)]"
-        aria-hidden
-      />
-      <div className="relative mx-auto max-w-6xl">
-        <SectionHead
-          label="Infrastruktur"
-          title="Technologie, auf die Verlass ist"
-          text="Von der einzelnen Komponente bis zum kompletten Serverraum – wir dimensionieren deine Systeme sorgfältig statt überdimensioniert."
-        />
-        <div className="space-y-16">
-          {ROWS.map((r, i) => (
-            <div
-              key={r.kicker}
-              className={`grid items-center gap-10 lg:grid-cols-2 ${
-                i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <Reveal>
-                <div className="glass group relative overflow-hidden rounded-2xl">
-                  {/* Cinemagraph ersetzt das Bild erst, wenn die Datei
-                      vorliegt und in lib/media.ts aktiviert ist */}
-                  <SmartAmbientVideo asset={r.media}>
-                    <Image
-                      src={r.img}
-                      alt={r.alt}
-                      className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      placeholder="blur"
-                    />
-                  </SmartAmbientVideo>
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-night/55 via-transparent to-transparent"
-                    aria-hidden
+    <section id="loesungen" className="bg-white py-16 lg:py-20">
+      <div className={container}>
+        <div className="max-w-3xl">
+          <Eyebrow>Infrastruktur</Eyebrow>
+          <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-[2.4rem]">
+            Technik, auf die Verlass ist.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted">
+            Von der einzelnen Komponente bis zum kompletten Serverraum: Wir wählen Ihre
+            Systeme so aus, dass sie zuverlässig laufen und zu Ihrem Bedarf passen.
+          </p>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {ITEMS.map((it, i) => (
+            <Reveal key={it.title} delay={i * 0.06} className="h-full">
+              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[var(--shadow-card)]">
+                {/* Cinemagraph ersetzt das Bild erst, wenn in lib/media.ts aktiviert */}
+                <SmartAmbientVideo asset={it.media}>
+                  <Image
+                    src={it.img}
+                    alt={it.alt}
+                    className="aspect-[16/10] w-full object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    placeholder="blur"
                   />
+                </SmartAmbientVideo>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold">{it.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted">{it.text}</p>
                 </div>
-              </Reveal>
-              <Reveal delay={0.12}>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan">
-                  {r.kicker}
-                </p>
-                <h3 className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold text-white sm:text-3xl">
-                  {r.title}
-                </h3>
-                <p className="mt-4 max-w-md leading-relaxed text-fog">{r.text}</p>
-              </Reveal>
-            </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

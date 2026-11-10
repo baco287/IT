@@ -8,18 +8,19 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-const h2 = "mt-10 mb-3 font-[family-name:var(--font-display)] text-xl font-semibold text-white";
-const p = "mb-3 text-sm leading-relaxed text-fog";
+const h2 = "mt-10 mb-3 text-xl font-bold text-ink";
+const p = "mb-3 text-[15px] leading-relaxed text-muted";
+const link = "font-medium text-teal-dark underline-offset-2 hover:underline";
 
 export default function Datenschutz() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pb-24 pt-36">
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white">
+      <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
+        <h1 className="text-[2.2rem] font-extrabold tracking-tight">
           Datenschutzerklärung
         </h1>
-        <p className={`${p} mt-4`}>Stand: Juli 2026</p>
+        <p className={`${p} mt-4`}>Stand: November 2026</p>
 
         <h2 className={h2}>1. Verantwortlicher</h2>
         <p className={p}>
@@ -41,24 +42,25 @@ export default function Datenschutz() {
           ein.
         </p>
 
-        <h2 className={h2}>3. Hosting (GitHub Pages)</h2>
+        <h2 className={h2}>3. Hosting</h2>
         <p className={p}>
-          Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub
-          Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim
-          Aufruf der Website verarbeitet GitHub technisch notwendige Daten wie
-          Ihre IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite
-          und Browserinformationen (Server-Logfiles). Die Verarbeitung erfolgt
-          auf Grundlage unseres berechtigten Interesses an einer sicheren und
-          zuverlässigen Bereitstellung der Website (Art. 6 Abs. 1 lit. f DSGVO).
-          GitHub ist unter dem EU-US Data Privacy Framework zertifiziert.
-          Weitere Informationen finden Sie in der{" "}
+          Diese Website wird auf einem eigenen Server bei der Hetzner Online GmbH,
+          Industriestr. 25, 91710 Gunzenhausen, Deutschland, betrieben. Der Server
+          steht in einem Rechenzentrum in Deutschland. Beim Aufruf der Website
+          werden technisch notwendige Daten wie Ihre IP-Adresse, Datum und Uhrzeit
+          des Zugriffs, die aufgerufene Seite und Browserinformationen in
+          Server-Logfiles gespeichert. Die Verarbeitung erfolgt auf Grundlage
+          unseres berechtigten Interesses an einer sicheren und zuverlässigen
+          Bereitstellung der Website (Art. 6 Abs. 1 lit. f DSGVO). Die Logfiles
+          werden nach 14 Tagen automatisch gelöscht. Weitere Informationen finden
+          Sie in der{" "}
           <a
-            href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
-            className="text-cyan underline-offset-2 hover:underline"
+            href="https://www.hetzner.com/de/legal/privacy-policy/"
+            className={link}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Datenschutzerklärung von GitHub
+            Datenschutzerklärung von Hetzner
           </a>
           .
         </p>
@@ -82,7 +84,7 @@ export default function Datenschutz() {
 
         <h2 className={h2}>5. Schriftarten</h2>
         <p className={p}>
-          Die verwendeten Schriftarten (Inter, Manrope und JetBrains Mono)
+          Die verwendeten Schriftarten (Inter und JetBrains Mono)
           sind lokal auf unserem Hosting eingebunden. Beim Laden der Schriften
           findet keine Verbindung zu Servern von Google oder anderen
           Schriftanbietern statt.

@@ -2,67 +2,51 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, ArrowRight, ChevronDown, Phone } from "lucide-react";
 import Wordmark from "./Wordmark";
+import { PHONE_DISPLAY, PHONE_HREF } from "./Cta";
 import agentHead from "@/public/images/qontex-agent-head.png";
 
-type NavLink = {
-  href: string;
-  label: string;
-  children?: Array<{ group?: string; items: Array<{ href: string; label: string }> }>;
-};
+const SERVICE_GROUPS = [
+  {
+    title: "IT-Betreuung",
+    items: [
+      { href: "/leistungen/managed-it", label: "IT-Betreuung (Managed IT)" },
+      { href: "/leistungen/it-support", label: "IT-Support" },
+      { href: "/leistungen/cloud-loesungen", label: "Cloud & Microsoft 365" },
+      { href: "/leistungen/cybersecurity", label: "IT-Sicherheit" },
+      { href: "/leistungen/server-netzwerke", label: "Server & Netzwerke" },
+      { href: "/leistungen/backup-recovery", label: "Backup & Wiederherstellung" },
+    ],
+  },
+  {
+    title: "Digital & Automatisierung",
+    items: [
+      { href: "/leistungen/ki-agenten", label: "KI-Agenten" },
+      { href: "/leistungen/webseiten", label: "Webseiten & Online-Shops" },
+      { href: "/leistungen/online-marketing", label: "Online-Marketing" },
+      { href: "/leistungen/social-media", label: "Social Media" },
+      { href: "/leistungen/dashboards", label: "Dashboards & Reporting" },
+    ],
+  },
+];
 
-const LINKS: NavLink[] = [
-  { href: "/", label: "Startseite" },
-  {
-    href: "/leistungen",
-    label: "Leistungen",
-    children: [
-      {
-        group: "IT-Leistungen",
-        items: [
-          { href: "/leistungen/managed-it", label: "Managed IT Services" },
-          { href: "/leistungen/it-support", label: "IT-Support" },
-          { href: "/leistungen/cloud-loesungen", label: "Cloud-Lösungen" },
-          { href: "/leistungen/cybersecurity", label: "Cybersecurity" },
-          { href: "/leistungen/server-netzwerke", label: "Server & Netzwerke" },
-          { href: "/leistungen/backup-recovery", label: "Backup & Recovery" },
-        ],
-      },
-      {
-        group: "Digital & KI",
-        items: [
-          { href: "/leistungen/ki-agenten", label: "KI-Agenten" },
-          { href: "/leistungen/webseiten", label: "Webseiten & Online-Shops" },
-          { href: "/leistungen/online-marketing", label: "Ads & Online-Marketing" },
-          { href: "/leistungen/social-media", label: "Social Media" },
-          { href: "/leistungen/dashboards", label: "Dashboards & Reporting" },
-        ],
-      },
-    ],
-  },
-  {
-    href: "/loesungen",
-    label: "Lösungen",
-    children: [
-      {
-        items: [
-          { href: "/loesungen#loesungen", label: "Server & Infrastruktur" },
-          { href: "/loesungen#sicherheit", label: "Sicherheit" },
-          { href: "/loesungen#cloud", label: "Cloud & Vernetzung" },
-        ],
-      },
-    ],
-  },
+const LINKS = [
+  { href: "/leistungen", label: "Leistungen", dropdown: true },
+  { href: "/leistungen/ki-agenten", label: "KI-Agenten" },
+  { href: "/referenzen", label: "Referenzen" },
   { href: "/ueber", label: "Über QonteX" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-const isActive = (pathname: string, href: string) =>
-  href === "/" ? pathname === "/" : pathname.startsWith(href);
+function isActive(pathname: string, href: string) {
+  if (href === "/leistungen") {
+    return pathname.startsWith("/leistungen") && !pathname.startsWith("/leistungen/ki-agenten");
+  }
+  return pathname.startsWith(href);
+}
 
 export default function Navbar() {
   const pathname = usePathname() || "/";
@@ -70,35 +54,28 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => setOpen(false), [pathname]);
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-strong border-b border-white/6" : "bg-transparent"
+      className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur transition-shadow duration-200 ${
+        scrolled ? "border-line shadow-[0_4px_20px_rgba(8,23,43,0.06)]" : "border-line/70"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link
-          href="/"
-          aria-label="QonteX – zur Startseite"
-          className="flex items-center gap-3"
-        >
-          <Image
-            src={agentHead}
-            alt=""
-            className="h-10 w-10 rounded-full ring-1 ring-cyan/30"
-            priority
-          />
+      <div className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
+        <Link href="/" aria-label="QonteX – zur Startseite" className="flex items-center gap-2.5">
+          <Image src={agentHead} alt="" className="h-10 w-10 rounded-full" priority />
           <Wordmark />
         </Link>
 
         <nav aria-label="Hauptnavigation" className="hidden lg:block">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-8">
             {LINKS.map((l) => {
               const active = isActive(pathname, l.href);
               return (
@@ -106,47 +83,38 @@ export default function Navbar() {
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
-                    className={`relative inline-flex items-center gap-1 py-2 text-sm font-medium transition-colors ${
-                      active ? "text-white" : "text-fog hover:text-mist"
+                    className={`inline-flex items-center gap-1 py-6 text-[15px] font-medium transition-colors ${
+                      active ? "text-ink" : "text-ink/70 hover:text-ink"
                     }`}
                   >
                     {l.label}
-                    {l.children && (
+                    {l.dropdown && (
                       <ChevronDown
-                        size={14}
-                        strokeWidth={2.2}
+                        size={16}
+                        strokeWidth={2}
                         className="transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
                         aria-hidden
                       />
                     )}
-                    {active && (
-                      <span
-                        className="absolute -bottom-0.5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-cyan shadow-[0_0_8px_rgba(25,216,242,0.8)]"
-                        aria-hidden
-                      />
-                    )}
                   </Link>
+                  {active && (
+                    <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-teal" aria-hidden />
+                  )}
 
-                  {l.children && (
-                    <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                      <div
-                        className={`grid gap-6 rounded-2xl border border-white/10 bg-navy/95 p-5 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-md ${
-                          l.children.length > 1 ? "w-[30rem] grid-cols-2" : "w-60"
-                        }`}
-                      >
-                        {l.children.map((g, gi) => (
-                          <div key={gi}>
-                            {g.group && (
-                              <p className="mb-2 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-fog/70">
-                                {g.group}
-                              </p>
-                            )}
-                            <ul className="grid gap-0.5">
+                  {l.dropdown && (
+                    <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                      <div className="grid w-[34rem] grid-cols-2 gap-6 rounded-xl border border-line bg-white p-5 shadow-[var(--shadow-card-hover)]">
+                        {SERVICE_GROUPS.map((g) => (
+                          <div key={g.title}>
+                            <p className="mb-2 px-2.5 text-xs font-semibold uppercase tracking-wider text-muted">
+                              {g.title}
+                            </p>
+                            <ul>
                               {g.items.map((it) => (
                                 <li key={it.href}>
                                   <Link
                                     href={it.href}
-                                    className="block rounded-lg px-2.5 py-1.5 text-sm text-mist transition-colors hover:bg-cyan/10 hover:text-white"
+                                    className="block rounded-lg px-2.5 py-2 text-sm text-text transition-colors hover:bg-soft hover:text-ink"
                                   >
                                     {it.label}
                                   </Link>
@@ -155,6 +123,13 @@ export default function Navbar() {
                             </ul>
                           </div>
                         ))}
+                        <Link
+                          href="/leistungen"
+                          className="col-span-2 inline-flex items-center gap-1.5 border-t border-line px-2.5 pt-4 text-sm font-semibold text-teal-dark hover:underline"
+                        >
+                          Alle Leistungen ansehen
+                          <ArrowRight size={15} strokeWidth={2.2} aria-hidden />
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -164,69 +139,64 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <Link
             href="/kontakt"
-            className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-cyan to-cyan-soft px-5 py-2.5 text-sm font-semibold text-[#03222b] shadow-[0_8px_26px_rgba(25,216,242,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(25,216,242,0.4)] sm:inline-flex"
+            className="hidden items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-soft sm:inline-flex"
           >
-            IT-Beratung anfragen
-            <ArrowRight size={15} strokeWidth={2.5} aria-hidden />
+            Kostenloses Erstgespräch
           </Link>
+          <a
+            href={PHONE_HREF}
+            aria-label={`QonteX anrufen: ${PHONE_DISPLAY}`}
+            className="grid h-11 w-11 place-items-center rounded-lg bg-ink text-white sm:hidden"
+          >
+            <Phone size={19} strokeWidth={2} aria-hidden />
+          </a>
           <button
-            className="rounded-lg p-2 text-mist lg:hidden"
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-lg text-ink lg:hidden"
             aria-label={open ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={open}
+            aria-controls="mobile-menu"
             onClick={() => setOpen(!open)}
           >
-            {open ? <X size={22} aria-hidden /> : <Menu size={22} aria-hidden />}
+            {open ? <X size={24} aria-hidden /> : <Menu size={24} aria-hidden />}
           </button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            aria-label="Mobiles Menü"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-            className="glass-strong mx-4 mb-4 max-h-[75vh] overflow-y-auto rounded-2xl p-3 lg:hidden"
-          >
-            <ul>
-              {LINKS.map((l, i) => (
-                <motion.li
-                  key={l.href}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.04 * i }}
-                >
-                  <Link
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    aria-current={isActive(pathname, l.href) ? "page" : undefined}
-                    className={`block rounded-xl px-4 py-3 font-medium hover:bg-white/5 ${
-                      isActive(pathname, l.href) ? "text-cyan" : "text-mist"
-                    }`}
-                  >
-                    {l.label}
-                  </Link>
-                </motion.li>
-              ))}
-              <li className="mt-2 border-t border-white/10 pt-3">
+      {open && (
+        <nav
+          id="mobile-menu"
+          aria-label="Mobiles Menü"
+          className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-line bg-white px-5 pb-6 pt-2 lg:hidden"
+        >
+          <ul className="divide-y divide-line">
+            {LINKS.map((l) => (
+              <li key={l.href}>
                 <Link
-                  href="/kontakt"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan to-cyan-soft px-4 py-3 font-semibold text-[#03222b]"
+                  href={l.href}
+                  aria-current={isActive(pathname, l.href) ? "page" : undefined}
+                  className={`flex items-center justify-between py-4 text-base font-medium ${
+                    isActive(pathname, l.href) ? "text-teal-dark" : "text-ink"
+                  }`}
                 >
-                  IT-Beratung anfragen
-                  <ArrowRight size={15} strokeWidth={2.5} aria-hidden />
+                  {l.label}
+                  <ArrowRight size={18} strokeWidth={2} className="text-muted" aria-hidden />
                 </Link>
               </li>
-            </ul>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+            ))}
+          </ul>
+          <Link
+            href="/kontakt"
+            className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-ink px-5 py-3.5 font-semibold text-white"
+          >
+            Kostenloses Erstgespräch
+            <ArrowRight size={17} strokeWidth={2.2} aria-hidden />
+          </Link>
+        </nav>
+      )}
     </header>
   );
 }
