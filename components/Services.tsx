@@ -77,16 +77,21 @@ function ServiceCard({ c }: { c: Card }) {
   return (
     <Link
       href={c.href}
-      className="group flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1 hover:border-teal/60 hover:shadow-[var(--shadow-card-hover)]"
+      className="group flex h-full flex-col rounded-xl border border-line border-t-[3px] border-t-line bg-white p-6 transition-colors duration-200 hover:border-t-teal-dark"
     >
       <IconTile>
-        <c.icon size={24} strokeWidth={1.8} aria-hidden />
+        <c.icon size={30} strokeWidth={1.6} aria-hidden />
       </IconTile>
-      <h3 className="mt-5 text-xl font-bold">{c.title}</h3>
+      <h3 className="mt-5 text-[19px] font-bold leading-snug">{c.title}</h3>
       <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-muted">{c.text}</p>
-      <span className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-teal-dark">
+      <span className="mt-6 flex items-center justify-between border-t border-line pt-4 text-[15px] font-semibold text-ink">
         Mehr erfahren
-        <ArrowRight size={16} strokeWidth={2.2} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
+        <ArrowRight
+          size={20}
+          strokeWidth={2.2}
+          className="text-teal-dark transition-transform duration-200 group-hover:translate-x-1"
+          aria-hidden
+        />
       </span>
     </Link>
   );
@@ -115,7 +120,7 @@ export default function Services({ variant = "home" }: { variant?: "home" | "all
   }
 
   return (
-    <section id="leistungen" className="bg-white py-14 lg:py-16">
+    <section id="leistungen" className="bg-white pb-16 pt-12 lg:pb-20 lg:pt-14">
       <div className={container}>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>

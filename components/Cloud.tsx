@@ -20,7 +20,7 @@ export default function Cloud() {
     <section id="cloud" className="bg-white py-16 lg:py-20">
       <div className={`${container} grid items-center gap-12 lg:grid-cols-2`}>
         <Reveal className="order-2 lg:order-1">
-          <div className="overflow-hidden rounded-2xl border border-line shadow-[var(--shadow-card)]">
+          <div className="overflow-hidden rounded-2xl border border-line">
             {/* Cinemagraph-Platz: aktiviert sich nur über lib/media.ts */}
             <SmartAmbientVideo asset={MEDIA.solutions.cloud}>
               <Image

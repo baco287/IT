@@ -37,7 +37,7 @@ export default function Security() {
           </ul>
         </div>
         <Reveal delay={0.08}>
-          <div className="overflow-hidden rounded-2xl border border-line shadow-[var(--shadow-card)]">
+          <div className="overflow-hidden rounded-2xl border border-line">
             <Image
               src={securityImg}
               alt="Beleuchtete Leiterbahnen als Symbol für IT-Sicherheit"

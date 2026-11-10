@@ -48,7 +48,7 @@ export default function Infrastructure() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {ITEMS.map((it, i) => (
             <Reveal key={it.title} delay={i * 0.06} className="h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[var(--shadow-card)]">
+              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white">
                 {/* Cinemagraph ersetzt das Bild erst, wenn in lib/media.ts aktiviert */}
                 <SmartAmbientVideo asset={it.media}>
                   <Image

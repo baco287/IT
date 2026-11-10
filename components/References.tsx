@@ -64,7 +64,7 @@ function ProjectCard({ p }: { p: Project }) {
       href={p.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)]"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-colors duration-200 hover:border-ink/30"
     >
       <div className="border-b border-line bg-soft">
         <div className="flex items-center gap-1.5 px-4 py-2.5">
@@ -77,7 +77,7 @@ function ProjectCard({ p }: { p: Project }) {
           <Image
             src={p.img}
             alt={p.alt}
-            className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+            className="aspect-[16/10] w-full object-cover object-top"
             sizes="(max-width: 768px) 100vw, 50vw"
             placeholder="blur"
           />
@@ -89,7 +89,7 @@ function ProjectCard({ p }: { p: Project }) {
         <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted">{p.text}</p>
         <span className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-ink">
           Website ansehen
-          <ArrowUpRight size={16} strokeWidth={2.2} className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+          <ArrowUpRight size={16} strokeWidth={2.2} className="text-teal-dark" aria-hidden />
           <span className="sr-only">(öffnet in neuem Tab)</span>
         </span>
       </div>

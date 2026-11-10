@@ -5,9 +5,7 @@ import { Clock, Mail, MapPin, Phone, Check, Loader2 } from "lucide-react";
 import Reveal from "./Reveal";
 import { EMAIL, PHONE_DISPLAY, PHONE_HREF } from "./Cta";
 import { IconTile, container } from "./ui";
-
-const FORM_ENDPOINT =
-  "https://formsubmit.co/ajax/" + ["karakuss", "sezer"].join(".") + "@gmail" + ".com";
+import { sendForm } from "@/lib/form";
 
 const SERVICES = [
   "IT-Betreuung (Managed IT)",
@@ -60,23 +58,14 @@ export default function Contact() {
 
     setStatus("sending");
     try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: "Neue QonteX-Anfrage: " + data.get("leistung"),
-          _template: "table",
-          _captcha: "false",
-          Name: data.get("name"),
-          Unternehmen: data.get("unternehmen") || "—",
-          "E-Mail": email,
-          Telefon: data.get("telefon") || "—",
-          Leistung: data.get("leistung"),
-          Nachricht: data.get("nachricht") || "—",
-          Quelle: "qontex-website",
-        }),
+      await sendForm("Neue QonteX-Anfrage: " + data.get("leistung"), {
+        Name: String(data.get("name") ?? ""),
+        Unternehmen: String(data.get("unternehmen") || "—"),
+        "E-Mail": email,
+        Telefon: String(data.get("telefon") || "—"),
+        Leistung: String(data.get("leistung") ?? ""),
+        Nachricht: String(data.get("nachricht") || "—"),
       });
-      if (!res.ok) throw new Error("Senden fehlgeschlagen");
       setStatus("success");
     } catch {
       setStatus("error");

@@ -62,7 +62,7 @@ export default function UeberPage() {
           <div className={`${container} pt-12`}>
             <SmartAmbientVideo
               asset={MEDIA.about.team}
-              className="overflow-hidden rounded-2xl border border-line shadow-[var(--shadow-card)]"
+              className="overflow-hidden rounded-2xl border border-line"
             />
           </div>
         )}
@@ -72,7 +72,7 @@ export default function UeberPage() {
           <div className={`${container} grid gap-6 sm:grid-cols-2 lg:grid-cols-4`}>
             {FACTS.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.05} className="h-full">
-                <div className="h-full rounded-2xl border border-line bg-white p-6 shadow-[var(--shadow-card)]">
+                <div className="h-full rounded-2xl border border-line bg-white p-6">
                   <IconTile>
                     <f.icon size={22} strokeWidth={1.8} aria-hidden />
                   </IconTile>
@@ -99,7 +99,7 @@ export default function UeberPage() {
             </div>
             <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
               <div className="rounded-2xl border border-line bg-white p-7">
-                <p className="text-sm font-semibold uppercase tracking-wider text-muted">Typische Standardbetreuung</p>
+                <h3 className="text-lg font-bold text-muted">Typische Standardbetreuung</h3>
                 <ul className="mt-5 space-y-3">
                   {REACTIVE.map((r) => (
                     <li key={r} className="flex items-start gap-3 text-[15px] leading-relaxed text-muted">
@@ -109,8 +109,8 @@ export default function UeberPage() {
                   ))}
                 </ul>
               </div>
-              <div className="rounded-2xl border-2 border-teal bg-white p-7 shadow-[var(--shadow-card)]">
-                <p className="text-sm font-semibold uppercase tracking-wider text-teal-dark">So arbeitet QonteX</p>
+              <div className="rounded-2xl border-2 border-teal bg-white p-7">
+                <h3 className="text-lg font-bold">So arbeitet QonteX</h3>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {PROACTIVE.map((p) => (
                     <li key={p} className="flex items-start gap-3 text-[15px] font-medium leading-relaxed text-ink">

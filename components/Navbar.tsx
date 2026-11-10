@@ -106,7 +106,7 @@ export default function Navbar() {
                       <div className="grid w-[34rem] grid-cols-2 gap-6 rounded-xl border border-line bg-white p-5 shadow-[var(--shadow-card-hover)]">
                         {SERVICE_GROUPS.map((g) => (
                           <div key={g.title}>
-                            <p className="mb-2 px-2.5 text-xs font-semibold uppercase tracking-wider text-muted">
+                            <p className="mb-2 px-2.5 text-sm font-semibold text-muted">
                               {g.title}
                             </p>
                             <ul>

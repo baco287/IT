@@ -9,15 +9,13 @@ import {
   MessageCircle,
   Phone,
   Mail,
-  CalendarCheck,
-  ClipboardList,
-  Rocket,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import Cta from "@/components/Cta";
+import Steps from "@/components/Steps";
 import SmartAmbientVideo from "@/components/SmartAmbientVideo";
 import { Eyebrow, IconTile, btnPrimary, btnSecondary, container } from "@/components/ui";
 import { SERVICES, getService } from "@/lib/services";
@@ -41,23 +39,6 @@ export async function generateMetadata({
   };
 }
 
-const STEPS = [
-  {
-    icon: CalendarCheck,
-    title: "Kostenloses Erstgespräch",
-    text: "Sie schildern uns Ihre Situation – telefonisch oder per Video, unverbindlich.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Analyse & Angebot",
-    text: "Wir prüfen Ihre Anforderungen und machen Ihnen ein klares, verständliches Angebot.",
-  },
-  {
-    icon: Rocket,
-    title: "Umsetzung & Betreuung",
-    text: "Wir setzen um und bleiben danach Ihr fester Ansprechpartner.",
-  },
-];
 
 const CHANNEL_ICONS = { whatsapp: MessageCircle, telefon: Phone, mail: Mail } as const;
 
@@ -100,7 +81,7 @@ export default async function ServicePage({
           <div className={`${container} pt-12`}>
             <SmartAmbientVideo
               asset={heroMedia}
-              className="overflow-hidden rounded-2xl border border-line shadow-[var(--shadow-card)]"
+              className="overflow-hidden rounded-2xl border border-line"
             />
           </div>
         )}
@@ -109,7 +90,7 @@ export default async function ServicePage({
         <section className="bg-white py-16 lg:py-20">
           <div className={`${container} grid gap-6 md:grid-cols-2`}>
             <Reveal className="h-full">
-              <div className="h-full rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+              <div className="h-full rounded-2xl border border-line bg-white p-7">
                 <IconTile>
                   <Users size={24} strokeWidth={1.8} aria-hidden />
                 </IconTile>
@@ -118,7 +99,7 @@ export default async function ServicePage({
               </div>
             </Reveal>
             <Reveal delay={0.06} className="h-full">
-              <div className="h-full rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+              <div className="h-full rounded-2xl border border-line bg-white p-7">
                 <IconTile>
                   <Target size={24} strokeWidth={1.8} aria-hidden />
                 </IconTile>
@@ -165,7 +146,7 @@ export default async function ServicePage({
                   const Icon = CHANNEL_ICONS[c.key];
                   return (
                     <Reveal key={c.key} delay={i * 0.06} className="h-full">
-                      <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+                      <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7">
                         <IconTile>
                           <Icon size={22} strokeWidth={1.8} aria-hidden />
                         </IconTile>
@@ -196,7 +177,7 @@ export default async function ServicePage({
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {service.benefits.map((b, i) => (
                 <Reveal key={b.title} delay={i * 0.05} className="h-full">
-                  <div className="h-full rounded-2xl border border-line bg-white p-7 shadow-[var(--shadow-card)]">
+                  <div className="h-full rounded-2xl border border-line bg-white p-7">
                     <h3 className="text-lg font-bold">{b.title}</h3>
                     <p className="mt-2 text-[15px] leading-relaxed text-muted">{b.text}</p>
                   </div>
@@ -207,32 +188,14 @@ export default async function ServicePage({
         </section>
 
         {/* 5. Wie kann der Kunde starten? */}
-        <section className={service.channels ? "bg-white py-16 lg:py-20" : "bg-soft py-16 lg:py-20"}>
-          <div className={container}>
-            <Eyebrow>So starten Sie</Eyebrow>
-            <h2 className="mt-4 text-3xl font-bold">In drei Schritten zur Lösung</h2>
-            <ol className="mt-8 grid gap-6 md:grid-cols-3">
-              {STEPS.map((s, i) => (
-                <li key={s.title} className="relative rounded-2xl border border-line bg-white p-7">
-                  <span className="absolute right-6 top-6 text-sm font-bold text-teal-dark">0{i + 1}</span>
-                  <IconTile>
-                    <s.icon size={22} strokeWidth={1.8} aria-hidden />
-                  </IconTile>
-                  <h3 className="mt-5 text-lg font-bold">{s.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.text}</p>
-                </li>
-              ))}
-            </ol>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text">{service.ctaText}</p>
-          </div>
-        </section>
+        <Steps note={service.ctaText} tone={service.channels ? "white" : "soft"} />
 
         <Cta />
 
         {/* Weitere Leistungen */}
         <section className="bg-white pb-20">
           <div className={container}>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">Weitere Leistungen</h2>
+            <h2 className="text-lg font-bold">Weitere Leistungen</h2>
             <ul className="mt-4 flex flex-wrap gap-2.5">
               {others.map((o) => (
                 <li key={o.slug}>
