@@ -1,56 +1,60 @@
 import Link from "next/link";
-import { ArrowRight, Phone, Mail } from "lucide-react";
-import { Eyebrow, btnTeal, container } from "./ui";
+import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
+import { Eyebrow, btnPrimary, container, h2Class } from "./ui";
+import { ADDRESS_LINE, EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
 
-export const PHONE_DISPLAY = "+49 176 25041651";
-export const PHONE_HREF = "tel:+4917625041651";
-export const EMAIL = "info@qontex.de";
+/* Kontaktdaten weiterhin von hier beziehbar (bestehende Importe) */
+export { EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
 
 /* Dunkelblauer Kontaktbereich am Seitenende */
 export default function Cta() {
   return (
-    <section className="bg-white pb-20 pt-4 lg:pb-24">
-      <div className={container}>
-        <div className="grid items-center gap-10 rounded-3xl bg-ink px-7 py-12 sm:px-12 lg:grid-cols-[1.2fr_auto_1fr] lg:gap-12 lg:px-14 lg:py-14">
-          <div>
-            <Eyebrow onDark>Kontakt</Eyebrow>
-            <h2 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-[2.3rem]">
-              Lassen Sie uns über Ihre IT sprechen.
-            </h2>
-            <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-white/75">
-              In einem kostenlosen Erstgespräch besprechen wir Ihre Anforderungen und
-              finden gemeinsam die passende Lösung.
-            </p>
-          </div>
+    <section aria-labelledby="cta-heading" className="bg-ink">
+      <div className={`${container} grid gap-12 py-20 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:gap-16 lg:py-28`}>
+        <div>
+          <Eyebrow onDark>Kostenloses Potenzialgespräch</Eyebrow>
+          <h2 id="cta-heading" className={`mt-4 ${h2Class} text-white`}>
+            Finden wir heraus, wo Ihr Unternehmen Zeit und Geld sparen kann.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+            Im kostenlosen Potenzialgespräch schauen wir uns Ihre Abläufe an und besprechen,
+            welche Digitalisierung und Automatisierung für Ihr Unternehmen sinnvoll ist.
+          </p>
+          <Link href="/kontakt" className={`${btnPrimary} mt-9 w-full sm:w-auto`}>
+            Kostenloses Potenzialgespräch vereinbaren
+            <ArrowRight size={18} strokeWidth={2.2} className="flex-none" aria-hidden />
+          </Link>
+        </div>
 
-          <span className="hidden h-40 w-px bg-white/15 lg:block" aria-hidden />
-
-          <div>
-            <Link href="/kontakt" className={`${btnTeal} w-full sm:w-auto`}>
-              Kostenloses Erstgespräch vereinbaren
-              <ArrowRight size={18} strokeWidth={2.2} aria-hidden />
-            </Link>
-            <ul className="mt-6 space-y-1">
-              <li>
-                <a
-                  href={PHONE_HREF}
-                  className="inline-flex min-h-11 items-center gap-3 text-[17px] font-medium text-white transition-colors hover:text-teal"
-                >
-                  <Phone size={20} strokeWidth={1.9} className="text-teal" aria-hidden />
-                  {PHONE_DISPLAY}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="inline-flex min-h-11 items-center gap-3 text-[17px] font-medium text-white transition-colors hover:text-teal"
-                >
-                  <Mail size={20} strokeWidth={1.9} className="text-teal" aria-hidden />
-                  {EMAIL}
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div className="rounded-3xl border border-white/12 bg-ink-soft p-7 sm:p-8">
+          <p className="text-[15px] font-semibold text-white">Oder direkt Kontakt aufnehmen</p>
+          <ul className="mt-4 divide-y divide-white/10">
+            <li>
+              <a
+                href={PHONE_HREF}
+                className="flex min-h-14 items-center gap-4 text-[17px] font-medium text-white transition-colors hover:text-teal"
+              >
+                <Phone size={20} strokeWidth={1.9} className="flex-none text-teal" aria-hidden />
+                {PHONE_DISPLAY}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="flex min-h-14 items-center gap-4 text-[17px] font-medium text-white transition-colors hover:text-teal"
+              >
+                <Mail size={20} strokeWidth={1.9} className="flex-none text-teal" aria-hidden />
+                {EMAIL}
+              </a>
+            </li>
+            <li className="flex min-h-14 items-center gap-4 text-[16px] text-white/80">
+              <MapPin size={20} strokeWidth={1.9} className="flex-none text-teal" aria-hidden />
+              {ADDRESS_LINE}
+            </li>
+          </ul>
+          <p className="mt-4 text-sm leading-relaxed text-white/60">
+            Termine nach Vereinbarung – telefonisch oder per Video.
+          </p>
         </div>
       </div>
     </section>

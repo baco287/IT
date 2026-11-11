@@ -1,11 +1,18 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import AutomationFlow from "@/components/AutomationFlow";
 import Services from "@/components/Services";
-import KiAgents from "@/components/KiAgents";
+import MarketingTeam from "@/components/MarketingTeam";
+import Savings from "@/components/Savings";
 import References from "@/components/References";
 import Steps from "@/components/Steps";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
@@ -13,8 +20,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <AutomationFlow />
         <Services />
-        <KiAgents />
+        <MarketingTeam />
+        <Savings />
         <References />
         <Steps />
         <Cta />

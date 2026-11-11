@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 
 const h2 = "mt-10 mb-3 text-xl font-bold text-ink";
 const p = "mb-3 text-[15px] leading-relaxed text-muted";
-const link = "font-medium text-teal-dark underline-offset-2 hover:underline";
+const link = "font-medium text-teal-text underline underline-offset-2";
 
 export default function Datenschutz() {
   return (
     <>
       <Navbar />
       <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
-        <h1 className="text-[2.2rem] font-extrabold tracking-tight">
+        <h1 className="text-[2.2rem] font-bold tracking-tight">
           Datenschutzerklärung
         </h1>
         <p className={`${p} mt-4`}>Stand: November 2026</p>
@@ -40,6 +40,11 @@ export default function Datenschutz() {
           sowie zur Bearbeitung von Anfragen erforderlich ist. Diese Website
           verwendet keine Cookies und setzt keine Analyse- oder Tracking-Dienste
           ein.
+        </p>
+        <p className={p}>
+          Der Einsparrechner und die animierten Beispielabläufe auf dieser
+          Website laufen ausschließlich in Ihrem Browser. Ihre Eingaben im
+          Rechner werden weder gespeichert noch an uns oder Dritte übertragen.
         </p>
 
         <h2 className={h2}>3. Hosting</h2>
@@ -84,7 +89,7 @@ export default function Datenschutz() {
 
         <h2 className={h2}>5. Schriftarten</h2>
         <p className={p}>
-          Die verwendeten Schriftarten (Inter und JetBrains Mono)
+          Die verwendeten Schriftarten (Inter und Plus Jakarta Sans)
           sind lokal auf unserem Hosting eingebunden. Beim Laden der Schriften
           findet keine Verbindung zu Servern von Google oder anderen
           Schriftanbietern statt.

@@ -1,39 +1,55 @@
-import { Eyebrow, container } from "./ui";
+import { SectionHead, container } from "./ui";
 
 const STEPS = [
   {
-    title: "Kostenloses Erstgespräch",
-    text: "Sie schildern uns Ihre Situation – telefonisch oder per Video, unverbindlich.",
+    title: "Analysieren",
+    text: "Wir verstehen Ihre Abläufe und identifizieren Optimierungspotenziale.",
   },
   {
-    title: "Analyse & Angebot",
-    text: "Wir prüfen Ihre Anforderungen und machen Ihnen ein klares, verständliches Angebot.",
+    title: "Digitalisieren",
+    text: "Wir schaffen die technischen Grundlagen und verbinden relevante Systeme.",
   },
   {
-    title: "Umsetzung & Betreuung",
-    text: "Wir setzen um und bleiben danach Ihr fester Ansprechpartner.",
+    title: "Automatisieren",
+    text: "Wir automatisieren geeignete Aufgaben und testen die Prozesse.",
+  },
+  {
+    title: "Optimieren & Skalieren",
+    text: "Wir messen die Ergebnisse und verbessern die Abläufe kontinuierlich.",
   },
 ];
 
-/* „So starten Sie" – drei Schritte bis zur Lösung */
-export default function Steps({ note, tone = "soft" }: { note?: string; tone?: "soft" | "white" }) {
+/* „So arbeiten wir" – vier Schritte von der Analyse bis zur laufenden Optimierung */
+export default function Steps({
+  note,
+  tone = "white",
+  id = "so-funktionierts",
+}: {
+  note?: string;
+  tone?: "soft" | "white";
+  id?: string;
+}) {
   return (
-    <section className={`${tone === "soft" ? "bg-soft" : "bg-white"} py-16 lg:py-20`}>
+    <section id={id} className={`${tone === "soft" ? "bg-soft" : "bg-white"} py-20 lg:py-28`}>
       <div className={container}>
-        <Eyebrow>So starten Sie</Eyebrow>
-        <h2 className="mt-3 max-w-2xl text-3xl font-bold leading-tight sm:text-[2.4rem]">
-          In drei Schritten zu einer IT, die einfach funktioniert.
-        </h2>
-        <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+        <SectionHead
+          eyebrow="So arbeiten wir"
+          title="In vier Schritten zu Abläufen, die für Sie arbeiten."
+          text={note}
+        />
+        <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="border-t-2 border-ink pt-5">
-              <span className="text-[15px] font-bold text-teal-dark">Schritt {i + 1}</span>
-              <h3 className="mt-2 text-xl font-bold">{s.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.text}</p>
+            <li key={s.title} className="relative border-t-2 border-ink pt-6">
+              {/* türkiser Abschnitt der Linie als ruhiger Akzent */}
+              <span className="absolute -top-0.5 left-0 h-0.5 w-12 bg-teal" aria-hidden />
+              <span className="font-[family-name:var(--font-display)] text-[2.6rem] font-bold leading-none tracking-[-0.04em] text-ink tabular-nums">
+                0{i + 1}
+              </span>
+              <h3 className="mt-5 text-[1.3rem] font-bold">{s.title}</h3>
+              <p className="mt-2 text-[16px] leading-relaxed text-muted">{s.text}</p>
             </li>
           ))}
         </ol>
-        {note && <p className="mt-10 max-w-2xl text-lg leading-relaxed text-text">{note}</p>}
       </div>
     </section>
   );

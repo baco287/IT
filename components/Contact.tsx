@@ -2,35 +2,32 @@
 
 import { useState } from "react";
 import { Clock, Mail, MapPin, Phone, Check, Loader2 } from "lucide-react";
-import Reveal from "./Reveal";
-import { EMAIL, PHONE_DISPLAY, PHONE_HREF } from "./Cta";
+import { ADDRESS_LINE, EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
 import { IconTile, container } from "./ui";
 import { sendForm } from "@/lib/form";
 
 const SERVICES = [
-  "IT-Betreuung (Managed IT)",
-  "IT-Support",
-  "Cloud & Microsoft 365",
-  "IT-Sicherheit",
-  "Server & Netzwerke",
-  "Backup & Wiederherstellung",
-  "KI-Agenten & Automatisierung",
-  "Webseite oder Online-Shop",
-  "Online-Marketing / Social Media",
-  "Allgemeine Beratung",
+  "Prozessautomatisierung",
+  "Webseite oder Landingpage",
+  "SEO & KI-Agenten",
+  "Marketing-Automatisierung",
+  "CRM & Vertrieb",
+  "KI-Agenten für Kundenanfragen",
+  "IT & Infrastruktur",
+  "Noch unklar – allgemeine Beratung",
 ];
 
 const CONTACT_FACTS = [
   { icon: Phone, label: "Telefon", value: PHONE_DISPLAY, href: PHONE_HREF },
   { icon: Mail, label: "E-Mail", value: EMAIL, href: `mailto:${EMAIL}` },
-  { icon: MapPin, label: "Adresse", value: "Pappelallee 64, 10437 Berlin" },
+  { icon: MapPin, label: "Adresse", value: ADDRESS_LINE },
   { icon: Clock, label: "Erreichbarkeit", value: "Termine nach Vereinbarung" },
 ];
 
 type Status = "idle" | "sending" | "success" | "error";
 
 const inputCls =
-  "w-full rounded-lg border border-line bg-white px-4 py-3 text-[15px] text-text placeholder:text-muted/60 transition-colors focus:border-teal-dark focus:outline-none focus:ring-2 focus:ring-teal/25";
+  "w-full rounded-xl border border-line bg-white px-4 py-3 text-[16px] text-text placeholder:text-muted/70 transition-colors focus:border-teal-dark focus:outline-none focus:ring-2 focus:ring-teal/30";
 const labelCls = "mb-1.5 block text-sm font-semibold text-ink";
 const errCls = "mt-1.5 text-sm text-red-600";
 
@@ -73,10 +70,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="kontakt" className="bg-white py-16 lg:py-20">
+    <section id="kontakt" className="bg-white py-16 lg:py-24">
       <div className={`${container} grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-14`}>
-        <Reveal>
-          <h2 className="text-2xl font-bold">So erreichen Sie uns</h2>
+        <div>
+          <h2 className="text-[1.5rem] font-bold">So erreichen Sie uns</h2>
           <ul className="mt-6 space-y-3">
             {CONTACT_FACTS.map((f) => {
               const body = (
@@ -95,12 +92,12 @@ export default function Contact() {
                   {f.href ? (
                     <a
                       href={f.href}
-                      className="flex items-center gap-4 rounded-xl border border-line bg-white px-5 py-4 transition-colors hover:border-teal"
+                      className="flex items-center gap-4 rounded-2xl border border-line bg-white px-5 py-4 transition-colors hover:border-teal-dark"
                     >
                       {body}
                     </a>
                   ) : (
-                    <div className="flex items-center gap-4 rounded-xl border border-line bg-white px-5 py-4">
+                    <div className="flex items-center gap-4 rounded-2xl border border-line bg-white px-5 py-4">
                       {body}
                     </div>
                   )}
@@ -111,24 +108,24 @@ export default function Contact() {
           <p className="mt-4 text-sm leading-relaxed text-muted">
             QonteX ist ein Angebot der Volt Gas UG (haftungsbeschränkt), Berlin.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal delay={0.08}>
-          <div className="rounded-2xl border border-line bg-white p-6 shadow-[var(--shadow-card)] sm:p-8">
+        <div>
+          <div className="rounded-3xl border border-line bg-white p-6 shadow-[var(--shadow-card)] sm:p-9">
             {status === "success" ? (
               <div className="py-10 text-center" role="status">
-                <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-teal-tint text-teal-dark">
+                <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-teal-tint text-teal-text">
                   <Check size={30} strokeWidth={2.5} aria-hidden />
                 </span>
-                <h3 className="mt-5 text-xl font-bold">Vielen Dank für Ihre Anfrage!</h3>
+                <h3 className="mt-5 text-[1.35rem] font-bold">Vielen Dank für Ihre Anfrage!</h3>
                 <p className="mt-2 text-muted">Wir melden uns zeitnah bei Ihnen.</p>
               </div>
             ) : (
               <form onSubmit={onSubmit} noValidate>
-                <h2 className="text-2xl font-bold">Kostenloses Erstgespräch anfragen</h2>
+                <h2 className="text-[1.5rem] font-bold">Kostenloses Potenzialgespräch anfragen</h2>
                 <p className="mt-2 text-[15px] text-muted">
-                  Schildern Sie uns kurz Ihr Anliegen – wir melden uns mit einer ehrlichen
-                  Einschätzung zurück.
+                  Schildern Sie uns kurz, welche Abläufe Sie heute Zeit kosten – wir melden uns
+                  mit einem Terminvorschlag zurück.
                 </p>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   <div>
@@ -178,16 +175,16 @@ export default function Contact() {
                   <label htmlFor="c-msg" className={labelCls}>
                     Nachricht
                   </label>
-                  <textarea id="c-msg" name="nachricht" rows={4} placeholder="Beschreiben Sie kurz Ihr Anliegen …" className={`${inputCls} resize-y`} />
+                  <textarea id="c-msg" name="nachricht" rows={4} placeholder="Welche Aufgaben kosten Sie heute am meisten Zeit?" className={`${inputCls} resize-y`} />
                 </div>
                 <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="absolute -left-[9999px] h-0 opacity-0" aria-hidden />
                 <div className="mt-4">
                   <label className="flex items-start gap-3 text-sm leading-relaxed text-muted">
-                    <input type="checkbox" name="datenschutz" className="mt-0.5 h-5 w-5 flex-none accent-[#00a99d]" aria-invalid={!!errors.datenschutz} />
+                    <input type="checkbox" name="datenschutz" className="mt-0.5 h-5 w-5 flex-none accent-[#007d75]" aria-invalid={!!errors.datenschutz} />
                     <span>
                       Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet
                       werden. Details in der{" "}
-                      <a href="/datenschutz" className="font-medium text-teal-dark underline">
+                      <a href="/datenschutz" className="font-medium text-teal-text underline">
                         Datenschutzerklärung
                       </a>
                       . *
@@ -204,7 +201,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-ink px-7 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-ink-soft disabled:opacity-70"
+                  className="mt-6 inline-flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-full bg-teal px-7 py-3.5 text-[16px] font-semibold text-ink transition-colors hover:bg-[#5ce3df] disabled:opacity-70"
                 >
                   {status === "sending" ? (
                     <>
@@ -212,13 +209,13 @@ export default function Contact() {
                       Wird gesendet …
                     </>
                   ) : (
-                    "Anfrage senden"
+                    "Potenzialgespräch anfragen"
                   )}
                 </button>
               </form>
             )}
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

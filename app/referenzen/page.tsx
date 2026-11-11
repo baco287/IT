@@ -8,7 +8,8 @@ import Cta from "@/components/Cta";
 export const metadata: Metadata = {
   title: "Referenzen | QonteX – Projekte, die im Einsatz sind",
   description:
-    "Referenzen von QonteX: Volt-Gas, DeutscheZulassung, Heizwechsel und Hairvenly – Webseiten und Plattformen, die wir umgesetzt haben und die heute im Einsatz sind.",
+    "Referenzen von QonteX: Volt-Gas, DeutscheZulassung, Heizwechsel und Hairvenly – Webseiten, Rechner und Anfrage-Strecken, die wir umgesetzt haben und die heute im Einsatz sind.",
+  alternates: { canonical: "/referenzen/" },
 };
 
 export default function ReferenzenPage() {
@@ -18,11 +19,11 @@ export default function ReferenzenPage() {
       <main>
         <PageHeader
           eyebrow="Referenzen"
-          title="Projekte, die wir umgesetzt haben."
-          intro="Ein Auszug aus unserer Arbeit: Webseiten, Online-Shops und digitale Anfrage-Strecken für Unternehmen aus unterschiedlichen Branchen."
+          title="Projekte, die heute im Einsatz sind."
+          intro="Ein Auszug aus unserer Arbeit: Webseiten, Online-Shops, Rechner und digitale Anfrage-Strecken – jeweils mit Aufgabe und umgesetzter Lösung."
           crumbs={[{ label: "Referenzen" }]}
         />
-        <References standalone />
+        <References standalone tone="white" />
         <Cta />
       </main>
       <Footer />

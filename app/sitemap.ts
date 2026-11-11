@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     "",
     "/leistungen",
+    "/automatisierung",
     "/loesungen",
     "/referenzen",
     "/ueber",
@@ -18,6 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}${p}/`,
     lastModified: new Date(),
     changeFrequency: "monthly",
-    priority: p === "" ? 1 : 0.7,
+    priority: p === "" ? 1 : p.startsWith("/leistungen/") ? 0.7 : 0.8,
   }));
 }

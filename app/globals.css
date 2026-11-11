@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  /* Helles B2B-Design-System */
-  --color-ink: #08172b; /* Dunkelblau: Überschriften, dunkle Flächen */
-  --color-ink-soft: #0f2742; /* etwas hellere dunkle Fläche */
-  --color-text: #111827; /* Fließtext */
-  --color-muted: #64748b; /* Sekundärtext */
+  /* Design-System: helle Unternehmensseite mit dunkelblauen Automatisierungsbereichen */
+  --color-ink: #07182d; /* Deep Navy: Überschriften, dunkle Flächen */
+  --color-ink-soft: #0e2540; /* Karten und Flächen auf Deep Navy */
+  --color-text: #17263b; /* Fließtext */
+  --color-muted: #5f6f85; /* Sekundärtext (Textgrau, für Lesbarkeit leicht abgedunkelt) */
   --color-line: #e2e8f0; /* Rahmen */
-  --color-soft: #f4f7fa; /* sekundärer Hintergrund */
-  --color-teal: #19d5d9; /* Türkis-Akzent */
-  --color-teal-dark: #00a99d; /* dunkles Türkis für Text/Icons auf Weiß */
-  --color-teal-tint: #e6f8f8; /* sehr helles Türkis für Icon-Kacheln */
-  --font-display: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+  --color-soft: #f6f8fb; /* Off-White für Wechselflächen */
+  --color-teal: #14d4cf; /* Electric Teal: Buttons, Akzente auf Dunkel */
+  --color-teal-dark: #00a096; /* Türkis für Icons und große Akzente auf Hell */
+  --color-teal-text: #007d75; /* Türkis für kleinen Text auf Hell (Kontrast AA) */
+  --color-teal-tint: #e6f9f8; /* sehr helles Türkis für Flächen */
+  --font-display: var(--font-display-face), var(--font-inter), "Segoe UI", system-ui, sans-serif;
   --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), Consolas, monospace;
-  --shadow-card: 0 1px 2px rgba(8, 23, 43, 0.04), 0 8px 24px rgba(8, 23, 43, 0.06);
-  --shadow-card-hover: 0 2px 4px rgba(8, 23, 43, 0.05), 0 16px 40px rgba(8, 23, 43, 0.1);
+  --shadow-card: 0 1px 2px rgba(7, 24, 45, 0.04), 0 12px 32px -14px rgba(7, 24, 45, 0.14);
+  --shadow-card-hover: 0 2px 4px rgba(7, 24, 45, 0.05), 0 22px 48px -16px rgba(7, 24, 45, 0.2);
 }
 
 /* Grundregeln in der Basis-Ebene, damit Utility-Klassen (z. B. text-white
@@ -23,7 +23,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 88px;
+    scroll-padding-top: 96px;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -43,8 +43,10 @@
   h2,
   h3 {
     font-family: var(--font-display);
+    font-weight: 700;
     color: var(--color-ink);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
+    word-spacing: 0.05em;
   }
 
   ::selection {
@@ -59,8 +61,247 @@
   select:focus-visible,
   textarea:focus-visible,
   summary:focus-visible {
-    outline: 2px solid var(--color-teal-dark);
+    outline: 2px solid var(--color-teal-text);
     outline-offset: 3px;
     border-radius: 6px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero: vereinfachter Ablauf – ein Schritt nach dem anderen wird aktiv */
+/* ------------------------------------------------------------------ */
+.hero-step {
+  animation: hero-step 12s linear infinite;
+  animation-delay: calc(var(--i) * 2s);
+}
+.hero-step-icon {
+  animation: hero-step-icon 12s linear infinite;
+  animation-delay: calc(var(--i) * 2s);
+}
+.hero-step-no {
+  animation: hero-step-no 12s linear infinite;
+  animation-delay: calc(var(--i) * 2s);
+}
+.hero-dot {
+  animation: hero-dot 12s ease-in-out infinite;
+}
+
+@keyframes hero-step {
+  0% {
+    background-color: transparent;
+  }
+  2%,
+  14% {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+  16.6%,
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes hero-step-icon {
+  0% {
+    background-color: #0e2540;
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+  }
+  2%,
+  14% {
+    background-color: #14d4cf;
+    border-color: #14d4cf;
+    color: #07182d;
+  }
+  16.6%,
+  100% {
+    background-color: #0e2540;
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+  }
+}
+@keyframes hero-step-no {
+  0% {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  2%,
+  14% {
+    color: #14d4cf;
+  }
+  16.6%,
+  100% {
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+@keyframes hero-dot {
+  0%,
+  13% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  16.67%,
+  29.67% {
+    transform: translateY(20%);
+  }
+  33.33%,
+  46.33% {
+    transform: translateY(40%);
+  }
+  50%,
+  63% {
+    transform: translateY(60%);
+  }
+  66.67%,
+  79.67% {
+    transform: translateY(80%);
+  }
+  83.33%,
+  96% {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+  97.5% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  98.5% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Ablauf-Sektion: Lichtpunkt wandert zur nächsten Station             */
+/* ------------------------------------------------------------------ */
+.flow-dot {
+  animation: flow-dot-y 1s cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+@media (min-width: 48rem) {
+  .flow-dot {
+    animation-name: flow-dot-x;
+  }
+}
+@keyframes flow-dot-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes flow-dot-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Dezenter Puls für „läuft gerade"-Anzeigen */
+.status-pulse {
+  animation: status-pulse 1.6s ease-in-out infinite;
+}
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+}
+
+/* Fließende Verbindungslinie im Marketing-Schaubild */
+.line-flow {
+  animation: line-flow 1.2s linear infinite;
+}
+@keyframes line-flow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+/* Schieberegler des Einsparrechners */
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px; /* großzügige Touch-Fläche */
+  background: transparent;
+  cursor: pointer;
+}
+.range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--color-teal-dark) var(--fill, 50%),
+    var(--color-line) var(--fill, 50%)
+  );
+}
+.range::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-line);
+}
+.range::-moz-range-progress {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-teal-dark);
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 2px 6px rgba(7, 24, 45, 0.2);
+}
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 2px 6px rgba(7, 24, 45, 0.2);
+}
+.range:focus-visible {
+  outline: none;
+}
+.range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--color-teal-text);
+  outline-offset: 3px;
+}
+.range:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--color-teal-text);
+  outline-offset: 3px;
+}
+
+/* Bewegung reduzieren: alle Schleifen und Übergänge der Visualisierungen aus */
+@media (prefers-reduced-motion: reduce) {
+  .hero-step,
+  .hero-step-icon,
+  .hero-step-no,
+  .hero-dot,
+  .flow-dot,
+  .status-pulse,
+  .line-flow {
+    animation: none;
+  }
+  .hero-dot,
+  .flow-dot {
+    display: none;
   }
 }

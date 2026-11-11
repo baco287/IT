@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 import SmartAmbientVideo from "./SmartAmbientVideo";
-import { Eyebrow, container } from "./ui";
+import { Eyebrow, container, h2Class } from "./ui";
 import { MEDIA } from "@/lib/media";
 import serverImg from "@/public/images/server.jpg";
 import cpuImg from "@/public/images/cpu.jpg";
@@ -33,11 +33,11 @@ const ITEMS = [
 
 export default function Infrastructure() {
   return (
-    <section id="loesungen" className="bg-white py-16 lg:py-20">
+    <section id="loesungen" className="bg-soft py-20 lg:py-24">
       <div className={container}>
         <div className="max-w-3xl">
           <Eyebrow>Infrastruktur</Eyebrow>
-          <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-[2.4rem]">
+          <h2 className={`mt-4 ${h2Class}`}>
             Technik, auf die Verlass ist.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
@@ -60,7 +60,7 @@ export default function Infrastructure() {
                   />
                 </SmartAmbientVideo>
                 <div className="p-6">
-                  <h3 className="text-lg font-bold">{it.title}</h3>
+                  <h3 className="text-[1.2rem] font-bold">{it.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted">{it.text}</p>
                 </div>
               </article>

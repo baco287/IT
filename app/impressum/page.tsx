@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 
 const h2 = "mt-10 mb-3 text-xl font-bold text-ink";
 const p = "text-[15px] leading-relaxed text-muted";
-const link = "font-medium text-teal-dark underline-offset-2 hover:underline";
+const link = "font-medium text-teal-text underline underline-offset-2";
 
 export default function Impressum() {
   return (
     <>
       <Navbar />
       <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
-        <h1 className="text-[2.2rem] font-extrabold tracking-tight">
+        <h1 className="text-[2.2rem] font-bold tracking-tight">
           Impressum
         </h1>
 
