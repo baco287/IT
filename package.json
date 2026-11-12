@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "akquise": "npm run akquise:suchen && npm run akquise:pruefen && npm run akquise:anschreiben",
+    "akquise:suchen": "node akquise/1-leads-suchen.mjs",
+    "akquise:pruefen": "node akquise/2-webseiten-pruefen.mjs",
+    "akquise:anschreiben": "node akquise/3-anschreiben-erstellen.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.510.0",

@@ -2,5 +2,7 @@
 node_modules/
 .next/
 out/
+akquise/daten/
+akquise/ausgabe/
 *.tsbuildinfo
 next-env.d.ts

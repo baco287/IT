@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Akquise-Übersicht</title>
+<style>
+  :root {
+    --ink: #07182d; --text: #17263b; --muted: #5f6f85; --line: #e2e8f0; --soft: #f6f8fb;
+    --teal: #007d75; --teal-tint: #e6f9f8; --warn: #9a5b00; --warn-tint: #fff4dc; --red: #b42318;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--soft); color: var(--text); font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  header { background: var(--ink); color: #fff; padding: 28px 20px 24px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { padding: 0; }
+  h1 { margin: 0; font-size: 26px; letter-spacing: -0.01em; }
+  header p { margin: 6px 0 0; color: rgba(255,255,255,.7); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 20px; }
+  .stat { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 12px 14px; }
+  .stat b { display: block; font-size: 24px; }
+  .stat span { font-size: 12.5px; color: rgba(255,255,255,.65); }
+  .hinweis { margin: 18px auto 0; background: var(--warn-tint); color: #5c3a00; border: 1px solid #f2d59b; border-radius: 12px; padding: 12px 16px; font-size: 14px; }
+  .filter { position: sticky; top: 0; z-index: 5; background: var(--soft); padding: 14px 0; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .filter input[type=search], .filter select { min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; font: inherit; background: #fff; color: var(--text); }
+  .filter input[type=search] { flex: 1 1 220px; }
+  .filter label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+  .filter .zahl { margin-left: auto; color: var(--muted); font-size: 14px; }
+  .lead { background: #fff; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; overflow: hidden; }
+  .kopf { display: grid; grid-template-columns: 56px minmax(0, 1.3fr) minmax(0, 1.5fr) auto; gap: 14px; align-items: center; padding: 14px 16px; cursor: pointer; }
+  .kopf:hover { background: #fbfcfe; }
+  .score { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; font-weight: 700; font-size: 16px; background: var(--soft); color: var(--muted); }
+  .score.hoch { background: var(--teal-tint); color: var(--teal); }
+  .score.mittel { background: var(--warn-tint); color: var(--warn); }
+  .name { font-weight: 700; color: var(--ink); }
+  .klein { font-size: 13px; color: var(--muted); }
+  .befunde { margin: 0; padding-left: 18px; font-size: 13.5px; }
+  .marken { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+  .marke { font-size: 12px; border-radius: 999px; padding: 3px 9px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+  .marke.pruefen { background: var(--warn-tint); color: var(--warn); font-weight: 600; }
+  .marke.weg { background: var(--teal-tint); color: var(--teal); }
+  .detail { display: none; border-top: 1px solid var(--line); padding: 16px; background: #fcfdff; }
+  .lead.offen .detail { display: block; }
+  .kontakt { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 14px; font-size: 14px; }
+  .kontakt a { color: var(--teal); }
+  .spalten { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; }
+  .block { border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+  .block h3 { margin: 0; padding: 10px 14px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); color: var(--ink); }
+  .block pre { margin: 0; padding: 14px; white-space: pre-wrap; font: 13.5px/1.55 "Segoe UI", system-ui, sans-serif; }
+  .block .warn { margin: 0; padding: 8px 14px; font-size: 12.5px; background: var(--warn-tint); color: #5c3a00; }
+  button.kopie { min-height: 34px; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 0 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  button.kopie:hover { border-color: var(--ink); }
+  select.status { min-height: 36px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 13px; padding: 0 8px; background: #fff; }
+  .leer { text-align: center; padding: 50px 0; color: var(--muted); }
+  @media (max-width: 760px) {
+    .kopf { grid-template-columns: 52px 1fr; }
+    .kopf .befunde, .kopf .marken { grid-column: 1 / -1; justify-content: flex-start; }
+    .spalten { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1 id="titel">Akquise-Übersicht</h1>
+    <p id="stand"></p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="hinweis">
+    <strong>Hier wird nichts automatisch versendet.</strong> Briefe per Post sind der rechtssichere Weg.
+    E-Mail-Entwürfe bitte nur an Betriebe senden, die vorher zugestimmt haben (zum Beispiel am Telefon).
+    Befunde mit der Markierung „prüfen“ vor dem Versand kurz auf der Webseite gegenlesen.
+  </div>
+  <div class="filter">
+    <input type="search" id="suche" placeholder="Name, Straße oder Befund suchen …" aria-label="Suche">
+    <select id="branche" aria-label="Branche">
+      <option value="">Alle Branchen</option>
+      <option>Restaurant</option>
+      <option>Kfz-Werkstatt</option>
+    </select>
+    <select id="statusFilter" aria-label="Status">
+      <option value="">Jeder Status</option>
+      <option>offen</option><option>Brief verschickt</option><option>angerufen</option>
+      <option>Termin vereinbart</option><option>Kunde</option><option>kein Interesse</option>
+    </select>
+    <label><input type="checkbox" id="nurText" checked> nur mit Anschreiben</label>
+    <span class="zahl" id="zahl"></span>
+  </div>
+  <div id="liste"></div>
+</div>
+<script>
+const DATEN = /*DATEN*/null;
+const STATUS = ["offen", "Brief verschickt", "angerufen", "Termin vereinbart", "Kunde", "kein Interesse"];
+const el = (id) => document.getElementById(id);
+
+function ladeStatus() {
+  try { return JSON.parse(localStorage.getItem("akquise-status") || "{}"); } catch (e) { return {}; }
+}
+function speichereStatus() {
+  try { localStorage.setItem("akquise-status", JSON.stringify(status)); } catch (e) { /* ohne Speicher weiter */ }
+}
+const status = ladeStatus();
+
+function knoten(tag, klasse, text) {
+  const k = document.createElement(tag);
+  if (klasse) k.className = klasse;
+  if (text !== undefined) k.textContent = text;
+  return k;
+}
+
+function textBlock(titel, inhalt, warnung) {
+  const block = knoten("div", "block");
+  const h = knoten("h3", "", titel);
+  const knopf = knoten("button", "kopie", "Kopieren");
+  knopf.type = "button";
+  knopf.addEventListener("click", () => {
+    navigator.clipboard.writeText(inhalt).then(() => {
+      knopf.textContent = "Kopiert";
+      setTimeout(() => { knopf.textContent = "Kopieren"; }, 1500);
+    });
+  });
+  h.appendChild(knopf);
+  block.appendChild(h);
+  if (warnung) block.appendChild(knoten("p", "warn", warnung));
+  block.appendChild(knoten("pre", "", inhalt));
+  return block;
+}
+
+function baueDetail(z) {
+  const d = knoten("div", "detail");
+  const kontakt = knoten("div", "kontakt");
+  if (z.telefon) {
+    const a = knoten("a", "", "Tel. " + z.telefon);
+    a.href = "tel:" + z.telefon.replace(/[^+\d]/g, "");
+    kontakt.appendChild(a);
+  }
+  if (z.website) {
+    const a = knoten("a", "", "Webseite öffnen");
+    a.href = z.website; a.target = "_blank"; a.rel = "noopener noreferrer";
+    kontakt.appendChild(a);
+  }
+  if (z.email) kontakt.appendChild(knoten("span", "", z.email));
+  if (z.datei) kontakt.appendChild(knoten("span", "klein", "Brief-Datei: " + z.datei));
+  const wahl = knoten("select", "status");
+  wahl.setAttribute("aria-label", "Status");
+  STATUS.forEach((s) => wahl.appendChild(knoten("option", "", s)));
+  wahl.value = status[z.id] || "offen";
+  wahl.addEventListener("change", () => { status[z.id] = wahl.value; speichereStatus(); });
+  kontakt.appendChild(wahl);
+  d.appendChild(kontakt);
+
+  if (z.brief) {
+    const spalten = knoten("div", "spalten");
+    spalten.appendChild(textBlock("Brief (Post)", z.brief));
+    const rechts = knoten("div");
+    rechts.style.display = "grid"; rechts.style.gap = "14px"; rechts.style.alignContent = "start";
+    rechts.appendChild(textBlock("Notiz für den Anruf", z.anruf));
+    rechts.appendChild(textBlock("E-Mail-Entwurf", z.mail, "Nur senden, wenn der Betrieb vorher zugestimmt hat."));
+    spalten.appendChild(rechts);
+    d.appendChild(spalten);
+  } else {
+    d.appendChild(knoten("p", "klein", "Kein Anschreiben: Score unter " + DATEN.mindestScore + "."));
+  }
+  return d;
+}
+
+function baueLead(z) {
+  const karte = knoten("div", "lead");
+  const kopf = knoten("div", "kopf");
+  kopf.setAttribute("role", "button");
+  kopf.tabIndex = 0;
+  kopf.appendChild(knoten("span", "score " + (z.score >= 80 ? "hoch" : z.score >= 60 ? "mittel" : ""), String(z.score)));
+
+  const wer = knoten("div");
+  wer.appendChild(knoten("div", "name", z.name));
+  wer.appendChild(knoten("div", "klein", [z.branche, [z.strasse, [z.plz, z.ort].join(" ").trim()].filter(Boolean).join(", ")].filter(Boolean).join(" · ")));
+  kopf.appendChild(wer);
+
+  const liste = knoten("ul", "befunde");
+  z.befunde.forEach((b) => liste.appendChild(knoten("li", "", b)));
+  kopf.appendChild(liste);
+
+  const marken = knoten("div", "marken");
+  if (z.pruefen) marken.appendChild(knoten("span", "marke pruefen", "prüfen"));
+  z.wege.forEach((w) => marken.appendChild(knoten("span", "marke weg", w)));
+  kopf.appendChild(marken);
+  karte.appendChild(kopf);
+
+  let detail = null;
+  const umschalten = () => {
+    if (!detail) { detail = baueDetail(z); karte.appendChild(detail); }
+    karte.classList.toggle("offen");
+  };
+  kopf.addEventListener("click", umschalten);
+  kopf.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); umschalten(); } });
+  return karte;
+}
+
+function zeige() {
+  const suche = el("suche").value.trim().toLowerCase();
+  const branche = el("branche").value;
+  const st = el("statusFilter").value;
+  const nurText = el("nurText").checked;
+  const treffer = DATEN.zeilen.filter((z) => {
+    if (nurText && !z.brief) return false;
+    if (branche && z.branche !== branche) return false;
+    if (st && (status[z.id] || "offen") !== st) return false;
+    if (suche && !(z.name + " " + z.strasse + " " + z.befunde.join(" ")).toLowerCase().includes(suche)) return false;
+    return true;
+  });
+  const liste = el("liste");
+  liste.textContent = "";
+  if (treffer.length === 0) liste.appendChild(knoten("p", "leer", "Keine Betriebe für diese Auswahl."));
+  treffer.slice(0, 400).forEach((z) => liste.appendChild(baueLead(z)));
+  el("zahl").textContent = treffer.length + " Betriebe" + (treffer.length > 400 ? " (erste 400 angezeigt)" : "");
+}
+
+(function start() {
+  const z = DATEN.zeilen;
+  el("titel").textContent = "Akquise-Übersicht " + DATEN.ort;
+  document.title = "Akquise-Übersicht " + DATEN.ort;
+  el("stand").textContent = "Stand " + DATEN.stand + " · Daten: OpenStreetMap und eigene Webseiten-Prüfung";
+  const karten = [
+    [z.length, "Betriebe gefunden"],
+    [z.filter((x) => x.brief).length, "mit Anschreiben-Entwurf"],
+    [z.filter((x) => x.brief && x.branche === "Restaurant").length, "davon Restaurants"],
+    [z.filter((x) => x.brief && x.branche === "Kfz-Werkstatt").length, "davon Werkstätten"],
+    [z.filter((x) => x.datei).length, "per Brief erreichbar"],
+  ];
+  karten.forEach(([zahl, text]) => {
+    const s = knoten("div", "stat");
+    s.appendChild(knoten("b", "", String(zahl)));
+    s.appendChild(knoten("span", "", text));
+    el("stats").appendChild(s);
+  });
+  ["suche", "branche", "statusFilter", "nurText"].forEach((id) => el(id).addEventListener("input", zeige));
+  zeige();
+})();
+</script>
+</body>
+</html>

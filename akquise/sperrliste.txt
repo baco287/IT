@@ -1,0 +1,7 @@
+# Sperrliste: Betriebe, die keine Post oder Nachrichten von QonteX wünschen.
+# Eine Zeile pro Eintrag – entweder ein Teil des Namens oder die Webadresse ohne www.
+# Einträge hier werden bei jedem Lauf übersprungen. Widersprüche bitte sofort eintragen.
+#
+# Beispiele:
+# pizzeria beispiel
+# beispiel-werkstatt.de
