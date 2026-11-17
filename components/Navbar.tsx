@@ -68,7 +68,6 @@ const LINKS = [
   { href: "/leistungen", label: "Leistungen", dropdown: true },
   { href: "/automatisierung", label: "Automatisierung" },
   { href: "/#so-funktionierts", label: "So funktioniert’s" },
-  { href: "/referenzen", label: "Referenzen" },
   { href: "/ueber", label: "Über uns" },
   { href: "/kontakt", label: "Kontakt" },
 ];

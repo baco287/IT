@@ -31,7 +31,6 @@ const GROUPS = [
     title: "Unternehmen",
     links: [
       { label: "Automatisierung", href: "/automatisierung" },
-      { label: "Referenzen", href: "/referenzen" },
       { label: "Über QonteX", href: "/ueber" },
       { label: "Kontakt", href: "/kontakt" },
     ],

@@ -5,7 +5,6 @@ import AutomationFlow from "@/components/AutomationFlow";
 import Services from "@/components/Services";
 import MarketingTeam from "@/components/MarketingTeam";
 import Savings from "@/components/Savings";
-import References from "@/components/References";
 import Steps from "@/components/Steps";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
@@ -24,7 +23,6 @@ export default function Home() {
         <Services />
         <MarketingTeam />
         <Savings />
-        <References />
         <Steps />
         <Cta />
       </main>
