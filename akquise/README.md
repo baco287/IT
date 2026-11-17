@@ -49,6 +49,22 @@ Zuschläge: nicht handytauglich +8, langsam +5, veraltet +4, ohne https +3.
 Die Prüfung ist eine Heuristik. Befunde mit der Markierung „prüfen“ – und im
 Zweifel jeden Betrieb – vor dem Versand kurz auf der Webseite gegenlesen.
 
+## Ergebnis der Prüfung von Hand
+
+Was beim Gegenlesen herauskommt, steht in `daten/handpruefung.json` (Schlüssel
+ist die `id` aus `daten/leads.json`) und hat Vorrang vor der automatischen
+Bewertung:
+
+```json
+{ "node/123": { "name": "Beispiel", "senden": false, "grund": "Hat schon OpenTable", "geprueftAm": "2026-11-16" } }
+```
+
+- `"senden": false` – kein Anschreiben, der Grund erscheint in Übersicht und CSV.
+- `"senden": true` – Befund bestätigt, die Markierung „prüfen“ entfällt.
+
+Danach `npm run akquise:anschreiben` erneut ausführen. Die Sperrliste bleibt
+allein für Widersprüche da.
+
 ## Rechtliche Leitplanken
 
 - **Brief per Post** ist für Werbung an Unternehmen der sichere Weg, solange

@@ -37,6 +37,9 @@ const ANBIETER = [
   ["fairgarage.", "FairGarage"],
   ["werkstattplanung.net", "Werkstattplanung.net"],
   ["drivelog.", "Drivelog"],
+  ["table-reservations-ooi", "Wix Table Reservations"],
+  ["redi-restaurant-booking", "ReDi Restaurant Booking"],
+  ["boschcarservice.com", "Bosch Car Service"],
 ];
 
 /* Hinweise im sichtbaren Text, dass reserviert bzw. ein Termin vereinbart werden kann */

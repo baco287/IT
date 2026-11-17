@@ -129,6 +129,16 @@ const FREEMAIL = new Set([
 
 const csvFeld = (wert) => `"${String(wert ?? "").replace(/"/g, '""')}"`;
 
+/* Ergebnis einer Prüfung von Hand (daten/handpruefung.json) hat Vorrang vor der Heuristik:
+   senden: false → kein Anschreiben, der Grund steht in den Befunden;
+   senden: true  → Befund bestätigt, die Markierung „prüfen“ entfällt. */
+function mitHandpruefung(bewertung, eintrag) {
+  if (!eintrag) return bewertung;
+  const vermerk = `Von Hand geprüft${eintrag.geprueftAm ? ` am ${eintrag.geprueftAm}` : ""}: ${eintrag.grund}`;
+  if (eintrag.senden === false) return { score: Math.min(bewertung.score, 10), befunde: [vermerk], pruefen: false };
+  return { ...bewertung, befunde: [...bewertung.befunde, vermerk], pruefen: false };
+}
+
 /* ------------------------------------------------------------------ */
 
 const leads = await liesJson(join(DATEN, "leads.json"), null);
@@ -137,6 +147,7 @@ if (!leads) {
   process.exit(1);
 }
 const checks = await liesJson(join(DATEN, "checks.json"), {});
+const handpruefung = await liesJson(join(DATEN, "handpruefung.json"), {});
 const sperrliste = await liesSperrliste();
 const gesperrt = (lead) => {
   const name = lead.name.toLowerCase();
@@ -149,7 +160,7 @@ let nr = 0;
 for (const lead of leads) {
   if (gesperrt(lead)) continue;
   const check = checks[lead.id];
-  const bewertung = bewerte(lead, check);
+  const bewertung = mitHandpruefung(bewerte(lead, check), handpruefung[lead.id]);
   /* Auf Webseiten steht oft auch die Adresse des Webdesigners – nur Adressen
      übernehmen, die zur eigenen Domain oder zu einem Freemail-Anbieter gehören. */
   const eigeneDomain = domain(check?.endUrl ?? lead.website);
@@ -219,5 +230,7 @@ console.log(`  Anschreiben entworfen (Score ab ${mindestScore}):  ${mitText.leng
 console.log(`    davon mit Postanschrift (Brief-Datei):   ${mitText.filter((z) => z.datei).length}`);
 console.log(`    davon mit Telefonnummer:                 ${mitText.filter((z) => z.telefon).length}`);
 console.log(`    davon vor Versand von Hand zu prüfen:    ${mitText.filter((z) => z.pruefen).length}`);
+const aussortiert = Object.values(handpruefung).filter((e) => e.senden === false).length;
+if (aussortiert > 0) console.log(`  Von Hand aussortiert (daten/handpruefung.json): ${aussortiert}`);
 console.log("\nAbgelegt in akquise/ausgabe/: uebersicht.html, leads.csv, briefe/");
 console.log("Es wurde nichts versendet.");
