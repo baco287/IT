@@ -15,4 +15,14 @@ export async function sendForm(subject: string, fields: Record<string, string>) 
     }),
   });
   if (!res.ok) throw new Error("Senden fehlgeschlagen");
+
+  /* FormSubmit antwortet auch dann mit Status 200, wenn nichts zugestellt wurde –
+     etwa solange das Formular noch nicht freigeschaltet ist (success: "false").
+     Als gesendet gilt die Anfrage nur, wenn die Antwort das ausdrücklich bestätigt. */
+  const data: unknown = await res.json().catch(() => null);
+  const confirmed =
+    typeof data === "object" &&
+    data !== null &&
+    String((data as { success?: unknown }).success) === "true";
+  if (!confirmed) throw new Error("Senden nicht bestätigt");
 }
