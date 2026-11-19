@@ -16,7 +16,7 @@ export default function Datenschutz() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
+      <main id="inhalt" className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
         <h1 className="text-[2.2rem] font-bold tracking-tight">
           Datenschutzerklärung
         </h1>
@@ -89,7 +89,7 @@ export default function Datenschutz() {
 
         <h2 className={h2}>5. Schriftarten</h2>
         <p className={p}>
-          Die verwendeten Schriftarten (Inter und Plus Jakarta Sans)
+          Die verwendeten Schriftarten (Fira Sans, Fira Sans Condensed und Plus Jakarta Sans)
           sind lokal auf unserem Hosting eingebunden. Beim Laden der Schriften
           findet keine Verbindung zu Servern von Google oder anderen
           Schriftanbietern statt.

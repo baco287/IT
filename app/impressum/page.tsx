@@ -16,7 +16,7 @@ export default function Impressum() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
+      <main id="inhalt" className="mx-auto max-w-3xl px-5 pb-24 pt-14 [overflow-wrap:anywhere] sm:px-8 lg:pt-20">
         <h1 className="text-[2.2rem] font-bold tracking-tight">
           Impressum
         </h1>

@@ -88,7 +88,7 @@ const SCENARIOS: ScenarioConfig[] = [
       "--w-radius-sm": "5px",
       "--w-font-head": "var(--font-barlow)",
       "--w-font-num": "var(--font-jbmono)",
-      "--w-font-body": "var(--font-inter)",
+      "--w-font-body": "var(--font-body-face)",
     },
     background:
       "radial-gradient(70% 60% at 0% 100%, rgba(217, 45, 32, 0.22), transparent 60%), linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px) 0 0 / 28px 28px, linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px) 0 0 / 28px 28px, #0b1220",

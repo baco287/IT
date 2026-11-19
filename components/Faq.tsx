@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { SectionHead, container } from "./ui";
+import { SplitSection } from "./ui";
 import { FAQS } from "@/lib/faqs";
 
 function Item({ faq, index }: { faq: (typeof FAQS)[number]; index: number }) {
@@ -10,49 +10,45 @@ function Item({ faq, index }: { faq: (typeof FAQS)[number]; index: number }) {
   const id = `faq-panel-${index}`;
 
   return (
-    <div
-      className={`overflow-hidden rounded-2xl border bg-white transition-colors duration-200 ${
-        open ? "border-teal-dark" : "border-line"
-      }`}
-    >
+    <div className="border-b border-ink/15">
       <h3>
         <button
           type="button"
-          className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+          className="-mx-3 flex w-[calc(100%+1.5rem)] items-center justify-between gap-5 px-3 py-5 text-left transition-colors hover:bg-teal-tint"
           aria-expanded={open}
           aria-controls={id}
           onClick={() => setOpen(!open)}
         >
-          <span className="text-[17px] font-semibold leading-snug text-ink">{faq.q}</span>
-          <span
-            className={`grid h-8 w-8 flex-none place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-200 motion-reduce:transition-none ${
-              open ? "rotate-45 border-ink bg-ink text-white" : "border-line text-ink"
+          <span className="font-[family-name:var(--font-body)] text-[17px] font-semibold leading-snug text-ink">
+            {faq.q}
+          </span>
+          <Plus
+            size={20}
+            strokeWidth={2.4}
+            className={`flex-none text-ink transition-transform duration-200 motion-reduce:transition-none ${
+              open ? "rotate-45" : ""
             }`}
             aria-hidden
-          >
-            <Plus size={15} strokeWidth={2.5} />
-          </span>
+          />
         </button>
       </h3>
       {/* Antwort bleibt im Dokument (auch für Suchmaschinen), wird nur ein- und ausgeblendet */}
       <div id={id} hidden={!open}>
-        <p className="max-w-3xl px-6 pb-6 text-[16px] leading-relaxed text-muted">{faq.a}</p>
+        <p className="max-w-2xl pb-6 text-[16px] leading-relaxed text-muted">{faq.a}</p>
       </div>
     </div>
   );
 }
 
+/* Fragen als aufklappbare Zeilen mit Linien */
 export default function Faq() {
   return (
-    <section id="faq" className="bg-soft py-20 lg:py-24">
-      <div className={`${container} max-w-4xl`}>
-        <SectionHead eyebrow="Häufige Fragen" title="Gut zu wissen" />
-        <div className="mt-10 space-y-3">
-          {FAQS.map((f, i) => (
-            <Item key={f.q} faq={f} index={i} />
-          ))}
-        </div>
+    <SplitSection id="faq" headingId="faq-heading" title="Häufige Fragen">
+      <div className="border-t-2 border-ink">
+        {FAQS.map((f, i) => (
+          <Item key={f.q} faq={f} index={i} />
+        ))}
       </div>
-    </section>
+    </SplitSection>
   );
 }

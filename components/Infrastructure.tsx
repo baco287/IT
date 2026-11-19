@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Reveal from "./Reveal";
 import SmartAmbientVideo from "./SmartAmbientVideo";
-import { Eyebrow, container, h2Class } from "./ui";
+import { PlainSection, SectionHead } from "./ui";
 import { MEDIA } from "@/lib/media";
 import serverImg from "@/public/images/server.jpg";
 import cpuImg from "@/public/images/cpu.jpg";
@@ -31,43 +30,32 @@ const ITEMS = [
   },
 ];
 
+/* Drei Bilder mit Bildunterschrift – ohne Kartenrahmen */
 export default function Infrastructure() {
   return (
-    <section id="loesungen" className="bg-soft py-20 lg:py-24">
-      <div className={container}>
-        <div className="max-w-3xl">
-          <Eyebrow>Infrastruktur</Eyebrow>
-          <h2 className={`mt-4 ${h2Class}`}>
-            Technik, auf die Verlass ist.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted">
-            Von der einzelnen Komponente bis zum kompletten Serverraum: Wir wählen Ihre
-            Systeme so aus, dass sie zuverlässig laufen und zu Ihrem Bedarf passen.
-          </p>
-        </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {ITEMS.map((it, i) => (
-            <Reveal key={it.title} delay={i * 0.06} className="h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white">
-                {/* Cinemagraph ersetzt das Bild erst, wenn in lib/media.ts aktiviert */}
-                <SmartAmbientVideo asset={it.media}>
-                  <Image
-                    src={it.img}
-                    alt={it.alt}
-                    className="aspect-[16/10] w-full object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    placeholder="blur"
-                  />
-                </SmartAmbientVideo>
-                <div className="p-6">
-                  <h3 className="text-[1.2rem] font-bold">{it.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted">{it.text}</p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+    <PlainSection id="loesungen">
+      <SectionHead
+        title="Technik, auf die Verlass ist."
+        text="Von der einzelnen Komponente bis zum kompletten Serverraum: Wir wählen Ihre Systeme so aus, dass sie zuverlässig laufen und zu Ihrem Bedarf passen."
+      />
+      <div className="mt-10 grid gap-x-8 gap-y-10 md:grid-cols-3">
+        {ITEMS.map((it) => (
+          <article key={it.title}>
+            {/* Cinemagraph ersetzt das Bild erst, wenn in lib/media.ts aktiviert */}
+            <SmartAmbientVideo asset={it.media}>
+              <Image
+                src={it.img}
+                alt={it.alt}
+                className="aspect-[16/10] w-full object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                placeholder="blur"
+              />
+            </SmartAmbientVideo>
+            <h3 className="mt-5 text-[1.35rem] leading-snug">{it.title}</h3>
+            <p className="mt-2 text-[16px] leading-relaxed text-muted">{it.text}</p>
+          </article>
+        ))}
       </div>
-    </section>
+    </PlainSection>
   );
 }

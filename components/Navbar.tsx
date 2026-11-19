@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -84,6 +84,7 @@ export default function Navbar() {
   const pathname = usePathname() || "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
@@ -102,12 +103,19 @@ export default function Navbar() {
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
+    // Seite hinter dem Menü für Tastatur und Screenreader sperren
+    const behind = Array.from(document.querySelectorAll<HTMLElement>("main, footer"));
+    behind.forEach((el) => el.setAttribute("inert", ""));
     return () => {
       document.body.style.overflow = previous;
       window.removeEventListener("keydown", onKey);
+      behind.forEach((el) => el.removeAttribute("inert"));
     };
   }, [open]);
 
@@ -154,17 +162,15 @@ export default function Navbar() {
 
                   {l.dropdown && (
                     <div className="invisible absolute -left-6 top-full z-50 opacity-0 transition-opacity duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                      <div className="w-[41rem] rounded-2xl border border-line bg-white p-3 shadow-[var(--shadow-card-hover)]">
+                      <div className="w-[41rem] rounded-md border border-ink/15 bg-white p-3 shadow-[0_18px_40px_-18px_rgba(7,24,45,0.35)]">
                         <ul className="grid grid-cols-2 gap-1">
                           {SERVICE_LINKS.map((it) => (
                             <li key={it.href}>
                               <Link
                                 href={it.href}
-                                className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-soft"
+                                className="flex items-start gap-3 rounded-md p-3 transition-colors hover:bg-teal-tint"
                               >
-                                <span className="grid h-10 w-10 flex-none place-items-center rounded-lg bg-teal-tint text-teal-text">
-                                  <it.icon size={19} strokeWidth={1.8} aria-hidden />
-                                </span>
+                                <it.icon size={20} strokeWidth={1.8} className="mt-0.5 flex-none text-teal-dark" aria-hidden />
                                 <span>
                                   <span className="block text-[15px] font-semibold text-ink">{it.label}</span>
                                   <span className="mt-0.5 block text-[13px] leading-snug text-muted">{it.text}</span>
@@ -175,7 +181,7 @@ export default function Navbar() {
                         </ul>
                         <Link
                           href="/leistungen"
-                          className="mt-2 flex items-center justify-between rounded-xl bg-soft px-4 py-3 text-sm font-semibold text-ink transition-colors hover:bg-teal-tint"
+                          className="mt-2 flex items-center justify-between rounded-md border-t border-ink/15 px-3 py-3 text-sm font-semibold text-ink transition-colors hover:bg-teal-tint"
                         >
                           Alle Leistungen im Überblick
                           <ArrowRight size={16} strokeWidth={2.2} className="text-teal-text" aria-hidden />
@@ -192,20 +198,21 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/kontakt"
-            className="hidden min-h-11 items-center justify-center rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-ink-soft sm:inline-flex"
+            className="hidden min-h-11 items-center justify-center rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#163152] sm:inline-flex"
           >
             {CTA_LABEL}
           </Link>
           <a
             href={PHONE_HREF}
             aria-label={`QonteX anrufen: ${PHONE_DISPLAY}`}
-            className="grid h-11 w-11 place-items-center rounded-full bg-ink text-white sm:hidden"
+            className="grid h-11 w-11 place-items-center rounded-md bg-ink text-white sm:hidden"
           >
             <Phone size={18} strokeWidth={2} aria-hidden />
           </a>
           <button
+            ref={menuButtonRef}
             type="button"
-            className="grid h-11 w-11 place-items-center rounded-full border border-line text-ink xl:hidden"
+            className="grid h-11 w-11 place-items-center rounded-md border border-line text-ink transition-colors hover:border-ink xl:hidden"
             aria-label={open ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -220,7 +227,7 @@ export default function Navbar() {
         <nav
           id="mobile-menu"
           aria-label="Mobiles Menü"
-          className="h-[calc(100dvh-76px)] overflow-y-auto border-t border-line bg-white xl:hidden"
+          className="h-[calc(100dvh-76px)] overflow-y-auto overscroll-contain border-t border-line bg-white xl:hidden"
         >
           <div className="mx-auto w-full max-w-2xl px-5 pb-10 pt-3 sm:px-8">
             <ul className="divide-y divide-line">
@@ -298,11 +305,10 @@ export default function Navbar() {
 
             <Link href="/kontakt" onClick={close} className={`${btnPrimary} mt-6 w-full`}>
               {CTA_LABEL}
-              <ArrowRight size={18} strokeWidth={2.2} aria-hidden />
             </Link>
             <a
               href={PHONE_HREF}
-              className="mt-3 flex min-h-12 items-center justify-center gap-2.5 rounded-full border border-line text-[15px] font-semibold text-ink"
+              className="mt-3 flex min-h-12 items-center justify-center gap-2.5 rounded-md border-2 border-ink text-[15px] font-semibold text-ink"
             >
               <Phone size={17} strokeWidth={2} className="text-teal-dark" aria-hidden />
               {PHONE_DISPLAY}

@@ -46,14 +46,14 @@ function Field({
   return (
     <div>
       <div className="flex items-end justify-between gap-4">
-        <label htmlFor={id} className="text-[15px] font-semibold leading-snug text-ink">
+        <label htmlFor={id} className="min-w-0 text-[15px] font-semibold leading-snug text-ink [hyphens:auto]">
           {label}
         </label>
-        <div className="flex flex-none items-center rounded-lg border border-line bg-white focus-within:border-teal-dark">
+        <div className="flex flex-none items-center rounded-md border border-ink/30 bg-white focus-within:border-ink focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-text">
           <input
             id={id}
             type="number"
-            inputMode="decimal"
+            inputMode="numeric"
             min={min}
             max={max}
             step={step}
@@ -61,11 +61,18 @@ function Field({
             onChange={(e) => {
               setText(e.target.value);
               const n = Number(e.target.value);
-              if (e.target.value !== "" && Number.isFinite(n)) onChange(clamp(n, min, max));
+              // Nur Werte im erlaubten Bereich sofort übernehmen. Sonst würde z. B. die „6“
+              // von „60“ auf den Mindestwert gezogen und das Feld mitten im Tippen überschrieben.
+              if (e.target.value !== "" && Number.isFinite(n) && n >= min && n <= max) onChange(n);
             }}
-            onBlur={() => setText(String(value))}
+            onBlur={() => {
+              const n = Number(text);
+              const next = text !== "" && Number.isFinite(n) ? clamp(n, min, max) : value;
+              if (next !== value) onChange(next);
+              setText(String(next));
+            }}
             aria-describedby={`${id}-hint`}
-            className="w-[4.5rem] rounded-lg bg-transparent py-2 pl-3 pr-1 text-right text-[16px] font-semibold tabular-nums text-ink [appearance:textfield] focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="w-[4.5rem] rounded-md bg-transparent py-2 pl-3 pr-1 text-right text-[16px] font-semibold tabular-nums text-ink [appearance:textfield] focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <span className="pr-3 text-[15px] font-medium text-muted" aria-hidden>
             {unit}
@@ -94,6 +101,9 @@ function Field({
  * Einsparrechner: rechnet ausschließlich mit den Annahmen des Besuchers.
  * Rechenweg: Stunden/Woche × 4,33 Wochen × Anteil = Stunden/Monat (gerundet),
  * × Stundenkostensatz = Monat, × 12 = Jahr.
+ *
+ * Aufbau wie der Seitenkopf der Startseite: über die volle Breite zweigeteilt,
+ * links die Eingaben (bündig mit dem Seitenraster), rechts auf Türkis das Ergebnis.
  */
 export default function SavingsCalculator() {
   const [hours, setHours] = useState(20);
@@ -104,75 +114,79 @@ export default function SavingsCalculator() {
   const monthly = savedHours * rate;
   const yearly = monthly * 12;
 
-  return (
-    <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-[var(--shadow-card)]">
-      <div className="grid md:grid-cols-[1.08fr_0.92fr]">
-        <div className="p-6 sm:p-8">
-          <h3 className="text-[1.35rem] font-bold">Einsparrechner</h3>
-          <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
-            Tragen Sie Ihre eigenen Annahmen ein – alle Werte lassen sich frei ändern.
-          </p>
-          <div className="mt-7 space-y-7">
-            <Field
-              id="calc-hours"
-              label="Manuelle Arbeit pro Woche"
-              hint="Stunden für wiederkehrende Routineaufgaben, im gesamten Team."
-              unit="Std."
-              value={hours}
-              min={1}
-              max={200}
-              step={1}
-              onChange={setHours}
-            />
-            <Field
-              id="calc-rate"
-              label="Interner Stundenkostensatz"
-              hint="Durchschnittliche Kosten einer Arbeitsstunde in Ihrem Unternehmen."
-              unit="€"
-              value={rate}
-              min={10}
-              max={200}
-              step={1}
-              onChange={setRate}
-            />
-            <Field
-              id="calc-share"
-              label="Automatisierbarer Anteil"
-              hint="Ihre Schätzung, welcher Teil dieser Arbeit sich automatisieren lässt."
-              unit="%"
-              value={share}
-              min={5}
-              max={80}
-              step={5}
-              onChange={setShare}
-            />
-          </div>
-        </div>
+  const row = "flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-ink/25 py-4";
+  const figure = "font-[family-name:var(--font-display)] font-bold leading-none tracking-[-0.01em] tabular-nums";
 
-        <div className="flex flex-col bg-ink p-6 text-white sm:p-8">
-          <p className="text-sm font-semibold text-teal">Ihr Szenario</p>
-          <dl className="mt-5 flex-1 space-y-6">
-            <div>
-              <dt className="text-[15px] text-white/75">Potenziell eingesparte Stunden pro Monat</dt>
-              <dd className="mt-1 font-[family-name:var(--font-display)] text-[2rem] font-bold leading-none tracking-[-0.02em]">
+  return (
+    <div className="mt-14 grid lg:mt-20 lg:grid-cols-2">
+      <div className="px-5 pb-14 sm:px-8 lg:py-16 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-14">
+        <h3 className="text-[1.6rem] leading-tight">Einsparrechner</h3>
+        <p className="mt-2 max-w-[34rem] text-[16px] leading-relaxed text-muted">
+          Tragen Sie Ihre eigenen Annahmen ein – alle Werte lassen sich frei ändern.
+        </p>
+        <div className="mt-8 max-w-[34rem] space-y-7">
+          <Field
+            id="calc-hours"
+            label="Manuelle Arbeit pro Woche"
+            hint="Stunden für wiederkehrende Routineaufgaben, im gesamten Team."
+            unit="Std."
+            value={hours}
+            min={1}
+            max={200}
+            step={1}
+            onChange={setHours}
+          />
+          <Field
+            id="calc-rate"
+            label="Interner Stundenkostensatz"
+            hint="Durchschnittliche Kosten einer Arbeitsstunde in Ihrem Unternehmen."
+            unit="€"
+            value={rate}
+            min={10}
+            max={200}
+            step={1}
+            onChange={setRate}
+          />
+          <Field
+            id="calc-share"
+            label="Automatisierbarer Anteil"
+            hint="Ihre Schätzung, welcher Teil dieser Arbeit sich automatisieren lässt."
+            unit="%"
+            value={share}
+            min={5}
+            max={80}
+            step={5}
+            onChange={setShare}
+          />
+        </div>
+      </div>
+
+      <div className="bg-teal px-5 py-12 text-ink sm:px-8 lg:py-16 lg:pl-14 lg:pr-[max(2rem,calc((100vw-80rem)/2+2rem))]">
+        <div className="max-w-[34rem]">
+          <p className="font-[family-name:var(--font-display)] text-[1.6rem] font-bold leading-tight">Ihr Szenario</p>
+          <dl className="mt-5 border-t-2 border-ink">
+            <div className={row}>
+              <dt className="text-[15px]">Potenziell eingesparte Stunden pro Monat</dt>
+              <dd className={`${figure} text-[1.9rem]`}>
                 <output htmlFor="calc-hours calc-share">ca. {number.format(savedHours)} Std.</output>
               </dd>
             </div>
-            <div>
-              <dt className="text-[15px] text-white/75">Rechnerisches Einsparpotenzial pro Monat</dt>
-              <dd className="mt-1 font-[family-name:var(--font-display)] text-[2rem] font-bold leading-none tracking-[-0.02em]">
+            <div className={row}>
+              <dt className="text-[15px]">Rechnerisches Einsparpotenzial pro Monat</dt>
+              <dd className={`${figure} text-[1.9rem]`}>
                 <output htmlFor="calc-hours calc-rate calc-share">{euro.format(monthly)}</output>
               </dd>
             </div>
-            <div className="border-t border-white/15 pt-6">
-              <dt className="text-[15px] text-white/75">Rechnerisches Einsparpotenzial pro Jahr</dt>
-              <dd className="mt-1 font-[family-name:var(--font-display)] text-[2.6rem] font-bold leading-none tracking-[-0.03em] text-teal">
+            <div className="pt-5">
+              <dt className="text-[15px]">Rechnerisches Einsparpotenzial pro Jahr</dt>
+              <dd className={`${figure} mt-2 text-[clamp(3.2rem,15vw,5.5rem)]`}>
                 <output htmlFor="calc-hours calc-rate calc-share">{euro.format(yearly)}</output>
               </dd>
             </div>
           </dl>
-          <div className="mt-7 text-[13px] leading-relaxed text-white/70">
-            <p className="font-semibold text-white/85">Rechenweg</p>
+
+          <div className="mt-8 text-[14px] leading-relaxed">
+            <p className="font-semibold">Rechenweg</p>
             <ul className="mt-1 space-y-0.5 tabular-nums">
               <li>
                 {number.format(hours)}{NB}Std. × 4,33{NB}Wochen × {number.format(share)}{NB}% ≈{" "}
@@ -187,13 +201,14 @@ export default function SavingsCalculator() {
               </li>
             </ul>
           </div>
+
+          <p className="mt-6 border-t border-ink/25 pt-4 text-[14px] leading-relaxed">
+            Unverbindliches Szenario auf Basis Ihrer eigenen Annahmen – keine Zusage tatsächlicher
+            Einsparungen. Kosten für Einrichtung und Betrieb der Automatisierung sind nicht
+            berücksichtigt.
+          </p>
         </div>
       </div>
-      <p className="border-t border-line bg-soft px-6 py-4 text-[13px] leading-relaxed text-muted sm:px-8">
-        Unverbindliches Szenario auf Basis Ihrer eigenen Annahmen – keine Zusage tatsächlicher
-        Einsparungen. Kosten für Einrichtung und Betrieb der Automatisierung sind nicht
-        berücksichtigt.
-      </p>
     </div>
   );
 }

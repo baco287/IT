@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Fira_Sans, Fira_Sans_Condensed, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { COMPANY } from "@/lib/company";
 
-const inter = Inter({
+/* Schriften: Fira Sans (in Berlin entworfen, für Bildschirmtexte gebaut) für Fließtext,
+   die schmale Fira Sans Condensed für Überschriften – lange deutsche Wörter passen so
+   auch auf dem Handy in eine Zeile. Plus Jakarta Sans bleibt nur für die Wortmarke. */
+const body = Fira_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-body-face",
   display: "swap",
 });
-const display = Plus_Jakarta_Sans({
+const display = Fira_Sans_Condensed({
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["600", "700"],
   variable: "--font-display-face",
+  display: "swap",
+});
+const wordmark = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-wordmark",
   display: "swap",
 });
 
@@ -61,8 +70,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={`${inter.variable} ${display.variable}`}>
+    <html lang="de" className={`${body.variable} ${display.variable} ${wordmark.variable}`}>
       <body>
+        {/* Sprunglink für Tastatur- und Screenreader-Nutzer – erst bei Fokus sichtbar */}
+        <a
+          href="#inhalt"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-ink focus:px-5 focus:py-3 focus:text-[15px] focus:font-semibold focus:text-white"
+        >
+          Zum Inhalt springen
+        </a>
         {children}
         <script
           type="application/ld+json"

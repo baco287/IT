@@ -38,7 +38,7 @@ const GROUPS = [
 ];
 
 const linkCls =
-  "inline-flex min-h-9 items-center text-[15px] text-white/70 transition-colors hover:text-white";
+  "inline-flex min-h-11 items-center text-[15px] text-white/70 transition-colors hover:text-white";
 
 export default function Footer() {
   return (
@@ -56,12 +56,12 @@ export default function Footer() {
             </p>
             <ul className="mt-6 space-y-1 text-[15px]">
               <li>
-                <a href={PHONE_HREF} className="inline-flex min-h-9 items-center font-medium text-white hover:text-teal">
+                <a href={PHONE_HREF} className="inline-flex min-h-11 items-center font-medium text-white hover:text-teal">
                   {PHONE_DISPLAY}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${EMAIL}`} className="inline-flex min-h-9 items-center font-medium text-white hover:text-teal">
+                <a href={`mailto:${EMAIL}`} className="inline-flex min-h-11 items-center font-medium text-white hover:text-teal">
                   {EMAIL}
                 </a>
               </li>
@@ -92,10 +92,10 @@ export default function Footer() {
             © {new Date().getFullYear()} {COMPANY.brand} · ein Angebot der {COMPANY.legalName}
           </p>
           <nav aria-label="Rechtliches" className="flex gap-6">
-            <Link href="/impressum" className="inline-flex min-h-9 items-center hover:text-white">
+            <Link href="/impressum" className="inline-flex min-h-11 items-center hover:text-white">
               Impressum
             </Link>
-            <Link href="/datenschutz" className="inline-flex min-h-9 items-center hover:text-white">
+            <Link href="/datenschutz" className="inline-flex min-h-11 items-center hover:text-white">
               Datenschutz
             </Link>
           </nav>

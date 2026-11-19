@@ -2,7 +2,7 @@
 export default function Wordmark({ onDark = false, large = false }: { onDark?: boolean; large?: boolean }) {
   return (
     <span
-      className={`font-[family-name:var(--font-display)] font-bold tracking-[-0.03em] ${
+      className={`font-[family-name:var(--font-wordmark-stack)] font-bold tracking-[-0.03em] ${
         large ? "text-3xl" : "text-[1.6rem]"
       } ${onDark ? "text-white" : "text-ink"}`}
     >

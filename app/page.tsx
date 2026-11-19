@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import AutomationFlow from "@/components/AutomationFlow";
 import Services from "@/components/Services";
 import MarketingTeam from "@/components/MarketingTeam";
 import Savings from "@/components/Savings";
@@ -17,9 +16,8 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="inhalt">
         <Hero />
-        <AutomationFlow />
         <Services />
         <MarketingTeam />
         <Savings />

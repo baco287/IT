@@ -12,8 +12,9 @@
   --color-teal-dark: #00a096; /* Türkis für Icons und große Akzente auf Hell */
   --color-teal-text: #007d75; /* Türkis für kleinen Text auf Hell (Kontrast AA) */
   --color-teal-tint: #e6f9f8; /* sehr helles Türkis für Flächen */
-  --font-display: var(--font-display-face), var(--font-inter), "Segoe UI", system-ui, sans-serif;
-  --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-display-face), var(--font-body-face), "Segoe UI", system-ui, sans-serif;
+  --font-body: var(--font-body-face), "Segoe UI", system-ui, sans-serif;
+  --font-wordmark-stack: var(--font-wordmark), var(--font-body-face), system-ui, sans-serif;
   --shadow-card: 0 1px 2px rgba(7, 24, 45, 0.04), 0 12px 32px -14px rgba(7, 24, 45, 0.14);
   --shadow-card-hover: 0 2px 4px rgba(7, 24, 45, 0.05), 0 22px 48px -16px rgba(7, 24, 45, 0.2);
 }
@@ -45,8 +46,41 @@
     font-family: var(--font-display);
     font-weight: 700;
     color: var(--color-ink);
-    letter-spacing: -0.015em;
-    word-spacing: 0.05em;
+    letter-spacing: -0.006em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+  /* Auf schmalen Handys lange Wörter („Vertriebsautomatisierung“) trennen statt abschneiden */
+  @media (max-width: 30rem) {
+    h1,
+    h2,
+    h3 {
+      hyphens: auto;
+      hyphenate-limit-chars: 18 6 6;
+    }
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  /* Browser-Flächen, die sonst im Standard-Look bleiben */
+  html {
+    -webkit-tap-highlight-color: rgba(20, 212, 207, 0.18);
+  }
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  label {
+    touch-action: manipulation;
+  }
+  input,
+  textarea {
+    caret-color: var(--color-teal-dark);
   }
 
   ::selection {
@@ -65,142 +99,14 @@
     outline-offset: 3px;
     border-radius: 6px;
   }
+  /* auf türkisen Flächen dunkelblau, sonst wäre der Rahmen kaum zu sehen */
+  .bg-teal a:focus-visible,
+  .bg-teal button:focus-visible {
+    outline-color: var(--color-ink);
+  }
 
   button {
     cursor: pointer;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/* Hero: vereinfachter Ablauf – ein Schritt nach dem anderen wird aktiv */
-/* ------------------------------------------------------------------ */
-.hero-step {
-  animation: hero-step 12s linear infinite;
-  animation-delay: calc(var(--i) * 2s);
-}
-.hero-step-icon {
-  animation: hero-step-icon 12s linear infinite;
-  animation-delay: calc(var(--i) * 2s);
-}
-.hero-step-no {
-  animation: hero-step-no 12s linear infinite;
-  animation-delay: calc(var(--i) * 2s);
-}
-.hero-dot {
-  animation: hero-dot 12s ease-in-out infinite;
-}
-
-@keyframes hero-step {
-  0% {
-    background-color: transparent;
-  }
-  2%,
-  14% {
-    background-color: rgba(255, 255, 255, 0.07);
-  }
-  16.6%,
-  100% {
-    background-color: transparent;
-  }
-}
-@keyframes hero-step-icon {
-  0% {
-    background-color: #0e2540;
-    border-color: rgba(255, 255, 255, 0.16);
-    color: #ffffff;
-  }
-  2%,
-  14% {
-    background-color: #14d4cf;
-    border-color: #14d4cf;
-    color: #07182d;
-  }
-  16.6%,
-  100% {
-    background-color: #0e2540;
-    border-color: rgba(255, 255, 255, 0.16);
-    color: #ffffff;
-  }
-}
-@keyframes hero-step-no {
-  0% {
-    color: rgba(255, 255, 255, 0.4);
-  }
-  2%,
-  14% {
-    color: #14d4cf;
-  }
-  16.6%,
-  100% {
-    color: rgba(255, 255, 255, 0.4);
-  }
-}
-@keyframes hero-dot {
-  0%,
-  13% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  16.67%,
-  29.67% {
-    transform: translateY(20%);
-  }
-  33.33%,
-  46.33% {
-    transform: translateY(40%);
-  }
-  50%,
-  63% {
-    transform: translateY(60%);
-  }
-  66.67%,
-  79.67% {
-    transform: translateY(80%);
-  }
-  83.33%,
-  96% {
-    transform: translateY(100%);
-    opacity: 1;
-  }
-  97.5% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  98.5% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/* Ablauf-Sektion: Lichtpunkt wandert zur nächsten Station             */
-/* ------------------------------------------------------------------ */
-.flow-dot {
-  animation: flow-dot-y 1s cubic-bezier(0.45, 0, 0.2, 1) both;
-}
-@media (min-width: 48rem) {
-  .flow-dot {
-    animation-name: flow-dot-x;
-  }
-}
-@keyframes flow-dot-x {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-@keyframes flow-dot-y {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100%);
   }
 }
 
@@ -217,16 +123,6 @@
   50% {
     opacity: 0.45;
     transform: scale(0.8);
-  }
-}
-
-/* Fließende Verbindungslinie im Marketing-Schaubild */
-.line-flow {
-  animation: line-flow 1.2s linear infinite;
-}
-@keyframes line-flow {
-  to {
-    stroke-dashoffset: -12;
   }
 }
 
@@ -267,7 +163,6 @@
   border-radius: 9999px;
   background: #ffffff;
   border: 2px solid var(--color-ink);
-  box-shadow: 0 2px 6px rgba(7, 24, 45, 0.2);
 }
 .range::-moz-range-thumb {
   width: 18px;
@@ -275,7 +170,6 @@
   border-radius: 9999px;
   background: #ffffff;
   border: 2px solid var(--color-ink);
-  box-shadow: 0 2px 6px rgba(7, 24, 45, 0.2);
 }
 .range:focus-visible {
   outline: none;
@@ -319,17 +213,7 @@
 /* Bewegung reduzieren: alle Schleifen und Übergänge der Visualisierungen aus */
 @media (prefers-reduced-motion: reduce) {
   .demo-in,
-  .hero-step,
-  .hero-step-icon,
-  .hero-step-no,
-  .hero-dot,
-  .flow-dot,
-  .status-pulse,
-  .line-flow {
+  .status-pulse {
     animation: none;
-  }
-  .hero-dot,
-  .flow-dot {
-    display: none;
   }
 }
