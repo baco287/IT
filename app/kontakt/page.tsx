@@ -6,24 +6,22 @@ import Contact from "@/components/Contact";
 import Faq from "@/components/Faq";
 import { FAQS } from "@/lib/faqs";
 import { ADDRESS_LINE, EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "@/lib/company";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Kontakt | QonteX – Kostenloses Potenzialgespräch vereinbaren",
+export const metadata: Metadata = pageMeta({
+  title: "Kontakt: Projekt besprechen",
   description:
-    "Vereinbaren Sie ein kostenloses Potenzialgespräch mit QonteX: Wir sehen uns Ihre Abläufe an und besprechen, welche Digitalisierung und Automatisierung sinnvoll ist. Telefon und WhatsApp +49 160 95257592, info@qontex.de.",
-  alternates: { canonical: "/kontakt/" },
-};
+    "Sprechen Sie mit QonteX über Ihr Projekt: KI-Agenten, Automatisierung, Websites oder Software. Telefon und WhatsApp +49 160 95257592, info@qontex.de.",
+  path: "/kontakt/",
+});
 
 const CONTACT_FACTS: Array<{ label: string; value: string; href?: string; external?: boolean }> = [
   { label: "Telefon und WhatsApp", value: PHONE_DISPLAY, href: PHONE_HREF },
   { label: "WhatsApp", value: "Nachricht schreiben", href: WHATSAPP_HREF, external: true },
   { label: "E-Mail", value: EMAIL, href: `mailto:${EMAIL}` },
   { label: "Adresse", value: ADDRESS_LINE },
-  { label: "Erreichbarkeit", value: "Termine nach Vereinbarung" },
+  { label: "Termine", value: "Nach Vereinbarung, telefonisch oder per Video" },
 ];
-
-const ddCls =
-  "font-[family-name:var(--font-display)] text-[1.35rem] font-bold leading-snug [overflow-wrap:anywhere]";
 
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -41,22 +39,24 @@ export default function KontaktPage() {
       <Navbar />
       <main id="inhalt">
         <PageHeader
-          title="Finden wir heraus, wo Ihr Unternehmen Zeit und Geld sparen kann."
-          intro="Im kostenlosen Potenzialgespräch schauen wir uns Ihre Abläufe an und besprechen, welche Digitalisierung und Automatisierung für Ihr Unternehmen sinnvoll ist."
+          title="Sprechen wir über Ihr Projekt."
+          intro="Ob KI-Agent, Automatisierung, Website oder eigene Software: Im ersten Gespräch klären wir, was Sie vorhaben, was technisch sinnvoll ist und wie ein Projekt aussehen kann. Kostenlos und unverbindlich."
           crumbs={[{ label: "Kontakt" }]}
+        />
+        <Contact
           aside={
-            <>
-              <h2 className="text-[1.45rem] leading-tight">So erreichen Sie uns</h2>
-              <dl className="mt-5 border-t-2 border-ink">
+            <div className="rounded-[20px] bg-fog p-6 sm:p-7">
+              <h3 className="text-[1.2rem]">Lieber direkt?</h3>
+              <dl className="mt-3 border-t border-ink/80">
                 {CONTACT_FACTS.map((f) => (
-                  <div key={f.label} className="border-b border-ink/25 py-3">
-                    <dt className="text-[14px]">{f.label}</dt>
-                    <dd className={ddCls}>
+                  <div key={f.label} className="border-b border-rule py-2.5">
+                    <dt className="text-[14px] text-muted">{f.label}</dt>
+                    <dd className="text-[1.05rem] font-semibold text-ink [overflow-wrap:anywhere]">
                       {f.href ? (
                         <a
                           href={f.href}
                           {...(f.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                          className="inline-flex min-h-11 items-center decoration-2 underline-offset-4 hover:underline"
+                          className="inline-flex min-h-11 items-center decoration-signal-ink decoration-2 underline-offset-4 hover:underline"
                         >
                           {f.value}
                         </a>
@@ -67,13 +67,9 @@ export default function KontaktPage() {
                   </div>
                 ))}
               </dl>
-              <p className="mt-4 text-[14px] leading-relaxed">
-                QonteX ist ein Angebot der Volt Gas UG (haftungsbeschränkt), Berlin.
-              </p>
-            </>
+            </div>
           }
         />
-        <Contact />
         <Faq />
       </main>
       <Footer />

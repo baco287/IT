@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Archivo; src: url(archivo.woff2) /* Kopie der Archivo-Datei aus out/_next/static/media (latin, …-s.p.woff2) daneben legen */ format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+html,body { margin:0; width:1200px; height:630px; overflow:hidden; }
+body { background:#0a1220; color:#fff; font-family: Archivo, sans-serif; position:relative; }
+.grid { position:absolute; inset:0; background-image: linear-gradient(to right, rgba(159,173,194,.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(159,173,194,.07) 1px, transparent 1px); background-size:56px 56px; -webkit-mask-image: radial-gradient(ellipse 80% 70% at 75% 40%, #000 30%, transparent 75%); }
+.glow { position:absolute; right:-160px; top:-80px; width:760px; height:760px; background: radial-gradient(closest-side, rgba(76,201,240,.16), rgba(47,124,246,.06) 55%, transparent); }
+.wrap { position:absolute; inset:0; padding:70px 80px; display:flex; flex-direction:column; justify-content:space-between; }
+.mark { font-size:44px; font-weight:700; letter-spacing:-.03em; font-variation-settings:"wdth" 125; }
+.mark span { color:#4cc9f0; }
+h1 { margin:0; font-size:72px; line-height:1.05; font-weight:620; letter-spacing:-.022em; font-variation-settings:"wdth" 106; max-width:980px; }
+p { margin:24px 0 0; font-size:29px; color:#9fadc2; }
+.row { display:flex; gap:12px; align-items:center; }
+.chip { white-space:nowrap; padding:12px 18px; border-radius:10px; border:2px solid #2b3d59; color:#c3cddb; font-size:22px; font-weight:600; background:#101b2d; }
+.chip.on { border-color:#4cc9f0; color:#fff; background:#132036; }
+.line { width:18px; height:2px; background:#2b3d59; }
+.line.on { background:#4cc9f0; }
+</style></head>
+<body><div class="grid"></div><div class="glow"></div>
+<div class="wrap">
+  <div class="mark">Qonte<span>X</span></div>
+  <div>
+    <h1>IT-Lösungen und<br>KI-Automatisierung<br>für Unternehmen.</h1>
+    <p>KI-Agenten, Prozessautomatisierung, Web- und Softwareentwicklung</p>
+  </div>
+  <div class="row">
+    <div class="chip on">Website</div><div class="line on"></div>
+    <div class="chip on">KI-Agent</div><div class="line on"></div>
+    <div class="chip on">Automatisierung</div><div class="line on"></div>
+    <div class="chip on">CRM</div><div class="line"></div>
+    <div class="chip">Kalender</div><div class="line"></div>
+    <div class="chip">Datenbank</div>
+  </div>
+</div></body></html>

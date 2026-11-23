@@ -1,20 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Plus } from "lucide-react";
-import { SplitSection } from "./ui";
+import { SplitSection, textLink } from "./ui";
 import { FAQS } from "@/lib/faqs";
 
-function Item({ faq, index }: { faq: (typeof FAQS)[number]; index: number }) {
+type FaqEntry = (typeof FAQS)[number];
+
+function Item({ faq, index }: { faq: FaqEntry; index: number }) {
   const [open, setOpen] = useState(false);
   const id = `faq-panel-${index}`;
 
   return (
-    <div className="border-b border-ink/15">
+    <div className="border-b border-rule">
       <h3>
         <button
           type="button"
-          className="-mx-3 flex w-[calc(100%+1.5rem)] items-center justify-between gap-5 px-3 py-5 text-left transition-colors hover:bg-teal-tint"
+          className="flex min-h-16 w-full items-center justify-between gap-5 py-4 text-left"
           aria-expanded={open}
           aria-controls={id}
           onClick={() => setOpen(!open)}
@@ -24,8 +27,8 @@ function Item({ faq, index }: { faq: (typeof FAQS)[number]; index: number }) {
           </span>
           <Plus
             size={20}
-            strokeWidth={2.4}
-            className={`flex-none text-ink transition-transform duration-200 motion-reduce:transition-none ${
+            strokeWidth={2.2}
+            className={`flex-none text-signal-ink transition-transform duration-200 motion-reduce:transition-none ${
               open ? "rotate-45" : ""
             }`}
             aria-hidden
@@ -34,18 +37,41 @@ function Item({ faq, index }: { faq: (typeof FAQS)[number]; index: number }) {
       </h3>
       {/* Antwort bleibt im Dokument (auch für Suchmaschinen), wird nur ein- und ausgeblendet */}
       <div id={id} hidden={!open}>
-        <p className="max-w-2xl pb-6 text-[16px] leading-relaxed text-muted">{faq.a}</p>
+        <p className="max-w-2xl pb-6 text-[16.5px] leading-relaxed text-muted">{faq.a}</p>
       </div>
     </div>
   );
 }
 
-/* Fragen als aufklappbare Zeilen mit Linien */
-export default function Faq() {
+/* Fragen als aufklappbare Zeilen. Mit `items` nur eine Auswahl (Startseite) samt Verweis auf alle. */
+export default function Faq({
+  items = FAQS,
+  title = "Häufige Fragen",
+  text,
+  showAllLink = false,
+}: {
+  items?: FaqEntry[];
+  title?: string;
+  text?: string;
+  showAllLink?: boolean;
+}) {
   return (
-    <SplitSection id="faq" headingId="faq-heading" title="Häufige Fragen">
-      <div className="border-t-2 border-ink">
-        {FAQS.map((f, i) => (
+    <SplitSection
+      id="faq"
+      headingId="faq-heading"
+      title={title}
+      text={text}
+      tone="fog"
+      extra={
+        showAllLink ? (
+          <Link href="/kontakt#faq" className={`inline-flex min-h-11 items-center text-[15.5px] ${textLink}`}>
+            Alle Fragen ansehen
+          </Link>
+        ) : undefined
+      }
+    >
+      <div className="border-t border-ink/80">
+        {items.map((f, i) => (
           <Item key={f.q} faq={f} index={i} />
         ))}
       </div>

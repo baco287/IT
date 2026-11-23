@@ -1,62 +1,40 @@
-import Image from "next/image";
 import Link from "next/link";
 import Wordmark from "./Wordmark";
 import { container } from "./ui";
+import { NAV_GROUPS } from "@/lib/navigation";
 import { ADDRESS_LINE, COMPANY, EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "@/lib/company";
-import agentHead from "@/public/images/qontex-agent-head.png";
 
-const GROUPS = [
-  {
-    title: "Leistungen",
-    links: [
-      { label: "Prozessautomatisierung", href: "/leistungen/prozessautomatisierung" },
-      { label: "Webseiten & Landingpages", href: "/leistungen/webseiten" },
-      { label: "SEO & KI-Agenten", href: "/leistungen/seo-ki-agenten" },
-      { label: "Marketing-Automatisierung", href: "/leistungen/marketing-automatisierung" },
-      { label: "CRM & Vertrieb", href: "/leistungen/crm-vertrieb" },
-      { label: "IT & Infrastruktur", href: "/loesungen" },
-    ],
-  },
-  {
-    title: "Ergänzende Leistungen",
-    links: [
-      { label: "KI-Agenten für Kundenanfragen", href: "/leistungen/ki-agenten" },
-      { label: "Online-Marketing & Werbeanzeigen", href: "/leistungen/online-marketing" },
-      { label: "Social Media", href: "/leistungen/social-media" },
-      { label: "Dashboards & Reporting", href: "/leistungen/dashboards" },
-      { label: "Alle Leistungen", href: "/leistungen" },
-    ],
-  },
-  {
-    title: "Unternehmen",
-    links: [
-      { label: "Automatisierung", href: "/automatisierung" },
-      { label: "Über QonteX", href: "/ueber" },
-      { label: "Kontakt", href: "/kontakt" },
-    ],
-  },
+const COMPANY_LINKS = [
+  { label: "Über QonteX", href: "/ueber" },
+  { label: "Kontakt", href: "/kontakt" },
+  { label: "IT-Betreuung", href: "/leistungen#it-betreuung" },
+  { label: "Buchungs-Demo", href: "/demo" },
 ];
 
-const linkCls =
-  "inline-flex min-h-11 items-center text-[15px] text-white/70 transition-colors hover:text-white";
+const linkCls = "inline-flex min-h-10 items-center text-[15px] text-haze transition-colors hover:text-white";
 
 export default function Footer() {
+  const groups = [
+    { title: "Leistungen", links: NAV_GROUPS.leistungen.items },
+    { title: "Lösungen", links: NAV_GROUPS.loesungen.items },
+    { title: "Unternehmen", links: COMPANY_LINKS },
+  ];
+
   return (
-    <footer className="border-t border-white/10 bg-ink text-white">
-      <div className={`${container} py-16`}>
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_2fr]">
+    <footer className="on-dark border-t border-edge bg-night text-haze">
+      <div className={`${container} pb-10 pt-16 lg:pt-20`}>
+        <div className="grid gap-12 lg:grid-cols-[1fr_2fr]">
           <div className="max-w-sm">
-            <Link href="/" aria-label="QonteX – zur Startseite" className="inline-flex items-center gap-2.5">
-              <Image src={agentHead} alt="" className="h-10 w-10 rounded-full" />
-              <Wordmark onDark />
+            <Link href="/" aria-label="QonteX – zur Startseite" className="inline-flex min-h-11 items-center">
+              <Wordmark />
             </Link>
-            <p className="mt-5 text-[15px] leading-relaxed text-white/70">
-              Wir digitalisieren und automatisieren Ihr Unternehmen, damit Sie weniger Zeit und
-              Geld für Routineaufgaben aufwenden und effizienter wachsen können.
+            <p className="mt-4 text-[15px] leading-relaxed">
+              IT, KI und Automatisierung für Unternehmen aller Branchen. Wir entwickeln Software,
+              verbinden Systeme und automatisieren wiederkehrende Abläufe.
             </p>
-            <ul className="mt-6 space-y-1 text-[15px]">
+            <ul className="mt-6 text-[15px]">
               <li>
-                <a href={PHONE_HREF} className="inline-flex min-h-11 items-center font-medium text-white hover:text-teal">
+                <a href={PHONE_HREF} className="inline-flex min-h-10 items-center font-medium text-white hover:text-signal">
                   {PHONE_DISPLAY}
                 </a>
               </li>
@@ -65,25 +43,25 @@ export default function Footer() {
                   href={WHATSAPP_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center font-medium text-white hover:text-teal"
+                  className="inline-flex min-h-10 items-center font-medium text-white hover:text-signal"
                 >
                   Per WhatsApp schreiben
                 </a>
               </li>
               <li>
-                <a href={`mailto:${EMAIL}`} className="inline-flex min-h-11 items-center font-medium text-white hover:text-teal">
+                <a href={`mailto:${EMAIL}`} className="inline-flex min-h-10 items-center font-medium text-white hover:text-signal">
                   {EMAIL}
                 </a>
               </li>
-              <li className="pt-1 text-white/70">{ADDRESS_LINE}</li>
+              <li className="pt-2">{ADDRESS_LINE}</li>
             </ul>
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3">
-            {GROUPS.map((g) => (
+            {groups.map((g) => (
               <nav key={g.title} aria-label={g.title}>
-                <p className="text-sm font-semibold text-white">{g.title}</p>
-                <ul className="mt-4 space-y-1">
+                <p className="text-[15px] font-semibold text-white">{g.title}</p>
+                <ul className="mt-3">
                   {g.links.map((l) => (
                     <li key={l.href}>
                       <Link href={l.href} className={linkCls}>
@@ -97,9 +75,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-7 text-sm text-white/60">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-edge pt-6 text-[14px]">
           <p>
-            © {new Date().getFullYear()} {COMPANY.brand} · ein Angebot der {COMPANY.legalName}
+            © {new Date().getFullYear()} {COMPANY.brand}, ein Angebot der {COMPANY.legalName}
           </p>
           <nav aria-label="Rechtliches" className="flex gap-6">
             <Link href="/impressum" className="inline-flex min-h-11 items-center hover:text-white">

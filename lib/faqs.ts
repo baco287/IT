@@ -2,34 +2,42 @@
 export const FAQS: Array<{ q: string; a: string }> = [
   {
     q: "Für welche Unternehmen arbeitet QonteX?",
-    a: "Für Selbstständige sowie kleine und mittelständische Unternehmen, die Abläufe digitalisieren und Routinearbeit reduzieren möchten – unabhängig von der Branche. Entscheidend ist nicht Ihre Größe, sondern dass wiederkehrende Aufgaben heute Zeit kosten.",
+    a: "Für kleine und mittelständische Unternehmen aller Branchen, vom Handwerksbetrieb über Praxen, Agenturen und Händler bis zu Industrie- und Produktionsunternehmen. Entscheidend ist nicht die Branche, sondern dass wiederkehrende Abläufe heute Zeit kosten.",
   },
   {
-    q: "Was passiert im kostenlosen Potenzialgespräch?",
-    a: "Wir sehen uns gemeinsam Ihre Abläufe an: Wo entsteht Handarbeit, wo gehen Anfragen verloren, was kostet regelmäßig Zeit? Danach erhalten Sie eine ehrliche Einschätzung, welche Schritte sich lohnen und welche nicht. Das Gespräch ist kostenlos und unverbindlich.",
+    q: "Was passiert im ersten Gespräch?",
+    a: "Wir sprechen über Ihr Vorhaben und Ihre bestehenden Abläufe: Wo entsteht Handarbeit, welche Systeme sind im Einsatz, was soll sich ändern? Danach erhalten Sie eine ehrliche Einschätzung, was technisch sinnvoll ist. Das Erstgespräch ist kostenlos und unverbindlich.",
   },
   {
     q: "Welche Abläufe lassen sich automatisieren?",
-    a: "Typisch sind wiederkehrende Aufgaben mit klaren Regeln: Anfragen erfassen und beantworten, Termine vereinbaren, Daten zwischen Systemen übertragen, Angebote vorbereiten oder Berichte erstellen. Was sich in Ihrem Unternehmen eignet, klären wir in der Analyse.",
+    a: "Typisch sind wiederkehrende Aufgaben mit klaren Regeln: Anfragen erfassen und beantworten, Termine vergeben, Daten zwischen Systemen übertragen, Dokumente auslesen oder Berichte erstellen. Was sich in Ihrem Unternehmen eignet, klären wir in der Analyse.",
   },
   {
-    q: "Ersetzen KI-Agenten meine Mitarbeiter?",
-    a: "Nein. Agenten übernehmen Vorarbeit und Routine – Recherche, Entwürfe, Einordnung und Erinnerungen. Entscheidungen, Freigaben und der persönliche Kundenkontakt bleiben bei Ihrem Team.",
+    q: "Ersetzen KI-Agenten unsere Mitarbeiter?",
+    a: "Nein. KI-Agenten übernehmen Vorarbeit und Routine, etwa Standardfragen, Einordnung von Anfragen oder das Auslesen von Dokumenten. Entscheidungen, Freigaben und der persönliche Kontakt zu Ihren Kunden bleiben bei Ihrem Team.",
+  },
+  {
+    q: "Können Sie mit unserer bestehenden Software arbeiten?",
+    a: "In den meisten Fällen ja. Viele CRM-, ERP-, Shop- und Kalendersysteme bieten Schnittstellen, über die wir Daten austauschen. Ob und wie das bei Ihren Programmen geht, prüfen wir vor dem Angebot.",
   },
   {
     q: "Wie geht QonteX mit Datenschutz um?",
-    a: "Formulare, CRM-Anbindungen, Tracking und Marketing-Automatisierung setzen wir datensparsam und mit den erforderlichen Einwilligungen um. Welche Dienste eingesetzt werden und wo Daten verarbeitet werden, besprechen wir vorab transparent mit Ihnen.",
+    a: "Wir planen datensparsam und legen vor dem Start gemeinsam mit Ihnen fest, welche Daten verarbeitet werden, welche Anbieter zum Einsatz kommen und wo die Verarbeitung stattfindet.",
   },
   {
-    q: "Garantieren Sie bestimmte Ergebnisse, etwa Google-Rankings oder Einsparungen?",
-    a: "Nein, denn das lässt sich seriös nicht garantieren. Wir messen, was erreicht wurde, berichten verständlich und verbessern die Abläufe Schritt für Schritt.",
+    q: "Garantieren Sie bestimmte Ergebnisse, etwa Einsparungen oder Google-Platzierungen?",
+    a: "Nein, denn das lässt sich seriös nicht garantieren. Wir vereinbaren klare Ziele, messen, was erreicht wurde, und verbessern die Lösung Schritt für Schritt.",
   },
   {
-    q: "Betreuen Sie weiterhin auch die IT?",
-    a: "Ja. IT-Betreuung, Cloud, IT-Sicherheit, Server und Backups bieten wir weiterhin an – als technisches Fundament für Ihre digitalen Abläufe und auf Wunsch aus einer Hand.",
-  },
-  {
-    q: "Was kostet die Zusammenarbeit?",
-    a: "Das hängt vom Umfang ab. Nach dem Potenzialgespräch erhalten Sie ein klares Angebot mit festem Leistungsumfang, bevor wir starten.",
+    q: "Was kostet ein Projekt?",
+    a: "Das hängt vom Umfang ab. Nach dem Erstgespräch und einer kurzen Analyse erhalten Sie ein Angebot mit festem Leistungsumfang, bevor wir starten.",
   },
 ];
+
+/** Die vier Fragen, die vor einer Anfrage am häufigsten offen sind – für die Startseite */
+export const HOME_FAQS = [
+  "Was kostet ein Projekt?",
+  "Ersetzen KI-Agenten unsere Mitarbeiter?",
+  "Garantieren Sie bestimmte Ergebnisse, etwa Einsparungen oder Google-Platzierungen?",
+  "Wie geht QonteX mit Datenschutz um?",
+].map((q) => FAQS.find((f) => f.q === q)!);

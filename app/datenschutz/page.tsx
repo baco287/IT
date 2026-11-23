@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { PHONE_DISPLAY } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Datenschutzerklärung | QonteX",
+  title: "Datenschutzerklärung",
   description: "Datenschutzerklärung für die QonteX-Website der Volt Gas UG (haftungsbeschränkt).",
   robots: { index: false },
 };
@@ -43,9 +43,9 @@ export default function Datenschutz() {
           ein.
         </p>
         <p className={p}>
-          Der Einsparrechner und die animierten Beispielabläufe auf dieser
-          Website laufen ausschließlich in Ihrem Browser. Ihre Eingaben im
-          Rechner werden weder gespeichert noch an uns oder Dritte übertragen.
+          Die animierten Beispielabläufe und die Buchungs-Demo auf dieser
+          Website laufen ausschließlich in Ihrem Browser. Eingaben in der Demo
+          werden weder gespeichert noch an uns oder Dritte übertragen.
         </p>
 
         <h2 className={h2}>3. Hosting</h2>
@@ -120,8 +120,8 @@ export default function Datenschutz() {
 
         <h2 className={h2}>6. Schriftarten</h2>
         <p className={p}>
-          Die verwendeten Schriftarten (Fira Sans, Fira Sans Condensed und Plus Jakarta Sans)
-          sind lokal auf unserem Hosting eingebunden. Beim Laden der Schriften
+          Die verwendete Schriftart (Archivo) ist lokal auf unserem Hosting
+          eingebunden. Beim Laden der Schriften
           findet keine Verbindung zu Servern von Google oder anderen
           Schriftanbietern statt.
         </p>

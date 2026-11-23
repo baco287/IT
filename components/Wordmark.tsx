@@ -1,12 +1,13 @@
-/** QonteX-Wortmarke: „Qonte" in Dunkelblau (bzw. Weiß auf dunklem Grund), „X" in Türkis. */
-export default function Wordmark({ onDark = false, large = false }: { onDark?: boolean; large?: boolean }) {
+/** QonteX-Wortmarke in breiter Archivo, „X" im Akzent – angelehnt an das breite QX-Logo. */
+export default function Wordmark({ onDark = true, className = "" }: { onDark?: boolean; className?: string }) {
   return (
     <span
-      className={`font-[family-name:var(--font-wordmark-stack)] font-bold tracking-[-0.03em] ${
-        large ? "text-3xl" : "text-[1.6rem]"
-      } ${onDark ? "text-white" : "text-ink"}`}
+      translate="no"
+      className={`wide text-[1.45rem] font-bold leading-none tracking-[-0.03em] ${
+        onDark ? "text-white" : "text-ink"
+      } ${className}`}
     >
-      Qonte<span className={onDark ? "text-teal" : "text-teal-dark"}>X</span>
+      Qonte<span className={onDark ? "text-signal" : "text-signal-ink"}>X</span>
     </span>
   );
 }

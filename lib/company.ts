@@ -20,5 +20,12 @@ export const WHATSAPP_HREF = `https://wa.me/${COMPANY.phoneE164.replace("+", "")
 export const EMAIL = COMPANY.email;
 export const ADDRESS_LINE = `${COMPANY.street}, ${COMPANY.zip} ${COMPANY.city}`;
 
-/** Hauptaktion der Website */
-export const CTA_LABEL = "Kostenloses Potenzialgespräch";
+/** Hauptaktion der Website – überall gleich benannt */
+export const CTA_LABEL = "Projekt besprechen";
+
+/** Kurzbeschreibung für Suchmaschinen und Vorschauen */
+export const SITE_DESCRIPTION =
+  "QonteX entwickelt KI-Agenten, automatisiert Geschäftsprozesse und baut Websites und individuelle Software für Unternehmen aller Branchen. Aus Berlin.";
+
+/** Basis-Pfad der Testfassung (GitHub Pages unter /IT), auf qontex.de leer */
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";

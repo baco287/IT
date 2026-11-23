@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
-import { ServiceList } from "@/components/Services";
-import Infrastructure from "@/components/Infrastructure";
-import Security from "@/components/Security";
-import Cloud from "@/components/Cloud";
+import OfferRows from "@/components/OfferRows";
 import Cta from "@/components/Cta";
-import { SplitSection } from "@/components/ui";
+import { btnSignalLg, container, textLink } from "@/components/ui";
+import { LOESUNGEN } from "@/lib/offers";
+import { CTA_LABEL } from "@/lib/company";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "IT & Infrastruktur | QonteX – IT-Betreuung, Cloud, IT-Sicherheit & Backup",
+export const metadata: Metadata = pageMeta({
+  title: "Lösungen: KI-Chatbots, Telefon-KI, CRM und mehr",
   description:
-    "IT & Infrastruktur von QonteX: IT-Betreuung, IT-Support, Cloud & Microsoft 365, IT-Sicherheit, Server & Netzwerke und Backup – das technische Fundament für Ihre digitalen Prozesse.",
-  alternates: { canonical: "/loesungen/" },
-};
+    "Lösungen für typische Aufgaben im Unternehmen: KI-Chatbots, Telefon-KI, CRM-Automatisierung, Termin- und Buchungssysteme sowie individuelle Business-Tools.",
+  path: "/loesungen/",
+});
 
 export default function LoesungenPage() {
   return (
@@ -22,23 +23,30 @@ export default function LoesungenPage() {
       <Navbar />
       <main id="inhalt">
         <PageHeader
-          title="Das technische Fundament für Ihre digitalen Prozesse."
-          intro="Automatisierung funktioniert nur auf einer stabilen Grundlage. Deshalb betreuen wir auf Wunsch auch Ihre IT: Systeme, Cloud, Sicherheit, Server und Backups – als ergänzendes Angebot aus einer Hand."
-          crumbs={[{ href: "/leistungen", label: "Leistungen" }, { label: "IT & Infrastruktur" }]}
-        />
-
-        <SplitSection
-          headingId="it-services-heading"
-          title="Sechs Bereiche, ein Ansprechpartner."
-          text="Jede Leistung ist einzeln buchbar – oder als laufende Betreuung Ihrer gesamten IT."
-          rule={false}
+          title="Lösungen für wiederkehrende Aufgaben im Unternehmen"
+          intro="Kundenanfragen beantworten, Anrufe annehmen, Termine vergeben, Anfragen nachverfolgen, Daten zusammenführen: Für diese Aufgaben entwickeln wir Lösungen, die mit Ihren bestehenden Systemen zusammenarbeiten."
+          crumbs={[{ label: "Lösungen" }]}
         >
-          <ServiceList group="it" />
-        </SplitSection>
+          <div className="mt-9">
+            <Link href="/kontakt" className={btnSignalLg}>
+              {CTA_LABEL}
+            </Link>
+          </div>
+        </PageHeader>
 
-        <Infrastructure />
-        <Security />
-        <Cloud />
+        <section aria-label="Unsere Lösungen" className="bg-white">
+          <div className={`${container} py-16 lg:py-24`}>
+            <OfferRows offers={LOESUNGEN} linkLabel="Zur Lösung" />
+            <p className="mt-10 max-w-[44rem] text-[16.5px] leading-relaxed text-muted">
+              Wie Online-Buchung und ein KI-Assistent im Alltag aussehen, zeigt unsere{" "}
+              <Link href="/demo" className={textLink}>
+                Buchungs-Demo
+              </Link>{" "}
+              mit zwei erfundenen Betrieben aus Gastronomie und Kfz-Service.
+            </p>
+          </div>
+        </section>
+
         <Cta />
       </main>
       <Footer />

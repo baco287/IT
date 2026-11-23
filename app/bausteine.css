@@ -1,0 +1,100 @@
+/* ------------------------------------------------------------------ */
+/* Farben für fertige Bausteine (shadcn, Magic UI, React Bits)         */
+/* ------------------------------------------------------------------ */
+/* Die Bausteine erwarten Namen wie „primary“, „muted-foreground“ oder
+   „border“. Hier zeigen diese Namen auf die QonteX-Farben aus globals.css,
+   damit jeder eingefügte Baustein sofort im QonteX-Stil erscheint.
+   Neue Bausteine schreibt der shadcn-Befehl ebenfalls in diese Datei
+   (siehe components.json → tailwind.css). Anleitung: BAUSTEINE.md */
+
+/* Die Seite hat keinen Dunkelmodus nach Systemeinstellung. Viele Bausteine bringen
+   „dark:“-Klassen mit (z. B. dark:text-white). Ohne diese Zeile würden sie auf Handys im
+   Dunkelmodus greifen – weiße Schrift auf weißer Seite. So gelten sie nur unter
+   class="dark" – diese Klasse auf dunkle Abschnitte (bg-night) setzen. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --radius: 0.5rem; /* ergibt dieselben Rundungen wie die Tailwind-Standards der Seite */
+
+  --background: #ffffff;
+  --foreground: var(--color-text);
+  --card: #ffffff;
+  --card-foreground: var(--color-text);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-text);
+  --primary: var(--color-night); /* wie btnSolid: Navy … */
+  --primary-foreground: #ffffff; /* … mit weißer Schrift */
+  --secondary: var(--color-fog);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-fog); /* helle Fläche */
+  --muted-foreground: var(--color-muted); /* Sekundärtext */
+  --accent: var(--color-signal-tint);
+  --accent-foreground: var(--color-ink);
+  --destructive: #b42318;
+  --border: var(--color-rule);
+  --input: color-mix(in srgb, var(--color-ink) 55%, transparent); /* wie die Formularfelder */
+  --ring: var(--color-signal-ink); /* gleicher Fokusrahmen wie auf der ganzen Seite */
+  --chart-1: var(--color-signal-ink);
+  --chart-2: var(--color-night);
+  --chart-3: var(--color-signal);
+  --chart-4: var(--color-muted);
+  --chart-5: var(--color-dim);
+}
+
+/* Dunkle Abschnitte (bg-night): class="dark" auf den Abschnitt setzen */
+.dark {
+  --background: var(--color-night);
+  --foreground: #ffffff;
+  --card: var(--color-night-2);
+  --card-foreground: #ffffff;
+  --popover: var(--color-night-2);
+  --popover-foreground: #ffffff;
+  --primary: var(--color-signal); /* wie btnSignal: Cyan … */
+  --primary-foreground: var(--color-night); /* … mit dunkler Schrift */
+  --secondary: var(--color-night-3);
+  --secondary-foreground: #ffffff;
+  --muted: var(--color-night-3);
+  --muted-foreground: var(--color-haze);
+  --accent: var(--color-night-3);
+  --accent-foreground: #ffffff;
+  --border: var(--color-edge);
+  --input: var(--color-edge-strong);
+  --ring: var(--color-signal);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  /* „muted“ ist auf der Seite schon die graue Textfarbe (text-muted, ~40 Stellen).
+     Deshalb gilt die helle muted-Fläche nur für Hintergründe (bg-muted);
+     text-muted bleibt unverändert grau. */
+  --background-color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+@layer base {
+  /* Rahmenfarbe nur für shadcn-Bausteine (sie tragen data-slot). Der Rest der
+     Seite behält seine eigenen Rahmenfarben. */
+  [data-slot] {
+    border-color: var(--border);
+  }
+}

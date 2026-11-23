@@ -4,14 +4,13 @@ import Footer from "@/components/Footer";
 import { PHONE_DISPLAY } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Impressum | QonteX",
+  title: "Impressum",
   description: "Impressum und Anbieterkennzeichnung von QonteX, einer Marke der Volt Gas UG (haftungsbeschränkt).",
   robots: { index: false },
 };
 
 const h2 = "mt-10 mb-3 text-xl font-bold text-ink";
 const p = "text-[15px] leading-relaxed text-muted";
-const link = "font-medium text-teal-text underline underline-offset-2";
 
 export default function Impressum() {
   return (
@@ -64,11 +63,11 @@ export default function Impressum() {
         <h2 className={h2}>Tätigkeitsbereich</h2>
         <p className={p}>
           QonteX erbringt IT-Dienstleistungen für Unternehmen, insbesondere
-          Managed IT Services, IT-Support, Cloud-Lösungen, Cybersecurity,
-          Server- und Netzwerkmanagement, Backup und Disaster Recovery sowie
-          die Entwicklung von KI-Agenten und Automatisierungslösungen. Die
-          Leistungen werden im Auftrag der Kunden auf Grundlage individueller
-          Vereinbarungen erbracht.
+          die Entwicklung von KI-Agenten und KI-Anwendungen,
+          Prozessautomatisierung, Web- und Softwareentwicklung,
+          Marketingautomatisierung sowie IT-Betreuung. Die Leistungen werden im
+          Auftrag der Kunden auf Grundlage individueller Vereinbarungen
+          erbracht.
         </p>
 
         <h2 className={h2}>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
@@ -78,21 +77,10 @@ export default function Impressum() {
           Pappelallee 64, 10437 Berlin
         </p>
 
-        <h2 className={h2}>EU-Streitschlichtung</h2>
+        <h2 className={h2}>Verbraucherstreitbeilegung</h2>
         <p className={p}>
-          Die Europäische Kommission stellt eine Plattform zur
-          Online-Streitbeilegung (OS) bereit:{" "}
-          <a
-            href="https://ec.europa.eu/consumers/odr/"
-            className={link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            https://ec.europa.eu/consumers/odr/
-          </a>
-          . Unsere E-Mail-Adresse finden Sie oben im Impressum. Wir sind nicht
-          bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
-          Verbraucherschlichtungsstelle teilzunehmen.
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
+          vor einer Verbraucherschlichtungsstelle teilzunehmen.
         </p>
       </main>
       <Footer />

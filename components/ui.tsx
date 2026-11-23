@@ -1,104 +1,115 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
-import { Check, Minus } from "lucide-react";
+import { Check } from "lucide-react";
 
-/* Gemeinsame UI-Bausteine – ein Design-System für alle Seiten.
-   Grundsatz: Flächen in Weiß, Türkis und Dunkelblau, Listen mit Linien statt Karten,
-   keine Schatten, keine Icon-Kacheln. */
+/* Gemeinsame UI-Bausteine – ein Designsystem für alle Seiten.
+   Dunkle Flächen (night) für Kopf, Leistungen und Kontakt, helle Flächen (fog/weiß)
+   zum Lesen. Radien nach Ebene: Flächen 18px, Bedienelemente 10px, Marken 6px. */
 
-export const container = "mx-auto w-full max-w-7xl px-5 sm:px-8";
+export const container = "mx-auto w-full max-w-[78rem] px-5 sm:px-8";
 
-/* Innenabstand einer Spalte, die bis zum Bildschirmrand reicht, deren Inhalt aber
-   bündig mit dem Seitenraster (max-w-7xl) abschließt – links bzw. rechts. */
-export const bleedLeft = "lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))]";
-export const bleedRight = "lg:pr-[max(2rem,calc((100vw-80rem)/2+2rem))]";
+/* ---------------------------------------------------------------- Buttons */
+const btnBase =
+  "inline-flex items-center justify-center gap-2 rounded-[10px] text-center font-semibold leading-snug transition-colors duration-200 motion-reduce:transition-none";
+const sizeMd = "min-h-12 px-6 py-3 text-[15.5px]";
+const sizeLg = "min-h-14 px-7 py-3.5 text-[16.5px]";
 
-/* Buttons: eine Form für die ganze Seite – eckig mit kleinem Radius, keine Pillen. */
-const btnShape =
-  "inline-flex items-center justify-center gap-2 rounded-md text-center font-semibold leading-snug transition-colors duration-200";
-const btnMd = "min-h-12 px-6 py-3 text-[15px]";
-const btnLg = "min-h-14 px-8 py-3 text-[17px]";
-const primaryColors = "bg-ink text-white hover:bg-[#163152]";
-const secondaryColors = "border-2 border-ink text-ink hover:bg-ink hover:text-white";
+/* Auf dunklem Grund: Cyan mit dunkler Schrift (≈ 9 : 1) bzw. heller Rahmen */
+const signal = "bg-signal text-night hover:bg-signal-hover";
+const ghostDark = "border border-white/25 text-white hover:border-white/60 hover:bg-white/5";
+/* Auf hellem Grund: Navy mit weißer Schrift bzw. dunkler Rahmen */
+const solid = "bg-night text-white hover:bg-night-3";
+const ghostLight = "border border-ink/25 text-ink hover:border-ink hover:bg-ink/[0.03]";
 
-/* Hauptaktion auf hellem Grund und auf Türkis: Deep Navy mit weißer Schrift */
-export const btnPrimary = `${btnShape} ${btnMd} ${primaryColors}`;
-export const btnPrimaryLg = `${btnShape} ${btnLg} ${primaryColors}`;
+export const btnSignal = `${btnBase} ${sizeMd} ${signal}`;
+export const btnSignalLg = `${btnBase} ${sizeLg} ${signal}`;
+export const btnGhostDark = `${btnBase} ${sizeMd} ${ghostDark}`;
+export const btnGhostDarkLg = `${btnBase} ${sizeLg} ${ghostDark}`;
+export const btnSolid = `${btnBase} ${sizeMd} ${solid}`;
+export const btnSolidLg = `${btnBase} ${sizeLg} ${solid}`;
+export const btnGhostLight = `${btnBase} ${sizeMd} ${ghostLight}`;
 
-/* Zweitaktion auf hellem Grund: nur Rahmen */
-export const btnSecondary = `${btnShape} ${btnMd} ${secondaryColors}`;
-export const btnSecondaryLg = `${btnShape} ${btnLg} ${secondaryColors}`;
+/* Ältere Namen (Demo, Formular, 404) */
+export const btnPrimary = btnSolid;
+export const btnPrimaryLg = btnSolidLg;
+export const btnSecondary = btnGhostLight;
+export const btnOnDark = btnSignal;
 
-/* Hauptaktion auf dunkelblauem Grund: Electric Teal mit dunkelblauer Schrift (Kontrast ≈ 9,6 : 1) */
-export const btnOnDark = `${btnShape} ${btnMd} bg-teal text-ink hover:bg-[#5ce3df]`;
-
-/* Textlink mit türkiser Unterstreichung */
+/* Textlinks */
 export const textLink =
-  "font-semibold text-ink underline decoration-teal-dark decoration-2 underline-offset-[6px]";
+  "font-semibold text-signal-ink underline decoration-signal-ink/35 decoration-2 underline-offset-[5px] transition-colors hover:decoration-signal-ink";
+export const textLinkDark =
+  "font-semibold text-signal underline decoration-signal/40 decoration-2 underline-offset-[5px] transition-colors hover:decoration-signal";
 
-/* Ganze Zeile anklickbar: Der Link selbst trägt nur den Titel (kurzer Name für
-   Screenreader), seine Klickfläche und der Fokusrahmen liegen über der Zeile.
-   Die Zeile braucht dafür „relative". */
+/* Ganze Fläche anklickbar: Der Link trägt nur den Titel, seine Klickfläche liegt über
+   dem Element (das dafür „relative" braucht). */
 export const rowLink =
-  "after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-teal-text";
+  "after:absolute after:inset-0 after:rounded-[inherit] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-[var(--focus-ring)]";
 
-/* Gedankenstrich bleibt am Zeilenende: geschütztes Leerzeichen davor,
-   damit keine Zeile mit „–" beginnt. */
-export const keepDash = (s: string) => s.replace(/ – /g, " – ");
+/* Gedankenstrich bleibt am Zeilenende */
+export const keepDash = (s: string) => s.replace(/ – /g, " – ");
 
-/* Einheitliche Größen für Abschnittsüberschriften */
-export const h2Class =
-  "text-[2rem] font-bold leading-[1.1] tracking-[-0.008em] sm:text-[2.6rem] lg:text-[3.1rem]";
-/* etwas kleiner für die schmale linke Spalte von SplitSection */
-export const h2Split =
-  "text-[1.9rem] font-bold leading-[1.1] tracking-[-0.008em] sm:text-[2.3rem] lg:text-[2.6rem]";
+/* ------------------------------------------------------------ Typografie */
+/* Skala nach Quarte (1,333): 17 · 22,7 · 30 · 40 · 53 */
+export const h1Class =
+  "text-[clamp(2rem,8.4vw,2.6rem)] leading-[1.06] tracking-[-0.022em] sm:text-[clamp(2.6rem,5.2vw,3.35rem)]";
+export const h2Class = "text-[clamp(1.85rem,6vw,2.25rem)] leading-[1.1] sm:text-[2.5rem]";
+export const h3Class = "text-[1.4rem] leading-[1.2]";
+export const leadClass = "text-[1.125rem] leading-[1.65] sm:text-[1.2rem]";
 
-/* Feine Linie über einem Abschnitt (in Rasterbreite) */
-const sectionRule = "border-t border-ink/15";
+/* --------------------------------------------------------------- Abschnitte */
+type Tone = "night" | "fog" | "white";
+const toneClass: Record<Tone, string> = {
+  night: "on-dark bg-night text-haze",
+  fog: "bg-fog",
+  white: "bg-white",
+};
 
-/* Abschnittskopf: große Überschrift, optionaler Einleitungstext – bewusst ohne Mini-Label darüber */
-export function SectionHead({
-  title,
-  text,
-  onDark = false,
-  className = "",
-}: {
-  title: ReactNode;
-  text?: ReactNode;
-  onDark?: boolean;
-  className?: string;
-}) {
-  return (
-    <div className={`max-w-3xl ${className}`}>
-      <h2 className={`${h2Class} ${onDark ? "text-white" : ""}`}>
-        {typeof title === "string" ? keepDash(title) : title}
-      </h2>
-      {text && (
-        <p className={`mt-5 text-lg leading-relaxed ${onDark ? "text-white/70" : "text-muted"}`}>{text}</p>
-      )}
-    </div>
-  );
-}
-
-/* Weißer Abschnitt in Rasterbreite, auf Wunsch mit feiner Linie darüber.
-   Ohne Linie (rule={false}) direkt unter einem Seitenkopf oder einer farbigen Fläche. */
-export function PlainSection({
+export function Section({
   id,
-  headingId,
-  rule = true,
+  tone = "white",
+  labelledBy,
+  className = "",
   children,
 }: {
   id?: string;
-  headingId?: string;
-  rule?: boolean;
+  tone?: Tone;
+  labelledBy?: string;
+  className?: string;
   children: ReactNode;
 }) {
   return (
-    <section id={id} aria-labelledby={headingId} className="bg-white">
-      <div className={container}>
-        <div className={`py-16 lg:py-20 ${rule ? sectionRule : ""}`}>{children}</div>
-      </div>
+    <section id={id} aria-labelledby={labelledBy} className={`${toneClass[tone]} ${className}`}>
+      <div className={`${container} py-20 lg:py-28`}>{children}</div>
     </section>
+  );
+}
+
+/* Abschnittskopf: Überschrift und optionaler Einleitungstext – ohne Label darüber */
+export function SectionHead({
+  title,
+  text,
+  id,
+  onDark = false,
+  className = "",
+  children,
+}: {
+  title: ReactNode;
+  text?: ReactNode;
+  id?: string;
+  onDark?: boolean;
+  className?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <div className={`max-w-[44rem] ${className}`}>
+      <h2 id={id} className={`${h2Class} ${onDark ? "text-white" : ""}`}>
+        {typeof title === "string" ? keepDash(title) : title}
+      </h2>
+      {text && (
+        <p className={`mt-5 ${leadClass} ${onDark ? "text-haze" : "text-muted"}`}>{text}</p>
+      )}
+      {children}
+    </div>
   );
 }
 
@@ -109,27 +120,30 @@ export function SplitSection({
   title,
   text,
   extra,
-  rule = true,
+  tone = "white",
+  rule = false,
   children,
 }: {
   id?: string;
   headingId?: string;
   title: string;
   text?: ReactNode;
-  /* z. B. ein Link unter dem Einleitungstext */
   extra?: ReactNode;
+  tone?: Tone;
+  /** feine Linie oben, wenn zwei gleichfarbige Abschnitte aufeinanderfolgen */
   rule?: boolean;
   children: ReactNode;
 }) {
   return (
-    <section id={id} aria-labelledby={headingId} className="bg-white">
+    <section id={id} aria-labelledby={headingId} className={toneClass[tone]}>
       <div className={container}>
         <div
-          className={`grid gap-x-14 gap-y-9 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:py-20 ${rule ? sectionRule : ""}`}
+          className={`grid gap-x-16 gap-y-10 py-20 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:py-24 ${
+            rule ? "border-t border-rule" : ""
+          }`}
         >
-          {/* bleibt bei langen Listen rechts beim Scrollen stehen */}
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <h2 id={headingId} className={h2Split}>
+            <h2 id={headingId} className="text-[clamp(1.7rem,5.6vw,2rem)] leading-[1.12] sm:text-[2.15rem]">
               {keepDash(title)}
             </h2>
             {text && <p className="mt-4 max-w-md text-[17px] leading-relaxed text-muted">{text}</p>}
@@ -142,72 +156,82 @@ export function SplitSection({
   );
 }
 
-/* Zeilen aus Titel und Text (Vorteile, Grundsätze, Merkmale) */
-export function DefRows({ items }: { items: Array<{ title: string; text: ReactNode }> }) {
-  return (
-    <ul className="border-t-2 border-ink">
-      {items.map((it) => (
-        <li
-          key={it.title}
-          className="grid gap-x-8 gap-y-1 border-b border-ink/15 py-5 sm:grid-cols-[13.5rem_minmax(0,1fr)] sm:items-baseline"
-        >
-          <h3 className="text-[1.35rem] leading-snug">{it.title}</h3>
-          <p className="text-[16px] leading-relaxed text-muted">{it.text}</p>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/* Verlinkte Zeilen (Leistungen, Bereiche): Titel, ein Satz, rechts der Hinweis zum Weiterklicken */
-export function LinkRows({
-  items,
-  label = "Ansehen",
+/* Abschnitt in Rasterbreite ohne Aufteilung (ältere Seiten) */
+export function PlainSection({
+  id,
+  headingId,
+  tone = "white",
+  rule = true,
+  children,
 }: {
-  items: Array<{ title: string; text: string; href: string }>;
-  label?: string;
+  id?: string;
+  headingId?: string;
+  tone?: Tone;
+  rule?: boolean;
+  children: ReactNode;
 }) {
   return (
-    <ul className="border-t-2 border-ink">
-      {items.map((it) => (
-        <li key={it.title} className="border-b border-ink/15">
-          <div className="relative -mx-3 grid gap-x-8 gap-y-2 px-3 py-5 transition-colors hover:bg-teal-tint sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline">
-            <div>
-              <h3 className="text-[1.45rem] leading-[1.15]">
-                <Link href={it.href} className={rowLink}>
-                  {it.title}
-                </Link>
-              </h3>
-              <p className="mt-1.5 text-[16px] leading-relaxed text-muted">{it.text}</p>
-            </div>
-            <span aria-hidden className={`text-[15px] ${textLink}`}>
-              {label}
-            </span>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <section id={id} aria-labelledby={headingId} className={toneClass[tone]}>
+      <div className={container}>
+        <div className={`py-20 lg:py-24 ${rule ? "border-t border-rule" : ""}`}>{children}</div>
+      </div>
+    </section>
   );
 }
 
-/* Aufzählung mit Haken und Linien (Leistungsumfang, Punkte) */
-export function CheckRows({ items, columns = 1 }: { items: string[]; columns?: 1 | 2 }) {
+/* ------------------------------------------------------------------ Listen */
+/* Haken-Liste, auf Wunsch zweispaltig */
+export function CheckList({
+  items,
+  columns = 1,
+  onDark = false,
+}: {
+  items: string[];
+  columns?: 1 | 2;
+  onDark?: boolean;
+}) {
   return (
-    <ul className={`border-t-2 border-ink ${columns === 2 ? "sm:grid sm:grid-cols-2 sm:gap-x-10" : ""}`}>
+    <ul className={`grid gap-x-10 ${columns === 2 ? "sm:grid-cols-2" : ""}`}>
       {items.map((item) => (
         <li
           key={item}
-          className="flex items-start gap-3 border-b border-ink/15 py-3.5 text-[16px] leading-relaxed text-text"
+          className={`flex items-start gap-3 border-b py-3.5 text-[16.5px] leading-relaxed ${
+            onDark ? "border-edge text-white/90" : "border-rule text-text"
+          }`}
         >
-          <Check size={18} strokeWidth={2.6} className="mt-1 flex-none text-teal-dark" aria-hidden />
+          <Check
+            size={18}
+            strokeWidth={2.4}
+            className={`mt-[5px] flex-none ${onDark ? "text-signal" : "text-signal-ink"}`}
+            aria-hidden
+          />
           {item}
         </li>
       ))}
     </ul>
   );
 }
+/* älterer Name */
+export const CheckRows = CheckList;
 
-/* Nummerierte Abfolge als Spalten – nur für echte Reihenfolgen */
+/* Titel + Text untereinander, durch Linien getrennt */
+export function DefRows({ items }: { items: Array<{ title: string; text: ReactNode }> }) {
+  return (
+    <ul className="border-t border-ink/80">
+      {items.map((it) => (
+        <li
+          key={it.title}
+          className="grid gap-x-8 gap-y-1 border-b border-rule py-5 sm:grid-cols-[14rem_minmax(0,1fr)] sm:items-baseline"
+        >
+          <h3 className="text-[1.2rem] leading-snug">{it.title}</h3>
+          <p className="text-[16.5px] leading-relaxed text-muted">{it.text}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/* Nummerierte Abfolge – nur für echte Reihenfolgen */
 export function NumberedColumns({
   items,
   columns = 4,
@@ -218,13 +242,11 @@ export function NumberedColumns({
   return (
     <ol className={`grid gap-x-8 gap-y-10 sm:grid-cols-2 ${columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
       {items.map((s, i) => (
-        <li key={s.title} className="relative border-t-2 border-ink pt-6">
-          {/* türkiser Abschnitt der Linie als ruhiger Akzent */}
-          <span className="absolute -top-0.5 left-0 h-0.5 w-12 bg-teal" aria-hidden />
-          <span className="font-[family-name:var(--font-display)] text-[2.6rem] font-bold leading-none tracking-[-0.01em] text-ink tabular-nums">
+        <li key={s.title} className="border-t border-ink/80 pt-6">
+          <span className="wide tnum text-[1.05rem] font-semibold text-signal-ink">
             {String(i + 1).padStart(2, "0")}
           </span>
-          <h3 className="mt-5 text-[1.3rem] font-bold">{s.title}</h3>
+          <h3 className="mt-3 text-[1.25rem]">{s.title}</h3>
           <p className="mt-2 text-[16px] leading-relaxed text-muted">{s.text}</p>
         </li>
       ))}
@@ -232,42 +254,12 @@ export function NumberedColumns({
   );
 }
 
-/* Gegenüberstellung: links nüchtern die Ausgangslage, rechts auf Türkis das Ziel */
-export function Compare({
-  leftTitle,
-  left,
-  rightTitle,
-  right,
-}: {
-  leftTitle: string;
-  left: string[];
-  rightTitle: string;
-  right: string[];
-}) {
+/* Hinweis in getönter Fläche (Datenschutz, Grenzen der KI) */
+export function Note({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="grid md:grid-cols-2">
-      <div className="border-t-2 border-ink py-7 md:pr-10">
-        <h3 className="text-[1.45rem] leading-tight text-muted">{leftTitle}</h3>
-        <ul className="mt-5 space-y-3.5">
-          {left.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-[16.5px] leading-snug text-muted">
-              <Minus size={18} strokeWidth={2.6} className="mt-0.5 flex-none" aria-hidden />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="bg-teal px-6 py-7 text-ink sm:px-9">
-        <h3 className="text-[1.45rem] leading-tight">{rightTitle}</h3>
-        <ul className="mt-5 space-y-3.5">
-          {right.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-[16.5px] font-medium leading-snug">
-              <Check size={18} strokeWidth={2.8} className="mt-0.5 flex-none" aria-hidden />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="mt-8 rounded-[18px] bg-signal-tint px-6 py-5 sm:px-7">
+      <h3 className="text-[1.1rem] leading-snug">{title}</h3>
+      <p className="mt-1.5 text-[16px] leading-relaxed text-text">{children}</p>
     </div>
   );
 }

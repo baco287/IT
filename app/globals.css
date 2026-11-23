@@ -1,30 +1,71 @@
 @import "tailwindcss";
+/* Fertige Bausteine (shadcn, Magic UI, React Bits): Ein-/Ausblend-Animationen
+   und Farbnamen, die auf die QonteX-Farben zeigen. Anleitung: BAUSTEINE.md */
+@import "tw-animate-css";
+@import "./bausteine.css";
 
+/* ==================================================================
+   QonteX Designsystem (Relaunch 11/2026)
+   Grundton dunkles Navy, helle Leseflächen, ein Akzent in Cyan.
+   Eine Schriftfamilie (Archivo) – Überschriften etwas breiter
+   gesetzt, passend zum breiten QX-Logo.
+   ================================================================== */
 @theme {
-  /* Design-System: helle Unternehmensseite mit dunkelblauen Automatisierungsbereichen */
-  --color-ink: #07182d; /* Deep Navy: Überschriften, dunkle Flächen */
-  --color-ink-soft: #0e2540; /* Karten und Flächen auf Deep Navy */
-  --color-text: #17263b; /* Fließtext */
-  --color-muted: #5f6f85; /* Sekundärtext (Textgrau, für Lesbarkeit leicht abgedunkelt) */
-  --color-line: #e2e8f0; /* Rahmen */
-  --color-soft: #f6f8fb; /* Off-White für Wechselflächen */
-  --color-teal: #14d4cf; /* Electric Teal: Buttons, Akzente auf Dunkel */
-  --color-teal-dark: #00a096; /* Türkis für Icons und große Akzente auf Hell */
-  --color-teal-text: #007d75; /* Türkis für kleinen Text auf Hell (Kontrast AA) */
-  --color-teal-tint: #e6f9f8; /* sehr helles Türkis für Flächen */
-  --font-display: var(--font-display-face), var(--font-body-face), "Segoe UI", system-ui, sans-serif;
-  --font-body: var(--font-body-face), "Segoe UI", system-ui, sans-serif;
-  --font-wordmark-stack: var(--font-wordmark), var(--font-body-face), system-ui, sans-serif;
-  --shadow-card: 0 1px 2px rgba(7, 24, 45, 0.04), 0 12px 32px -14px rgba(7, 24, 45, 0.14);
-  --shadow-card-hover: 0 2px 4px rgba(7, 24, 45, 0.05), 0 22px 48px -16px rgba(7, 24, 45, 0.2);
+  /* Dunkle Flächen */
+  --color-night: #0a1220; /* Grundton: Kopf, dunkle Abschnitte, Footer */
+  --color-night-2: #101b2d; /* erhöhte Fläche auf Dunkel (Panels) */
+  --color-night-3: #172539; /* verschachtelte Fläche, Hover auf Dunkel */
+  --color-edge: #22324b; /* Linien und Rahmen auf Dunkel */
+  --color-haze: #9fadc2; /* Sekundärtext auf Dunkel (≈ 8 : 1) */
+  --color-dim: #7f8ea6; /* ruhende Beschriftung in Grafiken auf Dunkel (≈ 5 : 1) */
+  --color-mist: #c3cddb; /* ruhende Titel in Grafiken auf Dunkel */
+  --color-edge-strong: #2b3d59; /* Rahmen ruhender Knoten in Grafiken */
+  --color-core: #132036; /* Fläche der KI-/Automatisierungsknoten */
+
+  /* Helle Flächen */
+  --color-fog: #eef2f6; /* helle Abschnitte */
+  --color-rule: #d8e0ea; /* Linien und Rahmen auf Hell */
+  --color-ink: #0a1220; /* Überschriften auf Hell */
+  --color-text: #1c2838; /* Fließtext auf Hell */
+  --color-muted: #4f5d72; /* Sekundärtext auf Hell (≈ 6,5 : 1 auf Weiß) */
+
+  /* Akzent */
+  --color-signal: #4cc9f0; /* Cyan – Akzent und Buttons auf Dunkel */
+  --color-signal-hover: #7dd8f5; /* Cyan-Buttons beim Überfahren */
+  --color-signal-deep: #2f7cf6; /* Technikblau – Verlaufsende, Grafiken */
+  --color-signal-ink: #0b63c4; /* Links und kleine Akzente auf Hell (≈ 5,6 : 1) */
+  --color-signal-tint: #e3f2fb; /* sehr helle Akzentfläche */
+
+  /* Ältere Namen, die Demo, Formular und Fragenliste noch verwenden */
+  --color-ink-soft: #101b2d;
+  --color-soft: #eef2f6;
+  --color-line: #d8e0ea;
+  --color-teal: #4cc9f0;
+  --color-teal-dark: #2f7cf6;
+  --color-teal-text: #0b63c4;
+  --color-teal-tint: #e3f2fb;
+
+  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-display: var(--font-archivo), "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-body: var(--font-archivo), "Helvetica Neue", Arial, system-ui, sans-serif;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Grundregeln in der Basis-Ebene, damit Utility-Klassen (z. B. text-white
-   auf dunklen Flächen) sie zuverlässig überschreiben. */
+/* Fokusfarbe je nach Untergrund: auf Hell Blau, auf Dunkel Cyan (≥ 3 : 1) */
+:root {
+  --focus-ring: var(--color-signal-ink);
+}
+.on-dark {
+  --focus-ring: var(--color-signal);
+}
+
 @layer base {
   html {
+    scrollbar-color: #8090a6 transparent;
     scroll-behavior: smooth;
-    scroll-padding-top: 96px;
+    scroll-padding-top: 88px;
+    -webkit-tap-highlight-color: rgba(76, 201, 240, 0.2);
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -36,39 +77,53 @@
     background-color: #ffffff;
     color: var(--color-text);
     font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
+  /* Überschriften: dieselbe Familie, etwas breiter und enger gesetzt.
+     Auf dem Handy normal breit, damit lange Wörter („Prozessautomatisierung") passen. */
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 620;
     color: var(--color-ink);
-    letter-spacing: -0.006em;
+    letter-spacing: -0.018em;
+    line-height: 1.12;
     text-wrap: balance;
     overflow-wrap: break-word;
+    font-variation-settings: "wdth" var(--heading-width, 100);
   }
-  /* Auf schmalen Handys lange Wörter („Vertriebsautomatisierung“) trennen statt abschneiden */
+  h1,
+  h2 {
+    --heading-width: 100;
+  }
+  @media (min-width: 40rem) {
+    h1,
+    h2 {
+      --heading-width: 106;
+    }
+  }
   @media (max-width: 30rem) {
     h1,
     h2,
     h3 {
       hyphens: auto;
-      hyphenate-limit-chars: 18 6 6;
+      hyphenate-limit-chars: 16 6 6;
     }
   }
 
   p,
-  li {
+  li,
+  dd {
     text-wrap: pretty;
   }
 
-  /* Browser-Flächen, die sonst im Standard-Look bleiben */
-  html {
-    -webkit-tap-highlight-color: rgba(20, 212, 207, 0.18);
-  }
   a,
   button,
   input,
@@ -80,33 +135,115 @@
   }
   input,
   textarea {
-    caret-color: var(--color-teal-dark);
+    caret-color: var(--color-signal-ink);
   }
 
   ::selection {
-    background: var(--color-teal);
-    color: var(--color-ink);
+    background: var(--color-signal);
+    color: var(--color-night);
   }
 
-  /* Sichtbare Fokuszustände */
-  a:focus-visible,
-  button:focus-visible,
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible,
-  summary:focus-visible {
-    outline: 2px solid var(--color-teal-text);
+  /* Sichtbare Fokuszustände – auf Hell blau, auf Dunkel cyan */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--focus-ring);
     outline-offset: 3px;
     border-radius: 6px;
-  }
-  /* auf türkisen Flächen dunkelblau, sonst wäre der Rahmen kaum zu sehen */
-  .bg-teal a:focus-visible,
-  .bg-teal button:focus-visible {
-    outline-color: var(--color-ink);
   }
 
   button {
     cursor: pointer;
+  }
+
+  /* Tabellarische Ziffern für Zeiten, Nummern, Kennzahlen */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Breite Schnitte der Archivo als gestalterisches Mittel (Wortmarke, Schrittnummern) */
+.wide {
+  font-variation-settings: "wdth" 125;
+}
+.narrow {
+  font-variation-settings: "wdth" 88;
+}
+
+/* ------------------------------------------------------------------ */
+/* Hintergründe der dunklen Flächen                                    */
+/* ------------------------------------------------------------------ */
+/* Feines Raster, das zur Bildmitte hin ausläuft – nur im Seitenkopf */
+.grid-field {
+  background-image:
+    linear-gradient(to right, rgba(159, 173, 194, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(159, 173, 194, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 30%, transparent 75%);
+}
+/* Dezentes Licht hinter der Systemkarte */
+.glow-signal {
+  background: radial-gradient(closest-side, rgba(76, 201, 240, 0.16), rgba(47, 124, 246, 0.06) 55%, transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Systemkarte (Seitenkopf) und Ablauf-Grafiken                        */
+/* ------------------------------------------------------------------ */
+/* Aktive Verbindung: Linie füllt sich von der Quelle zum Ziel */
+.edge-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: edge-draw 760ms var(--ease-out-quart) forwards;
+}
+@keyframes edge-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+/* Knoten, der gerade arbeitet */
+.node-pulse {
+  animation: node-pulse 1.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+/* Einblenden einer neuen Protokollzeile bzw. eines Ablaufschritts */
+.row-in {
+  animation: row-in 420ms var(--ease-out-quart) both;
+}
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Fortschrittslinie „So arbeiten wir": füllt sich einmal, wenn sie sichtbar wird */
+.progress-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.6s var(--ease-out-quart);
+}
+.progress-line.is-visible {
+  transform: scaleX(1);
+}
+@media (max-width: 63.99rem) {
+  .progress-line {
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+  .progress-line.is-visible {
+    transform: scaleY(1);
   }
 }
 
@@ -124,63 +261,6 @@
     opacity: 0.45;
     transform: scale(0.8);
   }
-}
-
-/* Schieberegler des Einsparrechners */
-.range {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 44px; /* großzügige Touch-Fläche */
-  background: transparent;
-  cursor: pointer;
-}
-.range::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 9999px;
-  background: linear-gradient(
-    to right,
-    var(--color-teal-dark) var(--fill, 50%),
-    var(--color-line) var(--fill, 50%)
-  );
-}
-.range::-moz-range-track {
-  height: 6px;
-  border-radius: 9999px;
-  background: var(--color-line);
-}
-.range::-moz-range-progress {
-  height: 6px;
-  border-radius: 9999px;
-  background: var(--color-teal-dark);
-}
-.range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  margin-top: -8px;
-  border-radius: 9999px;
-  background: #ffffff;
-  border: 2px solid var(--color-ink);
-}
-.range::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 9999px;
-  background: #ffffff;
-  border: 2px solid var(--color-ink);
-}
-.range:focus-visible {
-  outline: none;
-}
-.range:focus-visible::-webkit-slider-thumb {
-  outline: 2px solid var(--color-teal-text);
-  outline-offset: 3px;
-}
-.range:focus-visible::-moz-range-thumb {
-  outline: 2px solid var(--color-teal-text);
-  outline-offset: 3px;
 }
 
 /* ------------------------------------------------------------------ */
@@ -212,8 +292,18 @@
 
 /* Bewegung reduzieren: alle Schleifen und Übergänge der Visualisierungen aus */
 @media (prefers-reduced-motion: reduce) {
+  .edge-draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .node-pulse,
+  .row-in,
   .demo-in,
   .status-pulse {
     animation: none;
+  }
+  .progress-line {
+    transition: none;
+    transform: none;
   }
 }

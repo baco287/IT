@@ -17,7 +17,7 @@ import {
 import { CTA_LABEL } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Demo: Online-Reservierung & Terminbuchung | QonteX",
+  title: "Demo: Online-Reservierung & Terminbuchung",
   description:
     "Interaktive Demo: So funktioniert Online-Reservierung für Restaurants und Online-Terminbuchung für Werkstätten – mit KI-Chat-Assistent und Betreiberansicht.",
   robots: { index: false, follow: false },
@@ -34,7 +34,7 @@ const FEATURES: Array<{ title: string; text: string }> = [
   },
   {
     title: "Bestätigung & Erinnerung",
-    text: "Jede Buchung wird automatisch bestätigt, am Vortag erinnert das System – das senkt Ausfälle spürbar.",
+    text: "Jede Buchung wird automatisch bestätigt, am Vortag erinnert das System. Das hilft, vergessene Termine zu vermeiden.",
   },
   {
     title: "Keine Doppelbuchungen",
@@ -44,7 +44,7 @@ const FEATURES: Array<{ title: string; text: string }> = [
 
 const STEPS: Array<{ title: string; text: string }> = [
   {
-    title: "Kostenloses Potenzialgespräch",
+    title: "Erstgespräch",
     text: "Wir schauen uns an, wie Reservierungen oder Termine bei Ihnen heute laufen – und was sich lohnt.",
   },
   {
@@ -69,7 +69,7 @@ export default function DemoPage() {
         />
 
         {/* Die eigentliche Demo */}
-        <section className="bg-white py-14 lg:py-20" aria-label="Interaktive Buchungs-Demo">
+        <section className="bg-fog py-14 lg:py-20" aria-label="Interaktive Buchungs-Demo">
           <div className={container}>
             <BookingDemo />
           </div>
@@ -78,7 +78,7 @@ export default function DemoPage() {
         {/* Was dahinter steckt */}
         <SplitSection
           headingId="features-heading"
-          title="Mehr Buchungen, weniger Telefon."
+          title="Buchen ohne Telefonpingpong."
           text="Das System übernimmt die Arbeit, die heute am Telefon und im Terminbuch hängen bleibt – und Ihr Team kümmert sich um Gäste und Autos statt um Zettel."
         >
           <DefRows items={FEATURES} />
