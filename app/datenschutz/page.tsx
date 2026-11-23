@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PHONE_DISPLAY } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung | QonteX",
@@ -30,7 +31,7 @@ export default function Datenschutz() {
           <br />
           Pappelallee 64, 10437 Berlin, Deutschland
           <br />
-          Telefon: +49 176 25041651 · E-Mail: info@qontex.de
+          Telefon: {PHONE_DISPLAY} · E-Mail: info@qontex.de
         </p>
 
         <h2 className={h2}>2. Allgemeines zur Datenverarbeitung</h2>
@@ -87,7 +88,37 @@ export default function Datenschutz() {
           sind und keine gesetzlichen Aufbewahrungspflichten bestehen.
         </p>
 
-        <h2 className={h2}>5. Schriftarten</h2>
+        <h2 className={h2}>5. Kontakt über WhatsApp</h2>
+        <p className={p}>
+          Sie können uns auch über WhatsApp schreiben. Der WhatsApp-Link auf
+          dieser Website öffnet WhatsApp bzw. die Seite wa.me des Anbieters
+          WhatsApp Ireland Limited (Dublin, Irland). Erst durch diesen Klick
+          werden Daten an WhatsApp übertragen, nicht schon beim Besuch unserer
+          Website.
+        </p>
+        <p className={p}>
+          Wenn Sie uns über WhatsApp schreiben, verarbeiten wir Ihre
+          Telefonnummer, Ihren Profilnamen und den Inhalt Ihrer Nachrichten zur
+          Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b
+          DSGVO (vorvertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. f DSGVO
+          (berechtigtes Interesse an der Beantwortung von Anfragen). WhatsApp
+          verarbeitet dabei eigenverantwortlich weitere Daten, etwa Metadaten
+          der Kommunikation; eine Übermittlung an die Muttergesellschaft Meta
+          Platforms, Inc. in den USA ist nicht ausgeschlossen. Einzelheiten
+          finden Sie in der{" "}
+          <a
+            href="https://www.whatsapp.com/legal/privacy-policy-eea"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={link}
+          >
+            Datenschutzrichtlinie von WhatsApp
+          </a>
+          . Wenn Sie WhatsApp nicht nutzen möchten, erreichen Sie uns ebenso per
+          Telefon, E-Mail oder über das Kontaktformular.
+        </p>
+
+        <h2 className={h2}>6. Schriftarten</h2>
         <p className={p}>
           Die verwendeten Schriftarten (Fira Sans, Fira Sans Condensed und Plus Jakarta Sans)
           sind lokal auf unserem Hosting eingebunden. Beim Laden der Schriften
@@ -95,7 +126,7 @@ export default function Datenschutz() {
           Schriftanbietern statt.
         </p>
 
-        <h2 className={h2}>6. Ihre Rechte</h2>
+        <h2 className={h2}>7. Ihre Rechte</h2>
         <p className={p}>
           Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie
           betreffenden personenbezogenen Daten: Recht auf Auskunft (Art. 15
@@ -111,7 +142,7 @@ export default function Datenschutz() {
           für Datenschutz und Informationsfreiheit.
         </p>
 
-        <h2 className={h2}>7. Aktualität dieser Erklärung</h2>
+        <h2 className={h2}>8. Aktualität dieser Erklärung</h2>
         <p className={p}>
           Wir passen diese Datenschutzerklärung an, sobald sich der Umfang der
           Datenverarbeitung auf dieser Website ändert.

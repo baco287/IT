@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { btnOnDark, container, h2Class } from "./ui";
-import { ADDRESS_LINE, EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
+import { ADDRESS_LINE, EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "@/lib/company";
 
 /* Kontaktdaten weiterhin von hier beziehbar (bestehende Importe) */
 export { EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
@@ -36,6 +36,17 @@ export default function Cta() {
               >
                 <Phone size={20} strokeWidth={1.9} className="flex-none text-teal" aria-hidden />
                 {PHONE_DISPLAY}
+              </a>
+            </li>
+            <li>
+              <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-14 items-center gap-4 text-[17px] font-medium text-white transition-colors hover:text-teal"
+              >
+                <MessageCircle size={20} strokeWidth={1.9} className="flex-none text-teal" aria-hidden />
+                Per WhatsApp schreiben
               </a>
             </li>
             <li>

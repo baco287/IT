@@ -13,7 +13,7 @@ export const CONFIG = {
     firma: "Volt Gas UG (haftungsbeschränkt)",
     strasse: "Pappelallee 64",
     plzOrt: "10437 Berlin",
-    telefon: "+49 176 25041651",
+    telefon: "+49 160 95257592",
     email: "info@qontex.de",
     demoUrl: "qontex.de/demo",
     ansprechpartner: "Sezer Karakus",

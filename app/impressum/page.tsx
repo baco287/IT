@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PHONE_DISPLAY } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Impressum | QonteX",
@@ -39,7 +40,7 @@ export default function Impressum() {
 
         <h2 className={h2}>Kontakt</h2>
         <p className={p}>
-          Telefon: 0176 / 250 416 51
+          Telefon und WhatsApp: {PHONE_DISPLAY}
           <br />
           E-Mail: info@qontex.de
           <br />

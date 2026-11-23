@@ -10,6 +10,7 @@ import {
   ArrowRight,
   ChevronDown,
   Phone,
+  MessageCircle,
   Workflow,
   PanelsTopLeft,
   Search,
@@ -20,7 +21,7 @@ import {
 } from "lucide-react";
 import Wordmark from "./Wordmark";
 import { btnPrimary } from "./ui";
-import { CTA_LABEL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
+import { CTA_LABEL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "@/lib/company";
 import agentHead from "@/public/images/qontex-agent-head.png";
 
 type ServiceLink = { href: string; label: string; text: string; icon: LucideIcon };
@@ -312,6 +313,16 @@ export default function Navbar() {
             >
               <Phone size={17} strokeWidth={2} className="text-teal-dark" aria-hidden />
               {PHONE_DISPLAY}
+            </a>
+            <a
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={close}
+              className="mt-3 flex min-h-12 items-center justify-center gap-2.5 rounded-md border-2 border-ink text-[15px] font-semibold text-ink"
+            >
+              <MessageCircle size={17} strokeWidth={2} className="text-teal-dark" aria-hidden />
+              Per WhatsApp schreiben
             </a>
           </div>
         </nav>

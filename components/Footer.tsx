@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Wordmark from "./Wordmark";
 import { container } from "./ui";
-import { ADDRESS_LINE, COMPANY, EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
+import { ADDRESS_LINE, COMPANY, EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "@/lib/company";
 import agentHead from "@/public/images/qontex-agent-head.png";
 
 const GROUPS = [
@@ -58,6 +58,16 @@ export default function Footer() {
               <li>
                 <a href={PHONE_HREF} className="inline-flex min-h-11 items-center font-medium text-white hover:text-teal">
                   {PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={WHATSAPP_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center font-medium text-white hover:text-teal"
+                >
+                  Per WhatsApp schreiben
                 </a>
               </li>
               <li>

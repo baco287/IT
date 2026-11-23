@@ -5,17 +5,18 @@ import PageHeader from "@/components/PageHeader";
 import Contact from "@/components/Contact";
 import Faq from "@/components/Faq";
 import { FAQS } from "@/lib/faqs";
-import { ADDRESS_LINE, EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/company";
+import { ADDRESS_LINE, EMAIL, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Kontakt | QonteX – Kostenloses Potenzialgespräch vereinbaren",
   description:
-    "Vereinbaren Sie ein kostenloses Potenzialgespräch mit QonteX: Wir sehen uns Ihre Abläufe an und besprechen, welche Digitalisierung und Automatisierung sinnvoll ist. Telefon +49 176 25041651, info@qontex.de.",
+    "Vereinbaren Sie ein kostenloses Potenzialgespräch mit QonteX: Wir sehen uns Ihre Abläufe an und besprechen, welche Digitalisierung und Automatisierung sinnvoll ist. Telefon und WhatsApp +49 160 95257592, info@qontex.de.",
   alternates: { canonical: "/kontakt/" },
 };
 
-const CONTACT_FACTS: Array<{ label: string; value: string; href?: string }> = [
-  { label: "Telefon", value: PHONE_DISPLAY, href: PHONE_HREF },
+const CONTACT_FACTS: Array<{ label: string; value: string; href?: string; external?: boolean }> = [
+  { label: "Telefon und WhatsApp", value: PHONE_DISPLAY, href: PHONE_HREF },
+  { label: "WhatsApp", value: "Nachricht schreiben", href: WHATSAPP_HREF, external: true },
   { label: "E-Mail", value: EMAIL, href: `mailto:${EMAIL}` },
   { label: "Adresse", value: ADDRESS_LINE },
   { label: "Erreichbarkeit", value: "Termine nach Vereinbarung" },
@@ -54,6 +55,7 @@ export default function KontaktPage() {
                       {f.href ? (
                         <a
                           href={f.href}
+                          {...(f.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                           className="inline-flex min-h-11 items-center decoration-2 underline-offset-4 hover:underline"
                         >
                           {f.value}
