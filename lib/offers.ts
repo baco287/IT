@@ -33,6 +33,8 @@ export type Offer = {
   benefits: { title: string; text: string }[];
   /** Pfade verwandter Seiten, z. B. "/loesungen/telefon-ki" */
   related: string[];
+  /** Echte Referenz (Reifencenter Bremen) auf dieser Seite zeigen */
+  reference?: boolean;
   ctaText: string;
 };
 
@@ -180,6 +182,7 @@ export const LEISTUNGEN: Offer[] = [
       },
     ],
     related: ["/leistungen/softwareentwicklung", "/leistungen/seo-marketingautomatisierung", "/loesungen/ki-chatbots"],
+    reference: true,
     ctaText:
       "Zeigen Sie uns Ihre aktuelle Website oder Ihre Idee für eine Webanwendung. Wir besprechen, welcher Umfang sinnvoll ist.",
   },

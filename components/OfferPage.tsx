@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import PageHeader from "./PageHeader";
 import Process from "./Process";
 import Cta from "./Cta";
+import Referenz from "./Referenz";
 import FlowDiagram from "./viz/FlowDiagram";
 import { CheckList, Note, SplitSection, btnGhostDarkLg, btnSignalLg, container, rowLink, textLinkDark } from "./ui";
 import { EXAMPLES } from "@/lib/examples";
@@ -139,7 +140,11 @@ export default function OfferPage({ offer }: { offer: Offer }) {
           </div>
         </section>
 
-        <Process id="ablauf" />
+        {/* Echte Referenz zwischen Nutzen (hellgrau) und Ablauf – der Ablauf wird dann
+            hellgrau, damit sich die Flächen weiter abwechseln */}
+        {offer.reference && <Referenz />}
+
+        <Process id="ablauf" tone={offer.reference ? "fog" : undefined} />
 
         {/* Verwandte Seiten */}
         {related.length > 0 && (

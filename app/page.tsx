@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/home/Hero";
 import ServiceGrid from "@/components/home/ServiceGrid";
 import UseCases from "@/components/home/UseCases";
+import Referenz from "@/components/Referenz";
 import Process from "@/components/Process";
 import Technology from "@/components/home/Technology";
 import Industries from "@/components/home/Industries";
@@ -23,6 +24,7 @@ export default function Home() {
       <main id="inhalt">
         <Hero />
         <ServiceGrid />
+        <Referenz />
         <UseCases />
         <Process />
         <Technology />
